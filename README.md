@@ -25,27 +25,98 @@ source("https://raw.githubusercontent.com/r-mailing-lists/data/main/scripts/rml.
 ``` r
 # See available lists
 rml_available()
+```
 
-# Read a single list (downloads and caches parquet files automatically)
-r_devel <- rml_read("r-devel")
+     [1] "bioc-devel"           "r-announce"           "r-devel"             
+     [4] "r-help"               "r-help-es"            "r-package-devel"     
+     [7] "r-packages"           "r-sig-db"             "r-sig-dcm"           
+    [10] "r-sig-debian"         "r-sig-dynamic-models" "r-sig-ecology"       
+    [13] "r-sig-epi"            "r-sig-fedora"         "r-sig-finance"       
+    [16] "r-sig-genetics"       "r-sig-geo"            "r-sig-gr"            
+    [19] "r-sig-gui"            "r-sig-hpc"            "r-sig-insurance"     
+    [22] "r-sig-jobs"           "r-sig-mac"            "r-sig-meta-analysis" 
+    [25] "r-sig-mixed-models"   "r-sig-networks"       "r-sig-robust"        
+    [28] "r-sig-teaching"       "r-sig-windows"        "r-ug-ottawa"         
+    [31] "rcpp-devel"          
 
+``` r
 # Read only metadata columns (skips body text — much faster)
-r_devel_meta <- rml_read("r-devel",
+r_devel <- rml_read("r-devel",
   col_select = c("from_name", "date", "subject", "thread_id", "month"))
+cat(nrow(r_devel), "messages x", ncol(r_devel), "columns\n")
+```
 
+    63399 messages x 5 columns
+
+``` r
+head(r_devel[, c("date", "from_name", "subject")], 5)
+```
+
+    # A data frame: 5 × 3
+      date                from_name       subject                                   
+    * <dttm>              <chr>           <chr>                                     
+    1 1997-04-01 10:28:56 Martin Maechler "R-alpha: Re: R-Prerelease  ---- Mailing …
+    2 1997-04-01 10:35:43 Kurt Hornik     "R-alpha: Re: R-Prerelease  ---- Mailing …
+    3 1997-04-03 09:50:54 Martin Maechler "R-alpha: Re: Pretest Version + Notes ---…
+    4 1997-04-03 14:45:55 Martin Maechler "R-alpha: R0.50-pre6:  \"stack imbalance …
+    5 1997-04-06 21:56:59 Ross Ihaka      "R-alpha: Some name changes"              
+
+``` r
 # Top 10 posters in the last year
-recent <- r_devel_meta[r_devel_meta$date >= as.POSIXct(Sys.Date() - 365), ]
+recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
+```
 
+
+                     Duncan Murdoch                 Martin Maechler 
+                                 38                              33 
+                  Dirk Eddelbuettel                     Ivan Krylov 
+                                 29                              28 
+                        Kurt Hornik                    Mikael Jagan 
+                                 19                              18 
+                    Michael Chirico                      Ben Bolker 
+                                 17                              16 
+                   Henrik Bengtsson Suharto Anggono Suharto Anggono 
+                                 15                              15 
+
+``` r
 # Message counts per list (thread summaries — single small download)
 threads <- rml_read_threads(col_select = c("list", "message_count"))
 agg <- aggregate(message_count ~ list, data = threads, FUN = sum)
-agg[order(-agg$message_count), ]
+head(agg[order(-agg$message_count), ], 10)
+```
 
+                     list message_count
+    4              r-help        398464
+    3             r-devel         63399
+    17          r-sig-geo         29558
+    1          bioc-devel         21300
+    25 r-sig-mixed-models         20627
+    5           r-help-es         15379
+    15      r-sig-finance         15274
+    23          r-sig-mac         15070
+    6     r-package-devel         12120
+    31         rcpp-devel         10988
+
+``` r
 # Top contributors across all lists
 contribs <- rml_read_contributors()
-head(contribs[order(-contribs$message_count), ], 20)
+head(contribs[order(-contribs$message_count), c("name", "message_count", "list_count")], 10)
 ```
+
+    # A data frame: 10 × 3
+       name               message_count list_count
+     * <chr>                      <int>      <int>
+     1 Prof Brian Ripley           8966          9
+     2 Duncan Murdoch              8774         11
+     3 David Winsemius             6376          9
+     4 Gabor Grothendieck          5900         13
+     5 Ben Bolker                  5543          8
+     6 Dirk Eddelbuettel           5488         14
+     7 Uwe Ligges                  5114         11
+     8 Martin Maechler             4955         18
+     9 Peter Dalgaard BSA          4222          4
+    10 Bert Gunter                 3788          9
 
 ### Python
 
