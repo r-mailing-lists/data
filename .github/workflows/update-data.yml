@@ -95,6 +95,8 @@ jobs:
             any::ggplot2
             any::igraph
             any::ggraph
+            any::knitr
+            any::rmarkdown
 
       - name: Build parquet files
         if: steps.check-hash.outputs.skip != 'true'
