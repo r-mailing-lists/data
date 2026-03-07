@@ -43,6 +43,41 @@ read_month_json <- function(path, list_name) {
   )
 }
 
+MAX_FILE_MB <- 90
+
+write_messages_parquet <- function(df, path) {
+  write_parquet(df, path, compression = "zstd",
+                options = parquet_options(compression_level = 19))
+}
+
+# Split a large parquet file into decade-based chunks
+split_large_parquet <- function(msgs, list_name, messages_dir) {
+  msgs$year <- as.integer(format(msgs$date, "%Y"))
+  year_range <- range(msgs$year, na.rm = TRUE)
+
+  # Build decade breaks
+  breaks <- seq(
+    floor(year_range[1] / 10) * 10,
+    ceiling((year_range[2] + 1) / 10) * 10,
+    by = 10
+  )
+
+  paths <- character()
+  for (i in seq_len(length(breaks) - 1)) {
+    chunk <- msgs[!is.na(msgs$year) & msgs$year >= breaks[i] & msgs$year < breaks[i + 1], ]
+    if (nrow(chunk) == 0) next
+    chunk$year <- NULL
+    label <- paste0(breaks[i], "-", breaks[i + 1] - 1)
+    out <- file.path(messages_dir, paste0(list_name, "-", label, ".parquet"))
+    write_messages_parquet(chunk, out)
+    message("  -> ", out, " (", nrow(chunk), " messages, ",
+            round(file.size(out) / 1e6, 1), " MB)")
+    paths <- c(paths, out)
+  }
+  msgs$year <- NULL
+  paths
+}
+
 read_threads_json <- function(path, list_name) {
   d <- fromJSON(path, simplifyDataFrame = FALSE)
   threads <- d$threads
@@ -99,10 +134,17 @@ for (list_path in list_dirs) {
   msgs$thread_depth <- as.integer(msgs$thread_depth)
 
   out_path <- file.path(messages_dir, paste0(list_name, ".parquet"))
-  write_parquet(msgs, out_path, compression = "zstd",
-                options = parquet_options(compression_level = 19))
+  write_messages_parquet(msgs, out_path)
+  file_mb <- file.size(out_path) / 1e6
   message("  -> ", out_path, " (", nrow(msgs), " messages, ",
-          round(file.size(out_path) / 1e6, 1), " MB)")
+          round(file_mb, 1), " MB)")
+
+  if (file_mb > MAX_FILE_MB) {
+    message("  ** ", round(file_mb, 1), " MB exceeds ",
+            MAX_FILE_MB, " MB limit — splitting by decade")
+    file.remove(out_path)
+    split_large_parquet(msgs, list_name, messages_dir)
+  }
 
   if (length(thread_frames) > 0) {
     threads <- do.call(rbind, thread_frames)
