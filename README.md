@@ -53,34 +53,40 @@ all_msgs = pl.read_parquet("data/messages/*.parquet")
 
 ## Data overview
 
-**417,376** messages across **25** mailing lists
+**631,099** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
-| r-help               | 230,602  | 25,897  | Apr 1997      | Feb 2026     |
-| r-devel              | 62,188   | 4,923   | Apr 1997      | Mar 2026     |
-| r-sig-mixed-models   | 27,561   | 3,096   | Jan 2007      | Mar 2026     |
-| r-sig-geo            | 25,472   | 3,450   | Jul 2003      | Mar 2026     |
-| r-sig-mac            | 13,354   | 1,729   | Jan 1970      | Mar 2026     |
-| r-sig-finance        | 13,150   | 2,083   | Jun 2005      | Feb 2026     |
-| r-package-devel      | 11,733   | 1,147   | May 2015      | Mar 2026     |
-| r-sig-ecology        | 7,393    | 1,419   | Apr 2008      | Mar 2026     |
-| rcpp-devel           | 5,912    | 579     | Dec 2009      | Jan 2026     |
-| r-sig-meta-analysis  | 5,028    | 540     | Jun 2017      | Mar 2026     |
-| r-sig-debian         | 3,559    | 522     | Jul 2005      | Dec 2025     |
-| r-sig-hpc            | 2,149    | 403     | Oct 2008      | Dec 2024     |
-| r-packages           | 1,836    | 605     | Sep 2003      | Jan 2026     |
-| r-sig-db             | 1,556    | 402     | Apr 2001      | Nov 2020     |
-| r-sig-fedora         | 917      | 136     | May 2008      | Sep 2025     |
-| r-sig-gui            | 870      | 242     | Oct 2002      | Feb 2018     |
-| r-sig-teaching       | 847      | 236     | Oct 2006      | Jan 2026     |
-| r-announce           | 700      | 120     | Apr 1997      | Feb 2026     |
-| r-sig-dynamic-models | 697      | 164     | Oct 2009      | Feb 2026     |
-| r-sig-epi            | 574      | 172     | Nov 2005      | Mar 2026     |
-| r-sig-robust         | 524      | 159     | Nov 2005      | Dec 2025     |
-| r-sig-jobs           | 434      | 271     | Feb 2007      | Feb 2024     |
+| r-help               | 398,464  | 39,318  | Apr 1997      | Feb 2026     |
+| r-devel              | 63,399   | 6,758   | Apr 1997      | Mar 2026     |
+| r-sig-geo            | 29,558   | 3,737   | Jul 2003      | Mar 2026     |
+| bioc-devel           | 21,300   | 1,756   | Mar 2004      | Mar 2026     |
+| r-sig-mixed-models   | 20,627   | 3,242   | Jan 2007      | Mar 2026     |
+| r-help-es            | 15,379   | 1,021   | Mar 2009      | Feb 2026     |
+| r-sig-finance        | 15,274   | 2,285   | Jun 2004      | Feb 2026     |
+| r-sig-mac            | 15,070   | 1,870   | Jan 1970      | Mar 2026     |
+| r-package-devel      | 12,120   | 1,170   | May 2015      | Mar 2026     |
+| rcpp-devel           | 10,988   | 828     | Nov 2009      | Jan 2026     |
+| r-sig-ecology        | 7,404    | 1,419   | Apr 2008      | Mar 2026     |
+| r-sig-meta-analysis  | 5,628    | 564     | Jun 2017      | Mar 2026     |
+| r-sig-debian         | 3,656    | 535     | Feb 2005      | Dec 2025     |
+| r-sig-hpc            | 2,152    | 404     | Oct 2008      | Dec 2024     |
+| r-sig-db             | 1,559    | 403     | Apr 2001      | Nov 2020     |
+| r-packages           | 1,339    | 606     | Sep 2003      | Jan 2026     |
+| r-sig-gui            | 1,236    | 293     | Oct 2002      | Feb 2018     |
+| r-sig-fedora         | 919      | 136     | May 2008      | Sep 2025     |
+| r-sig-teaching       | 885      | 242     | Oct 2006      | Jan 2026     |
+| r-announce           | 703      | 123     | Apr 1997      | Feb 2026     |
+| r-sig-dynamic-models | 696      | 164     | Oct 2009      | Feb 2026     |
+| r-sig-epi            | 575      | 172     | Nov 2005      | Mar 2026     |
+| r-sig-robust         | 523      | 159     | Nov 2005      | Dec 2025     |
+| r-sig-genetics       | 481      | 63      | May 2008      | Mar 2026     |
+| r-sig-jobs           | 441      | 271     | Feb 2007      | Feb 2024     |
+| r-ug-ottawa          | 197      | 75      | Jan 2009      | Dec 2022     |
 | r-sig-gr             | 176      | 83      | Sep 2002      | Nov 2025     |
+| r-sig-windows        | 139      | 18      | Aug 2015      | Feb 2026     |
 | r-sig-insurance      | 117      | 40      | Apr 2009      | Dec 2022     |
+| r-sig-dcm            | 67       | 17      | Jul 2010      | Sep 2024     |
 | r-sig-networks       | 27       | 21      | Jul 2008      | May 2019     |
 
 <div id="fig-timeline">
