@@ -29,13 +29,6 @@ jobs:
       - name: Pull processed data from archive repos
         run: |
           mkdir -p data/processed
-          # Read lists.conf from the viewer repo
-          git clone --depth 1 --filter=blob:none --sparse \
-            https://github.com/r-mailing-lists/viewer.git \
-            tmp-viewer 2>/dev/null
-          cd tmp-viewer && git sparse-checkout set scripts/lists.conf && cd ..
-          cp tmp-viewer/scripts/lists.conf lists.conf
-          rm -rf tmp-viewer
 
           while IFS=$'\t' read -r name url type desc; do
             [[ "$name" =~ ^#.*$ ]] && continue
@@ -57,8 +50,7 @@ jobs:
               cp "data/tmp-$name/meta.json" "data/processed/$name/meta.json"
             fi
             rm -rf "data/tmp-$name"
-          done < lists.conf
-          rm -f lists.conf
+          done < scripts/lists.conf
 
       - name: Compute data hash
         id: data-hash
