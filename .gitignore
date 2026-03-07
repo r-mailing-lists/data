@@ -1,0 +1,17 @@
+# Intermediate/source data (not the parquet output)
+data/processed/
+data/summary.json
+
+# Quarto cache
+.quarto/
+_freeze/
+
+# R artifacts
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# Misc
+*.html
+!README.md

@@ -1,0 +1,140 @@
+name: Update Data
+
+on:
+  schedule:
+    # Run daily at 6 AM UTC — after archive repos update (2-3 AM UTC)
+    - cron: '0 6 * * *'
+  repository_dispatch:
+    types: [archive-updated]
+  workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: 'Force rebuild (ignore data hash check)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull processed data from archive repos
+        run: |
+          mkdir -p data/processed
+          # Read lists.conf from the viewer repo
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/r-mailing-lists/viewer.git \
+            tmp-viewer 2>/dev/null
+          cd tmp-viewer && git sparse-checkout set scripts/lists.conf && cd ..
+          cp tmp-viewer/scripts/lists.conf lists.conf
+          rm -rf tmp-viewer
+
+          while IFS=$'\t' read -r name url type desc; do
+            [[ "$name" =~ ^#.*$ ]] && continue
+            [ -z "$name" ] && continue
+            echo "Pulling data for $name..."
+            git clone --depth 1 --filter=blob:none --sparse \
+              "https://github.com/r-mailing-lists/$name.git" \
+              "data/tmp-$name" 2>/dev/null || continue
+            cd "data/tmp-$name"
+            git sparse-checkout init --no-cone
+            git sparse-checkout set /processed /meta.json
+            git checkout
+            cd ../..
+            if [ -d "data/tmp-$name/processed" ]; then
+              mv "data/tmp-$name/processed" "data/processed/$name"
+            fi
+            if [ -f "data/tmp-$name/meta.json" ]; then
+              mkdir -p "data/processed/$name"
+              cp "data/tmp-$name/meta.json" "data/processed/$name/meta.json"
+            fi
+            rm -rf "data/tmp-$name"
+          done < lists.conf
+          rm -f lists.conf
+
+      - name: Compute data hash
+        id: data-hash
+        run: |
+          HASH=$(find data/processed -name '*.json' -type f | sort | xargs sha256sum | sha256sum | cut -d' ' -f1)
+          echo "hash=$HASH" >> "$GITHUB_OUTPUT"
+          echo "Data hash: $HASH"
+
+      - name: Check if rebuild is needed
+        id: check-hash
+        if: github.event_name == 'schedule' && inputs.force_rebuild != true
+        run: |
+          HASH="${{ steps.data-hash.outputs.hash }}"
+          LAST_HASH=$(gh release view last-data-build --repo "${{ github.repository }}" --json body --jq '.body' 2>/dev/null || echo "none")
+          echo "Current hash: $HASH"
+          echo "Last build hash: $LAST_HASH"
+          if [ "$HASH" = "$LAST_HASH" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Data unchanged — skipping rebuild"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "Data changed — rebuilding"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup R
+        if: steps.check-hash.outputs.skip != 'true'
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+
+      - name: Install R dependencies
+        if: steps.check-hash.outputs.skip != 'true'
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::jsonlite
+            any::nanoparquet
+            any::dplyr
+            any::scales
+            any::ggplot2
+            any::igraph
+            any::ggraph
+
+      - name: Build parquet files
+        if: steps.check-hash.outputs.skip != 'true'
+        run: Rscript scripts/build-parquet.R data/processed data
+
+      - name: Setup Quarto
+        if: steps.check-hash.outputs.skip != 'true'
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render README
+        if: steps.check-hash.outputs.skip != 'true'
+        run: quarto render README.qmd
+
+      - name: Commit and push
+        if: steps.check-hash.outputs.skip != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ README.md README_files/ 2>/dev/null || true
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          git commit -m "data: update parquet files and README $(date -u +%Y-%m-%d)"
+          git push
+
+      - name: Save build hash
+        if: steps.check-hash.outputs.skip != 'true'
+        run: |
+          HASH="${{ steps.data-hash.outputs.hash }}"
+          gh release delete last-data-build --repo "${{ github.repository }}" --yes --cleanup-tag 2>/dev/null || true
+          gh release create last-data-build \
+            --repo "${{ github.repository }}" \
+            --title "Last successful data build" \
+            --notes "$HASH"
+          echo "Saved build hash: $HASH"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
