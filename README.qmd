@@ -25,6 +25,10 @@ read_messages <- function(col_select = NULL) {
   files <- list.files("data/messages", pattern = "\\.parquet$", full.names = TRUE)
   do.call(rbind, lapply(files, read_parquet, col_select = col_select))
 }
+
+# Source helpers and point at local data (avoids downloading during render)
+source("scripts/rml.R")
+.rml_data_dir <- "data"
 ```
 
 A collection of [R mailing list](https://www.r-project.org/mail.html) archives in [Parquet](https://parquet.apache.org/) format, ready for analysis in R, Python, or any language with Parquet support.
@@ -41,29 +45,50 @@ Requires [`jsonlite`](https://cran.r-project.org/package=jsonlite) and [`nanopar
 source("https://raw.githubusercontent.com/r-mailing-lists/data/main/scripts/rml.R")
 ```
 
-```r
+```{r}
+#| label: r-available
+#| echo: true
+#| message: false
 # See available lists
 rml_available()
+```
 
-# Read a single list (downloads and caches parquet files automatically)
-r_devel <- rml_read("r-devel")
-
+```{r}
+#| label: r-read-devel
+#| echo: true
+#| message: false
 # Read only metadata columns (skips body text — much faster)
-r_devel_meta <- rml_read("r-devel",
+r_devel <- rml_read("r-devel",
   col_select = c("from_name", "date", "subject", "thread_id", "month"))
+cat(nrow(r_devel), "messages x", ncol(r_devel), "columns\n")
+head(r_devel[, c("date", "from_name", "subject")], 5)
+```
 
+```{r}
+#| label: r-top-posters
+#| echo: true
 # Top 10 posters in the last year
-recent <- r_devel_meta[r_devel_meta$date >= as.POSIXct(Sys.Date() - 365), ]
+recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
+```
 
+```{r}
+#| label: r-threads
+#| echo: true
+#| message: false
 # Message counts per list (thread summaries — single small download)
 threads <- rml_read_threads(col_select = c("list", "message_count"))
 agg <- aggregate(message_count ~ list, data = threads, FUN = sum)
-agg[order(-agg$message_count), ]
+head(agg[order(-agg$message_count), ], 10)
+```
 
+```{r}
+#| label: r-contributors
+#| echo: true
+#| message: false
 # Top contributors across all lists
 contribs <- rml_read_contributors()
-head(contribs[order(-contribs$message_count), ], 20)
+head(contribs[order(-contribs$message_count), c("name", "message_count", "list_count")], 10)
 ```
 
 ### Python

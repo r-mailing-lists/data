@@ -10,6 +10,10 @@
 .rml_api_url  <- "https://api.github.com/repos/r-mailing-lists/data/contents/data/messages"
 .rml_cache    <- file.path(tempdir(), "rml_cache")
 
+# Set to a local path (e.g. "data") to read from disk instead of downloading.
+# Useful after cloning the repo: .rml_data_dir <- "data"
+.rml_data_dir <- NULL
+
 .rml_ensure_cache <- function() {
   if (!dir.exists(.rml_cache)) dir.create(.rml_cache, recursive = TRUE)
   .rml_cache
@@ -36,8 +40,12 @@
 
 #' List available mailing list names
 rml_available <- function() {
-  index <- .rml_file_index()
-  files <- sub("\\.parquet$", "", index$name)
+  if (!is.null(.rml_data_dir)) {
+    files <- list.files(file.path(.rml_data_dir, "messages"), pattern = "\\.parquet$")
+  } else {
+    files <- .rml_file_index()$name
+  }
+  files <- sub("\\.parquet$", "", files)
   sort(unique(sub("-\\d{4}-\\d{4}$", "", files)))
 }
 
@@ -47,23 +55,38 @@ rml_available <- function() {
 #' @param col_select Character vector of columns to read, or NULL for all.
 #'   Omitting "body" speeds up loading significantly.
 rml_read <- function(list_name, col_select = NULL) {
-  index <- .rml_file_index()
   pattern <- paste0("^", list_name, "(-\\d{4}-\\d{4})?\\.parquet$")
-  matches <- index$name[grepl(pattern, index$name)]
-  if (length(matches) == 0) {
-    stop("List '", list_name, "' not found. Run rml_available() to see options.",
-         call. = FALSE)
+
+  if (!is.null(.rml_data_dir)) {
+    files <- list.files(file.path(.rml_data_dir, "messages"),
+                        pattern = pattern, full.names = TRUE)
+    if (length(files) == 0) {
+      stop("List '", list_name, "' not found. Run rml_available() to see options.",
+           call. = FALSE)
+    }
+    frames <- lapply(files, nanoparquet::read_parquet, col_select = col_select)
+  } else {
+    index <- .rml_file_index()
+    matches <- index$name[grepl(pattern, index$name)]
+    if (length(matches) == 0) {
+      stop("List '", list_name, "' not found. Run rml_available() to see options.",
+           call. = FALSE)
+    }
+    frames <- lapply(matches, function(f) {
+      dest <- file.path(.rml_ensure_cache(), f)
+      .rml_download(paste0(.rml_base_url, "/messages/", f), dest)
+      nanoparquet::read_parquet(dest, col_select = col_select)
+    })
   }
-  frames <- lapply(matches, function(f) {
-    dest <- file.path(.rml_ensure_cache(), f)
-    .rml_download(paste0(.rml_base_url, "/messages/", f), dest)
-    nanoparquet::read_parquet(dest, col_select = col_select)
-  })
   if (length(frames) == 1) frames[[1]] else do.call(rbind, frames)
 }
 
 #' Download and read thread summaries
 rml_read_threads <- function(col_select = NULL) {
+  if (!is.null(.rml_data_dir)) {
+    return(nanoparquet::read_parquet(
+      file.path(.rml_data_dir, "threads.parquet"), col_select = col_select))
+  }
   dest <- file.path(.rml_ensure_cache(), "threads.parquet")
   .rml_download(paste0(.rml_base_url, "/threads.parquet"), dest)
   nanoparquet::read_parquet(dest, col_select = col_select)
@@ -71,6 +94,10 @@ rml_read_threads <- function(col_select = NULL) {
 
 #' Download and read contributor statistics
 rml_read_contributors <- function(col_select = NULL) {
+  if (!is.null(.rml_data_dir)) {
+    return(nanoparquet::read_parquet(
+      file.path(.rml_data_dir, "contributors.parquet"), col_select = col_select))
+  }
   dest <- file.path(.rml_ensure_cache(), "contributors.parquet")
   .rml_download(paste0(.rml_base_url, "/contributors.parquet"), dest)
   nanoparquet::read_parquet(dest, col_select = col_select)
