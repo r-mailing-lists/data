@@ -98,6 +98,17 @@ jobs:
             any::knitr
             any::rmarkdown
 
+      - name: Download rmail-parser
+        if: steps.check-hash.outputs.skip != 'true'
+        run: |
+          curl -sL -o rmail-parser \
+            "https://github.com/r-mailing-lists/rmail-parser/releases/latest/download/rmail-parser-linux-x86_64"
+          chmod +x rmail-parser
+
+      - name: Aggregate contributors
+        if: steps.check-hash.outputs.skip != 'true'
+        run: ./rmail-parser aggregate --input data/processed --output data/processed/_contributors.json
+
       - name: Build parquet files
         if: steps.check-hash.outputs.skip != 'true'
         run: Rscript scripts/build-parquet.R data/processed data

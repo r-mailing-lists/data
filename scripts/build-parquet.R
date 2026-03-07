@@ -187,7 +187,10 @@ if (file.exists(contrib_path)) {
     name          = vapply(contrib, `[[`, "", "name"),
     message_count = vapply(contrib, `[[`, 0L, "messageCount"),
     list_count    = vapply(contrib, \(x) length(x$lists), 0L),
-    lists         = vapply(contrib, \(x) paste(x$lists, collapse = ","), ""),
+    lists         = vapply(contrib, \(x) paste(vapply(x$lists, `[[`, "", "slug"), collapse = ","), ""),
+    list_counts   = vapply(contrib, \(x) paste(vapply(x$lists, \(l) paste0(l$slug, ":", l$count), ""), collapse = ","), ""),
+    first_message = vapply(contrib, \(x) x$firstDate %||% NA_character_, ""),
+    last_message  = vapply(contrib, \(x) x$lastDate %||% NA_character_, ""),
     stringsAsFactors = FALSE
   )
   contrib_out <- file.path(output_dir, "contributors.parquet")
