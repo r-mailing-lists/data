@@ -46,7 +46,7 @@ r_devel <- rml_read("r-devel",
 cat(nrow(r_devel), "messages x", ncol(r_devel), "columns\n")
 ```
 
-    63399 messages x 5 columns
+    69483 messages x 5 columns
 
 ``` r
 head(r_devel[, c("date", "from_name", "subject")], 5)
@@ -56,10 +56,10 @@ head(r_devel[, c("date", "from_name", "subject")], 5)
       date                from_name       subject                                   
     * <dttm>              <chr>           <chr>                                     
     1 1997-04-01 10:28:56 Martin Maechler "R-alpha: Re: R-Prerelease  ---- Mailing …
-    2 1997-04-01 10:35:43 Kurt Hornik     "R-alpha: Re: R-Prerelease  ---- Mailing …
-    3 1997-04-03 09:50:54 Martin Maechler "R-alpha: Re: Pretest Version + Notes ---…
-    4 1997-04-03 14:45:55 Martin Maechler "R-alpha: R0.50-pre6:  \"stack imbalance …
-    5 1997-04-06 21:56:59 Ross Ihaka      "R-alpha: Some name changes"              
+    2 1997-04-01 10:28:56 Martin Maechler "R-alpha: Re: R-Prerelease  ---- Mailing …
+    3 1997-04-01 10:28:56 Martin Maechler "R-alpha: Re: R-Prerelease  ---- Mailing …
+    4 1997-04-01 10:35:43 Kurt Hornik     "R-alpha: Re: R-Prerelease  ---- Mailing …
+    5 1997-04-01 10:35:43 Kurt Hornik     "R-alpha: Re: R-Prerelease  ---- Mailing …
 
 ``` r
 # Top 10 posters in the last year
@@ -69,9 +69,9 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 
 
                      Duncan Murdoch                 Martin Maechler 
-                                 38                              33 
+                                 36                              33 
                   Dirk Eddelbuettel                     Ivan Krylov 
-                                 29                              28 
+                                 28                              28 
                         Kurt Hornik                    Mikael Jagan 
                                  19                              18 
                     Michael Chirico                      Ben Bolker 
@@ -87,16 +87,16 @@ head(agg[order(-agg$message_count), ], 10)
 ```
 
                      list message_count
-    4              r-help        398464
-    3             r-devel         63399
-    17          r-sig-geo         29558
-    1          bioc-devel         21300
-    25 r-sig-mixed-models         20627
-    5           r-help-es         15379
-    15      r-sig-finance         15274
-    23          r-sig-mac         15070
-    6     r-package-devel         12120
-    31         rcpp-devel         10988
+    4              r-help        232927
+    3             r-devel         69483
+    25 r-sig-mixed-models         27561
+    17          r-sig-geo         25472
+    1          bioc-devel         19662
+    5           r-help-es         14652
+    23          r-sig-mac         14528
+    15      r-sig-finance         13551
+    6     r-package-devel         11733
+    31         rcpp-devel          9938
 
 ``` r
 # Top contributors across all lists
@@ -107,16 +107,16 @@ head(contribs[order(-contribs$message_count), c("name", "message_count", "list_c
     # A data frame: 10 × 3
        name               message_count list_count
      * <chr>                      <int>      <int>
-     1 Prof Brian Ripley           8966          9
-     2 Duncan Murdoch              8774         11
-     3 David Winsemius             6376          9
-     4 Gabor Grothendieck          5900         13
-     5 Ben Bolker                  5543          8
-     6 Dirk Eddelbuettel           5488         14
-     7 Uwe Ligges                  5114         11
-     8 Martin Maechler             4955         18
-     9 Peter Dalgaard BSA          4222          4
-    10 Bert Gunter                 3788          9
+     1 Prof Brian Ripley          15346          9
+     2 Duncan Murdoch             13186         13
+     3 David Winsemius            12315          9
+     4 Gabor Grothendieck         10816         13
+     5 Uwe Ligges                  8800         13
+     6 Dirk Eddelbuettel           7808         15
+     7 Ben Bolker                  7300          8
+     8 Martin Maechler             6674         19
+     9 Bert Gunter                 6084          9
+    10 Peter Dalgaard BSA          5455          4
 
 ### Python
 
@@ -176,35 +176,35 @@ all_msgs = pl.read_parquet("data/messages/*.parquet")
 
 ## Data overview
 
-**631,099** messages across **31** mailing lists
+**468,222** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
-| r-help               | 398,464  | 39,318  | Apr 1997      | Feb 2026     |
-| r-devel              | 63,399   | 6,758   | Apr 1997      | Mar 2026     |
-| r-sig-geo            | 29,558   | 3,737   | Jul 2003      | Mar 2026     |
-| bioc-devel           | 21,300   | 1,756   | Mar 2004      | Mar 2026     |
-| r-sig-mixed-models   | 20,627   | 3,242   | Jan 2007      | Mar 2026     |
-| r-help-es            | 15,379   | 1,021   | Mar 2009      | Feb 2026     |
-| r-sig-finance        | 15,274   | 2,285   | Jun 2004      | Feb 2026     |
-| r-sig-mac            | 15,070   | 1,870   | Jan 1970      | Mar 2026     |
-| r-package-devel      | 12,120   | 1,170   | May 2015      | Mar 2026     |
-| rcpp-devel           | 10,988   | 828     | Nov 2009      | Jan 2026     |
-| r-sig-ecology        | 7,404    | 1,419   | Apr 2008      | Mar 2026     |
-| r-sig-meta-analysis  | 5,628    | 564     | Jun 2017      | Mar 2026     |
-| r-sig-debian         | 3,656    | 535     | Feb 2005      | Dec 2025     |
-| r-sig-hpc            | 2,152    | 404     | Oct 2008      | Dec 2024     |
-| r-sig-db             | 1,559    | 403     | Apr 2001      | Nov 2020     |
-| r-packages           | 1,339    | 606     | Sep 2003      | Jan 2026     |
+| r-help               | 232,927  | 26,065  | Apr 1997      | Feb 2026     |
+| r-devel              | 69,483   | 6,167   | Apr 1997      | Mar 2026     |
+| r-sig-mixed-models   | 27,561   | 3,096   | Jan 2007      | Mar 2026     |
+| r-sig-geo            | 25,472   | 3,450   | Jul 2003      | Mar 2026     |
+| bioc-devel           | 19,662   | 1,694   | Mar 2004      | Mar 2026     |
+| r-help-es            | 14,652   | 987     | Mar 2009      | Feb 2026     |
+| r-sig-mac            | 14,528   | 1,808   | Jan 1970      | Mar 2026     |
+| r-sig-finance        | 13,551   | 2,156   | Jun 2004      | Feb 2026     |
+| r-package-devel      | 11,733   | 1,147   | May 2015      | Mar 2026     |
+| rcpp-devel           | 9,938    | 794     | Nov 2009      | Jan 2026     |
+| r-sig-ecology        | 7,399    | 1,419   | Apr 2008      | Mar 2026     |
+| r-sig-meta-analysis  | 5,028    | 540     | Jun 2017      | Mar 2026     |
+| r-sig-debian         | 3,601    | 530     | Feb 2005      | Dec 2025     |
+| r-sig-hpc            | 2,149    | 403     | Oct 2008      | Dec 2024     |
+| r-packages           | 1,836    | 605     | Sep 2003      | Jan 2026     |
+| r-sig-db             | 1,556    | 402     | Apr 2001      | Nov 2020     |
 | r-sig-gui            | 1,236    | 293     | Oct 2002      | Feb 2018     |
-| r-sig-fedora         | 919      | 136     | May 2008      | Sep 2025     |
-| r-sig-teaching       | 885      | 242     | Oct 2006      | Jan 2026     |
-| r-announce           | 703      | 123     | Apr 1997      | Feb 2026     |
-| r-sig-dynamic-models | 696      | 164     | Oct 2009      | Feb 2026     |
-| r-sig-epi            | 575      | 172     | Nov 2005      | Mar 2026     |
-| r-sig-robust         | 523      | 159     | Nov 2005      | Dec 2025     |
-| r-sig-genetics       | 481      | 63      | May 2008      | Mar 2026     |
-| r-sig-jobs           | 441      | 271     | Feb 2007      | Feb 2024     |
+| r-sig-fedora         | 917      | 136     | May 2008      | Sep 2025     |
+| r-sig-teaching       | 847      | 236     | Oct 2006      | Jan 2026     |
+| r-announce           | 718      | 123     | Apr 1997      | Feb 2026     |
+| r-sig-dynamic-models | 697      | 164     | Oct 2009      | Feb 2026     |
+| r-sig-epi            | 576      | 172     | Nov 2005      | Mar 2026     |
+| r-sig-robust         | 524      | 159     | Nov 2005      | Dec 2025     |
+| r-sig-genetics       | 474      | 61      | May 2008      | Mar 2026     |
+| r-sig-jobs           | 434      | 271     | Feb 2007      | Feb 2024     |
 | r-ug-ottawa          | 197      | 75      | Jan 2009      | Dec 2022     |
 | r-sig-gr             | 176      | 83      | Sep 2002      | Nov 2025     |
 | r-sig-windows        | 139      | 18      | Aug 2015      | Feb 2026     |
