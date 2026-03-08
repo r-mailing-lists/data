@@ -312,7 +312,10 @@ Aggregated contributor statistics across all lists.
 | `name` | string | Author display name |
 | `message_count` | integer | Total messages across all lists |
 | `list_count` | integer | Number of distinct lists posted to |
-| `lists` | string | Comma-separated list names |
+| `lists` | string | Comma-separated list slugs |
+| `list_counts` | string | Per-list message counts (e.g. `r-devel:150,r-help:42`) |
+| `first_message` | string | ISO 8601 date of earliest message |
+| `last_message` | string | ISO 8601 date of most recent message |
 
 ## Privacy
 
