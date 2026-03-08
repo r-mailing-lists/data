@@ -39,16 +39,18 @@ jobs:
               "data/tmp-$name" 2>/dev/null || continue
             cd "data/tmp-$name"
             git sparse-checkout init --no-cone
-            git sparse-checkout set /processed /meta.json
+            git sparse-checkout set /processed /meta.json /index.json /message-order.json /contributors.json
             git checkout
             cd ../..
             if [ -d "data/tmp-$name/processed" ]; then
               mv "data/tmp-$name/processed" "data/processed/$name"
             fi
-            if [ -f "data/tmp-$name/meta.json" ]; then
-              mkdir -p "data/processed/$name"
-              cp "data/tmp-$name/meta.json" "data/processed/$name/meta.json"
-            fi
+            for f in meta.json index.json message-order.json contributors.json; do
+              if [ -f "data/tmp-$name/$f" ]; then
+                mkdir -p "data/processed/$name"
+                cp "data/tmp-$name/$f" "data/processed/$name/$f"
+              fi
+            done
             rm -rf "data/tmp-$name"
           done < scripts/lists.conf
 
