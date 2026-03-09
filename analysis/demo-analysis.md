@@ -63,11 +63,11 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 69483 obs. of  5 variables:
-     $ from_name: chr  "Martin Maechler" "Martin Maechler" "Martin Maechler" "Kurt Hornik" ...
-     $ date     : POSIXct, format: "1997-04-01 10:28:56" "1997-04-01 10:28:56" ...
-     $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" ...
-     $ thread_id: chr  "thread-0823a0ef3954" "thread-0823a0ef3954" "thread-0823a0ef3954" "thread-0823a0ef3954" ...
+    Classes 'tbl' and 'data.frame': 63399 obs. of  5 variables:
+     $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
+     $ date     : POSIXct, format: "1997-04-01 10:28:56" "1997-04-01 10:35:43" ...
+     $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
+     $ thread_id: chr  "thread-0823a0ef3954" "thread-0823a0ef3954" "thread-87797c263db4" "thread-95d55ddd69bf" ...
      $ month    : chr  "1997-04" "1997-04" "1997-04" "1997-04" ...
 
 ``` r
@@ -95,12 +95,12 @@ head(contribs)
     # A data frame: 6 × 7
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
-    1 Brian R…         21042         10 r-he… r-help:124… 1998-06-04T1… 2026-03-04T…
-    2 Duncan …         13418         13 r-he… r-help:792… 2000-02-16T2… 2026-02-22T…
-    3 Peter D…         13311         10 r-he… r-help:732… 1997-04-01T1… 2026-03-04T…
-    4 David W…         11757          7 r-he… r-help:111… 2003-11-18T0… 2018-05-04T…
-    5 Gabor G…          9502         10 r-he… r-help:789… 2005-03-28T1… 2018-03-25T…
-    6 Uwe Lig…          9076         13 r-he… r-help:703… 2000-03-07T1… 2026-02-03T…
+    1 Brian R…         17940         10 r-he… r-help:117… 1998-06-04T1… 2026-03-04T…
+    2 Duncan …         12534         13 r-he… r-help:731… 2000-02-16T2… 2026-02-22T…
+    3 David W…         11053          7 r-he… r-help:105… 2003-11-18T0… 2018-05-04T…
+    4 Peter D…         10757         10 r-he… r-help:704… 1997-04-01T1… 2026-03-04T…
+    5 Gabor G…          8611         10 r-he… r-help:703… 2005-03-28T1… 2018-03-25T…
+    6 Uwe Lig…          8398         13 r-he… r-help:656… 2000-03-07T1… 2026-02-03T…
 
 ### Working directly with Parquet files
 
@@ -177,9 +177,9 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 
 
                      Duncan Murdoch                 Martin Maechler 
-                                 36                              33 
+                                 38                              33 
                   Dirk Eddelbuettel                     Ivan Krylov 
-                                 28                              28 
+                                 29                              28 
                         Kurt Hornik                    Mikael Jagan 
                                  18                              18 
                     Michael Chirico                      Ben Bolker 
@@ -264,23 +264,23 @@ contribs |>
 
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
-| Brian Ripley       |         21042 |         10 |
-| Duncan Murdoch     |         13418 |         13 |
-| Peter Dalgaard     |         13311 |         10 |
-| David Winsemius    |         11757 |          7 |
-| Gabor Grothendieck |          9502 |         10 |
-| Uwe Ligges         |          9076 |         13 |
-| Ben Bolker         |          7526 |          8 |
-| Martin Maechler    |          7421 |         19 |
-| Bert Gunter        |          6719 |          9 |
-| Dirk Eddelbuettel  |          6510 |         13 |
-| Thomas Lumley      |          4808 |          8 |
-| jim holtman        |          4608 |          3 |
-| Roger Bivand       |          4371 |         12 |
-| arun               |          4242 |          2 |
-| Douglas Bates      |          3768 |         10 |
-| Petr PIKAL         |          3550 |          3 |
-| Hadley Wickham     |          3325 |         15 |
-| Simon Urbanek      |          3309 |          9 |
-| Greg Snow          |          3026 |         10 |
-| John Fox           |          2852 |          9 |
+| Brian Ripley       |         17940 |         10 |
+| Duncan Murdoch     |         12534 |         13 |
+| David Winsemius    |         11053 |          7 |
+| Peter Dalgaard     |         10757 |         10 |
+| Gabor Grothendieck |          8611 |         10 |
+| Uwe Ligges         |          8398 |         13 |
+| Dirk Eddelbuettel  |          6427 |         13 |
+| Bert Gunter        |          6040 |          9 |
+| Ben Bolker         |          6024 |          8 |
+| Martin Maechler    |          5747 |         19 |
+| jim holtman        |          4366 |          3 |
+| Roger Bivand       |          4270 |         12 |
+| Thomas Lumley      |          3791 |          8 |
+| Simon Urbanek      |          3304 |          9 |
+| arun               |          3300 |          2 |
+| Petr PIKAL         |          3271 |          3 |
+| Hadley Wickham     |          3224 |         15 |
+| Douglas Bates      |          3078 |         10 |
+| Greg Snow          |          2824 |         10 |
+| John Fox           |          2697 |          9 |
