@@ -8,6 +8,7 @@ execute:
 
 ```{r}
 #| label: setup
+library(jsonlite)
 library(nanoparquet)
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
@@ -31,6 +32,23 @@ read_messages <- function(col_select = NULL) {
 # Source helpers and point at local data (avoids downloading during render)
 source("scripts/rml.R")
 .rml_data_dir <- "data"
+
+# Load aliases for name resolution
+resolve_aliases <- function(df) {
+  aliases_file <- "aliases.json"
+  if (!file.exists(aliases_file)) return(df)
+  alias_data <- jsonlite::fromJSON(aliases_file)
+  lookup <- data.frame(
+    from_email_hash = unlist(alias_data$aliases$email_hashes),
+    canonical_name = rep(alias_data$aliases$canonical_name,
+                         lengths(alias_data$aliases$email_hashes)),
+    stringsAsFactors = FALSE
+  )
+  df |>
+    left_join(lookup, by = "from_email_hash") |>
+    mutate(from_name = ifelse(is.na(canonical_name), from_name, canonical_name)) |>
+    select(-canonical_name)
+}
 ```
 
 A collection of [R mailing list](https://www.r-project.org/mail.html) archives in [Parquet](https://parquet.apache.org/) format, ready for analysis in R, Python, or any language with Parquet support.
@@ -170,8 +188,8 @@ straightforward to build a "who replies to whom" network.
 #| fig-height: 10
 r_devel <- read_parquet(
   "data/messages/r-devel.parquet",
-  col_select = c("message_id", "from_name", "in_reply_to")
-)
+  col_select = c("message_id", "from_name", "from_email_hash", "in_reply_to")
+) |> resolve_aliases()
 
 # Build edges: replier -> original author
 author_lookup <- r_devel |> select(message_id, from_name)
