@@ -43,22 +43,6 @@ contribs <- rml_read_contributors()
 head(contribs[order(-contribs$message_count), ], 10)
 ```
 
-The `r-devel` list has **69,483** messages. Top 10 contributors across
-all lists:
-
-| Name               | Messages | Lists |
-|:-------------------|:---------|------:|
-| Brian Ripley       | 21,042   |    10 |
-| Duncan Murdoch     | 13,418   |    13 |
-| Peter Dalgaard     | 13,311   |    10 |
-| David Winsemius    | 11,757   |     7 |
-| Gabor Grothendieck | 9,502    |    10 |
-| Uwe Ligges         | 9,076    |    13 |
-| Ben Bolker         | 7,526    |     8 |
-| Martin Maechler    | 7,421    |    19 |
-| Bert Gunter        | 6,719    |     9 |
-| Dirk Eddelbuettel  | 6,510    |    13 |
-
 ### Python
 
 Requires [`polars`](https://pola.rs/). Download the helper script:
@@ -115,6 +99,9 @@ r_devel = pl.read_parquet("data/messages/r-devel.parquet")
 all_msgs = pl.read_parquet("data/messages/*.parquet")
 ```
 
+For more in-depth analysis examples (message volume trends, top
+contributors), see the [demo analysis](analysis/demo-analysis.md).
+
 ## Data overview
 
 **468,230** messages across **31** mailing lists
@@ -153,9 +140,20 @@ all_msgs = pl.read_parquet("data/messages/*.parquet")
 | r-sig-dcm            | 67       | 17      | Jul 2010      | Sep 2024     |
 | r-sig-networks       | 27       | 21      | Jul 2008      | May 2019     |
 
-For more in-depth analysis examples (message volume trends, reply
-networks, top contributors), see the [demo
-analysis](analysis/demo-analysis.md).
+## Reply network on r-devel
+
+The `in_reply_to` field links each message to its parent, making it
+straightforward to build a “who replies to whom” network.
+
+<div id="fig-reply-network">
+
+<img src="README_files/figure-commonmark/fig-reply-network-1.png"
+id="fig-reply-network"
+data-fig-alt="Network graph showing reply relationships between top r-devel contributors" />
+
+Figure 1
+
+</div>
 
 ## Data dictionary
 

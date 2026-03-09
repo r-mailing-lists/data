@@ -11,9 +11,24 @@ See the [main README](../README.md) for setup instructions and data dictionary.
 
 ## Setup
 
+### Using convenience functions
+
+Source the helper script to download and cache data automatically — no cloning required:
+
 ```{r}
-#| label: setup
-library(nanoparquet)
+#| label: setup-helpers
+source("https://raw.githubusercontent.com/r-mailing-lists/data/main/scripts/rml.R")
+```
+
+```{r}
+#| label: setup-helpers-local
+#| echo: false
+# Override to local data dir for rendering from a clone
+.rml_data_dir <- "../data"
+```
+
+```{r}
+#| label: setup-libraries
 library(dplyr, warn.conflicts = FALSE)
 library(scales)
 library(ggplot2)
@@ -25,11 +40,57 @@ theme_set(
       plot.title.position = "plot"
     )
 )
+```
 
-read_messages <- function(col_select = NULL) {
-  files <- list.files("../data/messages", pattern = "\\.parquet$", full.names = TRUE)
-  do.call(rbind, lapply(files, read_parquet, col_select = col_select))
-}
+The helper provides four main functions:
+
+```{r}
+#| label: available-lists
+# See all available mailing lists
+rml_available()
+```
+
+```{r}
+#| label: read-list
+# Read a single list (use col_select to skip the body — much faster)
+r_devel <- rml_read("r-devel",
+  col_select = c("from_name", "date", "subject", "thread_id", "month"))
+
+str(r_devel)
+```
+
+```{r}
+#| label: read-threads
+# Thread-level summaries across all lists
+threads <- rml_read_threads(col_select = c("list", "message_count"))
+head(threads)
+```
+
+```{r}
+#| label: read-contributors
+# Contributor statistics across all lists
+contribs <- rml_read_contributors()
+head(contribs)
+```
+
+### Working directly with Parquet files
+
+If you have a local clone, read Parquet files directly with [`nanoparquet`](https://cran.r-project.org/package=nanoparquet):
+
+```r
+library(nanoparquet)
+
+# Single list
+r_devel <- read_parquet("data/messages/r-devel.parquet")
+
+# All lists
+files <- list.files("data/messages", pattern = "\\.parquet$", full.names = TRUE)
+all_msgs <- do.call(rbind, lapply(files, read_parquet,
+  col_select = c("list", "from_name", "date", "subject", "month")))
+
+# Threads and contributors
+threads <- read_parquet("data/threads.parquet")
+contribs <- read_parquet("data/contributors.parquet")
 ```
 
 ## Message volume over time
@@ -39,9 +100,12 @@ read_messages <- function(col_select = NULL) {
 #| fig-alt: "Monthly message volume across R mailing lists over time"
 #| fig-width: 10
 #| fig-height: 5
-msgs <- read_messages(col_select = c("list", "from_name", "date", "month"))
+# Read all lists into one data frame
+all_msgs <- do.call(rbind, lapply(rml_available(), function(l) {
+  rml_read(l, col_select = c("list", "from_name", "date", "month"))
+}))
 
-monthly <- msgs |>
+monthly <- all_msgs |>
   filter(date >= as.POSIXct("1997-01-01", tz = "UTC")) |>
   count(list, month) |>
   mutate(date = as.Date(paste0(month, "-01")))
@@ -69,10 +133,8 @@ monthly |>
 
 ```{r}
 #| label: top-posters
-r_devel <- read_parquet(
-  "../data/messages/r-devel.parquet",
-  col_select = c("from_name", "date", "subject")
-)
+r_devel <- rml_read("r-devel",
+  col_select = c("from_name", "date", "subject"))
 
 recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
@@ -91,10 +153,8 @@ straightforward to build a "who replies to whom" network.
 library(igraph)
 library(ggraph)
 
-r_devel <- read_parquet(
-  "../data/messages/r-devel.parquet",
-  col_select = c("message_id", "from_name", "in_reply_to")
-)
+r_devel <- rml_read("r-devel",
+  col_select = c("message_id", "from_name", "in_reply_to"))
 
 # Build edges: replier -> original author
 author_lookup <- r_devel |> select(message_id, from_name)
@@ -142,7 +202,7 @@ ggraph(g, layout = "fr") +
 
 ```{r}
 #| label: top-contributors
-contribs <- read_parquet("../data/contributors.parquet")
+contribs <- rml_read_contributors()
 contribs |>
   arrange(desc(message_count)) |>
   head(20) |>

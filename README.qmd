@@ -10,6 +10,18 @@ execute:
 #| label: setup
 library(nanoparquet)
 library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
+library(scales)
+library(igraph)
+library(ggraph)
+
+theme_set(
+  theme_minimal(base_size = 13) +
+    theme(
+      panel.grid.minor = element_blank(),
+      plot.title.position = "plot"
+    )
+)
 
 read_messages <- function(col_select = NULL) {
   files <- list.files("data/messages", pattern = "\\.parquet$", full.names = TRUE)
@@ -54,32 +66,6 @@ aggregate(message_count ~ list, data = threads, FUN = sum)
 # Top contributors across all lists
 contribs <- rml_read_contributors()
 head(contribs[order(-contribs$message_count), ], 10)
-```
-
-```{r}
-#| label: r-load-data
-#| message: false
-r_devel <- rml_read("r-devel",
-  col_select = c("from_name", "date", "subject", "thread_id", "month"))
-threads <- rml_read_threads(col_select = c("list", "message_count"))
-contribs <- rml_read_contributors()
-```
-
-```{r}
-#| label: r-summary-stats
-#| results: asis
-cat(paste0(
-  "The `r-devel` list has **",
-  format(nrow(r_devel), big.mark = ","),
-  "** messages. Top 10 contributors across all lists:\n\n"
-))
-
-contribs |>
-  dplyr::arrange(desc(message_count)) |>
-  head(10) |>
-  dplyr::select(name, message_count, list_count) |>
-  dplyr::mutate(message_count = format(message_count, big.mark = ",")) |>
-  knitr::kable(col.names = c("Name", "Messages", "Lists"))
 ```
 
 ### Python
@@ -137,6 +123,8 @@ r_devel = pl.read_parquet("data/messages/r-devel.parquet")
 all_msgs = pl.read_parquet("data/messages/*.parquet")
 ```
 
+For more in-depth analysis examples (message volume trends, top contributors), see the [demo analysis](analysis/demo-analysis.md).
+
 ## Data overview
 
 ```{r}
@@ -170,7 +158,62 @@ summary_df |>
   knitr::kable(col.names = c("List", "Messages", "Authors", "First Message", "Last Message"))
 ```
 
-For more in-depth analysis examples (message volume trends, reply networks, top contributors), see the [demo analysis](analysis/demo-analysis.md).
+## Reply network on r-devel
+
+The `in_reply_to` field links each message to its parent, making it
+straightforward to build a "who replies to whom" network.
+
+```{r}
+#| label: fig-reply-network
+#| fig-alt: "Network graph showing reply relationships between top r-devel contributors"
+#| fig-width: 10
+#| fig-height: 10
+r_devel <- read_parquet(
+  "data/messages/r-devel.parquet",
+  col_select = c("message_id", "from_name", "in_reply_to")
+)
+
+# Build edges: replier -> original author
+author_lookup <- r_devel |> select(message_id, from_name)
+
+edges <- r_devel |>
+  filter(!is.na(in_reply_to)) |>
+  inner_join(author_lookup, by = c("in_reply_to" = "message_id"), suffix = c("_from", "_to")) |>
+  filter(from_name_from != from_name_to) |>
+  count(from = from_name_from, to = from_name_to, name = "replies")
+
+# Keep only the most active participants
+top_authors <- r_devel |>
+  count(from_name, sort = TRUE) |>
+  head(30) |>
+  pull(from_name)
+
+edges_top <- edges |>
+  filter(from %in% top_authors, to %in% top_authors, replies >= 5)
+
+g <- graph_from_data_frame(edges_top, directed = TRUE)
+
+# Size nodes by total messages
+msg_counts <- r_devel |>
+  filter(from_name %in% V(g)$name) |>
+  count(from_name)
+V(g)$messages <- msg_counts$n[match(V(g)$name, msg_counts$from_name)]
+
+ggraph(g, layout = "fr") +
+  geom_edge_link(
+    aes(width = replies, alpha = replies),
+    arrow = arrow(length = unit(2, "mm"), type = "closed"),
+    end_cap = circle(4, "mm")
+  ) +
+  geom_node_point(aes(size = messages), color = "#3B6EA8") +
+  geom_node_text(aes(label = name), repel = TRUE, size = 3, max.overlaps = 20) +
+  scale_edge_width(range = c(0.3, 2.5), guide = "none") +
+  scale_edge_alpha(range = c(0.15, 0.6), guide = "none") +
+  scale_size_continuous(range = c(2, 12), labels = label_comma(), name = "Messages") +
+  labs(title = "Reply network among top r-devel contributors") +
+  theme_void(base_size = 13) +
+  theme(plot.title.position = "plot", legend.position = "bottom")
+```
 
 ## Data dictionary
 
