@@ -107,9 +107,16 @@ jobs:
             "https://github.com/r-mailing-lists/rmail-parser/releases/latest/download/rmail-parser-linux-x86_64"
           chmod +x rmail-parser
 
+      - name: Download aliases
+        if: steps.check-hash.outputs.skip != 'true'
+        run: |
+          curl -sL -o aliases.json \
+            "https://raw.githubusercontent.com/r-mailing-lists/rmail-parser/main/aliases.json" \
+            2>/dev/null || echo '{"aliases":[]}' > aliases.json
+
       - name: Aggregate contributors
         if: steps.check-hash.outputs.skip != 'true'
-        run: ./rmail-parser aggregate --input data/processed --output data/processed/_contributors.json
+        run: ./rmail-parser aggregate --input data/processed --output data/processed/_contributors.json --aliases aliases.json
 
       - name: Build parquet files
         if: steps.check-hash.outputs.skip != 'true'
@@ -119,16 +126,18 @@ jobs:
         if: steps.check-hash.outputs.skip != 'true'
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render README
+      - name: Render README and analysis
         if: steps.check-hash.outputs.skip != 'true'
-        run: quarto render README.qmd
+        run: |
+          quarto render README.qmd
+          quarto render analysis/demo-analysis.qmd
 
       - name: Commit and push
         if: steps.check-hash.outputs.skip != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ README.md README_files/ 2>/dev/null || true
+          git add data/ README.md README_files/ analysis/ 2>/dev/null || true
           git diff --staged --quiet && echo "No changes to commit" && exit 0
           git commit -m "data: update parquet files and README $(date -u +%Y-%m-%d)"
           git push
