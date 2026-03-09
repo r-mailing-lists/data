@@ -35,50 +35,51 @@ Requires [`jsonlite`](https://cran.r-project.org/package=jsonlite) and [`nanopar
 source("https://raw.githubusercontent.com/r-mailing-lists/data/main/scripts/rml.R")
 ```
 
-```{r}
-#| label: r-available
-#| echo: true
-#| message: false
+```r
 # See available lists
 rml_available()
-```
 
-```{r}
-#| label: r-read-devel
-#| echo: true
-#| message: false
 # Read only metadata columns (skips body text — much faster)
 r_devel <- rml_read("r-devel",
   col_select = c("from_name", "date", "subject", "thread_id", "month"))
-cat(nrow(r_devel), "messages x", ncol(r_devel), "columns\n")
-head(r_devel[, c("date", "from_name", "subject")], 5)
-```
 
-```{r}
-#| label: r-top-posters
-#| echo: true
 # Top 10 posters in the last year
 recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
-```
 
-```{r}
-#| label: r-threads
-#| echo: true
-#| message: false
 # Message counts per list (thread summaries — single small download)
 threads <- rml_read_threads(col_select = c("list", "message_count"))
-agg <- aggregate(message_count ~ list, data = threads, FUN = sum)
-head(agg[order(-agg$message_count), ], 10)
+aggregate(message_count ~ list, data = threads, FUN = sum)
+
+# Top contributors across all lists
+contribs <- rml_read_contributors()
+head(contribs[order(-contribs$message_count), ], 10)
 ```
 
 ```{r}
-#| label: r-contributors
-#| echo: true
+#| label: r-load-data
 #| message: false
-# Top contributors across all lists
+r_devel <- rml_read("r-devel",
+  col_select = c("from_name", "date", "subject", "thread_id", "month"))
+threads <- rml_read_threads(col_select = c("list", "message_count"))
 contribs <- rml_read_contributors()
-head(contribs[order(-contribs$message_count), c("name", "message_count", "list_count")], 10)
+```
+
+```{r}
+#| label: r-summary-stats
+#| results: asis
+cat(paste0(
+  "The `r-devel` list has **",
+  format(nrow(r_devel), big.mark = ","),
+  "** messages. Top 10 contributors across all lists:\n\n"
+))
+
+contribs |>
+  dplyr::arrange(desc(message_count)) |>
+  head(10) |>
+  dplyr::select(name, message_count, list_count) |>
+  dplyr::mutate(message_count = format(message_count, big.mark = ",")) |>
+  knitr::kable(col.names = c("Name", "Messages", "Lists"))
 ```
 
 ### Python
