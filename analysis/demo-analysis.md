@@ -13,8 +13,16 @@ data dictionary.
 
 ## Setup
 
+### Using convenience functions
+
+Source the helper script to download and cache data automatically — no
+cloning required:
+
 ``` r
-library(nanoparquet)
+source("https://raw.githubusercontent.com/r-mailing-lists/data/main/scripts/rml.R")
+```
+
+``` r
 library(dplyr, warn.conflicts = FALSE)
 library(scales)
 library(ggplot2)
@@ -26,19 +34,104 @@ theme_set(
       plot.title.position = "plot"
     )
 )
+```
 
-read_messages <- function(col_select = NULL) {
-  files <- list.files("../data/messages", pattern = "\\.parquet$", full.names = TRUE)
-  do.call(rbind, lapply(files, read_parquet, col_select = col_select))
-}
+The helper provides four main functions:
+
+``` r
+# See all available mailing lists
+rml_available()
+```
+
+     [1] "bioc-devel"           "r-announce"           "r-devel"             
+     [4] "r-help"               "r-help-es"            "r-package-devel"     
+     [7] "r-packages"           "r-sig-db"             "r-sig-dcm"           
+    [10] "r-sig-debian"         "r-sig-dynamic-models" "r-sig-ecology"       
+    [13] "r-sig-epi"            "r-sig-fedora"         "r-sig-finance"       
+    [16] "r-sig-genetics"       "r-sig-geo"            "r-sig-gr"            
+    [19] "r-sig-gui"            "r-sig-hpc"            "r-sig-insurance"     
+    [22] "r-sig-jobs"           "r-sig-mac"            "r-sig-meta-analysis" 
+    [25] "r-sig-mixed-models"   "r-sig-networks"       "r-sig-robust"        
+    [28] "r-sig-teaching"       "r-sig-windows"        "r-ug-ottawa"         
+    [31] "rcpp-devel"          
+
+``` r
+# Read a single list (use col_select to skip the body — much faster)
+r_devel <- rml_read("r-devel",
+  col_select = c("from_name", "date", "subject", "thread_id", "month"))
+
+str(r_devel)
+```
+
+    Classes 'tbl' and 'data.frame': 69483 obs. of  5 variables:
+     $ from_name: chr  "Martin Maechler" "Martin Maechler" "Martin Maechler" "Kurt Hornik" ...
+     $ date     : POSIXct, format: "1997-04-01 10:28:56" "1997-04-01 10:28:56" ...
+     $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" ...
+     $ thread_id: chr  "thread-0823a0ef3954" "thread-0823a0ef3954" "thread-0823a0ef3954" "thread-0823a0ef3954" ...
+     $ month    : chr  "1997-04" "1997-04" "1997-04" "1997-04" ...
+
+``` r
+# Thread-level summaries across all lists
+threads <- rml_read_threads(col_select = c("list", "message_count"))
+head(threads)
+```
+
+    # A data frame: 6 × 2
+      list       message_count
+    * <chr>              <int>
+    1 bioc-devel             3
+    2 bioc-devel             7
+    3 bioc-devel             1
+    4 bioc-devel             1
+    5 bioc-devel             1
+    6 bioc-devel             2
+
+``` r
+# Contributor statistics across all lists
+contribs <- rml_read_contributors()
+head(contribs)
+```
+
+    # A data frame: 6 × 7
+      name     message_count list_count lists list_counts first_message last_message
+    * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
+    1 Brian R…         21042         10 r-he… r-help:124… 1998-06-04T1… 2026-03-04T…
+    2 Duncan …         13418         13 r-he… r-help:792… 2000-02-16T2… 2026-02-22T…
+    3 Peter D…         13311         10 r-he… r-help:732… 1997-04-01T1… 2026-03-04T…
+    4 David W…         11757          7 r-he… r-help:111… 2003-11-18T0… 2018-05-04T…
+    5 Gabor G…          9502         10 r-he… r-help:789… 2005-03-28T1… 2018-03-25T…
+    6 Uwe Lig…          9076         13 r-he… r-help:703… 2000-03-07T1… 2026-02-03T…
+
+### Working directly with Parquet files
+
+If you have a local clone, read Parquet files directly with
+[`nanoparquet`](https://cran.r-project.org/package=nanoparquet):
+
+``` r
+library(nanoparquet)
+
+# Single list
+r_devel <- read_parquet("data/messages/r-devel.parquet")
+
+# All lists
+files <- list.files("data/messages", pattern = "\\.parquet$", full.names = TRUE)
+all_msgs <- do.call(rbind, lapply(files, read_parquet,
+  col_select = c("list", "from_name", "date", "subject", "month")))
+
+# Threads and contributors
+threads <- read_parquet("data/threads.parquet")
+contribs <- read_parquet("data/contributors.parquet")
 ```
 
 ## Message volume over time
 
 ``` r
-msgs <- read_messages(col_select = c("list", "from_name", "date", "month"))
+# Read all lists into one data frame
+all_msgs <- do.call(rbind, lapply(rml_available(), function(l) {
+  rml_read(l, col_select = c("list", "from_name", "date", "month"))
+}))
 
-monthly <- msgs |>
+monthly <- all_msgs |>
   filter(date >= as.POSIXct("1997-01-01", tz = "UTC")) |>
   count(list, month) |>
   mutate(date = as.Date(paste0(month, "-01")))
@@ -75,10 +168,8 @@ Figure 1
 ## Top posters by list
 
 ``` r
-r_devel <- read_parquet(
-  "../data/messages/r-devel.parquet",
-  col_select = c("from_name", "date", "subject")
-)
+r_devel <- rml_read("r-devel",
+  col_select = c("from_name", "date", "subject"))
 
 recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
@@ -105,10 +196,8 @@ straightforward to build a “who replies to whom” network.
 library(igraph)
 library(ggraph)
 
-r_devel <- read_parquet(
-  "../data/messages/r-devel.parquet",
-  col_select = c("message_id", "from_name", "in_reply_to")
-)
+r_devel <- rml_read("r-devel",
+  col_select = c("message_id", "from_name", "in_reply_to"))
 
 # Build edges: replier -> original author
 author_lookup <- r_devel |> select(message_id, from_name)
@@ -165,7 +254,7 @@ Figure 2
 ## Contributors across lists
 
 ``` r
-contribs <- read_parquet("../data/contributors.parquet")
+contribs <- rml_read_contributors()
 contribs |>
   arrange(desc(message_count)) |>
   head(20) |>
