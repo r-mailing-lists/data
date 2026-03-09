@@ -43,21 +43,21 @@ contribs <- rml_read_contributors()
 head(contribs[order(-contribs$message_count), ], 10)
 ```
 
-The `r-devel` list has **69,297** messages. Top 10 contributors across
+The `r-devel` list has **69,483** messages. Top 10 contributors across
 all lists:
 
 | Name               | Messages | Lists |
 |:-------------------|:---------|------:|
-| Brian Ripley       | 19,519   |    10 |
-| Duncan Murdoch     | 12,960   |    13 |
-| Peter Dalgaard     | 12,703   |    10 |
-| David Winsemius    | 11,756   |     7 |
-| Gabor Grothendieck | 9,455    |    10 |
-| Uwe Ligges         | 8,722    |    12 |
-| Ben Bolker         | 7,488    |     8 |
-| Martin Maechler    | 7,043    |    19 |
-| Bert Gunter        | 6,712    |     9 |
-| Dirk Eddelbuettel  | 6,324    |    13 |
+| Brian Ripley       | 21,042   |    10 |
+| Duncan Murdoch     | 13,418   |    13 |
+| Peter Dalgaard     | 13,311   |    10 |
+| David Winsemius    | 11,757   |     7 |
+| Gabor Grothendieck | 9,502    |    10 |
+| Uwe Ligges         | 9,076    |    13 |
+| Ben Bolker         | 7,526    |     8 |
+| Martin Maechler    | 7,421    |    19 |
+| Bert Gunter        | 6,719    |     9 |
+| Dirk Eddelbuettel  | 6,510    |    13 |
 
 ### Python
 
@@ -117,18 +117,18 @@ all_msgs = pl.read_parquet("data/messages/*.parquet")
 
 ## Data overview
 
-**467,790** messages across **31** mailing lists
+**468,230** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
-| r-help               | 232,762  | 26,050  | Apr 1997      | Mar 2026     |
-| r-devel              | 69,297   | 6,145   | Apr 1997      | Mar 2026     |
+| r-help               | 232,933  | 26,065  | Apr 1997      | Mar 2026     |
+| r-devel              | 69,483   | 6,167   | Apr 1997      | Mar 2026     |
 | r-sig-mixed-models   | 27,562   | 3,096   | Jan 2007      | Mar 2026     |
 | r-sig-geo            | 25,472   | 3,450   | Jul 2003      | Mar 2026     |
 | bioc-devel           | 19,662   | 1,694   | Mar 2004      | Mar 2026     |
-| r-help-es            | 14,651   | 986     | Mar 2009      | Feb 2026     |
-| r-sig-mac            | 14,466   | 1,801   | Jan 1970      | Mar 2026     |
-| r-sig-finance        | 13,536   | 2,154   | Jun 2004      | Feb 2026     |
+| r-help-es            | 14,652   | 987     | Mar 2009      | Feb 2026     |
+| r-sig-mac            | 14,528   | 1,808   | Jan 1970      | Mar 2026     |
+| r-sig-finance        | 13,551   | 2,156   | Jun 2004      | Feb 2026     |
 | r-package-devel      | 11,734   | 1,148   | May 2015      | Mar 2026     |
 | rcpp-devel           | 9,938    | 794     | Nov 2009      | Jan 2026     |
 | r-sig-ecology        | 7,399    | 1,419   | Apr 2008      | Mar 2026     |
@@ -137,10 +137,10 @@ all_msgs = pl.read_parquet("data/messages/*.parquet")
 | r-sig-hpc            | 2,149    | 403     | Oct 2008      | Dec 2024     |
 | r-packages           | 1,836    | 605     | Sep 2003      | Jan 2026     |
 | r-sig-db             | 1,556    | 402     | Apr 2001      | Nov 2020     |
-| r-sig-gui            | 1,234    | 292     | Oct 2002      | Feb 2018     |
+| r-sig-gui            | 1,236    | 293     | Oct 2002      | Feb 2018     |
 | r-sig-fedora         | 917      | 136     | May 2008      | Sep 2025     |
 | r-sig-teaching       | 847      | 236     | Oct 2006      | Jan 2026     |
-| r-announce           | 715      | 123     | Apr 1997      | Feb 2026     |
+| r-announce           | 718      | 123     | Apr 1997      | Feb 2026     |
 | r-sig-dynamic-models | 697      | 164     | Oct 2009      | Feb 2026     |
 | r-sig-epi            | 576      | 172     | Nov 2005      | Mar 2026     |
 | r-sig-robust         | 524      | 159     | Nov 2005      | Dec 2025     |

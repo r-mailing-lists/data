@@ -175,23 +175,23 @@ contribs |>
 
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
-| Brian Ripley       |         19519 |         10 |
-| Duncan Murdoch     |         12960 |         13 |
-| Peter Dalgaard     |         12703 |         10 |
-| David Winsemius    |         11756 |          7 |
-| Gabor Grothendieck |          9455 |         10 |
-| Uwe Ligges         |          8722 |         12 |
-| Ben Bolker         |          7488 |          8 |
-| Martin Maechler    |          7043 |         19 |
-| Bert Gunter        |          6712 |          9 |
-| Dirk Eddelbuettel  |          6324 |         13 |
+| Brian Ripley       |         21042 |         10 |
+| Duncan Murdoch     |         13418 |         13 |
+| Peter Dalgaard     |         13311 |         10 |
+| David Winsemius    |         11757 |          7 |
+| Gabor Grothendieck |          9502 |         10 |
+| Uwe Ligges         |          9076 |         13 |
+| Ben Bolker         |          7526 |          8 |
+| Martin Maechler    |          7421 |         19 |
+| Bert Gunter        |          6719 |          9 |
+| Dirk Eddelbuettel  |          6510 |         13 |
+| Thomas Lumley      |          4808 |          8 |
 | jim holtman        |          4608 |          3 |
-| Thomas Lumley      |          4578 |          8 |
-| Roger Bivand       |          4347 |         12 |
+| Roger Bivand       |          4371 |         12 |
 | arun               |          4242 |          2 |
-| Douglas Bates      |          3649 |         10 |
-| Petr PIKAL         |          3529 |          3 |
-| Hadley Wickham     |          3315 |         15 |
-| Simon Urbanek      |          3215 |          9 |
+| Douglas Bates      |          3768 |         10 |
+| Petr PIKAL         |          3550 |          3 |
+| Hadley Wickham     |          3325 |         15 |
+| Simon Urbanek      |          3309 |          9 |
 | Greg Snow          |          3026 |         10 |
-| William Dunlap     |          2740 |          5 |
+| John Fox           |          2852 |          9 |
