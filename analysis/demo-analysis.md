@@ -34,6 +34,23 @@ theme_set(
       plot.title.position = "plot"
     )
 )
+
+# Load aliases for name resolution
+resolve_aliases <- function(df) {
+  aliases_file <- "../aliases.json"
+  if (!file.exists(aliases_file)) return(df)
+  alias_data <- jsonlite::fromJSON(aliases_file)
+  lookup <- data.frame(
+    from_email_hash = unlist(alias_data$aliases$email_hashes),
+    canonical_name = rep(alias_data$aliases$canonical_name,
+                         lengths(alias_data$aliases$email_hashes)),
+    stringsAsFactors = FALSE
+  )
+  df |>
+    left_join(lookup, by = "from_email_hash") |>
+    mutate(from_name = ifelse(is.na(canonical_name), from_name, canonical_name)) |>
+    select(-canonical_name)
+}
 ```
 
 The helper provides four main functions:
@@ -169,23 +186,20 @@ Figure 1
 
 ``` r
 r_devel <- rml_read("r-devel",
-  col_select = c("from_name", "date", "subject"))
+  col_select = c("from_name", "from_email_hash", "date", "subject")) |>
+  resolve_aliases()
 
 recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
 
-                     Duncan Murdoch                 Martin Maechler 
-                                 38                              33 
-                  Dirk Eddelbuettel                     Ivan Krylov 
-                                 29                              28 
-                        Kurt Hornik                    Mikael Jagan 
-                                 18                              18 
-                    Michael Chirico                      Ben Bolker 
-                                 17                              16 
-                   Henrik Bengtsson Suharto Anggono Suharto Anggono 
-                                 15                              15 
+       Duncan Murdoch   Martin Maechler Dirk Eddelbuettel       Ivan Krylov 
+                   38                33                29                28 
+          Kurt Hornik      Mikael Jagan   Michael Chirico        Ben Bolker 
+                   18                18                17                16 
+     Henrik Bengtsson    Peter Dalgaard 
+                   15                15 
 
 ## Reply network on r-devel
 
@@ -197,7 +211,8 @@ library(igraph)
 library(ggraph)
 
 r_devel <- rml_read("r-devel",
-  col_select = c("message_id", "from_name", "in_reply_to"))
+  col_select = c("message_id", "from_name", "from_email_hash", "in_reply_to")) |>
+  resolve_aliases()
 
 # Build edges: replier -> original author
 author_lookup <- r_devel |> select(message_id, from_name)
