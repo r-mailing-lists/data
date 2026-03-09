@@ -12,9 +12,40 @@ library(nanoparquet)
 args <- commandArgs(trailingOnly = TRUE)
 input_dir <- if (length(args) >= 1) args[1] else "data/processed"
 output_dir <- if (length(args) >= 2) args[2] else "data"
+aliases_file <- if (length(args) >= 3) args[3] else "aliases.json"
 
 messages_dir <- file.path(output_dir, "messages")
 dir.create(messages_dir, recursive = TRUE, showWarnings = FALSE)
+
+# ---------------------------------------------------------------------------
+# Load aliases for name resolution
+# ---------------------------------------------------------------------------
+
+alias_lookup <- NULL
+if (file.exists(aliases_file)) {
+  alias_data <- fromJSON(aliases_file, simplifyDataFrame = FALSE)
+  alias_lookup <- data.frame(
+    from_email_hash = unlist(lapply(alias_data$aliases, `[[`, "email_hashes")),
+    canonical_name  = rep(
+      vapply(alias_data$aliases, `[[`, "", "canonical_name"),
+      lengths(lapply(alias_data$aliases, `[[`, "email_hashes"))
+    ),
+    stringsAsFactors = FALSE
+  )
+  message("Loaded ", length(alias_data$aliases), " alias groups (",
+          nrow(alias_lookup), " email hashes)")
+} else {
+  message("No aliases file found at ", aliases_file, " — using raw names")
+}
+
+resolve_aliases <- function(df) {
+  if (is.null(alias_lookup)) return(df)
+  merged <- merge(df, alias_lookup, by = "from_email_hash", all.x = TRUE)
+  merged$from_name <- ifelse(is.na(merged$canonical_name),
+                             merged$from_name, merged$canonical_name)
+  merged$canonical_name <- NULL
+  merged
+}
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -132,6 +163,9 @@ for (list_path in list_dirs) {
   msgs <- do.call(rbind, msg_frames)
   msgs$date <- as.POSIXct(msgs$date, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
   msgs$thread_depth <- as.integer(msgs$thread_depth)
+
+  # Resolve from_name via aliases (canonical names)
+  msgs <- resolve_aliases(msgs)
 
   out_path <- file.path(messages_dir, paste0(list_name, ".parquet"))
   write_messages_parquet(msgs, out_path)

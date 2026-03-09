@@ -244,7 +244,7 @@ One Parquet file per mailing list. All files share the same schema.
 | `list` | string | Mailing list name (e.g., `r-devel`) |
 | `id` | string | Unique message ID (`msg-<hash>`) |
 | `message_id` | string | Original RFC 2822 Message-ID header |
-| `from_name` | string | Author display name |
+| `from_name` | string | Author display name (alias-resolved to canonical form) |
 | `from_email_hash` | string | SHA-256 hash of author email (privacy-preserving) |
 | `date` | timestamp | Message date (UTC) |
 | `subject` | string | Subject line with `Re:`/`Fwd:` prefixes stripped |

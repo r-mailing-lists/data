@@ -120,7 +120,7 @@ jobs:
 
       - name: Build parquet files
         if: steps.check-hash.outputs.skip != 'true'
-        run: Rscript scripts/build-parquet.R data/processed data
+        run: Rscript scripts/build-parquet.R data/processed data aliases.json
 
       - name: Setup Quarto
         if: steps.check-hash.outputs.skip != 'true'
