@@ -46,7 +46,7 @@ r_devel <- rml_read("r-devel",
 cat(nrow(r_devel), "messages x", ncol(r_devel), "columns\n")
 ```
 
-    69483 messages x 5 columns
+    69297 messages x 5 columns
 
 ``` r
 head(r_devel[, c("date", "from_name", "subject")], 5)
@@ -73,7 +73,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                   Dirk Eddelbuettel                     Ivan Krylov 
                                  28                              28 
                         Kurt Hornik                    Mikael Jagan 
-                                 19                              18 
+                                 18                              18 
                     Michael Chirico                      Ben Bolker 
                                  17                              16 
                    Henrik Bengtsson Suharto Anggono Suharto Anggono 
@@ -87,15 +87,15 @@ head(agg[order(-agg$message_count), ], 10)
 ```
 
                      list message_count
-    4              r-help        232927
-    3             r-devel         69483
-    25 r-sig-mixed-models         27561
+    4              r-help        232762
+    3             r-devel         69297
+    25 r-sig-mixed-models         27562
     17          r-sig-geo         25472
     1          bioc-devel         19662
-    5           r-help-es         14652
-    23          r-sig-mac         14528
-    15      r-sig-finance         13551
-    6     r-package-devel         11733
+    5           r-help-es         14651
+    23          r-sig-mac         14466
+    15      r-sig-finance         13536
+    6     r-package-devel         11734
     31         rcpp-devel          9938
 
 ``` r
@@ -107,16 +107,16 @@ head(contribs[order(-contribs$message_count), c("name", "message_count", "list_c
     # A data frame: 10 × 3
        name               message_count list_count
      * <chr>                      <int>      <int>
-     1 Prof Brian Ripley          15346          9
-     2 Duncan Murdoch             13186         13
-     3 David Winsemius            12315          9
-     4 Gabor Grothendieck         10816         13
-     5 Uwe Ligges                  8800         13
-     6 Dirk Eddelbuettel           7808         15
-     7 Ben Bolker                  7300          8
-     8 Martin Maechler             6674         19
-     9 Bert Gunter                 6084          9
-    10 Peter Dalgaard BSA          5455          4
+     1 Brian Ripley               19519         10
+     2 Duncan Murdoch             12960         13
+     3 Peter Dalgaard             12703         10
+     4 David Winsemius            11756          7
+     5 Gabor Grothendieck          9455         10
+     6 Uwe Ligges                  8722         12
+     7 Ben Bolker                  7488          8
+     8 Martin Maechler             7043         19
+     9 Bert Gunter                 6712          9
+    10 Dirk Eddelbuettel           6324         13
 
 ### Python
 
@@ -176,19 +176,19 @@ all_msgs = pl.read_parquet("data/messages/*.parquet")
 
 ## Data overview
 
-**468,222** messages across **31** mailing lists
+**467,790** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
-| r-help               | 232,927  | 26,065  | Apr 1997      | Feb 2026     |
-| r-devel              | 69,483   | 6,167   | Apr 1997      | Mar 2026     |
-| r-sig-mixed-models   | 27,561   | 3,096   | Jan 2007      | Mar 2026     |
+| r-help               | 232,762  | 26,050  | Apr 1997      | Mar 2026     |
+| r-devel              | 69,297   | 6,145   | Apr 1997      | Mar 2026     |
+| r-sig-mixed-models   | 27,562   | 3,096   | Jan 2007      | Mar 2026     |
 | r-sig-geo            | 25,472   | 3,450   | Jul 2003      | Mar 2026     |
 | bioc-devel           | 19,662   | 1,694   | Mar 2004      | Mar 2026     |
-| r-help-es            | 14,652   | 987     | Mar 2009      | Feb 2026     |
-| r-sig-mac            | 14,528   | 1,808   | Jan 1970      | Mar 2026     |
-| r-sig-finance        | 13,551   | 2,156   | Jun 2004      | Feb 2026     |
-| r-package-devel      | 11,733   | 1,147   | May 2015      | Mar 2026     |
+| r-help-es            | 14,651   | 986     | Mar 2009      | Feb 2026     |
+| r-sig-mac            | 14,466   | 1,801   | Jan 1970      | Mar 2026     |
+| r-sig-finance        | 13,536   | 2,154   | Jun 2004      | Feb 2026     |
+| r-package-devel      | 11,734   | 1,148   | May 2015      | Mar 2026     |
 | rcpp-devel           | 9,938    | 794     | Nov 2009      | Jan 2026     |
 | r-sig-ecology        | 7,399    | 1,419   | Apr 2008      | Mar 2026     |
 | r-sig-meta-analysis  | 5,028    | 540     | Jun 2017      | Mar 2026     |
@@ -196,10 +196,10 @@ all_msgs = pl.read_parquet("data/messages/*.parquet")
 | r-sig-hpc            | 2,149    | 403     | Oct 2008      | Dec 2024     |
 | r-packages           | 1,836    | 605     | Sep 2003      | Jan 2026     |
 | r-sig-db             | 1,556    | 402     | Apr 2001      | Nov 2020     |
-| r-sig-gui            | 1,236    | 293     | Oct 2002      | Feb 2018     |
+| r-sig-gui            | 1,234    | 292     | Oct 2002      | Feb 2018     |
 | r-sig-fedora         | 917      | 136     | May 2008      | Sep 2025     |
 | r-sig-teaching       | 847      | 236     | Oct 2006      | Jan 2026     |
-| r-announce           | 718      | 123     | Apr 1997      | Feb 2026     |
+| r-announce           | 715      | 123     | Apr 1997      | Feb 2026     |
 | r-sig-dynamic-models | 697      | 164     | Oct 2009      | Feb 2026     |
 | r-sig-epi            | 576      | 172     | Nov 2005      | Mar 2026     |
 | r-sig-robust         | 524      | 159     | Nov 2005      | Dec 2025     |
@@ -212,30 +212,9 @@ all_msgs = pl.read_parquet("data/messages/*.parquet")
 | r-sig-dcm            | 67       | 17      | Jul 2010      | Sep 2024     |
 | r-sig-networks       | 27       | 21      | Jul 2008      | May 2019     |
 
-<div id="fig-timeline">
-
-<img src="README_files/figure-commonmark/fig-timeline-1.png"
-id="fig-timeline"
-data-fig-alt="Monthly message volume across R mailing lists over time" />
-
-Figure 1
-
-</div>
-
-## Example: Reply network on r-devel
-
-The `in_reply_to` field links each message to its parent, making it
-straightforward to build a “who replies to whom” network.
-
-<div id="fig-reply-network">
-
-<img src="README_files/figure-commonmark/fig-reply-network-1.png"
-id="fig-reply-network"
-data-fig-alt="Network graph showing reply relationships between top r-devel contributors" />
-
-Figure 2
-
-</div>
+For more in-depth analysis examples (message volume trends, reply
+networks, top contributors), see the [demo
+analysis](analysis/demo-analysis.md).
 
 ## Data dictionary
 
