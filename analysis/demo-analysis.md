@@ -61,16 +61,25 @@ rml_available()
 ```
 
      [1] "bioc-devel"           "r-announce"           "r-devel"             
-     [4] "r-help"               "r-help-es"            "r-package-devel"     
-     [7] "r-packages"           "r-sig-db"             "r-sig-dcm"           
-    [10] "r-sig-debian"         "r-sig-dynamic-models" "r-sig-ecology"       
-    [13] "r-sig-epi"            "r-sig-fedora"         "r-sig-finance"       
-    [16] "r-sig-genetics"       "r-sig-geo"            "r-sig-gr"            
-    [19] "r-sig-gui"            "r-sig-hpc"            "r-sig-insurance"     
-    [22] "r-sig-jobs"           "r-sig-mac"            "r-sig-meta-analysis" 
-    [25] "r-sig-mixed-models"   "r-sig-networks"       "r-sig-robust"        
-    [28] "r-sig-teaching"       "r-sig-windows"        "r-ug-ottawa"         
-    [31] "rcpp-devel"          
+     [4] "r-help-1997"          "r-help-1998"          "r-help-1999"         
+     [7] "r-help-2000"          "r-help-2001"          "r-help-2002"         
+    [10] "r-help-2003"          "r-help-2004"          "r-help-2005"         
+    [13] "r-help-2006"          "r-help-2007"          "r-help-2008"         
+    [16] "r-help-2009"          "r-help-2010"          "r-help-2011"         
+    [19] "r-help-2012"          "r-help-2013"          "r-help-2014"         
+    [22] "r-help-2015"          "r-help-2016"          "r-help-2017"         
+    [25] "r-help-2018"          "r-help-2019"          "r-help-2020"         
+    [28] "r-help-2021"          "r-help-2022"          "r-help-2023"         
+    [31] "r-help-2024"          "r-help-2025"          "r-help-2026"         
+    [34] "r-help-es"            "r-package-devel"      "r-packages"          
+    [37] "r-sig-db"             "r-sig-dcm"            "r-sig-debian"        
+    [40] "r-sig-dynamic-models" "r-sig-ecology"        "r-sig-epi"           
+    [43] "r-sig-fedora"         "r-sig-finance"        "r-sig-genetics"      
+    [46] "r-sig-geo"            "r-sig-gr"             "r-sig-gui"           
+    [49] "r-sig-hpc"            "r-sig-insurance"      "r-sig-jobs"          
+    [52] "r-sig-mac"            "r-sig-meta-analysis"  "r-sig-mixed-models"  
+    [55] "r-sig-networks"       "r-sig-robust"         "r-sig-teaching"      
+    [58] "r-sig-windows"        "r-ug-ottawa"          "rcpp-devel"          
 
 ``` r
 # Read a single list (use col_select to skip the body — much faster)
@@ -80,12 +89,12 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63399 obs. of  5 variables:
-     $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
-     $ date     : POSIXct, format: "1997-04-01 10:28:56" "1997-04-01 10:35:43" ...
-     $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
-     $ thread_id: chr  "thread-0823a0ef3954" "thread-0823a0ef3954" "thread-87797c263db4" "thread-95d55ddd69bf" ...
-     $ month    : chr  "1997-04" "1997-04" "1997-04" "1997-04" ...
+    Classes 'tbl' and 'data.frame': 63410 obs. of  5 variables:
+     $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
+     $ date     : POSIXct, format: "2009-07-23 21:30:12" "2004-08-16 13:41:57" ...
+     $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
+     $ thread_id: chr  "thread-5a699fb78c69" "thread-cf4236f01974" "thread-c40e96ef7024" "thread-e2aa0135326a" ...
+     $ month    : chr  "2009-07" "2004-08" "2004-08" "2004-08" ...
 
 ``` r
 # Thread-level summaries across all lists
@@ -113,10 +122,10 @@ head(contribs)
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17940         10 r-he… r-help:117… 1998-06-04T1… 2026-03-04T…
-    2 Duncan …         12534         13 r-he… r-help:731… 2000-02-16T2… 2026-02-22T…
-    3 David W…         11053          7 r-he… r-help:105… 2003-11-18T0… 2018-05-04T…
-    4 Peter D…         10757         10 r-he… r-help:704… 1997-04-01T1… 2026-03-04T…
-    5 Gabor G…          8611         10 r-he… r-help:703… 2005-03-28T1… 2018-03-25T…
+    2 Duncan …         12555         16 r-he… r-help:731… 2000-02-16T2… 2026-03-09T…
+    3 David W…         11661         39 r-he… r-help:105… 2003-03-07T1… 2025-11-08T…
+    4 Peter D…         10790         15 r-he… r-help:705… 1997-04-01T1… 2026-03-09T…
+    5 Gabor G…          9933         23 r-he… r-help:703… 2002-01-12T0… 2025-12-20T…
     6 Uwe Lig…          8398         13 r-he… r-help:656… 2000-03-07T1… 2026-02-03T…
 
 ### Working directly with Parquet files
@@ -194,12 +203,16 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
 
-       Duncan Murdoch   Martin Maechler Dirk Eddelbuettel       Ivan Krylov 
-                   38                33                29                28 
-          Kurt Hornik      Mikael Jagan   Michael Chirico        Ben Bolker 
-                   18                18                17                16 
-     Henrik Bengtsson    Peter Dalgaard 
-                   15                15 
+                     Duncan Murdoch                 Martin Maechler 
+                                 41                              34 
+                  Dirk Eddelbuettel                     Ivan Krylov 
+                                 29                              28 
+                        Kurt Hornik                    Mikael Jagan 
+                                 18                              18 
+                    Michael Chirico                      Ben Bolker 
+                                 17                              16 
+                   Henrik Bengtsson Suharto Anggono Suharto Anggono 
+                                 15                              15 
 
 ## Reply network on r-devel
 
@@ -280,22 +293,22 @@ contribs |>
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
 | Brian Ripley       |         17940 |         10 |
-| Duncan Murdoch     |         12534 |         13 |
-| David Winsemius    |         11053 |          7 |
-| Peter Dalgaard     |         10757 |         10 |
-| Gabor Grothendieck |          8611 |         10 |
+| Duncan Murdoch     |         12555 |         16 |
+| David Winsemius    |         11661 |         39 |
+| Peter Dalgaard     |         10790 |         15 |
+| Gabor Grothendieck |          9933 |         23 |
 | Uwe Ligges         |          8398 |         13 |
-| Dirk Eddelbuettel  |          6427 |         13 |
+| Dirk Eddelbuettel  |          7676 |         30 |
 | Bert Gunter        |          6040 |          9 |
 | Ben Bolker         |          6024 |          8 |
-| Martin Maechler    |          5747 |         19 |
-| jim holtman        |          4366 |          3 |
+| Martin Maechler    |          5751 |         21 |
+| jim holtman        |          4422 |          8 |
+| Jeff Newmiller     |          4355 |         15 |
+| Simon Urbanek      |          4281 |         40 |
 | Roger Bivand       |          4270 |         12 |
-| Thomas Lumley      |          3791 |          8 |
-| Simon Urbanek      |          3304 |          9 |
-| arun               |          3300 |          2 |
-| Petr PIKAL         |          3271 |          3 |
-| Hadley Wickham     |          3224 |         15 |
-| Douglas Bates      |          3078 |         10 |
-| Greg Snow          |          2824 |         10 |
-| John Fox           |          2697 |          9 |
+| Jim Lemon          |          3886 |         17 |
+| Thomas Lumley      |          3792 |          9 |
+| Marc Schwartz      |          3765 |         40 |
+| PIKAL Petr         |          3658 |          9 |
+| Douglas Bates      |          3466 |         25 |
+| Spencer Graves     |          3378 |         29 |
