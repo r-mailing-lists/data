@@ -74,7 +74,7 @@ read_month_json <- function(path, list_name) {
   )
 }
 
-MAX_FILE_MB <- 90
+MAX_FILE_MB <- 75
 
 write_messages_parquet <- function(df, path) {
   write_parquet(df, path, compression = "zstd",
