@@ -81,69 +81,31 @@ write_messages_parquet <- function(df, path) {
                 options = parquet_options(compression_level = 19))
 }
 
-# Split a large parquet file into chunks that fit under MAX_FILE_MB.
-# Tries decade splits first, then 5-year, then individual years.
+# Split a large parquet file into 5-year chunks
 split_large_parquet <- function(msgs, list_name, messages_dir) {
   msgs$year <- as.integer(format(msgs$date, "%Y"))
   year_range <- range(msgs$year, na.rm = TRUE)
 
-  for (interval in c(10, 5, 1)) {
-    breaks <- seq(
-      floor(year_range[1] / interval) * interval,
-      ceiling((year_range[2] + 1) / interval) * interval,
-      by = interval
-    )
+  breaks <- seq(
+    floor(year_range[1] / 5) * 5,
+    ceiling((year_range[2] + 1) / 5) * 5,
+    by = 5
+  )
 
-    chunks <- list()
-    for (i in seq_len(length(breaks) - 1)) {
-      chunk <- msgs[!is.na(msgs$year) & msgs$year >= breaks[i] & msgs$year < breaks[i + 1], ]
-      if (nrow(chunk) == 0) next
-      chunks <- c(chunks, list(list(start = breaks[i], end = breaks[i + 1] - 1, data = chunk)))
-    }
-
-    # Write to temp files and check sizes
-    all_fit <- TRUE
-    temp_paths <- character()
-    for (ch in chunks) {
-      chunk_data <- ch$data
-      chunk_data$year <- NULL
-      tmp <- tempfile(fileext = ".parquet")
-      write_messages_parquet(chunk_data, tmp)
-      mb <- file.size(tmp) / 1e6
-      if (mb > MAX_FILE_MB && interval > 1) {
-        all_fit <- FALSE
-        file.remove(c(temp_paths, tmp))
-        break
-      }
-      temp_paths <- c(temp_paths, tmp)
-    }
-
-    if (all_fit) {
-      paths <- character()
-      for (j in seq_along(chunks)) {
-        ch <- chunks[[j]]
-        chunk_data <- ch$data
-        chunk_data$year <- NULL
-        label <- if (ch$start == ch$end) as.character(ch$start)
-                 else paste0(ch$start, "-", ch$end)
-        out <- file.path(messages_dir, paste0(list_name, "-", label, ".parquet"))
-        file.rename(temp_paths[j], out)
-        mb <- round(file.size(out) / 1e6, 1)
-        message("  -> ", out, " (", nrow(chunk_data), " messages, ", mb, " MB)")
-        if (mb > MAX_FILE_MB) {
-          message("  ** WARNING: ", mb, " MB still exceeds limit at interval=", interval)
-        }
-        paths <- c(paths, out)
-      }
-      msgs$year <- NULL
-      return(paths)
-    }
-
-    message("  ** Interval ", interval, " years still produces oversized chunks, trying smaller...")
+  paths <- character()
+  for (i in seq_len(length(breaks) - 1)) {
+    chunk <- msgs[!is.na(msgs$year) & msgs$year >= breaks[i] & msgs$year < breaks[i + 1], ]
+    if (nrow(chunk) == 0) next
+    chunk$year <- NULL
+    label <- paste0(breaks[i], "-", breaks[i + 1] - 1)
+    out <- file.path(messages_dir, paste0(list_name, "-", label, ".parquet"))
+    write_messages_parquet(chunk, out)
+    mb <- round(file.size(out) / 1e6, 1)
+    message("  -> ", out, " (", nrow(chunk), " messages, ", mb, " MB)")
+    paths <- c(paths, out)
   }
-
   msgs$year <- NULL
-  character()
+  paths
 }
 
 read_threads_json <- function(path, list_name) {
