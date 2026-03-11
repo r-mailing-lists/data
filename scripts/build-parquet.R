@@ -76,6 +76,33 @@ read_month_json <- function(path, list_name) {
 
 MAX_FILE_MB <- 75
 
+# Parse RFC 3339 date strings to POSIXct in UTC, correctly handling timezone offsets.
+# R's as.POSIXct ignores offsets like -04:00 when using "%Y-%m-%dT%H:%M:%S",
+# so we manually extract the offset and apply it.
+parse_rfc3339_utc <- function(x) {
+  # Extract sign, hours, minutes from offset (e.g. -04:00 or +01:00)
+  offset_match <- regmatches(x, regexec("([+-])([0-9]{2}):([0-9]{2})$", x))
+  has_offset <- vapply(offset_match, length, 0L) == 4
+
+  offset_secs <- rep(0, length(x))
+  base <- x
+
+  # Handle +HH:MM / -HH:MM offsets
+  if (any(has_offset)) {
+    signs <- vapply(offset_match[has_offset], `[`, "", 2)
+    hours <- as.integer(vapply(offset_match[has_offset], `[`, "", 3))
+    mins  <- as.integer(vapply(offset_match[has_offset], `[`, "", 4))
+    offset_secs[has_offset] <- ifelse(signs == "+", -1, 1) * (hours * 3600 + mins * 60)
+    base[has_offset] <- sub("[+-][0-9]{2}:[0-9]{2}$", "", x[has_offset])
+  }
+
+  # Handle Z suffix (UTC, offset = 0)
+  is_z <- grepl("Z$", base)
+  base[is_z] <- sub("Z$", "", base[is_z])
+
+  as.POSIXct(base, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC") + offset_secs
+}
+
 write_messages_parquet <- function(df, path) {
   write_parquet(df, path, compression = "zstd",
                 options = parquet_options(compression_level = 19))
@@ -160,14 +187,7 @@ for (list_path in list_dirs) {
   if (length(msg_frames) == 0) next
 
   msgs <- do.call(rbind, msg_frames)
-  # Parse RFC 3339 dates, correctly handling timezone offsets.
-  # R's as.POSIXct with %z doesn't handle the colon in offsets like -04:00,
-  # so we strip the colon first, then parse with %z.
-  date_strs <- msgs$date
-  # Replace Z with +0000 and strip colon from offset (e.g. -04:00 -> -0400)
-  date_strs <- sub("Z$", "+0000", date_strs)
-  date_strs <- sub("([+-]\\d{2}):(\\d{2})$", "\\1\\2", date_strs)
-  msgs$date <- as.POSIXct(date_strs, format = "%Y-%m-%dT%H:%M:%S%z", tz = "UTC")
+  msgs$date <- parse_rfc3339_utc(msgs$date)
   msgs$thread_depth <- as.integer(msgs$thread_depth)
 
   # Resolve from_name via aliases (canonical names)
@@ -213,14 +233,8 @@ for (list_path in list_dirs) {
 
 if (length(all_threads) > 0) {
   threads_df <- do.call(rbind, all_threads)
-  # Parse RFC 3339 dates with timezone offset handling
-  started_strs <- sub("Z$", "+0000", threads_df$started)
-  started_strs <- sub("([+-]\\d{2}):(\\d{2})$", "\\1\\2", started_strs)
-  threads_df$started <- as.POSIXct(started_strs, format = "%Y-%m-%dT%H:%M:%S%z", tz = "UTC")
-
-  reply_strs <- sub("Z$", "+0000", threads_df$last_reply)
-  reply_strs <- sub("([+-]\\d{2}):(\\d{2})$", "\\1\\2", reply_strs)
-  threads_df$last_reply <- as.POSIXct(reply_strs, format = "%Y-%m-%dT%H:%M:%S%z", tz = "UTC")
+  threads_df$started <- parse_rfc3339_utc(threads_df$started)
+  threads_df$last_reply <- parse_rfc3339_utc(threads_df$last_reply)
   threads_path <- file.path(output_dir, "threads.parquet")
   write_parquet(threads_df, threads_path, compression = "zstd",
                 options = parquet_options(compression_level = 19))
