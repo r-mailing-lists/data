@@ -104,7 +104,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**631,161** messages across **31** mailing lists
+**631,168** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
@@ -112,18 +112,18 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-devel              | 63,410   | 5,846   | Apr 1997      | Mar 2026     |
 | r-sig-geo            | 29,558   | 3,497   | Jul 2003      | Mar 2026     |
 | bioc-devel           | 21,303   | 1,676   | Mar 2004      | Mar 2026     |
-| r-sig-mixed-models   | 20,627   | 3,109   | Jan 2007      | Mar 2026     |
+| r-sig-mixed-models   | 20,628   | 3,109   | Jan 2007      | Mar 2026     |
 | r-help-es            | 15,379   | 899     | Mar 2009      | Feb 2026     |
 | r-sig-finance        | 15,274   | 2,161   | Jun 2004      | Feb 2026     |
 | r-sig-mac            | 15,070   | 1,723   | Jan 1970      | Mar 2026     |
-| r-package-devel      | 12,120   | 1,116   | May 2015      | Mar 2026     |
+| r-package-devel      | 12,125   | 1,118   | May 2015      | Mar 2026     |
 | rcpp-devel           | 10,988   | 800     | Nov 2009      | Jan 2026     |
 | r-sig-ecology        | 7,410    | 1,324   | Apr 2008      | Mar 2026     |
 | r-sig-meta-analysis  | 5,629    | 550     | Jun 2017      | Mar 2026     |
 | r-sig-debian         | 3,656    | 501     | Feb 2005      | Dec 2025     |
 | r-sig-hpc            | 2,152    | 383     | Oct 2008      | Dec 2024     |
 | r-sig-db             | 1,559    | 391     | Apr 2001      | Nov 2020     |
-| r-packages           | 1,339    | 568     | Sep 2003      | Jan 2026     |
+| r-packages           | 1,340    | 568     | Sep 2003      | Mar 2026     |
 | r-sig-gui            | 1,236    | 264     | Oct 2002      | Feb 2018     |
 | r-sig-fedora         | 919      | 129     | May 2008      | Sep 2025     |
 | r-sig-teaching       | 885      | 224     | Oct 2006      | Jan 2026     |

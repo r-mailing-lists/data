@@ -61,25 +61,16 @@ rml_available()
 ```
 
      [1] "bioc-devel"           "r-announce"           "r-devel"             
-     [4] "r-help-1997"          "r-help-1998"          "r-help-1999"         
-     [7] "r-help-2000"          "r-help-2001"          "r-help-2002"         
-    [10] "r-help-2003"          "r-help-2004"          "r-help-2005"         
-    [13] "r-help-2006"          "r-help-2007"          "r-help-2008"         
-    [16] "r-help-2009"          "r-help-2010"          "r-help-2011"         
-    [19] "r-help-2012"          "r-help-2013"          "r-help-2014"         
-    [22] "r-help-2015"          "r-help-2016"          "r-help-2017"         
-    [25] "r-help-2018"          "r-help-2019"          "r-help-2020"         
-    [28] "r-help-2021"          "r-help-2022"          "r-help-2023"         
-    [31] "r-help-2024"          "r-help-2025"          "r-help-2026"         
-    [34] "r-help-es"            "r-package-devel"      "r-packages"          
-    [37] "r-sig-db"             "r-sig-dcm"            "r-sig-debian"        
-    [40] "r-sig-dynamic-models" "r-sig-ecology"        "r-sig-epi"           
-    [43] "r-sig-fedora"         "r-sig-finance"        "r-sig-genetics"      
-    [46] "r-sig-geo"            "r-sig-gr"             "r-sig-gui"           
-    [49] "r-sig-hpc"            "r-sig-insurance"      "r-sig-jobs"          
-    [52] "r-sig-mac"            "r-sig-meta-analysis"  "r-sig-mixed-models"  
-    [55] "r-sig-networks"       "r-sig-robust"         "r-sig-teaching"      
-    [58] "r-sig-windows"        "r-ug-ottawa"          "rcpp-devel"          
+     [4] "r-help"               "r-help-es"            "r-package-devel"     
+     [7] "r-packages"           "r-sig-db"             "r-sig-dcm"           
+    [10] "r-sig-debian"         "r-sig-dynamic-models" "r-sig-ecology"       
+    [13] "r-sig-epi"            "r-sig-fedora"         "r-sig-finance"       
+    [16] "r-sig-genetics"       "r-sig-geo"            "r-sig-gr"            
+    [19] "r-sig-gui"            "r-sig-hpc"            "r-sig-insurance"     
+    [22] "r-sig-jobs"           "r-sig-mac"            "r-sig-meta-analysis" 
+    [25] "r-sig-mixed-models"   "r-sig-networks"       "r-sig-robust"        
+    [28] "r-sig-teaching"       "r-sig-windows"        "r-ug-ottawa"         
+    [31] "rcpp-devel"          
 
 ``` r
 # Read a single list (use col_select to skip the body — much faster)
@@ -91,7 +82,7 @@ str(r_devel)
 
     Classes 'tbl' and 'data.frame': 63410 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
-     $ date     : POSIXct, format: "2009-07-23 21:30:12" "2004-08-16 13:41:57" ...
+     $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
      $ thread_id: chr  "thread-5a699fb78c69" "thread-cf4236f01974" "thread-c40e96ef7024" "thread-e2aa0135326a" ...
      $ month    : chr  "2009-07" "2004-08" "2004-08" "2004-08" ...
@@ -123,9 +114,9 @@ head(contribs)
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17940         10 r-he… r-help:117… 1998-06-04T1… 2026-03-04T…
     2 Duncan …         12555         13 r-he… r-help:732… 2000-02-16T2… 2026-03-09T…
-    3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-08T…
-    4 Peter D…         10791         10 r-he… r-help:706… 1997-04-01T1… 2026-03-10T…
-    5 Gabor G…          9933         13 r-he… r-help:804… 2002-01-12T0… 2025-12-20T…
+    3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
+    4 Peter D…         10791         10 r-he… r-help:706… 1997-04-01T0… 2026-03-10T…
+    5 Gabor G…          9933         13 r-he… r-help:804… 2002-01-12T1… 2025-12-20T…
     6 Uwe Lig…          8399         13 r-he… r-help:656… 2000-03-07T1… 2026-03-10T…
 
 ### Working directly with Parquet files
