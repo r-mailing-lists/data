@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63410 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63412 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -115,7 +115,7 @@ head(contribs)
     1 Brian R…         17940         10 r-he… r-help:117… 1998-06-04T1… 2026-03-04T…
     2 Duncan …         12555         13 r-he… r-help:732… 2000-02-16T2… 2026-03-09T…
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
-    4 Peter D…         10791         10 r-he… r-help:706… 1997-04-01T0… 2026-03-10T…
+    4 Peter D…         10793         10 r-he… r-help:706… 1997-04-01T0… 2026-03-11T…
     5 Gabor G…          9933         13 r-he… r-help:804… 2002-01-12T1… 2025-12-20T…
     6 Uwe Lig…          8399         13 r-he… r-help:656… 2000-03-07T1… 2026-03-10T…
 
@@ -194,16 +194,12 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
 
-                     Duncan Murdoch                 Martin Maechler 
-                                 41                              34 
-                  Dirk Eddelbuettel                     Ivan Krylov 
-                                 29                              28 
-                        Kurt Hornik                    Mikael Jagan 
-                                 18                              18 
-                    Michael Chirico                      Ben Bolker 
-                                 17                              16 
-                   Henrik Bengtsson Suharto Anggono Suharto Anggono 
-                                 15                              15 
+       Duncan Murdoch   Martin Maechler Dirk Eddelbuettel       Ivan Krylov 
+                   41                34                29                28 
+          Kurt Hornik      Mikael Jagan   Michael Chirico        Ben Bolker 
+                   19                18                17                16 
+     Henrik Bengtsson    Peter Dalgaard 
+                   15                15 
 
 ## Reply network on r-devel
 
@@ -286,7 +282,7 @@ contribs |>
 | Brian Ripley       |         17940 |         10 |
 | Duncan Murdoch     |         12555 |         13 |
 | David Winsemius    |         11661 |         12 |
-| Peter Dalgaard     |         10791 |         10 |
+| Peter Dalgaard     |         10793 |         10 |
 | Gabor Grothendieck |          9933 |         13 |
 | Uwe Ligges         |          8399 |         13 |
 | Dirk Eddelbuettel  |          7676 |         15 |
