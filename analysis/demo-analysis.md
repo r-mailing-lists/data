@@ -197,7 +197,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
        Duncan Murdoch   Martin Maechler Dirk Eddelbuettel       Ivan Krylov 
                    41                37                26                26 
           Kurt Hornik      Mikael Jagan   Michael Chirico        Ben Bolker 
-                   19                18                17                16 
+                   18                18                17                16 
      Henrik Bengtsson    Peter Dalgaard 
                    15                15 
 
