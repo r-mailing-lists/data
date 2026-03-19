@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63418 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63419 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -196,8 +196,8 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 
        Duncan Murdoch   Martin Maechler Dirk Eddelbuettel       Ivan Krylov 
                    41                37                26                26 
-          Kurt Hornik      Mikael Jagan   Michael Chirico        Ben Bolker 
-                   18                18                17                16 
+          Kurt Hornik   Michael Chirico      Mikael Jagan        Ben Bolker 
+                   18                18                18                16 
      Henrik Bengtsson    Peter Dalgaard 
                    15                15 
 
