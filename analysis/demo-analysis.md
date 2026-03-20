@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63419 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63421 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -194,12 +194,16 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
 
-       Duncan Murdoch   Martin Maechler Dirk Eddelbuettel       Ivan Krylov 
-                   41                37                26                26 
-          Kurt Hornik   Michael Chirico      Mikael Jagan        Ben Bolker 
-                   18                18                18                16 
-     Henrik Bengtsson    Peter Dalgaard 
-                   15                15 
+                     Duncan Murdoch                 Martin Maechler 
+                                 40                              38 
+                  Dirk Eddelbuettel                     Ivan Krylov 
+                                 26                              26 
+                    Michael Chirico                     Kurt Hornik 
+                                 19                              18 
+                       Mikael Jagan                      Ben Bolker 
+                                 18                              16 
+                     Peter Dalgaard Suharto Anggono Suharto Anggono 
+                                 15                              15 
 
 ## Reply network on r-devel
 
@@ -287,10 +291,10 @@ contribs |>
 | Uwe Ligges         |          8399 |         13 |
 | Dirk Eddelbuettel  |          7676 |         15 |
 | Bert Gunter        |          6040 |          9 |
-| Ben Bolker         |          6024 |          8 |
-| Martin Maechler    |          5754 |         19 |
+| Ben Bolker         |          6026 |          8 |
+| Martin Maechler    |          5755 |         19 |
 | jim holtman        |          4422 |          4 |
-| Jeff Newmiller     |          4355 |          7 |
+| Jeff Newmiller     |          4356 |          7 |
 | Simon Urbanek      |          4281 |         11 |
 | Roger Bivand       |          4271 |         12 |
 | Jim Lemon          |          3886 |          6 |
