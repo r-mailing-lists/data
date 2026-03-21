@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63421 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63424 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -115,7 +115,7 @@ head(contribs)
     1 Brian R…         17941         10 r-he… r-help:117… 1998-06-04T1… 2026-03-16T…
     2 Duncan …         12556         13 r-he… r-help:732… 2000-02-16T2… 2026-03-16T…
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
-    4 Peter D…         10793         10 r-he… r-help:706… 1997-04-01T0… 2026-03-11T…
+    4 Peter D…         10794         10 r-he… r-help:706… 1997-04-01T0… 2026-03-20T…
     5 Gabor G…          9933         13 r-he… r-help:804… 2002-01-12T1… 2025-12-20T…
     6 Uwe Lig…          8399         13 r-he… r-help:656… 2000-03-07T1… 2026-03-10T…
 
@@ -176,7 +176,8 @@ monthly |>
 
 <img src="demo-analysis_files/figure-commonmark/fig-timeline-1.png"
 id="fig-timeline"
-data-fig-alt="Monthly message volume across R mailing lists over time" />
+data-fig-alt="Monthly message volume across R mailing lists over time"
+alt="Monthly message volume across R mailing lists over time" />
 
 Figure 1
 
@@ -203,7 +204,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Mikael Jagan                      Ben Bolker 
                                  18                              16 
                      Peter Dalgaard Suharto Anggono Suharto Anggono 
-                                 15                              15 
+                                 16                              15 
 
 ## Reply network on r-devel
 
@@ -264,7 +265,8 @@ ggraph(g, layout = "fr") +
 
 <img src="demo-analysis_files/figure-commonmark/fig-reply-network-1.png"
 id="fig-reply-network"
-data-fig-alt="Network graph showing reply relationships between top r-devel contributors" />
+data-fig-alt="Network graph showing reply relationships between top r-devel contributors"
+alt="Network graph showing reply relationships between top r-devel contributors" />
 
 Figure 2
 
@@ -286,13 +288,13 @@ contribs |>
 | Brian Ripley       |         17941 |         10 |
 | Duncan Murdoch     |         12556 |         13 |
 | David Winsemius    |         11661 |         12 |
-| Peter Dalgaard     |         10793 |         10 |
+| Peter Dalgaard     |         10794 |         10 |
 | Gabor Grothendieck |          9933 |         13 |
 | Uwe Ligges         |          8399 |         13 |
 | Dirk Eddelbuettel  |          7676 |         15 |
 | Bert Gunter        |          6040 |          9 |
 | Ben Bolker         |          6026 |          8 |
-| Martin Maechler    |          5755 |         19 |
+| Martin Maechler    |          5757 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4356 |          7 |
 | Simon Urbanek      |          4281 |         11 |
