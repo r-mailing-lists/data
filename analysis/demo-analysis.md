@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63451 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63458 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -198,13 +198,13 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                     Martin Maechler                  Duncan Murdoch 
                                  37                              34 
                   Dirk Eddelbuettel                     Ivan Krylov 
-                                 30                              27 
+                                 33                              28 
                         Kurt Hornik                 Michael Chirico 
                                  17                              17 
                        Mikael Jagan                  Peter Dalgaard 
                                  17                              17 
-                         Ben Bolker Suharto Anggono Suharto Anggono 
-                                 15                              15 
+    Suharto Anggono Suharto Anggono                      Ben Bolker 
+                                 16                              15 
 
 ## Reply network on r-devel
 
@@ -291,13 +291,13 @@ contribs |>
 | Peter Dalgaard     |         10795 |         10 |
 | Gabor Grothendieck |          9933 |         13 |
 | Uwe Ligges         |          8399 |         13 |
-| Dirk Eddelbuettel  |          7681 |         15 |
+| Dirk Eddelbuettel  |          7684 |         15 |
 | Bert Gunter        |          6040 |          9 |
 | Ben Bolker         |          6028 |          8 |
 | Martin Maechler    |          5758 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4356 |          7 |
-| Simon Urbanek      |          4287 |         11 |
+| Simon Urbanek      |          4288 |         11 |
 | Roger Bivand       |          4271 |         12 |
 | Jim Lemon          |          3886 |          6 |
 | Thomas Lumley      |          3792 |          8 |
