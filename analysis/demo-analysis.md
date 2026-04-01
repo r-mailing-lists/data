@@ -196,15 +196,15 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 
 
                     Martin Maechler               Dirk Eddelbuettel 
-                                 37                              34 
+                                 37                              33 
                      Duncan Murdoch                     Ivan Krylov 
-                                 34                              28 
+                                 29                              28 
                         Kurt Hornik                 Michael Chirico 
                                  17                              17 
                        Mikael Jagan                  Peter Dalgaard 
                                  17                              17 
-                         Ben Bolker Suharto Anggono Suharto Anggono 
-                                 16                              16 
+    Suharto Anggono Suharto Anggono                      Ben Bolker 
+                                 16                              15 
 
 ## Reply network on r-devel
 
@@ -291,7 +291,7 @@ contribs |>
 | Peter Dalgaard     |         10797 |         10 |
 | Gabor Grothendieck |          9933 |         13 |
 | Uwe Ligges         |          8399 |         13 |
-| Dirk Eddelbuettel  |          7685 |         15 |
+| Dirk Eddelbuettel  |          7690 |         15 |
 | Bert Gunter        |          6040 |          9 |
 | Ben Bolker         |          6029 |          8 |
 | Martin Maechler    |          5758 |         19 |
