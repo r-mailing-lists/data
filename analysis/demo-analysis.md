@@ -198,7 +198,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                     Martin Maechler               Dirk Eddelbuettel 
                                  37                              33 
                         Ivan Krylov                  Duncan Murdoch 
-                                 30                              28 
+                                 29                              28 
                         Kurt Hornik                 Michael Chirico 
                                  17                              17 
                        Mikael Jagan                  Peter Dalgaard 
@@ -291,10 +291,10 @@ contribs |>
 | Peter Dalgaard     |         10797 |         10 |
 | Gabor Grothendieck |          9933 |         13 |
 | Uwe Ligges         |          8399 |         13 |
-| Dirk Eddelbuettel  |          7690 |         15 |
+| Dirk Eddelbuettel  |          7693 |         15 |
 | Bert Gunter        |          6040 |          9 |
 | Ben Bolker         |          6029 |          8 |
-| Martin Maechler    |          5758 |         19 |
+| Martin Maechler    |          5760 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4358 |          7 |
 | Simon Urbanek      |          4290 |         11 |
