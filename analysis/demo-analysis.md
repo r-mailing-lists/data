@@ -199,10 +199,10 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                                  37                              33 
                         Ivan Krylov                  Duncan Murdoch 
                                  29                              28 
-                        Kurt Hornik                 Michael Chirico 
+                    Michael Chirico                    Mikael Jagan 
                                  17                              17 
-                       Mikael Jagan                  Peter Dalgaard 
-                                 17                              17 
+                     Peter Dalgaard                     Kurt Hornik 
+                                 17                              16 
     Suharto Anggono Suharto Anggono                      Ben Bolker 
                                  16                              15 
 
@@ -291,7 +291,7 @@ contribs |>
 | Peter Dalgaard     |         10797 |         10 |
 | Gabor Grothendieck |          9933 |         13 |
 | Uwe Ligges         |          8399 |         13 |
-| Dirk Eddelbuettel  |          7690 |         15 |
+| Dirk Eddelbuettel  |          7693 |         15 |
 | Bert Gunter        |          6040 |          9 |
 | Ben Bolker         |          6029 |          8 |
 | Martin Maechler    |          5761 |         19 |
