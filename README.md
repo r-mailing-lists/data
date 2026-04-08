@@ -104,12 +104,12 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**631,407** messages across **31** mailing lists
+**631,415** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
-| r-help               | 398,548  | 37,108  | Apr 1997      | Apr 2026     |
-| r-devel              | 63,473   | 5,849   | Apr 1997      | Apr 2026     |
+| r-help               | 398,549  | 37,108  | Apr 1997      | Apr 2026     |
+| r-devel              | 63,478   | 5,849   | Apr 1997      | Apr 2026     |
 | r-sig-geo            | 29,559   | 3,497   | Jul 2003      | Mar 2026     |
 | bioc-devel           | 21,330   | 1,677   | Mar 2004      | Apr 2026     |
 | r-sig-mixed-models   | 20,628   | 3,109   | Jan 2007      | Mar 2026     |
@@ -118,7 +118,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-mac            | 15,079   | 1,723   | Jan 1970      | Apr 2026     |
 | r-package-devel      | 12,128   | 1,118   | May 2015      | Apr 2026     |
 | rcpp-devel           | 11,001   | 800     | Nov 2009      | Apr 2026     |
-| r-sig-ecology        | 7,436    | 1,325   | Apr 2008      | Apr 2026     |
+| r-sig-ecology        | 7,437    | 1,325   | Apr 2008      | Apr 2026     |
 | r-sig-meta-analysis  | 5,636    | 550     | Jun 2017      | Mar 2026     |
 | r-sig-debian         | 3,656    | 501     | Feb 2005      | Dec 2025     |
 | r-sig-hpc            | 2,152    | 383     | Oct 2008      | Dec 2024     |
@@ -131,7 +131,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-dynamic-models | 696      | 160     | Oct 2009      | Feb 2026     |
 | r-sig-epi            | 594      | 166     | Nov 2005      | Apr 2026     |
 | r-sig-robust         | 523      | 150     | Nov 2005      | Dec 2025     |
-| r-sig-genetics       | 498      | 60      | May 2008      | Apr 2026     |
+| r-sig-genetics       | 499      | 60      | May 2008      | Apr 2026     |
 | r-sig-jobs           | 442      | 267     | Feb 2007      | Mar 2026     |
 | r-ug-ottawa          | 197      | 66      | Jan 2009      | Dec 2022     |
 | r-sig-gr             | 176      | 79      | Sep 2002      | Nov 2025     |
