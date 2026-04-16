@@ -204,7 +204,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Michael Chirico                       Mikael Jagan 
                                     17                                 17 
                          Simon Urbanek                     Peter Dalgaard 
-                                    17                                 16 
+                                    17                                 15 
 
 ## Reply network on r-devel
 
