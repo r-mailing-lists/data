@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63494 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63505 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -198,12 +198,12 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Martin Maechler                  Dirk Eddelbuettel 
                                     38                                 34 
                            Ivan Krylov                     Duncan Murdoch 
-                                    28                                 25 
+                                    29                                 25 
     iuke-tier@ey m@iii@g oii uiow@@edu                        Kurt Hornik 
-                                    18                                 17 
-                       Michael Chirico                      Simon Urbanek 
-                                    17                                 17 
-                          Mikael Jagan                     Peter Dalgaard 
+                                    20                                 18 
+                       Michael Chirico                       Mikael Jagan 
+                                    17                                 16 
+                         Simon Urbanek                     Peter Dalgaard 
                                     16                                 15 
 
 ## Reply network on r-devel
@@ -291,10 +291,10 @@ contribs |>
 | Peter Dalgaard     |         10798 |         10 |
 | Gabor Grothendieck |          9933 |         13 |
 | Uwe Ligges         |          8399 |         13 |
-| Dirk Eddelbuettel  |          7695 |         15 |
+| Dirk Eddelbuettel  |          7697 |         15 |
 | Bert Gunter        |          6041 |          9 |
 | Ben Bolker         |          6029 |          8 |
-| Martin Maechler    |          5764 |         19 |
+| Martin Maechler    |          5765 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4358 |          7 |
 | Simon Urbanek      |          4293 |         11 |
