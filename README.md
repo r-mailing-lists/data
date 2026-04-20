@@ -104,18 +104,18 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**631,501** messages across **31** mailing lists
+**631,505** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
 | r-help               | 398,553  | 37,108  | Apr 1997      | Apr 2026     |
-| r-devel              | 63,505   | 5,851   | Apr 1997      | Apr 2026     |
+| r-devel              | 63,506   | 5,851   | Apr 1997      | Apr 2026     |
 | r-sig-geo            | 29,560   | 3,497   | Jul 2003      | Apr 2026     |
 | bioc-devel           | 21,344   | 1,681   | Mar 2004      | Apr 2026     |
 | r-sig-mixed-models   | 20,629   | 3,109   | Jan 2007      | Apr 2026     |
 | r-help-es            | 15,389   | 899     | Mar 2009      | Apr 2026     |
 | r-sig-finance        | 15,275   | 2,161   | Jun 2004      | Apr 2026     |
-| r-sig-mac            | 15,080   | 1,723   | Jan 1970      | Apr 2026     |
+| r-sig-mac            | 15,082   | 1,723   | Jan 1970      | Apr 2026     |
 | r-package-devel      | 12,128   | 1,118   | May 2015      | Apr 2026     |
 | rcpp-devel           | 11,004   | 800     | Nov 2009      | Apr 2026     |
 | r-sig-ecology        | 7,448    | 1,325   | Apr 2008      | Apr 2026     |
@@ -131,7 +131,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-dynamic-models | 696      | 160     | Oct 2009      | Feb 2026     |
 | r-sig-epi            | 601      | 166     | Nov 2005      | Apr 2026     |
 | r-sig-robust         | 524      | 151     | Nov 2005      | Apr 2026     |
-| r-sig-genetics       | 504      | 60      | May 2008      | Apr 2026     |
+| r-sig-genetics       | 505      | 60      | May 2008      | Apr 2026     |
 | r-sig-jobs           | 442      | 267     | Feb 2007      | Mar 2026     |
 | r-ug-ottawa          | 197      | 66      | Jan 2009      | Dec 2022     |
 | r-sig-gr             | 176      | 79      | Sep 2002      | Nov 2025     |
