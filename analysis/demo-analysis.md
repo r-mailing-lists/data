@@ -291,7 +291,7 @@ contribs |>
 | Peter Dalgaard     |         10799 |         10 |
 | Gabor Grothendieck |          9933 |         13 |
 | Uwe Ligges         |          8399 |         13 |
-| Dirk Eddelbuettel  |          7698 |         15 |
+| Dirk Eddelbuettel  |          7699 |         15 |
 | Bert Gunter        |          6041 |          9 |
 | Ben Bolker         |          6029 |          8 |
 | Martin Maechler    |          5767 |         19 |
