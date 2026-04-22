@@ -294,7 +294,7 @@ contribs |>
 | Dirk Eddelbuettel  |          7699 |         15 |
 | Bert Gunter        |          6041 |          9 |
 | Ben Bolker         |          6029 |          8 |
-| Martin Maechler    |          5767 |         19 |
+| Martin Maechler    |          5768 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4358 |          7 |
 | Simon Urbanek      |          4293 |         11 |
