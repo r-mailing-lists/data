@@ -201,10 +201,10 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                                     29                                 25 
     iuke-tier@ey m@iii@g oii uiow@@edu                        Kurt Hornik 
                                     20                                 18 
-                       Michael Chirico                       Mikael Jagan 
-                                    17                                 16 
-                         Simon Urbanek                     Peter Dalgaard 
-                                    16                                 15 
+                          Mikael Jagan                      Simon Urbanek 
+                                    16                                 16 
+                        Peter Dalgaard                         Ben Bolker 
+                                    15                                 14 
 
 ## Reply network on r-devel
 
