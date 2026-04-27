@@ -201,10 +201,10 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                                     29                                 26 
     iuke-tier@ey m@iii@g oii uiow@@edu                        Kurt Hornik 
                                     20                                 18 
-                          Mikael Jagan                     Peter Dalgaard 
+                        Peter Dalgaard                      Simon Urbanek 
                                     16                                 16 
-                         Simon Urbanek                         Ben Bolker 
-                                    16                                 14 
+                          Mikael Jagan                         Ben Bolker 
+                                    15                                 14 
 
 ## Reply network on r-devel
 
@@ -291,7 +291,7 @@ contribs |>
 | Peter Dalgaard     |         10803 |         10 |
 | Gabor Grothendieck |          9934 |         13 |
 | Uwe Ligges         |          8400 |         13 |
-| Dirk Eddelbuettel  |          7693 |         15 |
+| Dirk Eddelbuettel  |          7699 |         15 |
 | Bert Gunter        |          6041 |          9 |
 | Ben Bolker         |          6029 |          8 |
 | Martin Maechler    |          5768 |         19 |
