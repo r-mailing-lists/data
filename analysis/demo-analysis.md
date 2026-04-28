@@ -198,7 +198,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Martin Maechler                  Dirk Eddelbuettel 
                                     38                                 34 
                            Ivan Krylov                     Duncan Murdoch 
-                                    29                                 26 
+                                    29                                 25 
     iuke-tier@ey m@iii@g oii uiow@@edu                        Kurt Hornik 
                                     20                                 18 
                         Peter Dalgaard                      Simon Urbanek 
