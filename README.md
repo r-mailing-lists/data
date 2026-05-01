@@ -104,7 +104,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**631,607** messages across **31** mailing lists
+**631,608** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
@@ -115,7 +115,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-mixed-models   | 20,629   | 3,109   | Jan 2007      | Apr 2026     |
 | r-help-es            | 15,390   | 899     | Mar 2009      | Apr 2026     |
 | r-sig-finance        | 15,275   | 2,161   | Jun 2004      | Apr 2026     |
-| r-sig-mac            | 15,090   | 1,723   | Jan 1970      | Apr 2026     |
+| r-sig-mac            | 15,091   | 1,724   | Jan 1970      | Apr 2026     |
 | r-package-devel      | 12,128   | 1,118   | May 2015      | Apr 2026     |
 | rcpp-devel           | 11,009   | 801     | Nov 2009      | Apr 2026     |
 | r-sig-ecology        | 7,459    | 1,326   | Apr 2008      | Apr 2026     |
