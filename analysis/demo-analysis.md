@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63551 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63561 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -203,7 +203,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                                     20                                 18 
                         Peter Dalgaard                      Simon Urbanek 
                                     17                                 16 
-                          Mikael Jagan                         Ben Bolker 
+                          Mikael Jagan  @vi@e@gross m@iii@g oii gm@ii@com 
                                     15                                 14 
 
 ## Reply network on r-devel
@@ -301,7 +301,7 @@ contribs |>
 | Roger Bivand       |          4271 |         12 |
 | Jim Lemon          |          3886 |          6 |
 | Thomas Lumley      |          3792 |          8 |
-| Marc Schwartz      |          3765 |          9 |
+| Marc Schwartz      |          3768 |          9 |
 | PIKAL Petr         |          3658 |          3 |
 | Douglas Bates      |          3466 |         11 |
 | Spencer Graves     |          3379 |         11 |
