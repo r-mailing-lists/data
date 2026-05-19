@@ -104,12 +104,12 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**631,739** messages across **31** mailing lists
+**631,750** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
 | r-help               | 398,579  | 37,109  | Apr 1997      | May 2026     |
-| r-devel              | 63,571   | 5,855   | Apr 1997      | May 2026     |
+| r-devel              | 63,580   | 5,855   | Apr 1997      | May 2026     |
 | r-sig-geo            | 29,563   | 3,498   | Jul 2003      | May 2026     |
 | bioc-devel           | 21,393   | 1,686   | Mar 2004      | May 2026     |
 | r-sig-mixed-models   | 20,629   | 3,109   | Jan 2007      | Apr 2026     |
@@ -118,8 +118,8 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-mac            | 15,091   | 1,724   | Jan 1970      | Apr 2026     |
 | r-package-devel      | 12,128   | 1,118   | May 2015      | Apr 2026     |
 | rcpp-devel           | 11,009   | 801     | Nov 2009      | Apr 2026     |
-| r-sig-ecology        | 7,474    | 1,326   | Apr 2008      | May 2026     |
-| r-sig-meta-analysis  | 5,639    | 550     | Jun 2017      | May 2026     |
+| r-sig-ecology        | 7,475    | 1,326   | Apr 2008      | May 2026     |
+| r-sig-meta-analysis  | 5,640    | 550     | Jun 2017      | May 2026     |
 | r-sig-debian         | 3,661    | 501     | Feb 2005      | May 2026     |
 | r-sig-hpc            | 2,152    | 383     | Oct 2008      | Dec 2024     |
 | r-sig-db             | 1,559    | 391     | Apr 2001      | Nov 2020     |
