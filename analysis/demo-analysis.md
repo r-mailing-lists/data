@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63582 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63585 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -115,7 +115,7 @@ head(contribs)
     1 Brian R…         17941         10 r-he… r-help:117… 1998-06-04T1… 2026-03-16T…
     2 Duncan …         12564         13 r-he… r-help:732… 2000-02-16T2… 2026-05-01T…
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
-    4 Peter D…         10804         10 r-he… r-help:706… 1997-04-01T0… 2026-05-04T…
+    4 Peter D…         10805         10 r-he… r-help:706… 1997-04-01T0… 2026-05-20T…
     5 Gabor G…          9934         13 r-he… r-help:804… 2002-01-12T1… 2026-04-24T…
     6 Uwe Lig…          8400         13 r-he… r-help:656… 2000-03-07T1… 2026-04-22T…
 
@@ -196,13 +196,13 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 
 
                        Martin Maechler                  Dirk Eddelbuettel 
-                                    40                                 32 
+                                    41                                 32 
                            Ivan Krylov                     Duncan Murdoch 
                                     31                                 26 
     iuke-tier@ey m@iii@g oii uiow@@edu                        Kurt Hornik 
                                     20                                 18 
                         Peter Dalgaard                         Ben Bolker 
-                                    17                                 15 
+                                    18                                 15 
                           Mikael Jagan                      Simon Urbanek 
                                     15                                 15 
 
@@ -288,13 +288,13 @@ contribs |>
 | Brian Ripley       |         17941 |         10 |
 | Duncan Murdoch     |         12564 |         13 |
 | David Winsemius    |         11661 |         12 |
-| Peter Dalgaard     |         10804 |         10 |
+| Peter Dalgaard     |         10805 |         10 |
 | Gabor Grothendieck |          9934 |         13 |
 | Uwe Ligges         |          8400 |         13 |
-| Dirk Eddelbuettel  |          7703 |         15 |
+| Dirk Eddelbuettel  |          7704 |         15 |
 | Bert Gunter        |          6041 |          9 |
 | Ben Bolker         |          6032 |          8 |
-| Martin Maechler    |          5772 |         19 |
+| Martin Maechler    |          5773 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4362 |          7 |
 | Simon Urbanek      |          4294 |         11 |
