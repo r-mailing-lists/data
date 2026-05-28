@@ -117,7 +117,7 @@ head(contribs)
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
     4 Peter D…         10806         10 r-he… r-help:706… 1997-04-01T0… 2026-05-25T…
     5 Gabor G…          9935         13 r-he… r-help:804… 2002-01-12T1… 2026-05-25T…
-    6 Uwe Lig…          8400         13 r-he… r-help:656… 2000-03-07T1… 2026-04-22T…
+    6 Uwe Lig…          8402         13 r-he… r-help:656… 2000-03-07T1… 2026-05-27T…
 
 ### Working directly with Parquet files
 
@@ -202,7 +202,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
     iuke-tier@ey m@iii@g oii uiow@@edu                     Peter Dalgaard 
                                     20                                 19 
                            Kurt Hornik                         Ben Bolker 
-                                    18                                 15 
+                                    17                                 15 
                           Mikael Jagan                      Simon Urbanek 
                                     15                                 15 
 
@@ -290,13 +290,13 @@ contribs |>
 | David Winsemius    |         11661 |         12 |
 | Peter Dalgaard     |         10806 |         10 |
 | Gabor Grothendieck |          9935 |         13 |
-| Uwe Ligges         |          8400 |         13 |
+| Uwe Ligges         |          8402 |         13 |
 | Dirk Eddelbuettel  |          7704 |         15 |
 | Bert Gunter        |          6041 |          9 |
 | Ben Bolker         |          6032 |          8 |
 | Martin Maechler    |          5773 |         19 |
 | jim holtman        |          4422 |          4 |
-| Jeff Newmiller     |          4363 |          7 |
+| Jeff Newmiller     |          4365 |          7 |
 | Simon Urbanek      |          4294 |         11 |
 | Roger Bivand       |          4271 |         12 |
 | Jim Lemon          |          3886 |          6 |
