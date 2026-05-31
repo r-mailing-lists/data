@@ -104,7 +104,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**631,835** messages across **31** mailing lists
+**631,838** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
@@ -129,8 +129,8 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-teaching       | 885      | 224     | Oct 2006      | Jan 2026     |
 | r-announce           | 703      | 111     | Apr 1997      | Feb 2026     |
 | r-sig-dynamic-models | 696      | 160     | Oct 2009      | Feb 2026     |
-| r-sig-epi            | 624      | 166     | Nov 2005      | May 2026     |
-| r-sig-genetics       | 533      | 60      | May 2008      | May 2026     |
+| r-sig-epi            | 626      | 166     | Nov 2005      | May 2026     |
+| r-sig-genetics       | 534      | 60      | May 2008      | May 2026     |
 | r-sig-robust         | 524      | 151     | Nov 2005      | Apr 2026     |
 | r-sig-jobs           | 442      | 267     | Feb 2007      | Mar 2026     |
 | r-ug-ottawa          | 197      | 66      | Jan 2009      | Dec 2022     |
