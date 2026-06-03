@@ -203,7 +203,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                                     20                                 18 
                            Kurt Hornik                         Ben Bolker 
                                     17                                 15 
-                          Mikael Jagan                      Simon Urbanek 
+                          Mikael Jagan    Suharto Anggono Suharto Anggono 
                                     15                                 15 
 
 ## Reply network on r-devel
