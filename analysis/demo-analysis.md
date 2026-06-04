@@ -202,7 +202,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
     iuke-tier@ey m@iii@g oii uiow@@edu                     Peter Dalgaard 
                                     20                                 18 
                            Kurt Hornik                         Ben Bolker 
-                                    17                                 15 
+                                    16                                 15 
                           Mikael Jagan    Suharto Anggono Suharto Anggono 
                                     15                                 15 
 
