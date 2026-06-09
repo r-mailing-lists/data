@@ -113,7 +113,7 @@ head(contribs)
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17941         10 r-he… r-help:117… 1998-06-04T1… 2026-03-16T…
-    2 Duncan …         12566         13 r-he… r-help:732… 2000-02-16T2… 2026-05-28T…
+    2 Duncan …         12569         13 r-he… r-help:732… 2000-02-16T2… 2026-06-08T…
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
     4 Peter D…         10808         10 r-he… r-help:707… 1997-04-01T0… 2026-05-29T…
     5 Gabor G…          9935         13 r-he… r-help:804… 2002-01-12T1… 2026-05-25T…
@@ -286,7 +286,7 @@ contribs |>
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
 | Brian Ripley       |         17941 |         10 |
-| Duncan Murdoch     |         12566 |         13 |
+| Duncan Murdoch     |         12569 |         13 |
 | David Winsemius    |         11661 |         12 |
 | Peter Dalgaard     |         10808 |         10 |
 | Gabor Grothendieck |          9935 |         13 |
@@ -296,7 +296,7 @@ contribs |>
 | Ben Bolker         |          6032 |          8 |
 | Martin Maechler    |          5773 |         19 |
 | jim holtman        |          4422 |          4 |
-| Jeff Newmiller     |          4365 |          7 |
+| Jeff Newmiller     |          4366 |          7 |
 | Simon Urbanek      |          4294 |         11 |
 | Roger Bivand       |          4271 |         12 |
 | Jim Lemon          |          3886 |          6 |
