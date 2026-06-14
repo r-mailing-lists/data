@@ -104,12 +104,12 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**631,908** messages across **31** mailing lists
+**631,910** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
 | r-help               | 398,644  | 37,111  | Apr 1997      | Jun 2026     |
-| r-devel              | 63,596   | 5,856   | Apr 1997      | Jun 2026     |
+| r-devel              | 63,597   | 5,856   | Apr 1997      | Jun 2026     |
 | r-sig-geo            | 29,565   | 3,499   | Jul 2003      | Jun 2026     |
 | bioc-devel           | 21,411   | 1,688   | Mar 2004      | Jun 2026     |
 | r-sig-mixed-models   | 20,629   | 3,109   | Jan 2007      | Apr 2026     |
@@ -129,7 +129,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-teaching       | 885      | 224     | Oct 2006      | Jan 2026     |
 | r-announce           | 703      | 111     | Apr 1997      | Feb 2026     |
 | r-sig-dynamic-models | 696      | 160     | Oct 2009      | Feb 2026     |
-| r-sig-epi            | 631      | 166     | Nov 2005      | Jun 2026     |
+| r-sig-epi            | 632      | 166     | Nov 2005      | Jun 2026     |
 | r-sig-genetics       | 540      | 60      | May 2008      | Jun 2026     |
 | r-sig-robust         | 524      | 151     | Nov 2005      | Apr 2026     |
 | r-sig-jobs           | 442      | 267     | Feb 2007      | Mar 2026     |
