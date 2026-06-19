@@ -104,7 +104,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**631,938** messages across **31** mailing lists
+**631,942** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
@@ -115,7 +115,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-mixed-models   | 20,629   | 3,109   | Jan 2007      | Apr 2026     |
 | r-help-es            | 15,393   | 899     | Mar 2009      | Jun 2026     |
 | r-sig-finance        | 15,275   | 2,161   | Jun 2004      | Apr 2026     |
-| r-sig-mac            | 15,091   | 1,724   | Jan 1970      | Apr 2026     |
+| r-sig-mac            | 15,092   | 1,724   | Jan 1970      | Jun 2026     |
 | r-package-devel      | 12,128   | 1,118   | May 2015      | Apr 2026     |
 | rcpp-devel           | 11,011   | 801     | Nov 2009      | May 2026     |
 | r-sig-ecology        | 7,500    | 1,326   | Apr 2008      | Jun 2026     |
@@ -129,8 +129,8 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-teaching       | 885      | 224     | Oct 2006      | Jan 2026     |
 | r-announce           | 703      | 111     | Apr 1997      | Feb 2026     |
 | r-sig-dynamic-models | 696      | 160     | Oct 2009      | Feb 2026     |
-| r-sig-epi            | 634      | 166     | Nov 2005      | Jun 2026     |
-| r-sig-genetics       | 541      | 60      | May 2008      | Jun 2026     |
+| r-sig-epi            | 635      | 166     | Nov 2005      | Jun 2026     |
+| r-sig-genetics       | 543      | 60      | May 2008      | Jun 2026     |
 | r-sig-robust         | 524      | 151     | Nov 2005      | Apr 2026     |
 | r-sig-jobs           | 442      | 267     | Feb 2007      | Mar 2026     |
 | r-ug-ottawa          | 197      | 66      | Jan 2009      | Dec 2022     |
