@@ -198,7 +198,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Martin Maechler                        Ivan Krylov 
                                     38                                 31 
                      Dirk Eddelbuettel                     Duncan Murdoch 
-                                    29                                 28 
+                                    29                                 27 
                         Peter Dalgaard iuke-tier@ey m@iii@g oii uiow@@edu 
                                     21                                 20 
                            Kurt Hornik    Suharto Anggono Suharto Anggono 
@@ -298,7 +298,7 @@ contribs |>
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4369 |          7 |
 | Simon Urbanek      |          4295 |         11 |
-| Roger Bivand       |          4273 |         12 |
+| Roger Bivand       |          4275 |         12 |
 | Jim Lemon          |          3886 |          6 |
 | Thomas Lumley      |          3792 |          8 |
 | Marc Schwartz      |          3768 |          9 |
