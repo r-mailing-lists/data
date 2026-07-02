@@ -104,7 +104,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**631,993** messages across **31** mailing lists
+**631,994** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
@@ -113,7 +113,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-geo            | 29,573   | 3,500   | Jul 2003      | Jun 2026     |
 | bioc-devel           | 21,424   | 1,689   | Mar 2004      | Jun 2026     |
 | r-sig-mixed-models   | 20,629   | 3,109   | Jan 2007      | Apr 2026     |
-| r-help-es            | 15,404   | 899     | Mar 2009      | Jun 2026     |
+| r-help-es            | 15,405   | 899     | Mar 2009      | Jun 2026     |
 | r-sig-finance        | 15,275   | 2,161   | Jun 2004      | Apr 2026     |
 | r-sig-mac            | 15,092   | 1,724   | Jan 1970      | Jun 2026     |
 | r-package-devel      | 12,129   | 1,119   | May 2015      | Jul 2026     |
