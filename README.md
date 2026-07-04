@@ -104,7 +104,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**631,997** messages across **31** mailing lists
+**632,000** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
@@ -118,9 +118,9 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-mac            | 15,092   | 1,724   | Jan 1970      | Jun 2026     |
 | r-package-devel      | 12,129   | 1,119   | May 2015      | Jul 2026     |
 | rcpp-devel           | 11,011   | 801     | Nov 2009      | May 2026     |
-| r-sig-ecology        | 7,507    | 1,326   | Apr 2008      | Jul 2026     |
+| r-sig-ecology        | 7,509    | 1,327   | Apr 2008      | Jul 2026     |
 | r-sig-meta-analysis  | 5,641    | 550     | Jun 2017      | May 2026     |
-| r-sig-debian         | 3,663    | 501     | Feb 2005      | May 2026     |
+| r-sig-debian         | 3,664    | 502     | Feb 2005      | Jul 2026     |
 | r-sig-hpc            | 2,152    | 383     | Oct 2008      | Dec 2024     |
 | r-sig-db             | 1,559    | 391     | Apr 2001      | Nov 2020     |
 | r-packages           | 1,340    | 568     | Sep 2003      | Mar 2026     |
