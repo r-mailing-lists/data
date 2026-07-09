@@ -104,11 +104,11 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**632,023** messages across **31** mailing lists
+**632,030** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
-| r-help               | 398,650  | 37,111  | Apr 1997      | Jul 2026     |
+| r-help               | 398,657  | 37,112  | Apr 1997      | Jul 2026     |
 | r-devel              | 63,625   | 5,857   | Apr 1997      | Jul 2026     |
 | r-sig-geo            | 29,576   | 3,500   | Jul 2003      | Jul 2026     |
 | bioc-devel           | 21,431   | 1,690   | Mar 2004      | Jul 2026     |

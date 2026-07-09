@@ -113,7 +113,7 @@ head(contribs)
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17942         10 r-he… r-help:117… 1998-06-04T1… 2026-06-29T…
-    2 Duncan …         12573         13 r-he… r-help:732… 2000-02-16T2… 2026-06-16T…
+    2 Duncan …         12574         13 r-he… r-help:732… 2000-02-16T2… 2026-07-08T…
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
     4 Peter D…         10812         10 r-he… r-help:707… 1997-04-01T0… 2026-06-24T…
     5 Gabor G…          9935         13 r-he… r-help:804… 2002-01-12T1… 2026-05-25T…
@@ -198,13 +198,13 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Martin Maechler                        Ivan Krylov 
                                     38                                 32 
                      Dirk Eddelbuettel                     Duncan Murdoch 
-                                    29                                 27 
+                                    29                                 25 
                            Kurt Hornik                     Peter Dalgaard 
                                     21                                 21 
     iuke-tier@ey m@iii@g oii uiow@@edu    Suharto Anggono Suharto Anggono 
                                     20                                 18 
                             Ben Bolker                      Simon Urbanek 
-                                    16                                 14 
+                                    15                                 14 
 
 ## Reply network on r-devel
 
@@ -286,7 +286,7 @@ contribs |>
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
 | Brian Ripley       |         17942 |         10 |
-| Duncan Murdoch     |         12573 |         13 |
+| Duncan Murdoch     |         12574 |         13 |
 | David Winsemius    |         11661 |         12 |
 | Peter Dalgaard     |         10812 |         10 |
 | Gabor Grothendieck |          9935 |         13 |
