@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63625 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63627 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -199,10 +199,10 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                                     38                                 32 
                      Dirk Eddelbuettel                     Duncan Murdoch 
                                     29                                 25 
-                           Kurt Hornik                     Peter Dalgaard 
+    iuke-tier@ey m@iii@g oii uiow@@edu                        Kurt Hornik 
                                     21                                 21 
-    iuke-tier@ey m@iii@g oii uiow@@edu    Suharto Anggono Suharto Anggono 
-                                    20                                 18 
+                        Peter Dalgaard    Suharto Anggono Suharto Anggono 
+                                    21                                 18 
                             Ben Bolker                      Simon Urbanek 
                                     15                                 14 
 
@@ -294,7 +294,7 @@ contribs |>
 | Dirk Eddelbuettel  |          7708 |         15 |
 | Bert Gunter        |          6042 |          9 |
 | Ben Bolker         |          6034 |          8 |
-| Martin Maechler    |          5775 |         19 |
+| Martin Maechler    |          5776 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4369 |          7 |
 | Simon Urbanek      |          4295 |         11 |
