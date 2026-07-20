@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63629 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63630 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -113,7 +113,7 @@ head(contribs)
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17942         10 r-he… r-help:117… 1998-06-04T1… 2026-06-29T…
-    2 Duncan …         12574         13 r-he… r-help:732… 2000-02-16T2… 2026-07-08T…
+    2 Duncan …         12577         13 r-he… r-help:733… 2000-02-16T2… 2026-07-19T…
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
     4 Peter D…         10812         10 r-he… r-help:707… 1997-04-01T0… 2026-06-24T…
     5 Gabor G…          9935         13 r-he… r-help:804… 2002-01-12T1… 2026-05-25T…
@@ -286,7 +286,7 @@ contribs |>
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
 | Brian Ripley       |         17942 |         10 |
-| Duncan Murdoch     |         12574 |         13 |
+| Duncan Murdoch     |         12577 |         13 |
 | David Winsemius    |         11661 |         12 |
 | Peter Dalgaard     |         10812 |         10 |
 | Gabor Grothendieck |          9935 |         13 |
@@ -296,7 +296,7 @@ contribs |>
 | Ben Bolker         |          6035 |          8 |
 | Martin Maechler    |          5776 |         19 |
 | jim holtman        |          4422 |          4 |
-| Jeff Newmiller     |          4370 |          7 |
+| Jeff Newmiller     |          4371 |          7 |
 | Simon Urbanek      |          4295 |         11 |
 | Roger Bivand       |          4275 |         12 |
 | Jim Lemon          |          3886 |          6 |
