@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63630 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63631 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -117,7 +117,7 @@ head(contribs)
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
     4 Peter D…         10820         10 r-he… r-help:707… 1997-04-01T0… 2026-06-24T…
     5 Gabor G…          9936         13 r-he… r-help:804… 2002-01-12T1… 2026-07-15T…
-    6 Uwe Lig…          8415         13 r-he… r-help:656… 2000-03-07T1… 2026-07-14T…
+    6 Uwe Lig…          8416         13 r-he… r-help:656… 2000-03-07T1… 2026-07-20T…
 
 ### Working directly with Parquet files
 
@@ -290,10 +290,10 @@ contribs |>
 | David Winsemius    |         11661 |         12 |
 | Peter Dalgaard     |         10820 |         10 |
 | Gabor Grothendieck |          9936 |         13 |
-| Uwe Ligges         |          8415 |         13 |
-| Dirk Eddelbuettel  |          7727 |         15 |
+| Uwe Ligges         |          8416 |         13 |
+| Dirk Eddelbuettel  |          7729 |         15 |
+| Bert Gunter        |          6044 |          9 |
 | Ben Bolker         |          6044 |          8 |
-| Bert Gunter        |          6043 |          9 |
 | Martin Maechler    |          5778 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4375 |          7 |
