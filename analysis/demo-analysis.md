@@ -292,8 +292,8 @@ contribs |>
 | Gabor Grothendieck |          9936 |         13 |
 | Uwe Ligges         |          8416 |         13 |
 | Dirk Eddelbuettel  |          7729 |         15 |
+| Bert Gunter        |          6045 |          9 |
 | Ben Bolker         |          6044 |          8 |
-| Bert Gunter        |          6044 |          9 |
 | Martin Maechler    |          5778 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4375 |          7 |
