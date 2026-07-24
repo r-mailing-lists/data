@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63631 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63632 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -292,7 +292,7 @@ contribs |>
 | Gabor Grothendieck |          9936 |         13 |
 | Uwe Ligges         |          8416 |         13 |
 | Dirk Eddelbuettel  |          7729 |         15 |
-| Bert Gunter        |          6045 |          9 |
+| Bert Gunter        |          6048 |          9 |
 | Ben Bolker         |          6044 |          8 |
 | Martin Maechler    |          5778 |         19 |
 | jim holtman        |          4422 |          4 |
