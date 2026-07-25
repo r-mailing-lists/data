@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63632 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63641 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -113,7 +113,7 @@ head(contribs)
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17942         10 r-he… r-help:117… 1998-06-04T1… 2026-06-29T…
-    2 Duncan …         12586         13 r-he… r-help:733… 2000-02-16T2… 2026-07-21T…
+    2 Duncan …         12587         13 r-he… r-help:733… 2000-02-16T2… 2026-07-25T…
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
     4 Peter D…         10820         10 r-he… r-help:707… 1997-04-01T0… 2026-06-24T…
     5 Gabor G…          9936         13 r-he… r-help:804… 2002-01-12T1… 2026-07-15T…
@@ -194,13 +194,12 @@ recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
-
                        Martin Maechler                        Ivan Krylov 
                                     38                                 33 
                      Dirk Eddelbuettel                     Duncan Murdoch 
-                                    29                                 25 
+                                    29                                 26 
     iuke-tier@ey m@iii@g oii uiow@@edu                        Kurt Hornik 
-                                    21                                 21 
+                                    22                                 21 
                         Peter Dalgaard    Suharto Anggono Suharto Anggono 
                                     21                                 18 
                             Ben Bolker                      Simon Urbanek 
@@ -286,12 +285,12 @@ contribs |>
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
 | Brian Ripley       |         17942 |         10 |
-| Duncan Murdoch     |         12586 |         13 |
+| Duncan Murdoch     |         12587 |         13 |
 | David Winsemius    |         11661 |         12 |
 | Peter Dalgaard     |         10820 |         10 |
 | Gabor Grothendieck |          9936 |         13 |
 | Uwe Ligges         |          8416 |         13 |
-| Dirk Eddelbuettel  |          7729 |         15 |
+| Dirk Eddelbuettel  |          7730 |         15 |
 | Bert Gunter        |          6048 |          9 |
 | Ben Bolker         |          6044 |          8 |
 | Martin Maechler    |          5778 |         19 |
