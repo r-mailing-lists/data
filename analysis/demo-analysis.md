@@ -295,8 +295,8 @@ contribs |>
 | Ben Bolker         |          6044 |          8 |
 | Martin Maechler    |          5778 |         19 |
 | jim holtman        |          4422 |          4 |
-| Jeff Newmiller     |          4375 |          7 |
-| Simon Urbanek      |          4304 |         12 |
+| Jeff Newmiller     |          4376 |          7 |
+| Simon Urbanek      |          4306 |         12 |
 | Roger Bivand       |          4276 |         12 |
 | Jim Lemon          |          3886 |          6 |
 | Thomas Lumley      |          3792 |          8 |
