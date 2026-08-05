@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63651 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63656 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -117,7 +117,7 @@ head(contribs)
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
     4 Peter D…         10820         10 r-he… r-help:707… 1997-04-01T0… 2026-06-24T…
     5 Gabor G…          9936         13 r-he… r-help:804… 2002-01-12T1… 2026-07-15T…
-    6 Uwe Lig…          8417         13 r-he… r-help:656… 2000-03-07T1… 2026-07-30T…
+    6 Uwe Lig…          8418         13 r-he… r-help:656… 2000-03-07T1… 2026-08-04T…
 
 ### Working directly with Parquet files
 
@@ -194,10 +194,10 @@ recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
-                       Martin Maechler                        Ivan Krylov 
+                       Martin Maechler                  Dirk Eddelbuettel 
                                     38                                 32 
-                     Dirk Eddelbuettel                     Duncan Murdoch 
-                                    29                                 26 
+                           Ivan Krylov                     Duncan Murdoch 
+                                    32                                 26 
     iuke-tier@ey m@iii@g oii uiow@@edu                        Kurt Hornik 
                                     23                                 21 
                         Peter Dalgaard    Suharto Anggono Suharto Anggono 
@@ -289,8 +289,8 @@ contribs |>
 | David Winsemius    |         11661 |         12 |
 | Peter Dalgaard     |         10820 |         10 |
 | Gabor Grothendieck |          9936 |         13 |
-| Uwe Ligges         |          8417 |         13 |
-| Dirk Eddelbuettel  |          7732 |         15 |
+| Uwe Ligges         |          8418 |         13 |
+| Dirk Eddelbuettel  |          7736 |         15 |
 | Bert Gunter        |          6048 |          9 |
 | Ben Bolker         |          6045 |          8 |
 | Martin Maechler    |          5780 |         19 |
