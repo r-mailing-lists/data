@@ -194,10 +194,10 @@ recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
-                       Martin Maechler                  Dirk Eddelbuettel 
-                                    38                                 32 
-                           Ivan Krylov                     Duncan Murdoch 
-                                    32                                 26 
+                       Martin Maechler                        Ivan Krylov 
+                                    38                                 31 
+                     Dirk Eddelbuettel                     Duncan Murdoch 
+                                    29                                 26 
     iuke-tier@ey m@iii@g oii uiow@@edu                        Kurt Hornik 
                                     23                                 21 
                         Peter Dalgaard    Suharto Anggono Suharto Anggono 
