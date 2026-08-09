@@ -117,7 +117,7 @@ head(contribs)
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
     4 Peter D…         10820         10 r-he… r-help:707… 1997-04-01T0… 2026-06-24T…
     5 Gabor G…          9936         13 r-he… r-help:804… 2002-01-12T1… 2026-07-15T…
-    6 Uwe Lig…          8418         13 r-he… r-help:656… 2000-03-07T1… 2026-08-04T…
+    6 Uwe Lig…          8419         13 r-he… r-help:656… 2000-03-07T1… 2026-08-08T…
 
 ### Working directly with Parquet files
 
@@ -197,7 +197,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Martin Maechler                        Ivan Krylov 
                                     38                                 31 
                      Dirk Eddelbuettel                     Duncan Murdoch 
-                                    29                                 26 
+                                    28                                 25 
     iuke-tier@ey m@iii@g oii uiow@@edu                        Kurt Hornik 
                                     23                                 21 
                         Peter Dalgaard    Suharto Anggono Suharto Anggono 
@@ -289,7 +289,7 @@ contribs |>
 | David Winsemius    |         11661 |         12 |
 | Peter Dalgaard     |         10820 |         10 |
 | Gabor Grothendieck |          9936 |         13 |
-| Uwe Ligges         |          8418 |         13 |
+| Uwe Ligges         |          8419 |         13 |
 | Dirk Eddelbuettel  |          7736 |         15 |
 | Bert Gunter        |          6048 |          9 |
 | Ben Bolker         |          6045 |          8 |
