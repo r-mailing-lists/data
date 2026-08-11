@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63659 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63661 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -112,12 +112,12 @@ head(contribs)
     # A data frame: 6 × 7
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
-    1 Brian R…         17942         10 r-he… r-help:117… 1998-06-04T1… 2026-06-29T…
-    2 Duncan …         12588         13 r-he… r-help:733… 2000-02-16T2… 2026-07-29T…
-    3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
-    4 Peter D…         10820         10 r-he… r-help:707… 1997-04-01T0… 2026-06-24T…
-    5 Gabor G…          9936         13 r-he… r-help:804… 2002-01-12T1… 2026-07-15T…
-    6 Uwe Lig…          8419         13 r-he… r-help:656… 2000-03-07T1… 2026-08-08T…
+    1 Brian R…         17321          7 r-he… r-help:117… 1998-06-04T1… 2026-06-29T…
+    2 Duncan …         11174         10 r-he… r-help:733… 2000-02-16T2… 2026-07-25T…
+    3 David W…         11172          9 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
+    4 Peter D…         10241          7 r-he… r-help:707… 1997-04-01T0… 2026-06-24T…
+    5 Gabor G…          9916         10 r-he… r-help:804… 2002-01-12T1… 2026-08-10T…
+    6 Uwe Lig…          7700          9 r-he… r-help:656… 2000-03-07T1… 2026-08-10T…
 
 ### Working directly with Parquet files
 
@@ -194,10 +194,10 @@ recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
-                       Martin Maechler                        Ivan Krylov 
-                                    38                                 31 
-                     Dirk Eddelbuettel                     Duncan Murdoch 
-                                    29                                 25 
+                       Martin Maechler                  Dirk Eddelbuettel 
+                                    38                                 30 
+                           Ivan Krylov                     Duncan Murdoch 
+                                    30                                 24 
     iuke-tier@ey m@iii@g oii uiow@@edu                        Kurt Hornik 
                                     23                                 21 
                         Peter Dalgaard    Suharto Anggono Suharto Anggono 
@@ -284,23 +284,23 @@ contribs |>
 
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
-| Brian Ripley       |         17942 |         10 |
-| Duncan Murdoch     |         12588 |         13 |
-| David Winsemius    |         11661 |         12 |
-| Peter Dalgaard     |         10820 |         10 |
-| Gabor Grothendieck |          9936 |         13 |
-| Uwe Ligges         |          8419 |         13 |
-| Dirk Eddelbuettel  |          7737 |         15 |
-| Bert Gunter        |          6048 |          9 |
-| Ben Bolker         |          6045 |          8 |
-| Martin Maechler    |          5780 |         19 |
+| Brian Ripley       |         17321 |          7 |
+| Duncan Murdoch     |         11174 |         10 |
+| David Winsemius    |         11172 |          9 |
+| Peter Dalgaard     |         10241 |          7 |
+| Gabor Grothendieck |          9916 |         10 |
+| Uwe Ligges         |          7700 |          9 |
+| Dirk Eddelbuettel  |          6843 |         11 |
+| Bert Gunter        |          6021 |          6 |
+| Ben Bolker         |          5735 |          6 |
+| Martin Maechler    |          5595 |         15 |
 | jim holtman        |          4422 |          4 |
-| Jeff Newmiller     |          4376 |          7 |
-| Simon Urbanek      |          4308 |         12 |
-| Roger Bivand       |          4276 |         12 |
-| Jim Lemon          |          3886 |          6 |
-| Thomas Lumley      |          3792 |          8 |
-| Marc Schwartz      |          3768 |          9 |
+| Roger Bivand       |          4243 |          8 |
+| Jeff Newmiller     |          4171 |          5 |
+| Jim Lemon          |          3862 |          4 |
+| Thomas Lumley      |          3708 |          5 |
 | PIKAL Petr         |          3658 |          3 |
-| Douglas Bates      |          3466 |         11 |
-| Spencer Graves     |          3381 |         11 |
+| Marc Schwartz      |          3585 |          6 |
+| Douglas Bates      |          3397 |          8 |
+| Rui Barradas       |          3369 |          3 |
+| arun               |          3301 |          2 |
