@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63666 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63667 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -195,7 +195,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
                        Martin Maechler                  Dirk Eddelbuettel 
-                                    38                                 32 
+                                    38                                 33 
                            Ivan Krylov iuke-tier@ey m@iii@g oii uiow@@edu 
                                     31                                 23 
                         Duncan Murdoch                        Kurt Hornik 
@@ -290,7 +290,7 @@ contribs |>
 | Peter Dalgaard     |         10820 |         10 |
 | Gabor Grothendieck |          9937 |         13 |
 | Uwe Ligges         |          8420 |         13 |
-| Dirk Eddelbuettel  |          7740 |         15 |
+| Dirk Eddelbuettel  |          7741 |         15 |
 | Bert Gunter        |          6048 |          9 |
 | Ben Bolker         |          6045 |          8 |
 | Martin Maechler    |          5780 |         19 |
