@@ -104,7 +104,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**632,527** messages across **31** mailing lists
+**632,534** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
@@ -116,9 +116,9 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-help-es            | 15,406   | 899     | Mar 2009      | Jul 2026     |
 | r-sig-finance        | 15,308   | 2,163   | Jun 2004      | Jul 2026     |
 | r-sig-mac            | 15,100   | 1,724   | Jan 1970      | Aug 2026     |
-| r-package-devel      | 12,325   | 1,128   | May 2015      | Aug 2026     |
+| r-package-devel      | 12,329   | 1,128   | May 2015      | Aug 2026     |
 | rcpp-devel           | 11,011   | 801     | Nov 2009      | May 2026     |
-| r-sig-ecology        | 7,541    | 1,329   | Apr 2008      | Aug 2026     |
+| r-sig-ecology        | 7,542    | 1,329   | Apr 2008      | Aug 2026     |
 | r-sig-meta-analysis  | 5,641    | 550     | Jun 2017      | May 2026     |
 | r-sig-debian         | 3,673    | 503     | Feb 2005      | Jul 2026     |
 | r-sig-hpc            | 2,152    | 383     | Oct 2008      | Dec 2024     |
@@ -129,8 +129,8 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-teaching       | 885      | 224     | Oct 2006      | Jan 2026     |
 | r-announce           | 713      | 112     | Apr 1997      | Jun 2026     |
 | r-sig-dynamic-models | 697      | 160     | Oct 2009      | Mar 2026     |
-| r-sig-epi            | 650      | 166     | Nov 2005      | Aug 2026     |
-| r-sig-genetics       | 561      | 61      | May 2008      | Aug 2026     |
+| r-sig-epi            | 651      | 166     | Nov 2005      | Aug 2026     |
+| r-sig-genetics       | 562      | 61      | May 2008      | Aug 2026     |
 | r-sig-robust         | 525      | 152     | Nov 2005      | Jul 2026     |
 | r-sig-jobs           | 442      | 267     | Feb 2007      | Mar 2026     |
 | r-ug-ottawa          | 197      | 66      | Jan 2009      | Dec 2022     |
