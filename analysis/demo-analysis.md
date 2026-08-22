@@ -113,10 +113,10 @@ head(contribs)
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17942         10 r-he… r-help:117… 1998-06-04T1… 2026-06-29T…
-    2 Duncan …         12589         13 r-he… r-help:733… 2000-02-16T2… 2026-08-11T…
+    2 Duncan …         12590         13 r-he… r-help:733… 2000-02-16T2… 2026-08-21T…
     3 David W…         11661         12 r-he… r-help:110… 2003-03-07T1… 2025-11-09T…
     4 Peter D…         10820         10 r-he… r-help:707… 1997-04-01T0… 2026-06-24T…
-    5 Gabor G…          9937         13 r-he… r-help:804… 2002-01-12T1… 2026-08-10T…
+    5 Gabor G…          9938         13 r-he… r-help:804… 2002-01-12T1… 2026-08-21T…
     6 Uwe Lig…          8420         13 r-he… r-help:656… 2000-03-07T1… 2026-08-10T…
 
 ### Working directly with Parquet files
@@ -285,17 +285,17 @@ contribs |>
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
 | Brian Ripley       |         17942 |         10 |
-| Duncan Murdoch     |         12589 |         13 |
+| Duncan Murdoch     |         12590 |         13 |
 | David Winsemius    |         11661 |         12 |
 | Peter Dalgaard     |         10820 |         10 |
-| Gabor Grothendieck |          9937 |         13 |
+| Gabor Grothendieck |          9938 |         13 |
 | Uwe Ligges         |          8420 |         13 |
 | Dirk Eddelbuettel  |          7742 |         15 |
-| Bert Gunter        |          6048 |          9 |
+| Bert Gunter        |          6049 |          9 |
 | Ben Bolker         |          6046 |          8 |
 | Martin Maechler    |          5780 |         19 |
 | jim holtman        |          4422 |          4 |
-| Jeff Newmiller     |          4376 |          7 |
+| Jeff Newmiller     |          4377 |          7 |
 | Simon Urbanek      |          4308 |         12 |
 | Roger Bivand       |          4276 |         12 |
 | Jim Lemon          |          3886 |          6 |
