@@ -197,7 +197,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Martin Maechler                        Ivan Krylov 
                                     36                                 31 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
-                                    30                                 23 
+                                    29                                 23 
                         Duncan Murdoch                        Kurt Hornik 
                                     22                                 21 
                         Peter Dalgaard    Suharto Anggono Suharto Anggono 
@@ -293,7 +293,7 @@ contribs |>
 | Dirk Eddelbuettel  |          7745 |         15 |
 | Bert Gunter        |          6049 |          9 |
 | Ben Bolker         |          6047 |          8 |
-| Martin Maechler    |          5782 |         19 |
+| Martin Maechler    |          5783 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4377 |          7 |
 | Simon Urbanek      |          4308 |         12 |
