@@ -104,7 +104,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**632,714** messages across **31** mailing lists
+**632,721** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
@@ -116,7 +116,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-help-es            | 15,407   | 899     | Mar 2009      | Sep 2026     |
 | r-sig-finance        | 15,315   | 2,164   | Jun 2004      | Sep 2026     |
 | r-sig-mac            | 15,100   | 1,724   | Jan 1970      | Aug 2026     |
-| r-package-devel      | 12,348   | 1,129   | May 2015      | Sep 2026     |
+| r-package-devel      | 12,353   | 1,129   | May 2015      | Sep 2026     |
 | rcpp-devel           | 11,011   | 801     | Nov 2009      | May 2026     |
 | r-sig-ecology        | 7,562    | 1,329   | Apr 2008      | Sep 2026     |
 | r-sig-meta-analysis  | 5,641    | 550     | Jun 2017      | May 2026     |
@@ -130,11 +130,11 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-announce           | 713      | 112     | Apr 1997      | Jun 2026     |
 | r-sig-dynamic-models | 697      | 160     | Oct 2009      | Mar 2026     |
 | r-sig-epi            | 658      | 166     | Nov 2005      | Sep 2026     |
-| r-sig-genetics       | 570      | 61      | May 2008      | Sep 2026     |
+| r-sig-genetics       | 571      | 61      | May 2008      | Sep 2026     |
 | r-sig-robust         | 525      | 152     | Nov 2005      | Jul 2026     |
 | r-sig-jobs           | 442      | 267     | Feb 2007      | Mar 2026     |
 | r-ug-ottawa          | 197      | 66      | Jan 2009      | Dec 2022     |
-| r-sig-gr             | 176      | 79      | Sep 2002      | Nov 2025     |
+| r-sig-gr             | 177      | 79      | Sep 2002      | Sep 2026     |
 | r-sig-windows        | 146      | 21      | Aug 2015      | Sep 2026     |
 | r-sig-insurance      | 117      | 39      | Apr 2009      | Dec 2022     |
 | r-sig-dcm            | 67       | 17      | Jul 2010      | Sep 2024     |
