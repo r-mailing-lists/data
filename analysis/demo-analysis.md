@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63702 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63705 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -113,7 +113,7 @@ head(contribs)
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17943         10 r-he… r-help:117… 1998-06-04T1… 2026-09-07T…
-    2 Duncan …         12592         13 r-he… r-help:733… 2000-02-16T2… 2026-09-04T…
+    2 Duncan …         12594         13 r-he… r-help:733… 2000-02-16T2… 2026-09-16T…
     3 David W…         11663         12 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
     4 Peter D…         10823         10 r-he… r-help:707… 1997-04-01T0… 2026-09-14T…
     5 Gabor G…          9940         13 r-he… r-help:804… 2002-01-12T1… 2026-08-23T…
@@ -285,7 +285,7 @@ contribs |>
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
 | Brian Ripley       |         17943 |         10 |
-| Duncan Murdoch     |         12592 |         13 |
+| Duncan Murdoch     |         12594 |         13 |
 | David Winsemius    |         11663 |         12 |
 | Peter Dalgaard     |         10823 |         10 |
 | Gabor Grothendieck |          9940 |         13 |
@@ -293,7 +293,7 @@ contribs |>
 | Dirk Eddelbuettel  |          7749 |         15 |
 | Bert Gunter        |          6049 |          9 |
 | Ben Bolker         |          6048 |          8 |
-| Martin Maechler    |          5786 |         19 |
+| Martin Maechler    |          5787 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4377 |          7 |
 | Simon Urbanek      |          4313 |         12 |
