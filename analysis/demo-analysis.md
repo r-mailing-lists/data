@@ -198,12 +198,12 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                                     39                                 37 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
                                     28                                 23 
-                        Duncan Murdoch                        Kurt Hornik 
-                                    22                                 22 
+                           Kurt Hornik                     Duncan Murdoch 
+                                    22                                 21 
                         Peter Dalgaard                      Simon Urbanek 
                                     21                                 20 
        Suharto Anggono Suharto Anggono                         Ben Bolker 
-                                    18                                 16 
+                                    18                                 15 
 
 ## Reply network on r-devel
 
