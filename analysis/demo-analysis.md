@@ -296,7 +296,7 @@ contribs |>
 | Martin Maechler    |          5788 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4377 |          7 |
-| Simon Urbanek      |          4315 |         12 |
+| Simon Urbanek      |          4317 |         12 |
 | Roger Bivand       |          4276 |         12 |
 | Jim Lemon          |          3886 |          6 |
 | Thomas Lumley      |          3792 |          8 |
