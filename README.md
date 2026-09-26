@@ -104,22 +104,22 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**632,797** messages across **31** mailing lists
+**632,808** messages across **31** mailing lists
 
 | List                 | Messages | Authors | First Message | Last Message |
 |:---------------------|:---------|:--------|:--------------|:-------------|
 | r-help               | 398,767  | 37,118  | Apr 1997      | Sep 2026     |
-| r-devel              | 63,710   | 5,861   | Apr 1997      | Sep 2026     |
+| r-devel              | 63,712   | 5,861   | Apr 1997      | Sep 2026     |
 | r-sig-geo            | 29,586   | 3,500   | Jul 2003      | Sep 2026     |
-| bioc-devel           | 21,504   | 1,703   | Mar 2004      | Sep 2026     |
+| bioc-devel           | 21,509   | 1,705   | Mar 2004      | Sep 2026     |
 | r-sig-mixed-models   | 20,669   | 3,114   | Jan 2007      | Sep 2026     |
 | r-help-es            | 15,407   | 899     | Mar 2009      | Sep 2026     |
 | r-sig-finance        | 15,315   | 2,164   | Jun 2004      | Sep 2026     |
 | r-sig-mac            | 15,108   | 1,724   | Jan 1970      | Sep 2026     |
-| r-package-devel      | 12,366   | 1,129   | May 2015      | Sep 2026     |
+| r-package-devel      | 12,367   | 1,129   | May 2015      | Sep 2026     |
 | rcpp-devel           | 11,011   | 801     | Nov 2009      | May 2026     |
-| r-sig-ecology        | 7,577    | 1,329   | Apr 2008      | Sep 2026     |
-| r-sig-meta-analysis  | 5,644    | 550     | Jun 2017      | Sep 2026     |
+| r-sig-ecology        | 7,579    | 1,329   | Apr 2008      | Sep 2026     |
+| r-sig-meta-analysis  | 5,645    | 550     | Jun 2017      | Sep 2026     |
 | r-sig-debian         | 3,677    | 504     | Feb 2005      | Sep 2026     |
 | r-sig-hpc            | 2,152    | 383     | Oct 2008      | Dec 2024     |
 | r-sig-db             | 1,559    | 391     | Apr 2001      | Nov 2020     |
