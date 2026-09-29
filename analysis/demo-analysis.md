@@ -113,11 +113,11 @@ head(contribs)
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17943         10 r-he… r-help:117… 1998-06-04T1… 2026-09-07T…
-    2 Duncan …         12595         13 r-he… r-help:733… 2000-02-16T2… 2026-09-23T…
+    2 Duncan …         12596         13 r-he… r-help:733… 2000-02-16T2… 2026-09-28T…
     3 David W…         11663         12 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
     4 Peter D…         10823         10 r-he… r-help:707… 1997-04-01T0… 2026-09-14T…
     5 Gabor G…          9940         13 r-he… r-help:804… 2002-01-12T1… 2026-08-23T…
-    6 Uwe Lig…          8422         13 r-he… r-help:656… 2000-03-07T1… 2026-09-10T…
+    6 Uwe Lig…          8423         13 r-he… r-help:656… 2000-03-07T1… 2026-09-28T…
 
 ### Working directly with Parquet files
 
@@ -285,11 +285,11 @@ contribs |>
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
 | Brian Ripley       |         17943 |         10 |
-| Duncan Murdoch     |         12595 |         13 |
+| Duncan Murdoch     |         12596 |         13 |
 | David Winsemius    |         11663 |         12 |
 | Peter Dalgaard     |         10823 |         10 |
 | Gabor Grothendieck |          9940 |         13 |
-| Uwe Ligges         |          8422 |         13 |
+| Uwe Ligges         |          8423 |         13 |
 | Dirk Eddelbuettel  |          7750 |         15 |
 | Ben Bolker         |          6050 |          8 |
 | Bert Gunter        |          6049 |          9 |
