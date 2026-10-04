@@ -80,7 +80,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63715 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63717 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -116,7 +116,7 @@ head(contribs)
     2 Duncan …         12596         13 r-he… r-help:733… 2000-02-16T2… 2026-09-28T…
     3 David W…         11663         12 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
     4 Peter D…         10826         10 r-he… r-help:707… 1997-04-01T0… 2026-10-02T…
-    5 Gabor G…          9940         13 r-he… r-help:804… 2002-01-12T1… 2026-08-23T…
+    5 Gabor G…          9941         13 r-he… r-help:804… 2002-01-12T1… 2026-10-03T…
     6 Uwe Lig…          8424         13 r-he… r-help:656… 2000-03-07T1… 2026-10-02T…
 
 ### Working directly with Parquet files
@@ -288,14 +288,14 @@ contribs |>
 | Duncan Murdoch     |         12596 |         13 |
 | David Winsemius    |         11663 |         12 |
 | Peter Dalgaard     |         10826 |         10 |
-| Gabor Grothendieck |          9940 |         13 |
+| Gabor Grothendieck |          9941 |         13 |
 | Uwe Ligges         |          8424 |         13 |
 | Dirk Eddelbuettel  |          7750 |         15 |
 | Ben Bolker         |          6050 |          8 |
 | Bert Gunter        |          6049 |          9 |
 | Martin Maechler    |          5789 |         19 |
 | jim holtman        |          4422 |          4 |
-| Jeff Newmiller     |          4377 |          7 |
+| Jeff Newmiller     |          4378 |          7 |
 | Simon Urbanek      |          4317 |         12 |
 | Roger Bivand       |          4276 |         12 |
 | Jim Lemon          |          3886 |          6 |
