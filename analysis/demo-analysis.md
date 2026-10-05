@@ -115,7 +115,7 @@ head(contribs)
     1 Brian R…         17943         10 r-he… r-help:117… 1998-06-04T1… 2026-09-07T…
     2 Duncan …         12596         13 r-he… r-help:733… 2000-02-16T2… 2026-09-28T…
     3 David W…         11663         12 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
-    4 Peter D…         10826         10 r-he… r-help:707… 1997-04-01T0… 2026-10-02T…
+    4 Peter D…         10827         10 r-he… r-help:707… 1997-04-01T0… 2026-10-05T…
     5 Gabor G…          9941         13 r-he… r-help:804… 2002-01-12T1… 2026-10-03T…
     6 Uwe Lig…          8424         13 r-he… r-help:656… 2000-03-07T1… 2026-10-02T…
 
@@ -287,7 +287,7 @@ contribs |>
 | Brian Ripley       |         17943 |         10 |
 | Duncan Murdoch     |         12596 |         13 |
 | David Winsemius    |         11663 |         12 |
-| Peter Dalgaard     |         10826 |         10 |
+| Peter Dalgaard     |         10827 |         10 |
 | Gabor Grothendieck |          9941 |         13 |
 | Uwe Ligges         |          8424 |         13 |
 | Dirk Eddelbuettel  |          7750 |         15 |
@@ -296,7 +296,7 @@ contribs |>
 | Martin Maechler    |          5789 |         19 |
 | jim holtman        |          4422 |          4 |
 | Jeff Newmiller     |          4378 |          7 |
-| Simon Urbanek      |          4317 |         12 |
+| Simon Urbanek      |          4318 |         12 |
 | Roger Bivand       |          4276 |         12 |
 | Jim Lemon          |          3886 |          6 |
 | Thomas Lumley      |          3792 |          8 |
