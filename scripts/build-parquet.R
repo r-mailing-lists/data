@@ -38,13 +38,13 @@ if (file.exists(aliases_file)) {
   message("No aliases file found at ", aliases_file, " — using raw names")
 }
 
+# A lookup rather than merge(): merge() re-sorts the rows by the key and moves
+# it to the first column, which changed both away from the documented layout.
 resolve_aliases <- function(df) {
   if (is.null(alias_lookup)) return(df)
-  merged <- merge(df, alias_lookup, by = "from_email_hash", all.x = TRUE)
-  merged$from_name <- ifelse(is.na(merged$canonical_name),
-                             merged$from_name, merged$canonical_name)
-  merged$canonical_name <- NULL
-  merged
+  canonical <- alias_lookup$canonical_name[match(df$from_email_hash, alias_lookup$from_email_hash)]
+  df$from_name <- ifelse(is.na(canonical), df$from_name, canonical)
+  df
 }
 
 # ---------------------------------------------------------------------------
@@ -193,6 +193,12 @@ for (list_path in list_dirs) {
   # Resolve from_name via aliases (canonical names)
   msgs <- resolve_aliases(msgs)
 
+  # Fix the row order, with id breaking ties between messages sent in the same
+  # second. These files are committed: an order that depends on how the input
+  # happened to be listed rewrites them daily even when no mail has arrived.
+  msgs <- msgs[order(msgs$date, msgs$id), ]
+  rownames(msgs) <- NULL
+
   out_path <- file.path(messages_dir, paste0(list_name, ".parquet"))
   write_messages_parquet(msgs, out_path)
   file_mb <- file.size(out_path) / 1e6
@@ -235,6 +241,8 @@ if (length(all_threads) > 0) {
   threads_df <- do.call(rbind, all_threads)
   threads_df$started <- parse_rfc3339_utc(threads_df$started)
   threads_df$last_reply <- parse_rfc3339_utc(threads_df$last_reply)
+  threads_df <- threads_df[order(threads_df$list, threads_df$started, threads_df$id), ]
+  rownames(threads_df) <- NULL
   threads_path <- file.path(output_dir, "threads.parquet")
   write_parquet(threads_df, threads_path, compression = "zstd",
                 options = parquet_options(compression_level = 19))
@@ -249,6 +257,14 @@ if (length(all_threads) > 0) {
 contrib_path <- file.path(input_dir, "_contributors.json")
 if (file.exists(contrib_path)) {
   contrib <- fromJSON(contrib_path, simplifyDataFrame = FALSE)
+  # Each contributor's lists by message count, ties by name, so the two
+  # comma-separated columns below do not depend on the order in the JSON.
+  contrib <- lapply(contrib, \(x) {
+    counts <- vapply(x$lists, `[[`, 0L, "count")
+    slugs <- vapply(x$lists, `[[`, "", "slug")
+    x$lists <- x$lists[order(-counts, slugs)]
+    x
+  })
   contrib_df <- data.frame(
     name          = vapply(contrib, `[[`, "", "name"),
     message_count = vapply(contrib, `[[`, 0L, "messageCount"),
@@ -259,6 +275,9 @@ if (file.exists(contrib_path)) {
     last_message  = vapply(contrib, \(x) x$lastDate %||% NA_character_, ""),
     stringsAsFactors = FALSE
   )
+  contrib_df <- contrib_df[order(-contrib_df$message_count, contrib_df$name,
+                                 contrib_df$lists, contrib_df$first_message), ]
+  rownames(contrib_df) <- NULL
   contrib_out <- file.path(output_dir, "contributors.parquet")
   write_parquet(contrib_df, contrib_out, compression = "zstd",
                 options = parquet_options(compression_level = 19))
