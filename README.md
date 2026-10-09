@@ -81,23 +81,33 @@ r_devel = rml_read("r-devel")
    .head(20))
 ```
 
-### Working with a local clone
+### Working with local files
 
-If you prefer working with local files, clone the repo and read parquet
-files directly:
+The Parquet files are published as assets of the [`parquet`
+release](https://github.com/r-mailing-lists/data/releases/tag/parquet),
+not committed to the repository. To keep local copies, download them
+with the [GitHub CLI](https://cli.github.com/):
+
+``` bash
+gh release download parquet --repo r-mailing-lists/data --dir data
+```
+
+and read them directly:
 
 ``` r
 # R
 library(nanoparquet)
-r_devel <- read_parquet("data/messages/r-devel.parquet")
+r_devel <- read_parquet("data/r-devel.parquet")
 ```
 
 ``` python
 # Python
 import polars as pl
-r_devel = pl.read_parquet("data/messages/r-devel.parquet")
-all_msgs = pl.read_parquet("data/messages/*.parquet")
+r_devel = pl.read_parquet("data/r-devel.parquet")
 ```
+
+Any single file is also available at
+`https://github.com/r-mailing-lists/data/releases/download/parquet/<file>`.
 
 For more in-depth analysis examples (message volume trends, top
 contributors), see the [demo analysis](analysis/demo-analysis.md).
@@ -239,7 +249,7 @@ Figure 1
 
 ## Data dictionary
 
-### `data/messages/<list>.parquet`
+### `<list>.parquet`
 
 One Parquet file per mailing list. All files share the same schema.
 
@@ -259,7 +269,7 @@ One Parquet file per mailing list. All files share the same schema.
 | `thread_depth` | integer | Depth in thread tree (0 = root message) |
 | `month` | string | `YYYY-MM` for temporal bucketing |
 
-### `data/threads.parquet`
+### `threads.parquet`
 
 Thread-level summaries for all lists.
 
@@ -273,7 +283,7 @@ Thread-level summaries for all lists.
 | `last_reply`      | timestamp | Date of most recent reply         |
 | `root_message_id` | string    | ID of the thread-starting message |
 
-### `data/contributors.parquet`
+### `contributors.parquet`
 
 Aggregated contributor statistics across all lists.
 

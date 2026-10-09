@@ -166,18 +166,22 @@ head(contribs)
 
 ### Working directly with Parquet files
 
-If you have a local clone, read Parquet files directly with
+To work from local copies, download the files from the [`parquet`
+release](https://github.com/r-mailing-lists/data/releases/tag/parquet)
+(`gh release download parquet --repo r-mailing-lists/data --dir data`)
+and read them directly with
 [`nanoparquet`](https://cran.r-project.org/package=nanoparquet):
 
 ``` r
 library(nanoparquet)
 
 # Single list
-r_devel <- read_parquet("data/messages/r-devel.parquet")
+r_devel <- read_parquet("data/r-devel.parquet")
 
-# All lists
-files <- list.files("data/messages", pattern = "\\.parquet$", full.names = TRUE)
-all_msgs <- do.call(rbind, lapply(files, read_parquet,
+# All lists: every file except the two summaries
+files <- setdiff(list.files("data", pattern = "\\.parquet$"),
+                 c("threads.parquet", "contributors.parquet"))
+all_msgs <- do.call(rbind, lapply(file.path("data", files), read_parquet,
   col_select = c("list", "from_name", "date", "subject", "month")))
 
 # Threads and contributors
