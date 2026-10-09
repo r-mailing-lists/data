@@ -202,6 +202,9 @@ msg_counts <- r_devel |>
   count(from_name)
 V(g)$messages <- msg_counts$n[match(V(g)$name, msg_counts$from_name)]
 
+# The layout and the label placement are both random. A fixed seed means
+# the picture only changes when the data does.
+set.seed(2026)
 ggraph(g, layout = "fr") +
   geom_edge_link(
     aes(width = replies, alpha = replies),
