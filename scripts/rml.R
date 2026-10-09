@@ -6,12 +6,17 @@
 #   rml_available()
 #   msgs <- rml_read("r-devel")
 
-.rml_base_url <- "https://raw.githubusercontent.com/r-mailing-lists/data/main/data"
-.rml_api_url  <- "https://api.github.com/repos/r-mailing-lists/data/contents/data/messages"
+# The Parquet files are assets of the "parquet" release.
+.rml_base_url <- "https://github.com/r-mailing-lists/data/releases/download/parquet"
+.rml_api_url  <- "https://api.github.com/repos/r-mailing-lists/data/releases/tags/parquet"
 .rml_cache    <- file.path(tempdir(), "rml_cache")
 
+# Files in the release that are not a mailing list.
+.rml_other_files <- c("threads.parquet", "contributors.parquet")
+
 # Set to a local path (e.g. "data") to read from disk instead of downloading.
-# Useful after cloning the repo: .rml_data_dir <- "data"
+# It must hold messages/<list>.parquet, threads.parquet and contributors.parquet,
+# which is how scripts/build-parquet.R lays them out.
 .rml_data_dir <- NULL
 
 .rml_ensure_cache <- function() {
@@ -32,10 +37,11 @@
   cache_file <- file.path(.rml_ensure_cache(), "_index.json")
   if (!file.exists(cache_file)) {
     message("Fetching file index...")
-    json <- jsonlite::fromJSON(.rml_api_url)
-    jsonlite::write_json(json, cache_file)
+    release <- jsonlite::fromJSON(.rml_api_url)
+    jsonlite::write_json(release$assets["name"], cache_file)
   }
-  jsonlite::fromJSON(cache_file)
+  index <- jsonlite::fromJSON(cache_file)
+  index[!index$name %in% .rml_other_files, , drop = FALSE]
 }
 
 #' List available mailing list names
@@ -74,7 +80,7 @@ rml_read <- function(list_name, col_select = NULL) {
     }
     frames <- lapply(matches, function(f) {
       dest <- file.path(.rml_ensure_cache(), f)
-      .rml_download(paste0(.rml_base_url, "/messages/", f), dest)
+      .rml_download(paste0(.rml_base_url, "/", f), dest)
       nanoparquet::read_parquet(dest, col_select = col_select)
     })
   }

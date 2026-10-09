@@ -142,6 +142,15 @@ jobs:
         if: steps.check-hash.outputs.skip != 'true'
         run: Rscript scripts/build-parquet.R data/processed data aliases.json
 
+      # The Parquet files are release assets, not commits. Committing them grew
+      # the repository by every changed file every day; see
+      # scripts/publish-parquet.sh.
+      - name: Publish parquet files
+        if: steps.check-hash.outputs.skip != 'true'
+        run: bash scripts/publish-parquet.sh data
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Setup Quarto
         if: steps.check-hash.outputs.skip != 'true'
         uses: quarto-dev/quarto-actions/setup@v2
@@ -157,9 +166,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data/ README.md README_files/ analysis/ 2>/dev/null || true
+          git add -A README.md README_files/ analysis/ 2>/dev/null || true
           git diff --staged --quiet && echo "No changes to commit" && exit 0
-          git commit -m "data: update parquet files and README $(date -u +%Y-%m-%d)"
+          git commit -m "docs: refresh README and analysis $(date -u +%Y-%m-%d)"
           git push
 
       - name: Save build hash
@@ -167,9 +176,12 @@ jobs:
         run: |
           HASH="${{ steps.data-hash.outputs.hash }}"
           gh release delete last-data-build --repo "${{ github.repository }}" --yes --cleanup-tag 2>/dev/null || true
+          # --latest=false: this is a bookkeeping marker, and "latest" should
+          # keep pointing at the release that holds the Parquet files.
           gh release create last-data-build \
             --repo "${{ github.repository }}" \
             --title "Last successful data build" \
+            --latest=false \
             --notes "$HASH"
           echo "Saved build hash: $HASH"
         env:
