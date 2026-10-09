@@ -1,0 +1,302 @@
+---
+title: "R Mailing List Data"
+format: gfm
+execute:
+  echo: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+library(jsonlite)
+library(nanoparquet)
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
+library(scales)
+library(igraph)
+library(ggraph)
+
+theme_set(
+  theme_minimal(base_size = 13) +
+    theme(
+      panel.grid.minor = element_blank(),
+      plot.title.position = "plot"
+    )
+)
+
+read_messages <- function(col_select = NULL) {
+  files <- list.files("data/messages", pattern = "\\.parquet$", full.names = TRUE)
+  do.call(rbind, lapply(files, read_parquet, col_select = col_select))
+}
+
+# Source helpers and point at local data (avoids downloading during render)
+source("scripts/rml.R")
+.rml_data_dir <- "data"
+
+# Load aliases for name resolution
+resolve_aliases <- function(df) {
+  aliases_file <- "aliases.json"
+  if (!file.exists(aliases_file)) return(df)
+  alias_data <- jsonlite::fromJSON(aliases_file)
+  lookup <- data.frame(
+    from_email_hash = unlist(alias_data$aliases$email_hashes),
+    canonical_name = rep(alias_data$aliases$canonical_name,
+                         lengths(alias_data$aliases$email_hashes)),
+    stringsAsFactors = FALSE
+  )
+  df |>
+    left_join(lookup, by = "from_email_hash") |>
+    mutate(from_name = ifelse(is.na(canonical_name), from_name, canonical_name)) |>
+    select(-canonical_name)
+}
+```
+
+A collection of [R mailing list](https://www.r-project.org/mail.html) archives in [Parquet](https://parquet.apache.org/) format, ready for analysis in R, Python, or any language with Parquet support.
+
+Data is sourced from the [R Mailing Lists archive project](https://github.com/r-mailing-lists) and updated automatically. You can also browse the archives at [r-mailing-lists.thecoatlessprofessor.com](https://r-mailing-lists.thecoatlessprofessor.com).
+
+## Quick start
+
+### R
+
+Requires [`jsonlite`](https://cran.r-project.org/package=jsonlite) and [`nanoparquet`](https://cran.r-project.org/package=nanoparquet). Source the helper script directly from GitHub:
+
+```r
+source("https://raw.githubusercontent.com/r-mailing-lists/data/main/scripts/rml.R")
+```
+
+```r
+# See available lists
+rml_available()
+
+# Read only metadata columns (skips body text — much faster)
+r_devel <- rml_read("r-devel",
+  col_select = c("from_name", "date", "subject", "thread_id", "month"))
+
+# Top 10 posters in the last year
+recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
+head(sort(table(recent$from_name), decreasing = TRUE), 10)
+
+# Message counts per list (thread summaries — single small download)
+threads <- rml_read_threads(col_select = c("list", "message_count"))
+aggregate(message_count ~ list, data = threads, FUN = sum)
+
+# Top contributors across all lists
+contribs <- rml_read_contributors()
+head(contribs[order(-contribs$message_count), ], 10)
+```
+
+### Python
+
+Requires [`polars`](https://pola.rs/). Download the helper script:
+
+```bash
+curl -O https://raw.githubusercontent.com/r-mailing-lists/data/main/scripts/rml.py
+```
+
+```python
+from rml import rml_available, rml_read, rml_read_threads, rml_read_contributors
+import polars as pl
+
+# See available lists
+rml_available()
+
+# Read a single list (downloads and caches parquet files automatically)
+r_devel = rml_read("r-devel")
+
+# Top 10 posters in 2025
+(r_devel
+   .filter(pl.col("date").dt.year() == 2025)
+   .group_by("from_name")
+   .len()
+   .sort("len", descending=True)
+   .head(10))
+
+# Message counts per list (thread summaries — single small download)
+(rml_read_threads()
+   .group_by("list")
+   .agg(pl.col("message_count").sum())
+   .sort("message_count", descending=True))
+
+# Top contributors across all lists
+(rml_read_contributors()
+   .sort("message_count", descending=True)
+   .head(20))
+```
+
+### Working with local files
+
+The Parquet files are published as assets of the [`parquet` release](https://github.com/r-mailing-lists/data/releases/tag/parquet), not committed to the repository. To keep local copies, download them with the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh release download parquet --repo r-mailing-lists/data --dir data
+```
+
+and read them directly:
+
+```r
+# R
+library(nanoparquet)
+r_devel <- read_parquet("data/r-devel.parquet")
+```
+
+```python
+# Python
+import polars as pl
+r_devel = pl.read_parquet("data/r-devel.parquet")
+```
+
+Any single file is also available at `https://github.com/r-mailing-lists/data/releases/download/parquet/<file>`.
+
+For more in-depth analysis examples (message volume trends, top contributors), see the [demo analysis](analysis/demo-analysis.md).
+
+## Data overview
+
+```{r}
+#| label: summary-table
+#| results: asis
+msgs <- read_messages(col_select = c("list", "from_name", "date", "month"))
+
+summary_df <- msgs |>
+  group_by(list) |>
+  summarise(
+    messages = n(),
+    authors = n_distinct(from_name),
+    first_message = as.Date(min(date, na.rm = TRUE)),
+    last_message = as.Date(max(date, na.rm = TRUE)),
+    .groups = "drop"
+  ) |>
+  arrange(desc(messages))
+
+cat(paste0(
+  "**", format(sum(summary_df$messages), big.mark = ","),
+  "** messages across **", nrow(summary_df), "** mailing lists\n"
+))
+
+summary_df |>
+  mutate(
+    messages = format(messages, big.mark = ","),
+    authors = format(authors, big.mark = ","),
+    first_message = format(first_message, "%b %Y"),
+    last_message = format(last_message, "%b %Y")
+  ) |>
+  knitr::kable(col.names = c("List", "Messages", "Authors", "First Message", "Last Message"))
+```
+
+## Reply network on r-devel
+
+The `in_reply_to` field links each message to its parent, making it
+straightforward to build a "who replies to whom" network.
+
+```{r}
+#| label: fig-reply-network
+#| fig-alt: "Network graph showing reply relationships between top r-devel contributors"
+#| fig-width: 10
+#| fig-height: 10
+r_devel <- rml_read(
+  "r-devel",
+  col_select = c("message_id", "from_name", "from_email_hash", "in_reply_to")
+) |> resolve_aliases()
+
+# Build edges: replier -> original author
+author_lookup <- r_devel |> select(message_id, from_name)
+
+edges <- r_devel |>
+  filter(!is.na(in_reply_to)) |>
+  inner_join(author_lookup, by = c("in_reply_to" = "message_id"), suffix = c("_from", "_to")) |>
+  filter(from_name_from != from_name_to) |>
+  count(from = from_name_from, to = from_name_to, name = "replies")
+
+# Keep only the most active participants
+top_authors <- r_devel |>
+  count(from_name, sort = TRUE) |>
+  head(30) |>
+  pull(from_name)
+
+edges_top <- edges |>
+  filter(from %in% top_authors, to %in% top_authors, replies >= 5)
+
+g <- graph_from_data_frame(edges_top, directed = TRUE)
+
+# Size nodes by total messages
+msg_counts <- r_devel |>
+  filter(from_name %in% V(g)$name) |>
+  count(from_name)
+V(g)$messages <- msg_counts$n[match(V(g)$name, msg_counts$from_name)]
+
+# The layout and the label placement are both random. A fixed seed means
+# the picture only changes when the data does.
+set.seed(2026)
+ggraph(g, layout = "fr") +
+  geom_edge_link(
+    aes(width = replies, alpha = replies),
+    arrow = arrow(length = unit(2, "mm"), type = "closed"),
+    end_cap = circle(4, "mm")
+  ) +
+  geom_node_point(aes(size = messages), color = "#3B6EA8") +
+  geom_node_text(aes(label = name), repel = TRUE, size = 3, max.overlaps = 20) +
+  scale_edge_width(range = c(0.3, 2.5), guide = "none") +
+  scale_edge_alpha(range = c(0.15, 0.6), guide = "none") +
+  scale_size_continuous(range = c(2, 12), labels = label_comma(), name = "Messages") +
+  labs(title = "Reply network among top r-devel contributors") +
+  theme_void(base_size = 13) +
+  theme(plot.title.position = "plot", legend.position = "bottom")
+```
+
+## Data dictionary
+
+### `<list>.parquet`
+
+One Parquet file per mailing list. All files share the same schema.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `list` | string | Mailing list name (e.g., `r-devel`) |
+| `id` | string | Unique message ID (`msg-<hash>`) |
+| `message_id` | string | Original RFC 2822 Message-ID header |
+| `from_name` | string | Author display name (alias-resolved to canonical form) |
+| `from_email_hash` | string | SHA-256 hash of author email (privacy-preserving) |
+| `date` | timestamp | Message date (UTC) |
+| `subject` | string | Subject line with `Re:`/`Fwd:` prefixes stripped |
+| `in_reply_to` | string | ID of the parent message (null for thread starters) |
+| `body` | string | Full message body text |
+| `body_snippet` | string | First 200 characters of the body |
+| `thread_id` | string | Thread grouping ID (`thread-<hash>`) |
+| `thread_depth` | integer | Depth in thread tree (0 = root message) |
+| `month` | string | `YYYY-MM` for temporal bucketing |
+
+### `threads.parquet`
+
+Thread-level summaries for all lists.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `list` | string | Mailing list name |
+| `id` | string | Thread ID (`thread-<hash>`) |
+| `subject` | string | Thread subject |
+| `message_count` | integer | Number of messages in thread |
+| `started` | timestamp | Date of first message |
+| `last_reply` | timestamp | Date of most recent reply |
+| `root_message_id` | string | ID of the thread-starting message |
+
+### `contributors.parquet`
+
+Aggregated contributor statistics across all lists.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `name` | string | Author display name |
+| `message_count` | integer | Total messages across all lists |
+| `list_count` | integer | Number of distinct lists posted to |
+| `lists` | string | Comma-separated list slugs |
+| `list_counts` | string | Per-list message counts (e.g. `r-devel:150,r-help:42`) |
+| `first_message` | string | ISO 8601 date of earliest message |
+| `last_message` | string | ISO 8601 date of most recent message |
+
+## Privacy
+
+Email addresses are not included in this dataset. Author identity is represented by display name and a SHA-256 hash of the email address, which allows grouping messages by author without exposing contact information. The original emails are publicly archived on the source mailing list servers.
+
+## License
+
+The mailing list content is publicly archived by the [R Project](https://www.r-project.org/mail.html) via [ETH Zurich](https://stat.ethz.ch/pipermail/) and [R-Forge](https://lists.r-forge.r-project.org/pipermail/). This dataset reformats that public content for easier analysis. The tooling in this repository is licensed under the [MIT License](LICENSE).

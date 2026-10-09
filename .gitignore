@@ -1,0 +1,21 @@
+# Intermediate/source data
+data/processed/
+data/summary.json
+
+# The Parquet output is published as release assets (scripts/publish-parquet.sh)
+data/messages/
+data/*.parquet
+
+# Quarto cache
+.quarto/
+_freeze/
+
+# R artifacts
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# Misc
+*.html
+!README.md
