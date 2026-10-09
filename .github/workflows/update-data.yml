@@ -30,29 +30,49 @@ jobs:
         run: |
           mkdir -p data/processed
 
-          while IFS=$'\t' read -r name url type desc; do
+          while IFS=$'\t' read -r name url type desc repo; do
             [[ "$name" =~ ^#.*$ ]] && continue
             [ -z "$name" ] && continue
             echo "Pulling data for $name..."
-            git clone --depth 1 --filter=blob:none --sparse \
-              "https://github.com/r-mailing-lists/$name.git" \
-              "data/tmp-$name" 2>/dev/null || continue
-            cd "data/tmp-$name"
-            git sparse-checkout init --no-cone
-            git sparse-checkout set /processed /meta.json /index.json /message-order.json /contributors.json
-            git checkout
-            cd ../..
-            if [ -d "data/tmp-$name/processed" ]; then
-              mv "data/tmp-$name/processed" "data/processed/$name"
+            if [ -n "$repo" ]; then
+              # Pooled archive repo: one <list>/ directory per list, cloned once and reused
+              pool="data/tmp-pool-$repo"
+              if [ ! -d "$pool" ]; then
+                git clone --depth 1 --filter=blob:none --sparse \
+                  "https://github.com/r-mailing-lists/$repo.git" \
+                  "$pool" 2>/dev/null || continue
+                cd "$pool"
+                git sparse-checkout init --no-cone
+                git sparse-checkout set '/*/processed' '/*/meta.json' '/*/index.json' '/*/message-order.json' '/*/contributors.json'
+                git checkout
+                cd ../..
+              fi
+              src="$pool/$name"
+            else
+              src="data/tmp-$name"
+              git clone --depth 1 --filter=blob:none --sparse \
+                "https://github.com/r-mailing-lists/$name.git" \
+                "$src" 2>/dev/null || continue
+              cd "$src"
+              git sparse-checkout init --no-cone
+              git sparse-checkout set /processed /meta.json /index.json /message-order.json /contributors.json
+              git checkout
+              cd ../..
+            fi
+            if [ -d "$src/processed" ]; then
+              mv "$src/processed" "data/processed/$name"
             fi
             for f in meta.json index.json message-order.json contributors.json; do
-              if [ -f "data/tmp-$name/$f" ]; then
+              if [ -f "$src/$f" ]; then
                 mkdir -p "data/processed/$name"
-                cp "data/tmp-$name/$f" "data/processed/$name/$f"
+                cp "$src/$f" "data/processed/$name/$f"
               fi
             done
-            rm -rf "data/tmp-$name"
+            if [ -z "$repo" ]; then
+              rm -rf "$src"
+            fi
           done < scripts/lists.conf
+          rm -rf data/tmp-pool-*
 
       - name: Compute data hash
         id: data-hash
