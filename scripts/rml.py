@@ -18,8 +18,11 @@ from urllib.request import urlopen, urlretrieve
 
 import polars as pl
 
-_RAW_BASE = "https://raw.githubusercontent.com/r-mailing-lists/data/main/data"
-_API_URL = "https://api.github.com/repos/r-mailing-lists/data/contents/data/messages"
+# The Parquet files are assets of the "parquet" release.
+_BASE = "https://github.com/r-mailing-lists/data/releases/download/parquet"
+_API_URL = "https://api.github.com/repos/r-mailing-lists/data/releases/tags/parquet"
+# Files in the release that are not a mailing list.
+_OTHER_FILES = {"threads.parquet", "contributors.parquet"}
 _CACHE_DIR = Path(tempfile.gettempdir()) / "rml_cache"
 _DECADE_RE = re.compile(r"^(.+)-(\d{4})-(\d{4})\.parquet$")
 
@@ -34,7 +37,8 @@ def _cached_download(url: str, filename: str) -> Path:
 
 def _list_message_files() -> list[dict]:
     with urlopen(_API_URL) as resp:
-        return json.loads(resp.read())
+        assets = json.loads(resp.read())["assets"]
+    return [a for a in assets if a["name"] not in _OTHER_FILES]
 
 
 def rml_available() -> list[str]:
@@ -63,7 +67,7 @@ def rml_read(list_name: str) -> pl.DataFrame:
     if not matched:
         raise ValueError(f"List '{list_name}' not found. See rml_available()")
     dfs = [
-        pl.read_parquet(_cached_download(f["download_url"], f["name"]))
+        pl.read_parquet(_cached_download(f["browser_download_url"], f["name"]))
         for f in matched
     ]
     return pl.concat(dfs) if len(dfs) > 1 else dfs[0]
@@ -72,12 +76,12 @@ def rml_read(list_name: str) -> pl.DataFrame:
 def rml_read_threads() -> pl.DataFrame:
     """Download (if needed) and read thread summaries."""
     return pl.read_parquet(
-        _cached_download(f"{_RAW_BASE}/threads.parquet", "threads.parquet")
+        _cached_download(f"{_BASE}/threads.parquet", "threads.parquet")
     )
 
 
 def rml_read_contributors() -> pl.DataFrame:
     """Download (if needed) and read contributor statistics."""
     return pl.read_parquet(
-        _cached_download(f"{_RAW_BASE}/contributors.parquet", "contributors.parquet")
+        _cached_download(f"{_BASE}/contributors.parquet", "contributors.parquet")
     )
