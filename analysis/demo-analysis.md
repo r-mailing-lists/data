@@ -125,7 +125,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63720 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63721 obs. of  5 variables:
      $ from_name: chr  "jeremiah.cohen at gmail.com" "Walke, Rainer" "Walke, Rainer" "Walke, Rainer" ...
      $ date     : POSIXct, format: "2009-07-23 19:30:12" "2004-08-16 13:41:57" ...
      $ subject  : chr  "Bug in seq() (PR#13849)" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" "(PR#7163) Install packages does not work on Win2003 serv er" ...
@@ -242,7 +242,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Martin Maechler                        Ivan Krylov 
                                     40                                 37 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
-                                    27                                 23 
+                                    28                                 23 
                            Kurt Hornik                     Peter Dalgaard 
                                     22                                 21 
                         Duncan Murdoch                      Simon Urbanek 
@@ -335,13 +335,13 @@ contribs |>
 | Peter Dalgaard     |         10827 |         10 |
 | Gabor Grothendieck |         10019 |         16 |
 | Uwe Ligges         |          8433 |         17 |
-| Dirk Eddelbuettel  |          7933 |         21 |
+| Dirk Eddelbuettel  |          7934 |         21 |
 | Ben Bolker         |          6189 |          9 |
 | Bert Gunter        |          6050 |         10 |
 | Martin Maechler    |          5805 |         22 |
 | jim holtman        |          4445 |          6 |
 | Jeff Newmiller     |          4378 |          7 |
-| Simon Urbanek      |          4324 |         13 |
+| Simon Urbanek      |          4325 |         13 |
 | Roger Bivand       |          4309 |         15 |
 | Jim Lemon          |          3886 |          6 |
 | Thomas Lumley      |          3792 |          8 |
