@@ -60,17 +60,62 @@ The helper provides four main functions:
 rml_available()
 ```
 
-     [1] "bioc-devel"           "r-announce"           "r-devel"             
-     [4] "r-help"               "r-help-es"            "r-package-devel"     
-     [7] "r-packages"           "r-sig-db"             "r-sig-dcm"           
-    [10] "r-sig-debian"         "r-sig-dynamic-models" "r-sig-ecology"       
-    [13] "r-sig-epi"            "r-sig-fedora"         "r-sig-finance"       
-    [16] "r-sig-genetics"       "r-sig-geo"            "r-sig-gr"            
-    [19] "r-sig-gui"            "r-sig-hpc"            "r-sig-insurance"     
-    [22] "r-sig-jobs"           "r-sig-mac"            "r-sig-meta-analysis" 
-    [25] "r-sig-mixed-models"   "r-sig-networks"       "r-sig-robust"        
-    [28] "r-sig-teaching"       "r-sig-windows"        "r-ug-ottawa"         
-    [31] "rcpp-devel"          
+      [1] "abernethy-reliability"   "adegenet-forum"         
+      [3] "basta-users"             "batman-users"           
+      [5] "bioc-devel"              "boostheaders-devel"     
+      [7] "catlearn-package"        "chnosz-help"            
+      [9] "cipsr-users"             "cran2deb-discuss"       
+     [11] "ctsem-mail"              "datatable-help"         
+     [13] "dirichletreg-news"       "distr-distr"            
+     [15] "eventstudies-discussion" "expm-developers"        
+     [17] "flr-list"                "forensim-help"          
+     [19] "fresh-tor4"              "ftree-community"        
+     [21] "genabel-announce"        "genabel-devel"          
+     [23] "genoplotr-help"          "gsoc-dowd"              
+     [25] "gsoc-porta"              "gwidgets-questions"     
+     [27] "hyperspec-help"          "inlinedocs-support"     
+     [29] "ipmpack-users"           "listpackage-discuss"    
+     [31] "mailman"                 "mediation-information"  
+     [33] "metrology-devel"         "monetr-users"           
+     [35] "mvabund-faqs"            "mvabund-updates"        
+     [37] "nmf-user"                "nmof-news"              
+     [39] "orchestra-users"         "phenopix-developers"    
+     [41] "phylobase-devl"          "picante-devel"          
+     [43] "pomp-announce"           "qtinterfaces-devel"     
+     [45] "r-announce"              "r-devel"                
+     [47] "r-forge-testing-testing" "r-gregmisc-devel"       
+     [49] "r-help"                  "r-help-es"              
+     [51] "r-marketing-bugs"        "r-package-devel"        
+     [53] "r-packages"              "r-sig-db"               
+     [55] "r-sig-dcm"               "r-sig-debian"           
+     [57] "r-sig-dynamic-models"    "r-sig-ecology"          
+     [59] "r-sig-epi"               "r-sig-fedora"           
+     [61] "r-sig-finance"           "r-sig-genetics"         
+     [63] "r-sig-geo"               "r-sig-gr"               
+     [65] "r-sig-gui"               "r-sig-hpc"              
+     [67] "r-sig-insurance"         "r-sig-jobs"             
+     [69] "r-sig-mac"               "r-sig-meta-analysis"    
+     [71] "r-sig-mixed-models"      "r-sig-networks"         
+     [73] "r-sig-robust"            "r-sig-teaching"         
+     [75] "r-sig-windows"           "r-ug-ottawa"            
+     [77] "rangemapper-news"        "rcicr-users"            
+     [79] "rcpp-devel"              "rcppoctave-user"        
+     [81] "reddyproc-users"         "remoterengine-devel"    
+     [83] "repitools-help"          "rgeos-devel"            
+     [85] "riskassessment-news"     "rnomads-user"           
+     [87] "robustbase-authors"      "roxygen-devel"          
+     [89] "rphree-general"          "rprotobuf-yada"         
+     [91] "rquantlib-devel"         "rserlang-develop"       
+     [93] "rsiena-help"             "rspatial-devel"         
+     [95] "sciviews-help"           "sciviews-news"          
+     [97] "seqinr-forum"            "simsalabim-communicate" 
+     [99] "sorvi-admin"             "spdep-devel"            
+    [101] "sprint-developer"        "sprint-user"            
+    [103] "synbreed-news"           "tikzdevice-bugs"        
+    [105] "tlocoh-info"             "traminer-users"         
+    [107] "travelr-announce"        "travelr-discussion"     
+    [109] "uhcluster-members"       "viennar-meetup"         
+    [111] "yuima-wishlist"          "zipfr-users"            
 
 ``` r
 # Read a single list (use col_select to skip the body — much faster)
@@ -94,14 +139,14 @@ head(threads)
 ```
 
     # A data frame: 6 × 2
-      list       message_count
-    * <chr>              <int>
-    1 bioc-devel             3
-    2 bioc-devel             7
-    3 bioc-devel             1
-    4 bioc-devel             1
-    5 bioc-devel             1
-    6 bioc-devel             2
+      list                  message_count
+    * <chr>                         <int>
+    1 abernethy-reliability             1
+    2 abernethy-reliability             1
+    3 adegenet-forum                    1
+    4 adegenet-forum                    2
+    5 adegenet-forum                    1
+    6 adegenet-forum                    1
 
 ``` r
 # Contributor statistics across all lists
@@ -112,12 +157,12 @@ head(contribs)
     # A data frame: 6 × 7
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
-    1 Brian R…         17943         10 r-he… r-help:117… 1998-06-04T1… 2026-09-07T…
-    2 Duncan …         12597         13 r-he… r-help:733… 2000-02-16T2… 2026-10-06T…
-    3 David W…         11663         12 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
+    1 Brian R…         17956         13 r-he… r-help:117… 1998-06-04T1… 2026-09-07T…
+    2 Duncan …         12598         14 r-he… r-help:733… 2000-02-16T2… 2026-10-06T…
+    3 David W…         11669         13 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
     4 Peter D…         10827         10 r-he… r-help:707… 1997-04-01T0… 2026-10-05T…
-    5 Gabor G…          9941         13 r-he… r-help:804… 2002-01-12T1… 2026-10-03T…
-    6 Uwe Lig…          8424         13 r-he… r-help:656… 2000-03-07T1… 2026-10-02T…
+    5 Gabor G…         10019         16 r-he… r-help:804… 2002-01-12T1… 2026-10-03T…
+    6 Uwe Lig…          8433         17 r-he… r-help:656… 2000-03-07T1… 2026-10-02T…
 
 ### Working directly with Parquet files
 
@@ -198,10 +243,10 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                                     40                                 37 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
                                     27                                 23 
-                           Kurt Hornik                     Duncan Murdoch 
+                           Kurt Hornik                     Peter Dalgaard 
                                     22                                 21 
-                        Peter Dalgaard                      Simon Urbanek 
-                                    21                                 20 
+                        Duncan Murdoch                      Simon Urbanek 
+                                    20                                 20 
        Suharto Anggono Suharto Anggono                         Ben Bolker 
                                     18                                 16 
 
@@ -284,23 +329,23 @@ contribs |>
 
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
-| Brian Ripley       |         17943 |         10 |
-| Duncan Murdoch     |         12597 |         13 |
-| David Winsemius    |         11663 |         12 |
+| Brian Ripley       |         17956 |         13 |
+| Duncan Murdoch     |         12598 |         14 |
+| David Winsemius    |         11669 |         13 |
 | Peter Dalgaard     |         10827 |         10 |
-| Gabor Grothendieck |          9941 |         13 |
-| Uwe Ligges         |          8424 |         13 |
-| Dirk Eddelbuettel  |          7751 |         15 |
-| Ben Bolker         |          6050 |          8 |
-| Bert Gunter        |          6049 |          9 |
-| Martin Maechler    |          5789 |         19 |
-| jim holtman        |          4422 |          4 |
+| Gabor Grothendieck |         10019 |         16 |
+| Uwe Ligges         |          8433 |         17 |
+| Dirk Eddelbuettel  |          7933 |         21 |
+| Ben Bolker         |          6189 |          9 |
+| Bert Gunter        |          6050 |         10 |
+| Martin Maechler    |          5805 |         22 |
+| jim holtman        |          4445 |          6 |
 | Jeff Newmiller     |          4378 |          7 |
-| Simon Urbanek      |          4318 |         12 |
-| Roger Bivand       |          4276 |         12 |
+| Simon Urbanek      |          4324 |         13 |
+| Roger Bivand       |          4309 |         15 |
 | Jim Lemon          |          3886 |          6 |
 | Thomas Lumley      |          3792 |          8 |
 | Marc Schwartz      |          3768 |          9 |
 | PIKAL Petr         |          3658 |          3 |
-| Douglas Bates      |          3466 |         11 |
-| Spencer Graves     |          3381 |         11 |
+| Douglas Bates      |          3467 |         12 |
+| Hadley Wickham     |          3424 |         17 |
