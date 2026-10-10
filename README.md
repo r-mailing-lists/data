@@ -114,21 +114,21 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**645,829** messages across **112** mailing lists
+**645,841** messages across **112** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
-| r-help                  | 398,784  | 37,118  | Apr 1997      | Oct 2026     |
-| r-devel                 | 63,721   | 5,862   | Apr 1997      | Oct 2026     |
+| r-help                  | 398,785  | 37,119  | Apr 1997      | Oct 2026     |
+| r-devel                 | 63,722   | 5,863   | Apr 1997      | Oct 2026     |
 | r-sig-geo               | 29,587   | 3,501   | Jul 2003      | Sep 2026     |
-| bioc-devel              | 21,525   | 1,706   | Mar 2004      | Oct 2026     |
+| bioc-devel              | 21,532   | 1,706   | Mar 2004      | Oct 2026     |
 | r-sig-mixed-models      | 20,669   | 3,114   | Jan 2007      | Sep 2026     |
 | r-help-es               | 15,407   | 899     | Mar 2009      | Sep 2026     |
 | r-sig-finance           | 15,315   | 2,164   | Jun 2004      | Sep 2026     |
 | r-sig-mac               | 15,116   | 1,725   | Jan 1970      | Oct 2026     |
 | r-package-devel         | 12,397   | 1,130   | May 2015      | Oct 2026     |
 | rcpp-devel              | 11,011   | 801     | Nov 2009      | May 2026     |
-| r-sig-ecology           | 7,591    | 1,329   | Apr 2008      | Oct 2026     |
+| r-sig-ecology           | 7,592    | 1,329   | Apr 2008      | Oct 2026     |
 | r-sig-meta-analysis     | 5,647    | 551     | Jun 2017      | Sep 2026     |
 | r-sig-debian            | 3,677    | 504     | Feb 2005      | Sep 2026     |
 | datatable-help          | 3,415    | 441     | Mar 2010      | Apr 2018     |
@@ -143,8 +143,8 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | phylobase-devl          | 724      | 28      | Feb 2008      | Apr 2014     |
 | r-announce              | 714      | 112     | Apr 1997      | Sep 2026     |
 | r-sig-dynamic-models    | 697      | 160     | Oct 2009      | Mar 2026     |
-| r-sig-epi               | 666      | 166     | Nov 2005      | Oct 2026     |
-| r-sig-genetics          | 581      | 61      | May 2008      | Oct 2026     |
+| r-sig-epi               | 667      | 166     | Nov 2005      | Oct 2026     |
+| r-sig-genetics          | 582      | 61      | May 2008      | Oct 2026     |
 | flr-list                | 539      | 49      | Oct 2011      | Apr 2019     |
 | r-sig-robust            | 525      | 152     | Nov 2005      | Jul 2026     |
 | roxygen-devel           | 469      | 59      | May 2008      | Aug 2015     |
