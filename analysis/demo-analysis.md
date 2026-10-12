@@ -125,7 +125,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63722 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63731 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -158,9 +158,9 @@ head(contribs)
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17956         13 r-he… r-help:117… 1998-06-04T1… 2026-09-07T…
-    2 Duncan …         12598         14 r-he… r-help:733… 2000-02-16T2… 2026-10-06T…
+    2 Duncan …         12600         14 r-he… r-help:733… 2000-02-16T2… 2026-10-06T…
     3 David W…         11669         13 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
-    4 Peter D…         10827         10 r-he… r-help:707… 1997-04-01T0… 2026-10-05T…
+    4 Peter D…         10829         10 r-he… r-help:707… 1997-04-01T0… 2026-10-11T…
     5 Gabor G…         10019         16 r-he… r-help:804… 2002-01-12T1… 2026-10-03T…
     6 Uwe Lig…          8433         17 r-he… r-help:656… 2000-03-07T1… 2026-10-02T…
 
@@ -246,11 +246,11 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Martin Maechler                        Ivan Krylov 
                                     39                                 37 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
-                                    28                                 23 
-                           Kurt Hornik                     Peter Dalgaard 
-                                    22                                 21 
-                        Duncan Murdoch                      Simon Urbanek 
-                                    20                                 20 
+                                    29                                 23 
+                        Duncan Murdoch                        Kurt Hornik 
+                                    22                                 22 
+                        Peter Dalgaard                      Simon Urbanek 
+                                    22                                 20 
        Suharto Anggono Suharto Anggono                         Ben Bolker 
                                     18                                 16 
 
@@ -337,12 +337,12 @@ contribs |>
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
 | Brian Ripley       |         17956 |         13 |
-| Duncan Murdoch     |         12598 |         14 |
+| Duncan Murdoch     |         12600 |         14 |
 | David Winsemius    |         11669 |         13 |
-| Peter Dalgaard     |         10827 |         10 |
+| Peter Dalgaard     |         10829 |         10 |
 | Gabor Grothendieck |         10019 |         16 |
 | Uwe Ligges         |          8433 |         17 |
-| Dirk Eddelbuettel  |          7934 |         21 |
+| Dirk Eddelbuettel  |          7937 |         21 |
 | Ben Bolker         |          6190 |          9 |
 | Bert Gunter        |          6050 |         10 |
 | Martin Maechler    |          5805 |         22 |
