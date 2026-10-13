@@ -264,6 +264,7 @@ One Parquet file per mailing list. All files share the same schema.
 | `thread_id` | string | Thread grouping ID (`thread-<hash>`) |
 | `thread_depth` | integer | Depth in thread tree (0 = root message) |
 | `month` | string | `YYYY-MM` for temporal bucketing |
+| `source_url` | string | Address of the message's own page in the source archive (null when none is known, and for every list hosted on R-Forge) |
 
 ### `threads.parquet`
 

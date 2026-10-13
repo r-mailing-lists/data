@@ -70,6 +70,10 @@ read_month_json <- function(path, list_name) {
     thread_id       = vapply(msgs, `[[`, "", "thread_id"),
     thread_depth    = vapply(msgs, `[[`, 0L, "thread_depth"),
     month           = vapply(msgs, `[[`, "", "month"),
+    # The message's own page at the source. The archive leaves the key out
+    # when it has none, and always does for lists hosted on R-Forge. Kept as
+    # the last column, and written for every list, so all files share a schema.
+    source_url      = vapply(msgs, \(m) m$source_url %||% NA_character_, ""),
     stringsAsFactors = FALSE
   )
 }
