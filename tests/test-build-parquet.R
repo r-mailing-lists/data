@@ -133,6 +133,8 @@ forge <- as.data.frame(read_parquet(forge_path))
 forge_schema <- read_parquet_schema(forge_path)
 open <- as.data.frame(read_parquet(file.path(forward, "messages", "open-list.parquet")))
 hidden <- as.data.frame(read_parquet(file.path(forward, "messages", "hidden-list.parquet")))
+script <- readLines("scripts/build-parquet.R")
+built <- list.files(forward, pattern = "\\.parquet$", recursive = TRUE, full.names = TRUE)
 
 results <- c(
   vapply(files, \(file) {
@@ -168,7 +170,14 @@ results <- c(
   check("but in a list with hidden identifiers every message keeps its own name instead of such a one",
         identical(hidden$from_name,
                   c("Canonical A", "Sender hash-b", "Sender hash-c", "Sender hash-d", "Sender hash-e",
-                    "Sender hash-c")))
+                    "Sender hash-c"))),
+  check("every file the build writes is compressed with zstd",
+        length(built) > 0 &&
+          all(vapply(built, \(f) all(read_parquet_metadata(f)$column_chunks$codec == "ZSTD"), logical(1)))),
+  check("at level 9, by the one helper that writes every file",
+        sum(grepl("write_parquet(", script, fixed = TRUE)) == 1 &&
+          sum(grepl("^ZSTD_LEVEL <- 9L$", script)) == 1 &&
+          sum(grepl("compression_level = ZSTD_LEVEL", script, fixed = TRUE)) == 1)
 )
 
 cat("\n", sum(results), " passed, ", sum(!results), " failed\n", sep = "")

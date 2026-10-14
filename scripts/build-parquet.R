@@ -117,9 +117,13 @@ parse_rfc3339_utc <- function(x) {
   as.POSIXct(base, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC") + offset_secs
 }
 
-write_messages_parquet <- function(df, path) {
+# Every file is written with zstd at level 9. Level 19 made the files a few
+# percent smaller and took about twenty times as long to write.
+ZSTD_LEVEL <- 9L
+
+write_zstd <- function(df, path) {
   write_parquet(df, path, compression = "zstd",
-                options = parquet_options(compression_level = 19))
+                options = parquet_options(compression_level = ZSTD_LEVEL))
 }
 
 # Split a large parquet file into 5-year chunks
@@ -140,7 +144,7 @@ split_large_parquet <- function(msgs, list_name, messages_dir) {
     chunk$year <- NULL
     label <- paste0(breaks[i], "-", breaks[i + 1] - 1)
     out <- file.path(messages_dir, paste0(list_name, "-", label, ".parquet"))
-    write_messages_parquet(chunk, out)
+    write_zstd(chunk, out)
     mb <- round(file.size(out) / 1e6, 1)
     message("  -> ", out, " (", nrow(chunk), " messages, ", mb, " MB)")
     paths <- c(paths, out)
@@ -214,7 +218,7 @@ for (list_path in list_dirs) {
   rownames(msgs) <- NULL
 
   out_path <- file.path(messages_dir, paste0(list_name, ".parquet"))
-  write_messages_parquet(msgs, out_path)
+  write_zstd(msgs, out_path)
   file_mb <- file.size(out_path) / 1e6
   message("  -> ", out_path, " (", nrow(msgs), " messages, ",
           round(file_mb, 1), " MB)")
@@ -258,8 +262,7 @@ if (length(all_threads) > 0) {
   threads_df <- threads_df[order(threads_df$list, threads_df$started, threads_df$id), ]
   rownames(threads_df) <- NULL
   threads_path <- file.path(output_dir, "threads.parquet")
-  write_parquet(threads_df, threads_path, compression = "zstd",
-                options = parquet_options(compression_level = 19))
+  write_zstd(threads_df, threads_path)
   message("Wrote ", threads_path, " (", nrow(threads_df), " threads, ",
           round(file.size(threads_path) / 1e6, 1), " MB)")
 }
@@ -293,8 +296,7 @@ if (file.exists(contrib_path)) {
                                  contrib_df$lists, contrib_df$first_message), ]
   rownames(contrib_df) <- NULL
   contrib_out <- file.path(output_dir, "contributors.parquet")
-  write_parquet(contrib_df, contrib_out, compression = "zstd",
-                options = parquet_options(compression_level = 19))
+  write_zstd(contrib_df, contrib_out)
   message("Wrote ", contrib_out, " (", nrow(contrib_df), " contributors, ",
           round(file.size(contrib_out) / 1e6, 1), " MB)")
 }
