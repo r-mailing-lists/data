@@ -5,6 +5,9 @@
 # Usage: Rscript scripts/build-parquet.R <processed_data_dir> <output_dir>
 #   processed_data_dir: path to directory containing per-list folders of monthly JSON
 #   output_dir:         path to write parquet files (default: data/)
+#
+# BUILD_PARQUET_MAX_TEXT_MB, when set, replaces MAX_TEXT_MB below: the text
+# above which a list is written in five-year chunks. The tests lower it.
 
 library(jsonlite)
 library(nanoparquet)
@@ -88,7 +91,30 @@ read_month_json <- function(path, list_name) {
   )
 }
 
-MAX_FILE_MB <- 75
+# A list is written in five-year chunks when the text of its messages passes
+# MAX_TEXT_MB. Its file would then pass about 75 MB: zstd writes this mail at
+# a fifth or so of the size of its text (4.8 to 6.8 times smaller, read from
+# the published files on 2026-10-14, when R-help held about 890 MB of text
+# and r-devel, the next largest list, about 180 MB). The text is measured
+# before anything is written, so a large list is written once, in its chunks.
+MAX_TEXT_MB <- local({
+  value <- Sys.getenv("BUILD_PARQUET_MAX_TEXT_MB")
+  limit <- if (nzchar(value)) suppressWarnings(as.numeric(value)) else 375
+  if (is.na(limit) || limit <= 0) {
+    stop("BUILD_PARQUET_MAX_TEXT_MB must be a positive number of MB, not \"", value, "\"",
+         call. = FALSE)
+  }
+  limit
+})
+
+# The text of a data frame in MB: the bytes of all its character columns.
+# Bytes rather than characters, NA as nothing, and summed as doubles, since a
+# sum of integers stops at about 2 GB.
+text_mb <- function(df) {
+  chr <- vapply(df, is.character, logical(1))
+  bytes <- vapply(df[chr], \(x) sum(as.numeric(nchar(x, type = "bytes")), na.rm = TRUE), numeric(1))
+  sum(bytes) / 1e6
+}
 
 # Parse RFC 3339 date strings to POSIXct in UTC, correctly handling timezone offsets.
 # R's as.POSIXct ignores offsets like -04:00 when using "%Y-%m-%dT%H:%M:%S",
@@ -126,7 +152,9 @@ write_zstd <- function(df, path) {
                 options = parquet_options(compression_level = ZSTD_LEVEL))
 }
 
-# Split a large parquet file into 5-year chunks
+# Write a list as five-year chunks, <list>-<from>-<to>.parquet, on a grid of
+# years that are multiples of five, leaving out ranges with no messages. A
+# message whose date could not be read falls in no chunk.
 split_large_parquet <- function(msgs, list_name, messages_dir) {
   msgs$year <- as.integer(format(msgs$date, "%Y"))
   year_range <- range(msgs$year, na.rm = TRUE)
@@ -218,22 +246,24 @@ for (list_path in list_dirs) {
   rownames(msgs) <- NULL
 
   out_path <- file.path(messages_dir, paste0(list_name, ".parquet"))
-  write_zstd(msgs, out_path)
-  file_mb <- file.size(out_path) / 1e6
-  message("  -> ", out_path, " (", nrow(msgs), " messages, ",
-          round(file_mb, 1), " MB)")
+  text_size <- text_mb(msgs)
 
-  if (file_mb > MAX_FILE_MB) {
-    message("  ** ", round(file_mb, 1), " MB exceeds ",
-            MAX_FILE_MB, " MB limit — splitting into chunks")
-    file.remove(out_path)
-    # Remove any old split files for this list (from previous runs with different intervals)
+  if (text_size > MAX_TEXT_MB) {
+    message("  ** ", round(text_size, 1), " MB of text is over the ", MAX_TEXT_MB,
+            " MB limit: writing five-year chunks")
+    # Clear what an earlier run into this directory left for the list: its
+    # whole file, and chunks cut on other intervals.
+    unlink(out_path)
     old_splits <- list.files(messages_dir, pattern = paste0("^", list_name, "-\\d{4}"), full.names = TRUE)
     if (length(old_splits) > 0) {
       file.remove(old_splits)
       message("  Removed ", length(old_splits), " old split files")
     }
     split_large_parquet(msgs, list_name, messages_dir)
+  } else {
+    write_zstd(msgs, out_path)
+    message("  -> ", out_path, " (", nrow(msgs), " messages, ", round(text_size, 1),
+            " MB of text, ", round(file.size(out_path) / 1e6, 1), " MB)")
   }
 
   if (length(thread_frames) > 0) {
