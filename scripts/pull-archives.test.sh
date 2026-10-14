@@ -20,8 +20,8 @@ export GIT_COMMITTER_NAME=test GIT_COMMITTER_EMAIL=test@example.com
 unset XDG_CONFIG_HOME
 mkdir -p "$HOME" "$TMP/bin"
 
-# A stand-in git: logs every clone, refuses a web address, and fails a
-# checkout when a scenario asks for that. For everything else it is the real git.
+# A stand-in git: logs every clone, refuses a web address, and fails as many
+# checkouts as a scenario asks for. For everything else it is the real git.
 REAL_GIT="$(command -v git)"; export REAL_GIT
 cat > "$TMP/bin/git" <<'GIT'
 #!/usr/bin/env bash
@@ -33,7 +33,10 @@ if [ "$1" = clone ]; then
     esac
   done
 fi
-[ "$1" = checkout ] && [ -f "$FAKE/fail-checkout" ] && exit 1
+if [ "$1" = checkout ]; then
+  failures="$(cat "$FAKE/checkout-failures" 2>/dev/null || echo 0)"
+  if [ "$failures" -gt 0 ]; then echo $((failures - 1)) > "$FAKE/checkout-failures"; exit 1; fi
+fi
 exec "$REAL_GIT" "$@"
 GIT
 
@@ -141,11 +144,19 @@ remote() { local name="$1"; shift; archive "$REMOTES/$name.git" "$@" && commit "
 # github NAME ID... -> a private archive repository: it cannot be cloned
 # anonymously, and the stand-in ssh serves it as GitHub would, leaving the
 # contents of the files to be fetched when they are checked out
-github() {
-  local name="$1"; shift
-  archive "$FAKE/github/$name.git" "$@" && commit "$FAKE/github/$name.git"
-  git -C "$FAKE/github/$name.git" config uploadpack.allowFilter true
-  git -C "$FAKE/github/$name.git" config uploadpack.allowAnySHA1InWant true
+github() { local name="$1"; shift; archive "$FAKE/github/$name.git" "$@" && serve "$name"; }
+# serve NAME -> have the stand-in ssh serve what was written to $FAKE/github/NAME.git
+serve() {
+  commit "$FAKE/github/$1.git"
+  git -C "$FAKE/github/$1.git" config uploadpack.allowFilter true
+  git -C "$FAKE/github/$1.git" config uploadpack.allowAnySHA1InWant true
+}
+# monthless DIR -> one list's files as archive writes them, but with no month
+# among them
+monthless() {
+  archive "$1" "$HIDDEN"
+  rm "$1/processed"/2024-*.json
+  echo "not a month" > "$1/processed/notes.txt"
 }
 
 run() {
@@ -317,14 +328,67 @@ expect "the tries are a few seconds apart unless ARCHIVE_RETRY_PAUSE says otherw
   "clone r-sig-phylo.git;$again;pause 5;$again;pause 5;$again;" "$(tries)"
 expect "and a third try that works is as good as a first" "$FILES|0|" "$(landed r-sig-phylo)|$status|$(errors)"
 
-scenario cut-short
+# The contents of the files are fetched after the clone, when the files are
+# checked out. A checkout that fails stands for that fetch failing.
+scenario checkout-fails-once
 deploy_key="$KEY"
 github r-sig-phylo "$HIDDEN" "$HIDDEN2"
 conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
-touch "$FAKE/fail-checkout"
+echo 1 > "$FAKE/refusals"; echo 1 > "$FAKE/checkout-failures"
 run; status=$?
-[ "$status" != "0" ] && gone "$FAKE/key-path" && gone "$FAKE/hosts-path" && pass "the key file is also gone when the script fails half way" \
-  || bad "the key file is also gone when the script fails half way: exit $status"
+expect "a try of a members-only list is its clone and its checkout: one fails, then the other, and there is a third" \
+  "clone r-sig-phylo.git;$again;pause 0;$again;pause 0;$again;" "$(tries)"
+expect "which is as good as a first when it works" "$FILES|0|" "$(landed r-sig-phylo)|$status|$(errors)"
+
+scenario checkout-fails
+deploy_key="$KEY"
+remote r-devel "$RAW"
+github r-sig-phylo "$HIDDEN" "$HIDDEN2"
+conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
+conf r-devel "$PUBLIC/r-devel/"
+echo 1 > "$FAKE/refusals"; echo 2 > "$FAKE/checkout-failures"
+run; status=$?
+expect "when the third try fails as well there is no fourth" \
+  "clone r-sig-phylo.git;$again;pause 0;$again;pause 0;$again;" "$(tries)"
+expect "the run stops, with nothing of the list left and no list after it pulled" \
+  "1||processed " "$status|$(holds "$WORK/data/processed")|$(holds "$WORK/data")"
+case "$(errors)" in
+  "::error::"*r-sig-phylo*"could not be checked out"*) pass "with an error that names the list" ;;
+  *) bad "with an error that names the list: got '$(errors)'" ;;
+esac
+gone "$FAKE/key-path" && gone "$FAKE/hosts-path" && pass "and the key file is gone" || bad "and the key file is gone"
+
+scenario public-checkout-fails
+remote r-help "$RAW"
+remote r-devel "$RAW"
+conf r-help "$PUBLIC/r-help/"
+conf r-devel "$PUBLIC/r-devel/"
+echo 1 > "$FAKE/checkout-failures"
+run; status=$?
+expect "a public list that is cloned and cannot be checked out fails the run at once, as it always did" \
+  "1|clone r-help.git;|" "$status|$(tries)|$(errors)"
+
+scenario no-months
+deploy_key="$KEY"
+remote r-devel "$RAW"
+monthless "$FAKE/github/r-sig-phylo.git"
+serve r-sig-phylo
+conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
+conf r-devel "$PUBLIC/r-devel/"
+run; status=$?
+expect "with a deploy key, a members-only list that brings no month file stops the run" \
+  "1|" "$status|$(holds "$WORK/data/processed")"
+case "$(errors)" in
+  "::error::"*r-sig-phylo*"no month file"*) pass "with an error that names the list and says why" ;;
+  *) bad "with an error that names the list and says why: got '$(errors)'" ;;
+esac
+
+scenario no-months-no-key
+monthless "$REMOTES/r-sig-phylo.git"
+commit "$REMOTES/r-sig-phylo.git"
+conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
+run; status=$?
+expect "without a deploy key the same list is no error: it has nothing to build, as before" "0|" "$status|$(errors)"
 
 # The workflow is read as text: its steps are the "      - " items of its one job.
 WORKFLOW="$DIR/../.github/workflows/update-data.yml"

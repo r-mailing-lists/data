@@ -16,9 +16,10 @@
 #
 # That list's archive repository is private. It is read with a deploy key:
 # when a repository cannot be cloned anonymously and ARCHIVE_DEPLOY_KEY is
-# set, the clone is tried over SSH with that key. Without a key the list is
-# passed over, and a line in the log says so. With a key, a repository that
-# still cannot be cloned after three tries fails the script as well.
+# set, it is tried over SSH with that key. Without a key the list is passed
+# over, and a line in the log says so. With a key the script fails as well
+# when, after three tries, the repository still cannot be cloned or its files
+# cannot be checked out, and when it brings no month file at all.
 #
 # The script fails rather than pass such a list over because of what comes
 # after it: publish-parquet.sh deletes the published file of a list that is
@@ -31,21 +32,23 @@
 #                        (default: https://github.com/r-mailing-lists)
 #   ARCHIVE_DEPLOY_KEY   the private half of a deploy key of a private
 #                        archive repository (default: none)
-#   ARCHIVE_RETRY_PAUSE  seconds between the tries of a clone over SSH
-#                        (default: 5)
+#   ARCHIVE_RETRY_PAUSE  seconds between the tries over SSH (default: 5)
 
 set -euo pipefail
 
 BASE="${ARCHIVE_BASE:-https://github.com/r-mailing-lists}"
 PAUSE="${ARCHIVE_RETRY_PAUSE:-5}"
 
+# The month files of a list: the ones build-parquet.R makes rows of.
+MONTHS='[0-9][0-9][0-9][0-9]-[0-9][0-9].json'
+
 # hidden_only DIR -> true when every message of every month file in DIR has
-# no identifier or a hidden one. The month files are the ones build-parquet.R
-# makes rows of. A file that is not one JSON document with a list of messages
-# counts as not hidden: what cannot be checked is not published.
+# no identifier or a hidden one. A file that is not one JSON document with a
+# list of messages counts as not hidden: what cannot be checked is not
+# published.
 hidden_only() {
   local month
-  for month in "$1"/[0-9][0-9][0-9][0-9]-[0-9][0-9].json; do
+  for month in "$1"/$MONTHS; do
     [ -e "$month" ] || continue
     jq -e -s 'length == 1 and all(.[0].messages[]; (.message_id // "") | . == "" or test("^<[0-9a-f]{32}@hidden>$"))' \
       "$month" >/dev/null 2>&1 || return 1
@@ -70,39 +73,68 @@ if [ -n "${ARCHIVE_DEPLOY_KEY:-}" ]; then
   export GIT_SSH_COMMAND="ssh -i $key_file -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$known_hosts"
 fi
 
-# clone REPO DIR TRIES -> the sparse clone of an archive repository in DIR.
-# Every repository but one is public. The private one fails the anonymous
-# clone, and when there is a deploy key it is tried over SSH, up to TRIES
-# times with a pause in between.
-clone() {
-  local try
-  git clone --depth 1 --filter=blob:none --sparse \
-    "$BASE/$1.git" \
-    "$2" 2>/dev/null && return
-  [ -n "$key_file" ] || return 1
-  for ((try = 1; try <= $3; try++)); do
-    [ "$try" -gt 1 ] && sleep "$PAUSE"
-    git clone --depth 1 --filter=blob:none --sparse \
-      "git@github.com:r-mailing-lists/$1.git" \
-      "$2" 2>/dev/null && return
-  done
-  return 1
+# sparse DIR PATTERN... -> check out, in the clone in DIR, the files the build
+# takes and no others. The clone was made with --filter=blob:none, so this is
+# also where the contents of those files are fetched.
+sparse() {
+  local dir="$1"; shift
+  (cd "$dir" && git sparse-checkout init --no-cone && git sparse-checkout set "$@" && git checkout)
 }
 
-# not_cloned -> what follows when the repository of the list being pulled
-# cannot be cloned. A public list is passed over, as it always was. So is a
-# members-only list while there is no deploy key, which is the state before
-# the list is switched on. With a key its repository ought to be readable,
-# and going on without the list would have the publisher delete its
-# published file, so the run stops instead and the next one tries again.
-not_cloned() {
-  [ "$members_only" = true ] || return 0
+# fetch REPO DIR TRIES PATTERN... -> the sparse clone of an archive repository
+# in DIR, with the files of PATTERN checked out. Every repository but one is
+# public. The private one fails the anonymous clone, and when there is a
+# deploy key it is tried over SSH, up to TRIES times with a pause in between.
+# A try is the clone and the checkout together, as either can fail when the
+# host is out of reach. Returns 1 when the repository cannot be cloned and 2
+# when it was cloned and its files cannot be checked out.
+fetch() {
+  local repo="$1" dir="$2" tries="$3" try status=1; shift 3
+  if git clone --depth 1 --filter=blob:none --sparse \
+    "$BASE/$repo.git" \
+    "$dir" 2>/dev/null; then
+    sparse "$dir" "$@" || return 2
+    return 0
+  fi
+  [ -n "$key_file" ] || return 1
+  for ((try = 1; try <= tries; try++)); do
+    [ "$try" -gt 1 ] && sleep "$PAUSE"
+    if git clone --depth 1 --filter=blob:none --sparse \
+      "git@github.com:r-mailing-lists/$repo.git" \
+      "$dir" 2>/dev/null; then
+      sparse "$dir" "$@" && return 0
+      status=2
+      rm -rf "$dir"
+    fi
+  done
+  return "$status"
+}
+
+# stop REASON -> end the run because of the members-only list being pulled.
+# Going on without the list would have the publisher delete its published
+# file. Failing here stops the run before anything is built, the release
+# stays as it was, and the next run tries again.
+stop() {
+  echo "::error::$name has a members-only archive and $1, so nothing is built or published"
+  exit 1
+}
+
+# not_fetched STATUS -> what follows when fetch fails for the list being
+# pulled. A public list that cannot be cloned is passed over, as it always
+# was, and one that cannot be checked out fails the run, as it always did. A
+# members-only list is passed over only while there is no deploy key, which
+# is the state before the list is switched on.
+not_fetched() {
+  if [ "$members_only" != true ]; then
+    [ "$1" = 1 ] || exit 1
+    return 0
+  fi
+  [ "$1" = 1 ] || stop "its files could not be checked out of its repository"
   if [ -z "$key_file" ]; then
     echo "Skipping $name: a members-only list, and no deploy key is configured"
     return 0
   fi
-  echo "::error::$name has a members-only archive and its repository could not be cloned with the deploy key, so nothing is built or published"
-  exit 1
+  stop "its repository could not be cloned with the deploy key"
 }
 
 mkdir -p data/processed
@@ -120,22 +152,14 @@ while IFS=$'\t' read -r name url type desc repo; do
     # Pooled archive repo: one <list>/ directory per list, cloned once and reused
     pool="data/tmp-pool-$repo"
     if [ ! -d "$pool" ]; then
-      clone "$repo" "$pool" "$tries" || { not_cloned; continue; }
-      cd "$pool"
-      git sparse-checkout init --no-cone
-      git sparse-checkout set '/*/processed' '/*/meta.json' '/*/index.json' '/*/message-order.json' '/*/contributors.json'
-      git checkout
-      cd ../..
+      fetch "$repo" "$pool" "$tries" '/*/processed' '/*/meta.json' '/*/index.json' '/*/message-order.json' '/*/contributors.json' \
+        || { not_fetched $?; continue; }
     fi
     src="$pool/$name"
   else
     src="data/tmp-$name"
-    clone "$name" "$src" "$tries" || { not_cloned; continue; }
-    cd "$src"
-    git sparse-checkout init --no-cone
-    git sparse-checkout set /processed /meta.json /index.json /message-order.json /contributors.json
-    git checkout
-    cd ../..
+    fetch "$name" "$src" "$tries" /processed /meta.json /index.json /message-order.json /contributors.json \
+      || { not_fetched $?; continue; }
   fi
   if [ -d "$src/processed" ]; then
     mv "$src/processed" "data/processed/$name"
@@ -149,13 +173,18 @@ while IFS=$'\t' read -r name url type desc repo; do
   if [ -z "$repo" ]; then
     rm -rf "$src"
   fi
-  # A members-only list stays only when its files have addresses hidden.
-  # Going on without it would have the publisher delete its published file,
-  # so the run stops here, before anything is built.
-  if [ "$members_only" = true ] && ! hidden_only "data/processed/$name"; then
-    rm -rf "data/processed/$name"
-    echo "::error::$name has a members-only archive and its files were not written with addresses hidden, so nothing is built or published"
-    exit 1
+  if [ "$members_only" = true ]; then
+    # A members-only list stays only when its files have addresses hidden.
+    if ! hidden_only "data/processed/$name"; then
+      rm -rf "data/processed/$name"
+      stop "its files were not written with addresses hidden"
+    fi
+    # Once it is switched on it must also bring something to build. With no
+    # month file it would be missing from the build like a list passed over.
+    if [ -n "$key_file" ] && ! compgen -G "data/processed/$name/$MONTHS" > /dev/null; then
+      rm -rf "data/processed/$name"
+      stop "its repository holds no month file"
+    fi
   fi
 done < scripts/lists.conf
 rm -rf data/tmp-pool-*
