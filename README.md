@@ -114,7 +114,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**645,897** messages across **112** mailing lists
+**652,405** messages across **113** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
@@ -129,6 +129,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-package-devel         | 12,398   | 1,130   | May 2015      | Oct 2026     |
 | rcpp-devel              | 11,011   | 801     | Nov 2009      | May 2026     |
 | r-sig-ecology           | 7,597    | 1,329   | Apr 2008      | Oct 2026     |
+| r-sig-phylo             | 6,508    | 1,035   | Feb 2008      | Oct 2026     |
 | r-sig-meta-analysis     | 5,647    | 551     | Jun 2017      | Sep 2026     |
 | r-sig-debian            | 3,678    | 504     | Feb 2005      | Sep 2026     |
 | datatable-help          | 3,415    | 441     | Mar 2010      | Apr 2018     |
@@ -268,6 +269,14 @@ One Parquet file per mailing list. All files share the same schema.
 | `thread_id` | string | Thread grouping ID (`thread-<hash>`) |
 | `thread_depth` | integer | Depth in thread tree (0 = root message) |
 | `month` | string | `YYYY-MM` for temporal bucketing |
+| `source_url` | string | Address of the message’s own page in the source archive (null when none is known, and for every list hosted on R-Forge) |
+
+One list, `r-sig-phylo`, has an archive that is members-only at the
+source. In its data every address the parser can read is hidden, except
+the R lists’ own posting addresses, and `message_id` and `in_reply_to`
+are opaque codes that still tie a reply to its parent;
+`from_email_hash`, though, is still the unsalted SHA-256 of the real
+address, so an address someone already has can be checked against it.
 
 ### `threads.parquet`
 
@@ -303,13 +312,16 @@ Email addresses are not included in this dataset. Author identity is
 represented by display name and a SHA-256 hash of the email address,
 which allows grouping messages by author without exposing contact
 information. The original emails are publicly archived on the source
-mailing list servers.
+mailing list servers, except those of `r-sig-phylo`, whose archive there
+is open to list members only.
 
 ## License
 
 The mailing list content is publicly archived by the [R
 Project](https://www.r-project.org/mail.html) via [ETH
 Zurich](https://stat.ethz.ch/pipermail/) and
-[R-Forge](https://lists.r-forge.r-project.org/pipermail/). This dataset
-reformats that public content for easier analysis. The tooling in this
-repository is licensed under the [MIT License](LICENSE).
+[R-Forge](https://lists.r-forge.r-project.org/pipermail/), except that
+of `r-sig-phylo`, whose archive is open to list members only and which
+is included here with addresses hidden. This dataset reformats that
+content for easier analysis. The tooling in this repository is licensed
+under the [MIT License](LICENSE).

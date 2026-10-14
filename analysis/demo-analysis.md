@@ -96,26 +96,27 @@ rml_available()
      [67] "r-sig-insurance"         "r-sig-jobs"             
      [69] "r-sig-mac"               "r-sig-meta-analysis"    
      [71] "r-sig-mixed-models"      "r-sig-networks"         
-     [73] "r-sig-robust"            "r-sig-teaching"         
-     [75] "r-sig-windows"           "r-ug-ottawa"            
-     [77] "rangemapper-news"        "rcicr-users"            
-     [79] "rcpp-devel"              "rcppoctave-user"        
-     [81] "reddyproc-users"         "remoterengine-devel"    
-     [83] "repitools-help"          "rgeos-devel"            
-     [85] "riskassessment-news"     "rnomads-user"           
-     [87] "robustbase-authors"      "roxygen-devel"          
-     [89] "rphree-general"          "rprotobuf-yada"         
-     [91] "rquantlib-devel"         "rserlang-develop"       
-     [93] "rsiena-help"             "rspatial-devel"         
-     [95] "sciviews-help"           "sciviews-news"          
-     [97] "seqinr-forum"            "simsalabim-communicate" 
-     [99] "sorvi-admin"             "spdep-devel"            
-    [101] "sprint-developer"        "sprint-user"            
-    [103] "synbreed-news"           "tikzdevice-bugs"        
-    [105] "tlocoh-info"             "traminer-users"         
-    [107] "travelr-announce"        "travelr-discussion"     
-    [109] "uhcluster-members"       "viennar-meetup"         
-    [111] "yuima-wishlist"          "zipfr-users"            
+     [73] "r-sig-phylo"             "r-sig-robust"           
+     [75] "r-sig-teaching"          "r-sig-windows"          
+     [77] "r-ug-ottawa"             "rangemapper-news"       
+     [79] "rcicr-users"             "rcpp-devel"             
+     [81] "rcppoctave-user"         "reddyproc-users"        
+     [83] "remoterengine-devel"     "repitools-help"         
+     [85] "rgeos-devel"             "riskassessment-news"    
+     [87] "rnomads-user"            "robustbase-authors"     
+     [89] "roxygen-devel"           "rphree-general"         
+     [91] "rprotobuf-yada"          "rquantlib-devel"        
+     [93] "rserlang-develop"        "rsiena-help"            
+     [95] "rspatial-devel"          "sciviews-help"          
+     [97] "sciviews-news"           "seqinr-forum"           
+     [99] "simsalabim-communicate"  "sorvi-admin"            
+    [101] "spdep-devel"             "sprint-developer"       
+    [103] "sprint-user"             "synbreed-news"          
+    [105] "tikzdevice-bugs"         "tlocoh-info"            
+    [107] "traminer-users"          "travelr-announce"       
+    [109] "travelr-discussion"      "uhcluster-members"      
+    [111] "viennar-meetup"          "yuima-wishlist"         
+    [113] "zipfr-users"            
 
 ``` r
 # Read a single list (use col_select to skip the body — much faster)
@@ -343,7 +344,7 @@ contribs |>
 | Gabor Grothendieck |         10019 |         16 |
 | Uwe Ligges         |          8433 |         17 |
 | Dirk Eddelbuettel  |          7937 |         21 |
-| Ben Bolker         |          6190 |          9 |
+| Ben Bolker         |          6238 |         10 |
 | Bert Gunter        |          6050 |         10 |
 | Martin Maechler    |          5805 |         22 |
 | jim holtman        |          4445 |          6 |
