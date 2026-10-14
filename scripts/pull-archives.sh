@@ -65,13 +65,14 @@ hidden_only() {
 }
 
 # names_hidden FILE -> true when FILE, a list's contributors.json, is one
-# JSON array and no name in it holds an address: an "@", or the word "at"
-# between blanks in any case. rmail-parser aggregate builds
-# contributors.parquet from these files, and a parse that did not hide
-# addresses can leave one with names like "jane.doe at uni.example.org"
-# beside month files that did.
+# JSON array, every entry in it has a name, and no name holds an address: an
+# "@", or the word "at" with whitespace on both sides, in any case.
+# rmail-parser aggregate builds contributors.parquet from these files, and a
+# parse that did not hide addresses can leave one with names like
+# "jane.doe at uni.example.org" beside month files that did. An entry with no
+# name would fail that step later, under the parser's name and not the list's.
 names_hidden() {
-  jq -e -s 'length == 1 and (.[0] | type == "array") and all(.[0][]; (.name // "") | test("@| at "; "i") | not)' \
+  jq -e -s 'length == 1 and (.[0] | type == "array") and all(.[0][]; (.name | type == "string") and (.name | test("@|\\sat\\s"; "i") | not))' \
     "$1" >/dev/null 2>&1
 }
 
@@ -211,7 +212,7 @@ while IFS=$'\t' read -r name url type desc repo; do
     fi
     if [ -n "$key_file" ] && ! names_hidden "data/processed/$name/contributors.json"; then
       rm -rf "data/processed/$name"
-      stop "its contributors.json is missing, is not one JSON array, or has a name that holds an address"
+      stop "its contributors.json is missing, is not one JSON array, or has an entry without a name or with a name that holds an address"
     fi
   fi
 done < scripts/lists.conf

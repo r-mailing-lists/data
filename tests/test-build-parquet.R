@@ -52,14 +52,16 @@ month_archive <- function(list_name, month, ids, linked,
   )
 }
 
-# The alias file gives hash-a a plain canonical name, hash-b none, and hash-c
-# and hash-d names that hold an address, written two ways.
+# The alias file gives hash-a a plain canonical name, hash-b none, and hash-c,
+# hash-d and hash-e names that hold an address, written three ways: the last
+# with the word in capitals and tabs around it.
 alias_groups <- list(
   list(canonical_name = "Canonical A", email_hashes = list("hash-a")),
   list(canonical_name = "carol@example.org", email_hashes = list("hash-c")),
-  list(canonical_name = "dave at example.org", email_hashes = list("hash-d"))
+  list(canonical_name = "dave at example.org", email_hashes = list("hash-d")),
+  list(canonical_name = "erin\tAT\texample.org", email_hashes = list("hash-e"))
 )
-alias_senders <- c("hash-a", "hash-b", "hash-c", "hash-d")
+alias_senders <- c("hash-a", "hash-b", "hash-c", "hash-d", "hash-e")
 
 contributors <- list(
   list(name = "Sender hash-a", messageCount = 6L, firstDate = "2020-01-15T12:00:00Z",
@@ -73,8 +75,8 @@ contributors <- list(
 # Write the fixture, optionally with every list of entries reversed. test-list
 # has source pages for most of its messages; forge-list, like every list hosted
 # on R-Forge, has none. open-list and hidden-list each have one message from
-# each of the four senders, and differ only in how their identifiers are
-# written. hidden-list also has a fifth message, from hash-c, with no
+# each of the five senders, and differ only in how their identifiers are
+# written. hidden-list also has a sixth message, from hash-c, with no
 # identifier at all.
 write_fixture <- function(dir, reversed) {
   flip <- if (reversed) rev else identity
@@ -82,11 +84,11 @@ write_fixture <- function(dir, reversed) {
     "test-list" = list("2020-01" = month_archive("test-list", "2020-01", 1:6, linked = TRUE),
                        "2020-02" = month_archive("test-list", "2020-02", 7:12, linked = TRUE)),
     "forge-list" = list("2020-01" = month_archive("forge-list", "2020-01", 13:15, linked = FALSE)),
-    "open-list" = list("2020-01" = month_archive("open-list", "2020-01", 16:19, linked = FALSE,
+    "open-list" = list("2020-01" = month_archive("open-list", "2020-01", 16:20, linked = FALSE,
                                                  senders = alias_senders)),
-    "hidden-list" = list("2020-01" = month_archive("hidden-list", "2020-01", 20:24, linked = FALSE,
+    "hidden-list" = list("2020-01" = month_archive("hidden-list", "2020-01", 21:26, linked = FALSE,
                                                    senders = c(alias_senders, "hash-c"),
-                                                   written = c(rep("hidden", 4), "none")))
+                                                   written = c(rep("hidden", 5), "none")))
   )
   for (list_name in names(lists)) {
     list_dir <- file.path(dir, list_name)
@@ -161,10 +163,12 @@ results <- c(
           all(msgs$from_name[msgs$from_email_hash == "hash-b"] == "Sender hash-b")),
   check("also to a canonical name that holds an address, where identifiers are raw",
         identical(open$from_name,
-                  c("Canonical A", "Sender hash-b", "carol@example.org", "dave at example.org"))),
+                  c("Canonical A", "Sender hash-b", "carol@example.org", "dave at example.org",
+                    "erin\tAT\texample.org"))),
   check("but in a list with hidden identifiers every message keeps its own name instead of such a one",
         identical(hidden$from_name,
-                  c("Canonical A", "Sender hash-b", "Sender hash-c", "Sender hash-d", "Sender hash-c")))
+                  c("Canonical A", "Sender hash-b", "Sender hash-c", "Sender hash-d", "Sender hash-e",
+                    "Sender hash-c")))
 )
 
 cat("\n", sum(results), " passed, ", sum(!results), " failed\n", sep = "")

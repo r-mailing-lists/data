@@ -441,6 +441,9 @@ names object "is an object, not an array" '{"pat":{"name":"Pat Atkins"}}'
 names at-sign "has a name with an @ in it" '[{"name":"Pat Atkins"},{"name":"jane.doe@uni.example.org"}]'
 names at-word "has a name with the word at in it" '[{"name":"jane.doe at uni.example.org"}]'
 names at-capitals "has a name with the word AT in it" '[{"name":"jane.doe AT uni.example.org"}]'
+names at-tabs "has a name with the word at between tabs" '[{"name":"jane.doe\tat\tuni.example.org"}]'
+names null-name "has a name that is null" '[{"name":"Pat Atkins"},{"name":null}]'
+names no-name "has an entry without a name" '[{"name":"Pat Atkins"},{"messageCount":3}]'
 
 scenario no-months-no-key
 monthless "$REMOTES/r-sig-phylo.git"
