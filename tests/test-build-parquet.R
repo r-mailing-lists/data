@@ -33,6 +33,8 @@ message_entry <- function(i, date, hash, linked, written = "raw") {
     thread_id = sprintf("thread-%03d", i), thread_depth = 0L, month = substr(date, 1, 7)
   )
   if (linked && i %% 3 != 0) entry$source_url <- source_page(i)
+  # Replies name the message before them; the first of a month has none.
+  if (linked && i %% 2 == 0) entry$in_reply_to <- sprintf("<m%03d@example.com>", i - 1)
   entry
 }
 
@@ -139,8 +141,12 @@ run <- function(reversed = FALSE, env = character(), stale = character()) {
   write_fixture(input, reversed)
   aliases <- file.path(root, "aliases.json")
   write_json(list(aliases = alias_groups), aliases, auto_unbox = TRUE)
-  dir.create(file.path(output, "messages"), recursive = TRUE)
-  file.create(file.path(output, stale))
+  # Only a run with leftovers has an output folder to begin with; otherwise the
+  # script has to create it, as in a fresh checkout.
+  if (length(stale) > 0) {
+    dir.create(file.path(output, "messages"), recursive = TRUE)
+    file.create(file.path(output, stale))
+  }
   log <- file.path(root, "build.log")
   status <- system2(file.path(R.home("bin"), "Rscript"),
                     c("scripts/build-parquet.R", input, output, aliases),
@@ -198,6 +204,7 @@ read_all <- function(paths) {
   rownames(rows) <- NULL
   rows
 }
+test_path <- file.path(forward, "messages", "test-list.parquet")
 schema_of <- function(path) {
   schema <- as.data.frame(read_parquet_schema(path))
   schema$file_name <- NULL
@@ -255,9 +262,11 @@ results <- c(
           sum(grepl("long-list-[0-9]{4}-[0-9]{4}[.]parquet", chunked_run$log)) == 3),
   check("the chunks hold the list's rows, columns and order, as the whole file does",
         have_chunks && identical(read_all(file.path(chunked, chunks)), read_rows(long_whole))),
-  check("and each chunk has the whole file's schema, a column with no values included",
-        have_chunks && all(vapply(file.path(chunked, chunks),
-                                  \(f) identical(schema_of(f), schema_of(long_whole)), logical(1)))),
+  check("and each chunk has the schema of a file whose columns all have values, as the whole file does",
+        have_chunks && !all(is.na(msgs$source_url)) && !all(is.na(msgs$in_reply_to)) &&
+          identical(schema_of(long_whole), schema_of(test_path)) &&
+          all(vapply(file.path(chunked, chunks),
+                     \(f) identical(schema_of(f), schema_of(test_path)), logical(1)))),
   check("the limit changes nothing for the lists under it",
         all(tools::md5sum(file.path(forward, unsplit)) == tools::md5sum(file.path(chunked, unsplit)))),
   check("the chunks are byte-identical whatever order the input is in",
