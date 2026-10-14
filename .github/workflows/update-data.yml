@@ -30,10 +30,11 @@ jobs:
       # scripts/pull-archives.test.sh. One archive repository is private and
       # is read with a deploy key, which this step alone is given. Without
       # the secret that repository cannot be cloned and its list is passed
-      # over. This step fails when that list's files do not have addresses
-      # hidden, or when the secret is there and the repository still cannot
-      # be cloned. The steps below must not run then: a build without the
-      # list would delete its published file.
+      # over, so removing the secret makes the next build leave the list
+      # out, which unpublishes it. With the secret, this step fails when that
+      # list cannot be read or its files cannot be vouched for, and the steps
+      # below must not run then: a build without the list would delete its
+      # published file.
       - name: Pull processed data from archive repos
         run: bash scripts/pull-archives.sh
         env:

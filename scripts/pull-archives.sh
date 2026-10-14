@@ -17,9 +17,11 @@
 # That list's archive repository is private. It is read with a deploy key:
 # when a repository cannot be cloned anonymously and ARCHIVE_DEPLOY_KEY is
 # set, it is tried over SSH with that key. Without a key the list is passed
-# over, and a line in the log says so. With a key the script fails as well
-# when, after three tries, the repository still cannot be cloned or its files
-# cannot be checked out, and when it brings no month file at all.
+# over, and a line in the log says so; once the list is published, that
+# build unpublishes it. With a key the script fails as well when, after
+# three tries, the repository still cannot be cloned or its files cannot be
+# checked out, when it brings no month file at all, and when its
+# contributors.json is missing, unreadable or has a name with an address.
 #
 # The script fails rather than pass such a list over because of what comes
 # after it: publish-parquet.sh deletes the published file of a list that is
