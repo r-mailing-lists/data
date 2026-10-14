@@ -256,8 +256,31 @@ unreadable() {
 }
 unreadable truncated "is not valid JSON" "{\"messages\":[{\"id\":\"msg\",\"message_id\":\"$HIDDEN\"}"
 unreadable empty "is empty" ""
-unreadable two "holds two documents" "{\"messages\":[{\"id\":\"msg\",\"message_id\":\"$RAW\"}]}{\"messages\":[]}"
+unreadable two "holds two documents" "{\"messages\":[]}{\"messages\":[{\"id\":\"msg\",\"message_id\":\"$RAW\"}]}"
 unreadable shapeless "has no list of messages" "{\"threads\":[]}"
+
+# identifier SLUG WHAT WANTED ID -> a members-only list with a message whose
+# identifier is ID is taken (WANTED 0) or stops the run (WANTED 1). The parser
+# writes a value that held several identifiers as several codes, one blank
+# apart, and nothing else may be before, between or after them.
+identifier() {
+  scenario "identifier-$1"
+  remote r-sig-phylo "$HIDDEN" "$4"
+  conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
+  run; status=$?
+  if [ "$3" = 0 ]; then
+    expect "a members-only list with an identifier that $2 is taken" "0|$FILES" "$status|$(landed r-sig-phylo)"
+  else
+    expect "a members-only list with an identifier that $2 stops the run" "1|" "$status|$(holds "$WORK/data/processed")"
+  fi
+}
+identifier several "is two hidden codes, one blank apart" 0 "$HIDDEN $HIDDEN2"
+identifier three "is three hidden codes, one blank apart" 0 "$HIDDEN $HIDDEN2 $HIDDEN"
+identifier two-blanks "is two hidden codes, two blanks apart" 1 "$HIDDEN  $HIDDEN2"
+identifier newline "is a hidden code with a newline after it" 1 "$HIDDEN\\n"
+identifier raw-first "is a raw identifier, then a hidden code" 1 "$RAW $HIDDEN"
+identifier raw-last "is a hidden code, then a raw identifier" 1 "$HIDDEN $RAW"
+identifier capitals "is a hidden code in upper-case hex" 1 "<0123456789ABCDEF0123456789ABCDEF@hidden>"
 
 # The guard is switched on by the base URL, so the real line is tried as it is.
 scenario real-line

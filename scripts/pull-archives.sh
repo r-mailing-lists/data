@@ -43,14 +43,16 @@ PAUSE="${ARCHIVE_RETRY_PAUSE:-5}"
 MONTHS='[0-9][0-9][0-9][0-9]-[0-9][0-9].json'
 
 # hidden_only DIR -> true when every message of every month file in DIR has
-# no identifier or a hidden one. A file that is not one JSON document with a
-# list of messages counts as not hidden: what cannot be checked is not
-# published.
+# no identifier or a hidden one. A hidden identifier is one code, or several
+# one blank apart where the value held several, and the pattern holds the
+# whole value: \A and \z, where $ would let a newline after it through. A
+# file that is not one JSON document with a list of messages counts as not
+# hidden: what cannot be checked is not published.
 hidden_only() {
   local month
   for month in "$1"/$MONTHS; do
     [ -e "$month" ] || continue
-    jq -e -s 'length == 1 and all(.[0].messages[]; (.message_id // "") | . == "" or test("^<[0-9a-f]{32}@hidden>$"))' \
+    jq -e -s 'length == 1 and all(.[0].messages[]; (.message_id // "") | . == "" or test("\\A<[0-9a-f]{32}@hidden>( <[0-9a-f]{32}@hidden>)*\\z"))' \
       "$month" >/dev/null 2>&1 || return 1
   done
 }
