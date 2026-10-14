@@ -2,8 +2,11 @@ name: Update Data
 
 on:
   schedule:
-    # Run daily at 6 AM UTC — after archive repos update (2-3 AM UTC)
-    - cron: '0 6 * * *'
+    # Daily at 04:47 UTC, three and a half hours after the archive
+    # repositories run (01:17 UTC). Off the hour, because GitHub starts runs
+    # scheduled on the hour hours late, and late enough for every archive
+    # run of the night to have finished.
+    - cron: '47 4 * * *'
   repository_dispatch:
     types: [archive-updated]
   workflow_dispatch:
