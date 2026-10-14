@@ -16,10 +16,16 @@
 # script still succeeds, so the other lists are published, and the last step
 # of the workflow fails the run on that file.
 #
+# That list's archive repository is private. It is read with a deploy key:
+# when a repository cannot be cloned anonymously and ARCHIVE_DEPLOY_KEY is
+# set, the clone is tried once more over SSH with that key.
+#
 # usage: pull-archives.sh   (from the repository root: it reads
 #                            scripts/lists.conf and writes under data/)
-#   ARCHIVE_BASE  where the repositories are cloned from
-#                 (default: https://github.com/r-mailing-lists)
+#   ARCHIVE_BASE        where the repositories are cloned from
+#                       (default: https://github.com/r-mailing-lists)
+#   ARCHIVE_DEPLOY_KEY  the private half of a deploy key of a private
+#                       archive repository (default: none)
 
 set -euo pipefail
 
@@ -39,6 +45,37 @@ hidden_only() {
   done
 }
 
+# With a deploy key, ssh is told to use that key and no other, and to talk
+# only to the host that has the key GitHub publishes. The key goes into a
+# file because ssh reads it from one. The file is removed when the script
+# ends, however it ends, and nothing here prints the key.
+key_file=""
+if [ -n "${ARCHIVE_DEPLOY_KEY:-}" ]; then
+  key_file="$(mktemp)"
+  known_hosts="$(mktemp)"
+  trap 'rm -f "$key_file" "$known_hosts"' EXIT
+  chmod 600 "$key_file"
+  printf '%s\n' "$ARCHIVE_DEPLOY_KEY" > "$key_file"
+  echo "github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl" > "$known_hosts"
+  # Exported, not set for the clone alone: a clone with --filter=blob:none
+  # leaves the contents of the files to be fetched when they are checked out,
+  # and that fetch goes over SSH as well.
+  export GIT_SSH_COMMAND="ssh -i $key_file -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$known_hosts"
+fi
+
+# clone REPO DIR -> the sparse clone of an archive repository in DIR. Every
+# repository but one is public. The private one fails the anonymous clone,
+# and is tried once more over SSH when there is a deploy key.
+clone() {
+  git clone --depth 1 --filter=blob:none --sparse \
+    "$BASE/$1.git" \
+    "$2" 2>/dev/null && return
+  [ -n "$key_file" ] || return 1
+  git clone --depth 1 --filter=blob:none --sparse \
+    "git@github.com:r-mailing-lists/$1.git" \
+    "$2" 2>/dev/null
+}
+
 mkdir -p data/processed
 
 while IFS=$'\t' read -r name url type desc repo; do
@@ -49,9 +86,7 @@ while IFS=$'\t' read -r name url type desc repo; do
     # Pooled archive repo: one <list>/ directory per list, cloned once and reused
     pool="data/tmp-pool-$repo"
     if [ ! -d "$pool" ]; then
-      git clone --depth 1 --filter=blob:none --sparse \
-        "$BASE/$repo.git" \
-        "$pool" 2>/dev/null || continue
+      clone "$repo" "$pool" || continue
       cd "$pool"
       git sparse-checkout init --no-cone
       git sparse-checkout set '/*/processed' '/*/meta.json' '/*/index.json' '/*/message-order.json' '/*/contributors.json'
@@ -61,9 +96,7 @@ while IFS=$'\t' read -r name url type desc repo; do
     src="$pool/$name"
   else
     src="data/tmp-$name"
-    git clone --depth 1 --filter=blob:none --sparse \
-      "$BASE/$name.git" \
-      "$src" 2>/dev/null || continue
+    clone "$name" "$src" || continue
     cd "$src"
     git sparse-checkout init --no-cone
     git sparse-checkout set /processed /meta.json /index.json /message-order.json /contributors.json

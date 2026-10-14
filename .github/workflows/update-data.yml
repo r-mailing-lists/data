@@ -27,9 +27,13 @@ jobs:
       - uses: actions/checkout@v4
 
       # The loop over the lists is a script so that it can be tested; see
-      # scripts/pull-archives.test.sh.
+      # scripts/pull-archives.test.sh. One archive repository is private and
+      # is read with a deploy key, which this step alone is given. Without
+      # the secret that repository cannot be cloned and its list is passed over.
       - name: Pull processed data from archive repos
         run: bash scripts/pull-archives.sh
+        env:
+          ARCHIVE_DEPLOY_KEY: ${{ secrets.ARCHIVE_DEPLOY_KEY }}
 
       - name: Compute data hash
         id: data-hash
