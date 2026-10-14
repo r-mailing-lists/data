@@ -236,6 +236,14 @@ unreadable empty "is empty" ""
 unreadable two "holds two documents" "{\"messages\":[{\"id\":\"msg\",\"message_id\":\"$RAW\"}]}{\"messages\":[]}"
 unreadable shapeless "has no list of messages" "{\"threads\":[]}"
 
+# The guard is switched on by the base URL, so the real line is tried as it is.
+scenario real-line
+remote r-sig-phylo "$RAW"
+grep '^r-sig-phylo' "$DIR/lists.conf" >> "$WORK/scripts/lists.conf"
+run
+expect "the line lists.conf has for r-sig-phylo puts the list under the guard" \
+  "|r-sig-phylo" "$(holds "$WORK/data/processed")|$(cat "$WORK/$MARKER" 2>/dev/null)"
+
 scenario deploy-key
 deploy_key="$KEY"
 remote r-help "$RAW"

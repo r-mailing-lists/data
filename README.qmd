@@ -266,6 +266,8 @@ One Parquet file per mailing list. All files share the same schema.
 | `month` | string | `YYYY-MM` for temporal bucketing |
 | `source_url` | string | Address of the message's own page in the source archive (null when none is known, and for every list hosted on R-Forge) |
 
+One list, `r-sig-phylo`, has an archive that is members-only at the source. In its data every mailbox address is hidden, and `message_id` and `in_reply_to` are opaque codes that still tie a reply to its parent.
+
 ### `threads.parquet`
 
 Thread-level summaries for all lists.
