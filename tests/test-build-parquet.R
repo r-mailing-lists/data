@@ -17,11 +17,12 @@ library(nanoparquet)
 source_page <- function(i) sprintf("https://stat.ethz.ch/pipermail/test-list/2020-January/%06d.html", i)
 
 # A list whose archive is members-only is written with addresses hidden, and
-# then its identifiers are opaque codes.
-message_entry <- function(i, date, hash, linked, hidden = FALSE) {
+# then its identifiers are opaque codes. A message that had none has none.
+message_entry <- function(i, date, hash, linked, written = "raw") {
   entry <- list(
     id = sprintf("msg-%03d", i),
-    message_id = if (hidden) sprintf("<%032x@hidden>", i) else sprintf("<m%03d@example.com>", i),
+    message_id = switch(written, raw = sprintf("<m%03d@example.com>", i),
+                        hidden = sprintf("<%032x@hidden>", i), none = ""),
     from_name = paste("Sender", hash), from_email_hash = hash, date = date,
     subject = paste("topic", i), subject_clean = paste("topic", i),
     body_plain = paste("body", i), body_snippet = paste("body", i),
@@ -40,13 +41,13 @@ thread_entry <- function(i, date) {
 
 # One month of one list. Within a month every message is sent in the same
 # second, alternating between two senders unless told who sent what, so both
-# the date and the sender tie.
+# the date and the sender tie. `written` says how each identifier is written.
 month_archive <- function(list_name, month, ids, linked,
-                          senders = ifelse(ids %% 2 == 0, "hash-a", "hash-b"), hidden = FALSE) {
+                          senders = ifelse(ids %% 2 == 0, "hash-a", "hash-b"), written = "raw") {
   date <- paste0(month, "-15T12:00:00Z")
   list(
     list = list_name, month = month,
-    messages = unname(Map(\(i, hash) message_entry(i, date, hash, linked, hidden), ids, senders)),
+    messages = unname(Map(\(i, hash, how) message_entry(i, date, hash, linked, how), ids, senders, written)),
     threads = lapply(ids, \(i) thread_entry(i, date))
   )
 }
@@ -72,7 +73,9 @@ contributors <- list(
 # Write the fixture, optionally with every list of entries reversed. test-list
 # has source pages for most of its messages; forge-list, like every list hosted
 # on R-Forge, has none. open-list and hidden-list each have one message from
-# each of the four senders, and differ only in how their identifiers are written.
+# each of the four senders, and differ only in how their identifiers are
+# written. hidden-list also has a fifth message, from hash-c, with no
+# identifier at all.
 write_fixture <- function(dir, reversed) {
   flip <- if (reversed) rev else identity
   lists <- list(
@@ -81,8 +84,9 @@ write_fixture <- function(dir, reversed) {
     "forge-list" = list("2020-01" = month_archive("forge-list", "2020-01", 13:15, linked = FALSE)),
     "open-list" = list("2020-01" = month_archive("open-list", "2020-01", 16:19, linked = FALSE,
                                                  senders = alias_senders)),
-    "hidden-list" = list("2020-01" = month_archive("hidden-list", "2020-01", 20:23, linked = FALSE,
-                                                   senders = alias_senders, hidden = TRUE))
+    "hidden-list" = list("2020-01" = month_archive("hidden-list", "2020-01", 20:24, linked = FALSE,
+                                                   senders = c(alias_senders, "hash-c"),
+                                                   written = c(rep("hidden", 4), "none")))
   )
   for (list_name in names(lists)) {
     list_dir <- file.path(dir, list_name)
@@ -158,9 +162,9 @@ results <- c(
   check("also to a canonical name that holds an address, where identifiers are raw",
         identical(open$from_name,
                   c("Canonical A", "Sender hash-b", "carol@example.org", "dave at example.org"))),
-  check("but a message with a hidden identifier keeps its own name instead of such a one",
+  check("but in a list with hidden identifiers every message keeps its own name instead of such a one",
         identical(hidden$from_name,
-                  c("Canonical A", "Sender hash-b", "Sender hash-c", "Sender hash-d")))
+                  c("Canonical A", "Sender hash-b", "Sender hash-c", "Sender hash-d", "Sender hash-c")))
 )
 
 cat("\n", sum(results), " passed, ", sum(!results), " failed\n", sep = "")
