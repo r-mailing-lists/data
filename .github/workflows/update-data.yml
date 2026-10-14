@@ -143,3 +143,15 @@ jobs:
           echo "Saved build hash: $HASH"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # The pull step leaves this file when it left a members-only list out
+      # because its files were not written with addresses hidden. Failing here,
+      # not there, lets every other list be published first. Keep this step
+      # last, and to what the shell does itself: the pull test runs it.
+      - name: Fail if a members-only list was left out
+        if: always()
+        run: |
+          if [ -f data/.archive-guard-failed ]; then
+            echo "Left out of this build, see the error of the pull step: $(< data/.archive-guard-failed)"
+            exit 1
+          fi

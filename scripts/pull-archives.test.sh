@@ -38,8 +38,13 @@ chmod +x "$TMP/bin/git"
 
 PUBLIC="https://stat.ethz.ch/pipermail"
 FORGE="https://lists.r-forge.r-project.org/pipermail"
+# The base URL of a list whose archive at the source is members-only.
+PRIVATE="https://stat.ethz.ch/mailman/private"
 RAW='<4A1B2C3D.5060708@example.org>'
 RAW2='<CAF8bMcZ=q1w2e3@mail.example.com>'
+# Identifiers as the parser writes them when it hides addresses.
+HIDDEN='<0123456789abcdef0123456789abcdef@hidden>'
+HIDDEN2='<fedcba9876543210fedcba9876543210@hidden>'
 # What the old workflow step copied for a list: its months and four summaries.
 FILES="2024-01.json 2024-02.json contributors.json index.json message-order.json meta.json "
 
@@ -136,6 +141,53 @@ run
 expect "without ARCHIVE_BASE the repositories are cloned from GitHub" \
   "clone https://github.com/r-mailing-lists/r-help.git;clone https://github.com/r-mailing-lists/rforge-archive.git;" "$(clones)"
 
+MARKER="data/.archive-guard-failed"
+# errors -> the error annotations the script printed
+errors() { grep '^::error::' "$FAKE/out"; }
+
+scenario hidden
+remote r-sig-phylo "$HIDDEN" "$HIDDEN2"
+conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
+run
+expect "a members-only list whose identifiers are all hidden is taken" "$FILES" "$(landed r-sig-phylo)"
+expect "with no error and no marker" "|processed " "$(errors)|$(holds "$WORK/data")"
+
+scenario one-raw
+remote r-help "$RAW" "$RAW2"
+remote r-sig-phylo "$HIDDEN" "$RAW" "$HIDDEN2"
+remote r-devel "$RAW2"
+conf r-help "$PUBLIC/r-help/"
+conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
+conf r-devel "$PUBLIC/r-devel/"
+run; status=$?
+expect "a members-only list with one raw identifier in one message of one month is not taken" \
+  "r-devel r-help " "$(holds "$WORK/data/processed")"
+expect "the public lists around it are taken, raw identifiers and all" "$FILES|$FILES" "$(landed r-help)|$(landed r-devel)"
+case "$(errors)" in
+  "::error::"*r-sig-phylo*"not written with addresses hidden"*) pass "an error names the list and says why" ;;
+  *) bad "an error names the list and says why: got '$(errors)'" ;;
+esac
+expect "only that list is reported" "1" "$(errors | wc -l | tr -d ' ')"
+expect "the marker is left, naming the list" "r-sig-phylo" "$(cat "$WORK/$MARKER" 2>/dev/null)"
+expect "and the run still succeeds, so that the other lists are published" "0" "$status"
+
+# unreadable SLUG WHAT CONTENT -> a members-only list is not taken when one of
+# its month files holds CONTENT
+unreadable() {
+  scenario "unreadable-$1"
+  archive "$REMOTES/r-sig-phylo.git" "$HIDDEN" "$HIDDEN2"
+  printf '%s' "$3" > "$REMOTES/r-sig-phylo.git/processed/2024-02.json"
+  commit "$REMOTES/r-sig-phylo.git"
+  conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
+  run
+  expect "a members-only list with a month file that $2 is not taken" \
+    "|r-sig-phylo" "$(holds "$WORK/data/processed")|$(cat "$WORK/$MARKER" 2>/dev/null)"
+}
+unreadable truncated "is not valid JSON" "{\"messages\":[{\"id\":\"msg\",\"message_id\":\"$HIDDEN\"}"
+unreadable empty "is empty" ""
+unreadable two "holds two documents" "{\"messages\":[{\"id\":\"msg\",\"message_id\":\"$RAW\"}]}{\"messages\":[]}"
+unreadable shapeless "has no list of messages" "{\"threads\":[]}"
+
 # The workflow is read as text: its steps are the "      - " items of its one job.
 WORKFLOW="$DIR/../.github/workflows/update-data.yml"
 # step TEXT -> the step that holds TEXT, from its "- " line up to the next step's
@@ -147,9 +199,26 @@ step() {
     END { if (found) printf "%s", text }' "$WORKFLOW"
 }
 
+# last_step -> the last step of the job
+last_step() { awk '/^      - / { text = "" } { text = text $0 "\n" } END { printf "%s", text }' "$WORKFLOW"; }
+# commands -> the "run: |" lines of the step on standard input
+commands() { awk '/^        run: \|$/ { on = 1; next } on && /^          / { print substr($0, 11); next } { on = 0 }'; }
+# last_step_in SCENARIO -> the status of the last step's commands, run where
+# that scenario's pull left its files. They are run as the runner does, but
+# with nothing on PATH: whatever the step is, here it can only use the shell.
+last_step_in() { (cd "$TMP/$1/work" && PATH=/nonexistent "$BASH" -e -c "$(last_step | commands)") > "$FAKE/out" 2>&1; echo $?; }
+
 scenario workflow
 : > "$FAKE/out"
 expect "the workflow's pull step runs this script" "        run: bash scripts/pull-archives.sh" \
   "$(step 'name: Pull processed data from archive repos' | grep '^        run:')"
+# Read before it is run: only a step that is about the marker is run here.
+case "$(last_step)" in
+  *"if: always()"*"$MARKER"*)
+    pass "the workflow's last step runs whatever came before it, and looks for the marker"
+    expect "it fails where the pull left the marker" "1" "$(last_step_in one-raw)"
+    expect "and succeeds where the pull left none" "0" "$(last_step_in hidden)" ;;
+  *) bad "the workflow's last step runs whatever came before it, and looks for the marker" ;;
+esac
 
 exit "$fail"
