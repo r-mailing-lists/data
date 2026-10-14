@@ -26,53 +26,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # The loop over the lists is a script so that it can be tested; see
+      # scripts/pull-archives.test.sh. One archive repository is private and
+      # is read with a deploy key, which this step alone is given. Without
+      # the secret that repository cannot be cloned and its list is passed
+      # over, so removing the secret makes the next build leave the list
+      # out, which unpublishes it. With the secret, this step fails when that
+      # list cannot be read or its files cannot be vouched for, and the steps
+      # below must not run then: a build without the list would delete its
+      # published file.
       - name: Pull processed data from archive repos
-        run: |
-          mkdir -p data/processed
-
-          while IFS=$'\t' read -r name url type desc repo; do
-            [[ "$name" =~ ^#.*$ ]] && continue
-            [ -z "$name" ] && continue
-            echo "Pulling data for $name..."
-            if [ -n "$repo" ]; then
-              # Pooled archive repo: one <list>/ directory per list, cloned once and reused
-              pool="data/tmp-pool-$repo"
-              if [ ! -d "$pool" ]; then
-                git clone --depth 1 --filter=blob:none --sparse \
-                  "https://github.com/r-mailing-lists/$repo.git" \
-                  "$pool" 2>/dev/null || continue
-                cd "$pool"
-                git sparse-checkout init --no-cone
-                git sparse-checkout set '/*/processed' '/*/meta.json' '/*/index.json' '/*/message-order.json' '/*/contributors.json'
-                git checkout
-                cd ../..
-              fi
-              src="$pool/$name"
-            else
-              src="data/tmp-$name"
-              git clone --depth 1 --filter=blob:none --sparse \
-                "https://github.com/r-mailing-lists/$name.git" \
-                "$src" 2>/dev/null || continue
-              cd "$src"
-              git sparse-checkout init --no-cone
-              git sparse-checkout set /processed /meta.json /index.json /message-order.json /contributors.json
-              git checkout
-              cd ../..
-            fi
-            if [ -d "$src/processed" ]; then
-              mv "$src/processed" "data/processed/$name"
-            fi
-            for f in meta.json index.json message-order.json contributors.json; do
-              if [ -f "$src/$f" ]; then
-                mkdir -p "data/processed/$name"
-                cp "$src/$f" "data/processed/$name/$f"
-              fi
-            done
-            if [ -z "$repo" ]; then
-              rm -rf "$src"
-            fi
-          done < scripts/lists.conf
-          rm -rf data/tmp-pool-*
+        run: bash scripts/pull-archives.sh
+        env:
+          ARCHIVE_DEPLOY_KEY: ${{ secrets.ARCHIVE_DEPLOY_KEY }}
 
       - name: Compute data hash
         id: data-hash

@@ -266,6 +266,8 @@ One Parquet file per mailing list. All files share the same schema.
 | `month` | string | `YYYY-MM` for temporal bucketing |
 | `source_url` | string | Address of the message's own page in the source archive (null when none is known, and for every list hosted on R-Forge) |
 
+One list, `r-sig-phylo`, has an archive that is members-only at the source. In its data every address the parser can read is hidden, except the R lists' own posting addresses, and `message_id` and `in_reply_to` are opaque codes that still tie a reply to its parent; `from_email_hash`, though, is still the unsalted SHA-256 of the real address, so an address someone already has can be checked against it.
+
 ### `threads.parquet`
 
 Thread-level summaries for all lists.
@@ -296,8 +298,8 @@ Aggregated contributor statistics across all lists.
 
 ## Privacy
 
-Email addresses are not included in this dataset. Author identity is represented by display name and a SHA-256 hash of the email address, which allows grouping messages by author without exposing contact information. The original emails are publicly archived on the source mailing list servers.
+Email addresses are not included in this dataset. Author identity is represented by display name and a SHA-256 hash of the email address, which allows grouping messages by author without exposing contact information. The original emails are publicly archived on the source mailing list servers, except those of `r-sig-phylo`, whose archive there is open to list members only.
 
 ## License
 
-The mailing list content is publicly archived by the [R Project](https://www.r-project.org/mail.html) via [ETH Zurich](https://stat.ethz.ch/pipermail/) and [R-Forge](https://lists.r-forge.r-project.org/pipermail/). This dataset reformats that public content for easier analysis. The tooling in this repository is licensed under the [MIT License](LICENSE).
+The mailing list content is publicly archived by the [R Project](https://www.r-project.org/mail.html) via [ETH Zurich](https://stat.ethz.ch/pipermail/) and [R-Forge](https://lists.r-forge.r-project.org/pipermail/), except that of `r-sig-phylo`, whose archive is open to list members only and which is included here with addresses hidden. This dataset reformats that content for easier analysis. The tooling in this repository is licensed under the [MIT License](LICENSE).
