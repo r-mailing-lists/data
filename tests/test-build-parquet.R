@@ -7,6 +7,10 @@
 # daily even when no mail arrived, and makes every downstream "nothing
 # changed, skip" check useless.
 #
+# A list with more text than a limit is written in five-year chunks, once,
+# and the chunks hold what the whole file would. Here the limit is lowered
+# through BUILD_PARQUET_MAX_TEXT_MB so that a small fixture list passes it.
+#
 # Usage: Rscript tests/test-build-parquet.R   (from the repository root)
 
 library(jsonlite)
@@ -29,6 +33,8 @@ message_entry <- function(i, date, hash, linked, written = "raw") {
     thread_id = sprintf("thread-%03d", i), thread_depth = 0L, month = substr(date, 1, 7)
   )
   if (linked && i %% 3 != 0) entry$source_url <- source_page(i)
+  # Replies name the message before them; the first of a month has none.
+  if (linked && i %% 2 == 0) entry$in_reply_to <- sprintf("<m%03d@example.com>", i - 1)
   entry
 }
 
@@ -50,6 +56,18 @@ month_archive <- function(list_name, month, ids, linked,
     messages = unname(Map(\(i, hash, how) message_entry(i, date, hash, linked, how), ids, senders, written)),
     threads = lapply(ids, \(i) thread_entry(i, date))
   )
+}
+
+# One month of long-list, a list with far more text than the others: each
+# message's body is about 17 KB, so its ten messages hold about 170 KB. A
+# limit of 0.05 MB splits this list and no other.
+long_month <- function(month, ids) {
+  archive <- month_archive("long-list", month, ids, linked = FALSE)
+  archive$messages <- lapply(archive$messages, \(m) {
+    m$body_plain <- strrep(paste("long body of", m$id, ""), 800)
+    m
+  })
+  archive
 }
 
 # The alias file gives hash-a a plain canonical name, hash-b none, and hash-c,
@@ -77,7 +95,10 @@ contributors <- list(
 # on R-Forge, has none. open-list and hidden-list each have one message from
 # each of the five senders, and differ only in how their identifiers are
 # written. hidden-list also has a sixth message, from hash-c, with no
-# identifier at all.
+# identifier at all. long-list has two long messages in each of five months,
+# in 1999, 2003, 2004, 2012 and 2013, so its five-year chunks are 1995-1999,
+# 2000-2004 and 2010-2014, with none for 2005-2009; none of its messages has a
+# source page or a parent.
 write_fixture <- function(dir, reversed) {
   flip <- if (reversed) rev else identity
   lists <- list(
@@ -88,7 +109,12 @@ write_fixture <- function(dir, reversed) {
                                                  senders = alias_senders)),
     "hidden-list" = list("2020-01" = month_archive("hidden-list", "2020-01", 21:26, linked = FALSE,
                                                    senders = c(alias_senders, "hash-c"),
-                                                   written = c(rep("hidden", 5), "none")))
+                                                   written = c(rep("hidden", 5), "none"))),
+    "long-list" = list("1999-06" = long_month("1999-06", 27:28),
+                       "2003-01" = long_month("2003-01", 29:30),
+                       "2004-11" = long_month("2004-11", 31:32),
+                       "2012-03" = long_month("2012-03", 33:34),
+                       "2013-07" = long_month("2013-07", 35:36))
   )
   for (list_name in names(lists)) {
     list_dir <- file.path(dir, list_name)
@@ -104,35 +130,86 @@ write_fixture <- function(dir, reversed) {
   write_json(people, file.path(dir, "_contributors.json"), auto_unbox = TRUE)
 }
 
-build <- function(reversed) {
+# run(reversed, env, stale) -> one run of build-parquet.R on the fixture, as
+# list(status, output, log). env holds NAME=value settings for that run alone.
+# stale names files to put in the output directory first, as an earlier run
+# would have left them. log is what the script wrote to stderr.
+run <- function(reversed = FALSE, env = character(), stale = character()) {
   root <- tempfile("build-parquet-test-")
   input <- file.path(root, "processed")
   output <- file.path(root, "out")
   write_fixture(input, reversed)
   aliases <- file.path(root, "aliases.json")
   write_json(list(aliases = alias_groups), aliases, auto_unbox = TRUE)
+  # Only a run with leftovers has an output folder to begin with; otherwise the
+  # script has to create it, as in a fresh checkout.
+  if (length(stale) > 0) {
+    dir.create(file.path(output, "messages"), recursive = TRUE)
+    file.create(file.path(output, stale))
+  }
+  log <- file.path(root, "build.log")
   status <- system2(file.path(R.home("bin"), "Rscript"),
                     c("scripts/build-parquet.R", input, output, aliases),
-                    stdout = FALSE, stderr = FALSE)
-  stopifnot("build-parquet.R failed" = status == 0)
-  output
+                    stdout = FALSE, stderr = log, env = env)
+  list(status = status, output = output, log = readLines(log))
 }
 
-forward <- build(reversed = FALSE)
-backward <- build(reversed = TRUE)
+# build(...) -> run(...), for a run that must succeed.
+build <- function(...) {
+  result <- run(...)
+  stopifnot("build-parquet.R failed" = result$status == 0)
+  result
+}
+
+# A limit low enough that long-list passes it and no other list does.
+limit <- "BUILD_PARQUET_MAX_TEXT_MB=0.05"
+forward <- build(reversed = FALSE)$output
+backward <- build(reversed = TRUE)$output
+chunked_run <- build(reversed = FALSE, env = limit)
+chunked <- chunked_run$output
+chunked_backward <- build(reversed = TRUE, env = limit)$output
+chunked_stale <- build(reversed = FALSE, env = limit,
+                       stale = c("messages/long-list.parquet", "messages/long-list-1990-1994.parquet"))$output
+bad_limit <- run(env = "BUILD_PARQUET_MAX_TEXT_MB=lots")
 
 check <- function(description, ok) {
+  ok <- isTRUE(ok)
   cat(if (ok) "PASS  " else "FAIL  ", description, "\n", sep = "")
   ok
 }
 
-files <- c("messages/test-list.parquet", "messages/forge-list.parquet", "threads.parquet", "contributors.parquet")
+files <- c("messages/test-list.parquet", "messages/forge-list.parquet", "messages/long-list.parquet",
+           "threads.parquet", "contributors.parquet")
 msgs <- as.data.frame(read_parquet(file.path(forward, "messages", "test-list.parquet")))
 forge_path <- file.path(forward, "messages", "forge-list.parquet")
 forge <- as.data.frame(read_parquet(forge_path))
 forge_schema <- read_parquet_schema(forge_path)
 open <- as.data.frame(read_parquet(file.path(forward, "messages", "open-list.parquet")))
 hidden <- as.data.frame(read_parquet(file.path(forward, "messages", "hidden-list.parquet")))
+script <- readLines("scripts/build-parquet.R")
+built <- list.files(forward, pattern = "\\.parquet$", recursive = TRUE, full.names = TRUE)
+chunks <- paste0("messages/long-list-", c("1995-1999", "2000-2004", "2010-2014"), ".parquet")
+long_whole <- file.path(forward, "messages", "long-list.parquet")
+have_chunks <- all(file.exists(file.path(chunked, chunks)))
+parquet_files <- function(dir) sort(list.files(dir, pattern = "\\.parquet$", recursive = TRUE))
+unsplit <- setdiff(parquet_files(forward), "messages/long-list.parquet")
+read_rows <- function(path) {
+  rows <- as.data.frame(read_parquet(path))
+  rownames(rows) <- NULL
+  rows
+}
+# The rows of several files, one after the other.
+read_all <- function(paths) {
+  rows <- do.call(rbind, lapply(paths, read_rows))
+  rownames(rows) <- NULL
+  rows
+}
+test_path <- file.path(forward, "messages", "test-list.parquet")
+schema_of <- function(path) {
+  schema <- as.data.frame(read_parquet_schema(path))
+  schema$file_name <- NULL
+  schema
+}
 
 results <- c(
   vapply(files, \(file) {
@@ -168,7 +245,37 @@ results <- c(
   check("but in a list with hidden identifiers every message keeps its own name instead of such a one",
         identical(hidden$from_name,
                   c("Canonical A", "Sender hash-b", "Sender hash-c", "Sender hash-d", "Sender hash-e",
-                    "Sender hash-c")))
+                    "Sender hash-c"))),
+  check("every file the build writes is compressed with zstd",
+        length(built) > 0 &&
+          all(vapply(built, \(f) all(read_parquet_metadata(f)$column_chunks$codec == "ZSTD"), logical(1)))),
+  check("at level 9, by the one helper that writes every file",
+        sum(grepl("write_parquet(", script, fixed = TRUE)) == 1 &&
+          sum(grepl("^ZSTD_LEVEL <- 9L$", script)) == 1 &&
+          sum(grepl("compression_level = ZSTD_LEVEL", script, fixed = TRUE)) == 1),
+  check("under the default limit long-list is written whole",
+        file.exists(long_whole) && !any(grepl("^messages/long-list-", parquet_files(forward)))),
+  check("over the limit a list is written as its five-year chunks, without the empty ones, and not whole",
+        identical(parquet_files(chunked), sort(c(unsplit, chunks)))),
+  check("and written once: the whole file is never written",
+        !any(grepl("long-list.parquet", chunked_run$log, fixed = TRUE)) &&
+          sum(grepl("long-list-[0-9]{4}-[0-9]{4}[.]parquet", chunked_run$log)) == 3),
+  check("the chunks hold the list's rows, columns and order, as the whole file does",
+        have_chunks && identical(read_all(file.path(chunked, chunks)), read_rows(long_whole))),
+  check("and each chunk has the schema of a file whose columns all have values, as the whole file does",
+        have_chunks && !all(is.na(msgs$source_url)) && !all(is.na(msgs$in_reply_to)) &&
+          identical(schema_of(long_whole), schema_of(test_path)) &&
+          all(vapply(file.path(chunked, chunks),
+                     \(f) identical(schema_of(f), schema_of(test_path)), logical(1)))),
+  check("the limit changes nothing for the lists under it",
+        all(tools::md5sum(file.path(forward, unsplit)) == tools::md5sum(file.path(chunked, unsplit)))),
+  check("the chunks are byte-identical whatever order the input is in",
+        have_chunks &&
+          all(tools::md5sum(file.path(chunked, chunks)) == tools::md5sum(file.path(chunked_backward, chunks)))),
+  check("files an earlier run left for a list that is split are removed",
+        identical(parquet_files(chunked_stale), parquet_files(chunked))),
+  check("a limit that is not a positive number stops the build, and says why",
+        bad_limit$status != 0 && any(grepl("BUILD_PARQUET_MAX_TEXT_MB", bad_limit$log, fixed = TRUE)))
 )
 
 cat("\n", sum(results), " passed, ", sum(!results), " failed\n", sep = "")
