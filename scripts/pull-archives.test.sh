@@ -13,8 +13,9 @@ pass() { echo "PASS  $1"; }
 bad()  { echo "FAIL  $1"; fail=1; }
 
 # The fixtures are committed under a fixed identity, and no git configuration
-# of the machine the tests run on is read.
-export LC_ALL=C HOME="$TMP/home" GIT_CONFIG_NOSYSTEM=1
+# of the machine the tests run on is read. Beyond the stand-ins, git itself
+# is allowed no transport but local files and ssh, which is the stand-in.
+export LC_ALL=C HOME="$TMP/home" GIT_CONFIG_NOSYSTEM=1 GIT_ALLOW_PROTOCOL=file:ssh
 export GIT_AUTHOR_NAME=test GIT_AUTHOR_EMAIL=test@example.com
 export GIT_COMMITTER_NAME=test GIT_COMMITTER_EMAIL=test@example.com
 unset XDG_CONFIG_HOME
@@ -127,13 +128,15 @@ month() {
 # archive DIR ID... -> one list's files as an archive repository holds them:
 # two months, the four summaries, and files the build never takes. The second
 # month has a message for each identifier, the first for the first one and
-# for a message that has none.
+# for a message that has none. The one contributor has "at" in his name, but
+# not as a word.
 archive() {
   local dir="$1" f; shift
   mkdir -p "$dir/processed" "$dir/raw"
   month "$dir/processed/2024-01.json" "$1" ""
   month "$dir/processed/2024-02.json" "$@"
-  for f in meta index message-order contributors; do echo "{\"file\":\"$f\"}" > "$dir/$f.json"; done
+  for f in meta index message-order; do echo "{\"file\":\"$f\"}" > "$dir/$f.json"; done
+  echo '[{"name":"Pat Atkins","messageCount":3}]' > "$dir/contributors.json"
   echo "raw mail" > "$dir/raw/2024-01.mbox"
   echo "about" > "$dir/README.md"
 }
@@ -383,12 +386,38 @@ case "$(errors)" in
   *) bad "with an error that names the list and says why: got '$(errors)'" ;;
 esac
 
+# names SLUG WHAT CONTENT -> with a deploy key, a members-only list whose
+# contributors.json WHAT stops the run. CONTENT is the file; none when empty.
+names() {
+  scenario "names-$1"
+  deploy_key="$KEY"
+  archive "$FAKE/github/r-sig-phylo.git" "$HIDDEN" "$HIDDEN2"
+  rm "$FAKE/github/r-sig-phylo.git/contributors.json"
+  [ -n "$3" ] && printf '%s' "$3" > "$FAKE/github/r-sig-phylo.git/contributors.json"
+  serve r-sig-phylo
+  conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
+  run; status=$?
+  case "$status|$(holds "$WORK/data/processed")|$(errors)" in
+    "1||::error::"*r-sig-phylo*contributors.json*) pass "with a deploy key, a members-only list whose contributors.json $2 stops the run" ;;
+    *) bad "with a deploy key, a members-only list whose contributors.json $2 stops the run: got '$status|$(errors)'" ;;
+  esac
+}
+names missing "is missing" ""
+names truncated "is not valid JSON" '[{"name":"Pat Atkins"}'
+names two "holds two documents" '[][{"name":"jane.doe@uni.example.org"}]'
+names object "is an object, not an array" '{"pat":{"name":"Pat Atkins"}}'
+names at-sign "has a name with an @ in it" '[{"name":"Pat Atkins"},{"name":"jane.doe@uni.example.org"}]'
+names at-word "has a name with the word at in it" '[{"name":"jane.doe at uni.example.org"}]'
+names at-capitals "has a name with the word AT in it" '[{"name":"jane.doe AT uni.example.org"}]'
+
 scenario no-months-no-key
 monthless "$REMOTES/r-sig-phylo.git"
+echo '[{"name":"jane.doe at uni.example.org"}]' > "$REMOTES/r-sig-phylo.git/contributors.json"
 commit "$REMOTES/r-sig-phylo.git"
 conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
 run; status=$?
-expect "without a deploy key the same list is no error: it has nothing to build, as before" "0|" "$status|$(errors)"
+expect "without a deploy key the same list is no error, nor is its contributors.json: it is not switched on" \
+  "0|" "$status|$(errors)"
 
 # The workflow is read as text: its steps are the "      - " items of its one job.
 WORKFLOW="$DIR/../.github/workflows/update-data.yml"

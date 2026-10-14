@@ -55,6 +55,17 @@ hidden_only() {
   done
 }
 
+# names_hidden FILE -> true when FILE, a list's contributors.json, is one
+# JSON array and no name in it holds an address: an "@", or the word "at"
+# between blanks in any case. rmail-parser aggregate builds
+# contributors.parquet from these files, and a parse that did not hide
+# addresses can leave one with names like "jane.doe at uni.example.org"
+# beside month files that did.
+names_hidden() {
+  jq -e -s 'length == 1 and (.[0] | type == "array") and all(.[0][]; (.name // "") | test("@| at "; "i") | not)' \
+    "$1" >/dev/null 2>&1
+}
+
 # With a deploy key, ssh is told to use that key and no other, and to talk
 # only to the host that has the key GitHub publishes. The key goes into a
 # file because ssh reads it from one. The file is removed when the script
@@ -184,6 +195,10 @@ while IFS=$'\t' read -r name url type desc repo; do
     if [ -n "$key_file" ] && ! compgen -G "data/processed/$name/$MONTHS" > /dev/null; then
       rm -rf "data/processed/$name"
       stop "its repository holds no month file"
+    fi
+    if [ -n "$key_file" ] && ! names_hidden "data/processed/$name/contributors.json"; then
+      rm -rf "data/processed/$name"
+      stop "its contributors.json is missing, is not one JSON array, or has a name that holds an address"
     fi
   fi
 done < scripts/lists.conf
