@@ -18,15 +18,17 @@ bad()  { echo "FAIL  $1"; fail=1; }
 export LC_ALL=C HOME="$TMP/home" GIT_CONFIG_NOSYSTEM=1 GIT_ALLOW_PROTOCOL=file:ssh
 export GIT_AUTHOR_NAME=test GIT_AUTHOR_EMAIL=test@example.com
 export GIT_COMMITTER_NAME=test GIT_COMMITTER_EMAIL=test@example.com
-unset XDG_CONFIG_HOME
+unset XDG_CONFIG_HOME GIT_TERMINAL_PROMPT
 mkdir -p "$HOME" "$TMP/bin"
 
-# A stand-in git: logs every clone, refuses a web address, and fails as many
-# checkouts as a scenario asks for. For everything else it is the real git.
+# A stand-in git: logs every clone and whether it may prompt for a password,
+# refuses a web address, and fails as many checkouts as a scenario asks for.
+# For everything else it is the real git.
 REAL_GIT="$(command -v git)"; export REAL_GIT
 cat > "$TMP/bin/git" <<'GIT'
 #!/usr/bin/env bash
 if [ "$1" = clone ]; then
+  echo "GIT_TERMINAL_PROMPT=${GIT_TERMINAL_PROMPT-unset}" >> "$FAKE/prompt"
   for arg in "$@"; do
     case "$arg" in
       http://*|https://*) echo "clone $arg" >> "$FAKE/log"; exit 128 ;;
@@ -44,7 +46,8 @@ GIT
 # A stand-in ssh that is github.com. It notes how it was called, and when the
 # key it is given is the deploy key it serves the repository of that name
 # under $FAKE/github, as git-upload-pack on the host would. A scenario can
-# have it refuse its first calls, as a host that is out of reach would.
+# have it refuse its first calls, as a host that is out of reach would. When
+# it refuses it says why, as ssh does.
 cat > "$TMP/bin/ssh" <<'SSH'
 #!/usr/bin/env bash
 key="" hosts="" options=""
@@ -66,9 +69,12 @@ offered="another key"
 [ "$(cat "$key" 2>/dev/null)" = "$(cat "$FAKE/deploy-key")" ] && offered="the deploy key"
 echo "$1 $repo: $offered, $(ls -l "$key" 2>/dev/null | cut -c1-10),$options" >> "$FAKE/ssh"
 echo "$key" > "$FAKE/key-path"; echo "$hosts" > "$FAKE/hosts-path"; cat "$hosts" > "$FAKE/known-hosts" 2>/dev/null
-[ "$offered" = "the deploy key" ] || exit 255
+[ "$offered" = "the deploy key" ] || { echo "$1: Permission denied (publickey)." >&2; exit 255; }
 refusals="$(cat "$FAKE/refusals" 2>/dev/null || echo 0)"
-if [ "$refusals" -gt 0 ]; then echo $((refusals - 1)) > "$FAKE/refusals"; exit 255; fi
+if [ "$refusals" -gt 0 ]; then
+  echo $((refusals - 1)) > "$FAKE/refusals"
+  echo "ssh: connect to host github.com port 22: Connection timed out" >&2; exit 255
+fi
 exec "$REAL_GIT" upload-pack "$FAKE/github/$repo"
 SSH
 
@@ -302,8 +308,8 @@ expect "with a deploy key, a clone that fails anonymously is tried once more ove
   "clone r-help.git;clone r-sig-phylo.git;clone git@github.com:r-mailing-lists/r-sig-phylo.git;clone ghost.git;clone git@github.com:r-mailing-lists/ghost.git;" "$(tries)"
 expect "the private list is taken, the missing one passed over, and the run succeeds" \
   "$FILES|r-help r-sig-phylo |0" "$(landed r-sig-phylo)|$(holds "$WORK/data/processed")|$status"
-called="the deploy key, -rw-------, IdentitiesOnly=yes StrictHostKeyChecking=yes UserKnownHostsFile"
-expect "ssh is given the key in a file of mode 600, to use no other key and no unknown host" \
+called="the deploy key, -rw-------, IdentitiesOnly=yes BatchMode=yes ConnectTimeout=20 StrictHostKeyChecking=yes GlobalKnownHostsFile=/dev/null UserKnownHostsFile"
+expect "ssh is given the key in a file of mode 600, to use no other key, no host but GitHub, and no prompt" \
   "git@github.com ghost.git: $called;git@github.com r-sig-phylo.git: $called;" "$(sort -u "$FAKE/ssh" | tr '\n' ';')"
 [ "$(grep -c ' r-sig-phylo.git: ' "$FAKE/ssh")" -gt 1 ] && pass "also when it fetches the contents of the files after the clone" \
   || bad "also when it fetches the contents of the files after the clone: $(grep -c ' r-sig-phylo.git: ' "$FAKE/ssh") call"
@@ -313,6 +319,7 @@ gone() { [ -s "$1" ] && [ -n "$(cat "$1")" ] && [ ! -e "$(cat "$1")" ]; }
 gone "$FAKE/key-path" && gone "$FAKE/hosts-path" && pass "the key file and the host file are gone afterwards" \
   || bad "the key file and the host file are gone afterwards"
 grep -q "not-a-real-key" "$FAKE/out" && bad "nothing of the key is printed" || pass "nothing of the key is printed"
+expect "no clone, anonymous or over SSH, may wait for a password" "GIT_TERMINAL_PROMPT=0" "$(sort -u "$FAKE/prompt")"
 
 scenario no-key
 remote r-help "$RAW"
@@ -350,9 +357,11 @@ github r-sig-phylo "$HIDDEN" "$HIDDEN2"
 conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
 echo 2 > "$FAKE/refusals"
 run; status=$?
-expect "the tries are a few seconds apart unless ARCHIVE_RETRY_PAUSE says otherwise" \
-  "clone r-sig-phylo.git;$again;pause 5;$again;pause 5;$again;" "$(tries)"
+expect "the second try comes 30 seconds after the first, the third 60 after that, unless ARCHIVE_RETRY_PAUSE says otherwise" \
+  "clone r-sig-phylo.git;$again;pause 30;$again;pause 60;$again;" "$(tries)"
 expect "and a third try that works is as good as a first" "$FILES|0|" "$(landed r-sig-phylo)|$status|$(errors)"
+expect "the log says why the SSH tries failed" "2" "$(grep -c 'Connection timed out' "$FAKE/out")"
+grep -q "not-a-real-key" "$FAKE/out" && bad "and nothing of the key is in it" || pass "and nothing of the key is in it"
 
 # The contents of the files are fetched after the clone, when the files are
 # checked out. A checkout that fails stands for that fetch failing.

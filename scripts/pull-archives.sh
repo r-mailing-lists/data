@@ -32,12 +32,17 @@
 #                        (default: https://github.com/r-mailing-lists)
 #   ARCHIVE_DEPLOY_KEY   the private half of a deploy key of a private
 #                        archive repository (default: none)
-#   ARCHIVE_RETRY_PAUSE  seconds between the tries over SSH (default: 5)
+#   ARCHIVE_RETRY_PAUSE  seconds before the second try over SSH, twice as
+#                        many before the third (default: 30)
 
 set -euo pipefail
 
+# No clone may wait for a password: the anonymous clone of a private
+# repository would ask for one.
+export GIT_TERMINAL_PROMPT=0
+
 BASE="${ARCHIVE_BASE:-https://github.com/r-mailing-lists}"
-PAUSE="${ARCHIVE_RETRY_PAUSE:-5}"
+PAUSE="${ARCHIVE_RETRY_PAUSE:-30}"
 
 # The month files of a list: the ones build-parquet.R makes rows of.
 MONTHS='[0-9][0-9][0-9][0-9]-[0-9][0-9].json'
@@ -68,10 +73,12 @@ names_hidden() {
     "$1" >/dev/null 2>&1
 }
 
-# With a deploy key, ssh is told to use that key and no other, and to talk
-# only to the host that has the key GitHub publishes. The key goes into a
+# With a deploy key, ssh is told to use that key and no other, to talk only
+# to the host that has the key GitHub publishes, never to ask anything, and
+# to give up on a host it cannot reach within 20 seconds. The key goes into a
 # file because ssh reads it from one. The file is removed when the script
-# ends, however it ends, and nothing here prints the key.
+# ends, however it ends, and nothing here prints the key: ssh and git name
+# the file in their messages, not what is in it.
 key_file=""
 if [ -n "${ARCHIVE_DEPLOY_KEY:-}" ]; then
   key_file="$(mktemp)"
@@ -83,7 +90,7 @@ if [ -n "${ARCHIVE_DEPLOY_KEY:-}" ]; then
   # Exported, not set for the clone alone: a clone with --filter=blob:none
   # leaves the contents of the files to be fetched when they are checked out,
   # and that fetch goes over SSH as well.
-  export GIT_SSH_COMMAND="ssh -i $key_file -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$known_hosts"
+  export GIT_SSH_COMMAND="ssh -i $key_file -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=20 -o StrictHostKeyChecking=yes -o GlobalKnownHostsFile=/dev/null -o UserKnownHostsFile=$known_hosts"
 fi
 
 # sparse DIR PATTERN... -> check out, in the clone in DIR, the files the build
@@ -97,10 +104,12 @@ sparse() {
 # fetch REPO DIR TRIES PATTERN... -> the sparse clone of an archive repository
 # in DIR, with the files of PATTERN checked out. Every repository but one is
 # public. The private one fails the anonymous clone, and when there is a
-# deploy key it is tried over SSH, up to TRIES times with a pause in between.
-# A try is the clone and the checkout together, as either can fail when the
-# host is out of reach. Returns 1 when the repository cannot be cloned and 2
-# when it was cloned and its files cannot be checked out.
+# deploy key it is tried over SSH, up to TRIES times, PAUSE seconds before
+# the second try and twice that before the third. A try is the clone and the
+# checkout together, as either can fail when the host is out of reach. What
+# git and ssh say about a failed try goes to the log. Returns 1 when the
+# repository cannot be cloned and 2 when it was cloned and its files cannot
+# be checked out.
 fetch() {
   local repo="$1" dir="$2" tries="$3" try status=1; shift 3
   if git clone --depth 1 --filter=blob:none --sparse \
@@ -111,10 +120,10 @@ fetch() {
   fi
   [ -n "$key_file" ] || return 1
   for ((try = 1; try <= tries; try++)); do
-    [ "$try" -gt 1 ] && sleep "$PAUSE"
+    [ "$try" -gt 1 ] && sleep $((PAUSE * (try - 1)))
     if git clone --depth 1 --filter=blob:none --sparse \
       "git@github.com:r-mailing-lists/$repo.git" \
-      "$dir" 2>/dev/null; then
+      "$dir"; then
       sparse "$dir" "$@" && return 0
       status=2
       rm -rf "$dir"
