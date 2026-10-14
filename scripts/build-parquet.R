@@ -40,9 +40,16 @@ if (file.exists(aliases_file)) {
 
 # A lookup rather than merge(): merge() re-sorts the rows by the key and moves
 # it to the first column, which changed both away from the documented layout.
+#
+# A message whose identifier ends in "@hidden>" was written with every address
+# hidden, because its list's archive is members-only. The alias file is shared
+# by all lists and knows nothing of that, so a canonical name that holds an
+# address ("a@b.org", "a at b.org") is not applied there: the name would bring
+# back what was hidden. The message keeps the name it came with.
 resolve_aliases <- function(df) {
   if (is.null(alias_lookup)) return(df)
   canonical <- alias_lookup$canonical_name[match(df$from_email_hash, alias_lookup$from_email_hash)]
+  canonical[grepl("@hidden>$", df$message_id) & grepl("@| at ", canonical)] <- NA
   df$from_name <- ifelse(is.na(canonical), df$from_name, canonical)
   df
 }
