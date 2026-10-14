@@ -302,4 +302,4 @@ Email addresses are not included in this dataset. Author identity is represented
 
 ## License
 
-The mailing list content is publicly archived by the [R Project](https://www.r-project.org/mail.html) via [ETH Zurich](https://stat.ethz.ch/pipermail/) and [R-Forge](https://lists.r-forge.r-project.org/pipermail/), except that of `r-sig-phylo`, whose archive is open to list members only and which is included here with every address hidden. This dataset reformats that public content for easier analysis. The tooling in this repository is licensed under the [MIT License](LICENSE).
+The mailing list content is publicly archived by the [R Project](https://www.r-project.org/mail.html) via [ETH Zurich](https://stat.ethz.ch/pipermail/) and [R-Forge](https://lists.r-forge.r-project.org/pipermail/), except that of `r-sig-phylo`, whose archive is open to list members only and which is included here with every address hidden. This dataset reformats that content for easier analysis. The tooling in this repository is licensed under the [MIT License](LICENSE).
