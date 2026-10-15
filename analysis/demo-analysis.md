@@ -126,7 +126,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63731 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63733 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -247,7 +247,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Martin Maechler                        Ivan Krylov 
                                     39                                 37 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
-                                    29                                 23 
+                                    30                                 23 
                         Duncan Murdoch                        Kurt Hornik 
                                     22                                 22 
                         Peter Dalgaard                      Simon Urbanek 
@@ -343,13 +343,13 @@ contribs |>
 | Peter Dalgaard     |         10829 |         10 |
 | Gabor Grothendieck |         10019 |         16 |
 | Uwe Ligges         |          8433 |         17 |
-| Dirk Eddelbuettel  |          7939 |         21 |
+| Dirk Eddelbuettel  |          7941 |         21 |
 | Ben Bolker         |          6238 |         10 |
 | Bert Gunter        |          6050 |         10 |
 | Martin Maechler    |          5805 |         22 |
 | jim holtman        |          4445 |          6 |
 | Jeff Newmiller     |          4378 |          7 |
-| Simon Urbanek      |          4325 |         13 |
+| Simon Urbanek      |          4326 |         13 |
 | Roger Bivand       |          4309 |         15 |
 | Jim Lemon          |          3886 |          6 |
 | Thomas Lumley      |          3792 |          8 |
