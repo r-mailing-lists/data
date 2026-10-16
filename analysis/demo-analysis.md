@@ -126,7 +126,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63733 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63734 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -251,7 +251,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                         Duncan Murdoch                        Kurt Hornik 
                                     22                                 22 
                         Peter Dalgaard                      Simon Urbanek 
-                                    22                                 20 
+                                    21                                 20 
        Suharto Anggono Suharto Anggono                         Ben Bolker 
                                     18                                 16 
 
