@@ -72,51 +72,53 @@ rml_available()
      [19] "fresh-tor4"              "ftree-community"        
      [21] "genabel-announce"        "genabel-devel"          
      [23] "genoplotr-help"          "gsoc-dowd"              
-     [25] "gsoc-porta"              "gwidgets-questions"     
-     [27] "hyperspec-help"          "inlinedocs-support"     
-     [29] "ipmpack-users"           "listpackage-discuss"    
-     [31] "mailman"                 "mediation-information"  
-     [33] "metrology-devel"         "monetr-users"           
-     [35] "mvabund-faqs"            "mvabund-updates"        
-     [37] "nmf-user"                "nmof-news"              
-     [39] "orchestra-users"         "phenopix-developers"    
-     [41] "phylobase-devl"          "picante-devel"          
-     [43] "pomp-announce"           "qtinterfaces-devel"     
-     [45] "r-announce"              "r-devel"                
-     [47] "r-forge-testing-testing" "r-gregmisc-devel"       
-     [49] "r-help"                  "r-help-es"              
-     [51] "r-marketing-bugs"        "r-package-devel"        
-     [53] "r-packages"              "r-sig-db"               
-     [55] "r-sig-dcm"               "r-sig-debian"           
-     [57] "r-sig-dynamic-models"    "r-sig-ecology"          
-     [59] "r-sig-epi"               "r-sig-fedora"           
-     [61] "r-sig-finance"           "r-sig-genetics"         
-     [63] "r-sig-geo"               "r-sig-gr"               
-     [65] "r-sig-gui"               "r-sig-hpc"              
-     [67] "r-sig-insurance"         "r-sig-jobs"             
-     [69] "r-sig-mac"               "r-sig-meta-analysis"    
-     [71] "r-sig-mixed-models"      "r-sig-networks"         
-     [73] "r-sig-phylo"             "r-sig-robust"           
-     [75] "r-sig-teaching"          "r-sig-windows"          
-     [77] "r-ug-ottawa"             "rangemapper-news"       
-     [79] "rcicr-users"             "rcpp-devel"             
-     [81] "rcppoctave-user"         "reddyproc-users"        
-     [83] "remoterengine-devel"     "repitools-help"         
-     [85] "rgeos-devel"             "riskassessment-news"    
-     [87] "rnomads-user"            "robustbase-authors"     
-     [89] "roxygen-devel"           "rphree-general"         
-     [91] "rprotobuf-yada"          "rquantlib-devel"        
-     [93] "rserlang-develop"        "rsiena-help"            
-     [95] "rspatial-devel"          "sciviews-help"          
-     [97] "sciviews-news"           "seqinr-forum"           
-     [99] "simsalabim-communicate"  "sorvi-admin"            
-    [101] "spdep-devel"             "sprint-developer"       
-    [103] "sprint-user"             "synbreed-news"          
-    [105] "tikzdevice-bugs"         "tlocoh-info"            
-    [107] "traminer-users"          "travelr-announce"       
-    [109] "travelr-discussion"      "uhcluster-members"      
-    [111] "viennar-meetup"          "yuima-wishlist"         
-    [113] "zipfr-users"            
+     [25] "gsoc-porta"              "gsoc-r"                 
+     [27] "gwidgets-questions"      "hyperspec-help"         
+     [29] "inlinedocs-support"      "ipmpack-users"          
+     [31] "listpackage-discuss"     "mailman"                
+     [33] "mediation-information"   "metrology-devel"        
+     [35] "monetr-users"            "mvabund-faqs"           
+     [37] "mvabund-updates"         "nmf-user"               
+     [39] "nmof-news"               "orchestra-users"        
+     [41] "phenopix-developers"     "phylobase-devl"         
+     [43] "picante-devel"           "pomp-announce"          
+     [45] "qtinterfaces-devel"      "r-announce"             
+     [47] "r-devel"                 "r-forge-testing-testing"
+     [49] "r-gregmisc-devel"        "r-help"                 
+     [51] "r-help-es"               "r-marketing-bugs"       
+     [53] "r-package-devel"         "r-packages"             
+     [55] "r-sig-db"                "r-sig-dcm"              
+     [57] "r-sig-debian"            "r-sig-dynamic-models"   
+     [59] "r-sig-ecology"           "r-sig-epi"              
+     [61] "r-sig-fedora"            "r-sig-finance"          
+     [63] "r-sig-genetics"          "r-sig-geo"              
+     [65] "r-sig-gr"                "r-sig-gui"              
+     [67] "r-sig-hpc"               "r-sig-insurance"        
+     [69] "r-sig-jobs"              "r-sig-mac"              
+     [71] "r-sig-mediawiki"         "r-sig-meta-analysis"    
+     [73] "r-sig-mixed-models"      "r-sig-networks"         
+     [75] "r-sig-phylo"             "r-sig-qa"               
+     [77] "r-sig-robust"            "r-sig-rugs"             
+     [79] "r-sig-teaching"          "r-sig-wiki"             
+     [81] "r-sig-windows"           "r-ug-ottawa"            
+     [83] "rangemapper-news"        "rcicr-users"            
+     [85] "rcpp-devel"              "rcppoctave-user"        
+     [87] "reddyproc-users"         "remoterengine-devel"    
+     [89] "repitools-help"          "rgeos-devel"            
+     [91] "riskassessment-news"     "rnomads-user"           
+     [93] "robustbase-authors"      "roxygen-devel"          
+     [95] "rphree-general"          "rprotobuf-yada"         
+     [97] "rquantlib-devel"         "rserlang-develop"       
+     [99] "rsiena-help"             "rspatial-devel"         
+    [101] "sciviews-help"           "sciviews-news"          
+    [103] "seqinr-forum"            "simsalabim-communicate" 
+    [105] "sorvi-admin"             "spdep-devel"            
+    [107] "sprint-developer"        "sprint-user"            
+    [109] "synbreed-news"           "tikzdevice-bugs"        
+    [111] "tlocoh-info"             "traminer-users"         
+    [113] "travelr-announce"        "travelr-discussion"     
+    [115] "uhcluster-members"       "viennar-meetup"         
+    [117] "yuima-wishlist"          "zipfr-users"            
 
 ``` r
 # Read a single list (use col_select to skip the body — much faster)
@@ -161,8 +163,8 @@ head(contribs)
     1 Brian R…         17956         13 r-he… r-help:117… 1998-06-04T1… 2026-09-07T…
     2 Duncan …         12600         14 r-he… r-help:733… 2000-02-16T2… 2026-10-06T…
     3 David W…         11669         13 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
-    4 Peter D…         10829         10 r-he… r-help:707… 1997-04-01T0… 2026-10-11T…
-    5 Gabor G…         10019         16 r-he… r-help:804… 2002-01-12T1… 2026-10-03T…
+    4 Peter D…         10832         11 r-he… r-help:707… 1997-04-01T0… 2026-10-11T…
+    5 Gabor G…         10075         17 r-he… r-help:804… 2002-01-12T1… 2026-10-03T…
     6 Uwe Lig…          8433         17 r-he… r-help:656… 2000-03-07T1… 2026-10-02T…
 
 ### Working directly with Parquet files
@@ -340,20 +342,20 @@ contribs |>
 | Brian Ripley       |         17956 |         13 |
 | Duncan Murdoch     |         12600 |         14 |
 | David Winsemius    |         11669 |         13 |
-| Peter Dalgaard     |         10829 |         10 |
-| Gabor Grothendieck |         10019 |         16 |
+| Peter Dalgaard     |         10832 |         11 |
+| Gabor Grothendieck |         10075 |         17 |
 | Uwe Ligges         |          8433 |         17 |
 | Dirk Eddelbuettel  |          7941 |         21 |
-| Ben Bolker         |          6238 |         10 |
+| Ben Bolker         |          6270 |         11 |
 | Bert Gunter        |          6050 |         10 |
-| Martin Maechler    |          5805 |         22 |
+| Martin Maechler    |          5827 |         24 |
 | jim holtman        |          4445 |          6 |
 | Jeff Newmiller     |          4378 |          7 |
 | Simon Urbanek      |          4326 |         13 |
-| Roger Bivand       |          4309 |         15 |
+| Roger Bivand       |          4314 |         16 |
 | Jim Lemon          |          3886 |          6 |
 | Thomas Lumley      |          3792 |          8 |
 | Marc Schwartz      |          3768 |          9 |
 | PIKAL Petr         |          3658 |          3 |
-| Douglas Bates      |          3467 |         12 |
+| Douglas Bates      |          3469 |         13 |
 | Hadley Wickham     |          3424 |         17 |

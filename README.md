@@ -114,7 +114,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**652,427** messages across **113** mailing lists
+**654,057** messages across **118** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
@@ -139,6 +139,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | genabel-devel           | 1,350    | 65      | Nov 2010      | Dec 2018     |
 | r-packages              | 1,347    | 570     | Sep 2003      | Oct 2026     |
 | r-sig-gui               | 1,236    | 264     | Oct 2002      | Feb 2018     |
+| gsoc-r                  | 1,181    | 264     | Mar 2010      | Jul 2026     |
 | r-sig-fedora            | 931      | 129     | May 2008      | Apr 2026     |
 | r-sig-teaching          | 886      | 224     | Oct 2006      | Sep 2026     |
 | phylobase-devl          | 724      | 28      | Feb 2008      | Apr 2014     |
@@ -150,6 +151,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-robust            | 525      | 152     | Nov 2005      | Jul 2026     |
 | roxygen-devel           | 469      | 59      | May 2008      | Aug 2015     |
 | r-sig-jobs              | 442      | 267     | Feb 2007      | Mar 2026     |
+| r-sig-wiki              | 398      | 32      | Jan 2006      | Aug 2010     |
 | traminer-users          | 383      | 96      | May 2010      | Jul 2023     |
 | rsiena-help             | 354      | 67      | Feb 2010      | May 2019     |
 | qtinterfaces-devel      | 349      | 22      | Sep 2009      | May 2014     |
@@ -184,7 +186,9 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | listpackage-discuss     | 27       | 10      | May 2011      | Mar 2017     |
 | r-sig-networks          | 27       | 21      | Jul 2008      | May 2019     |
 | expm-developers         | 26       | 9       | Feb 2009      | Mar 2025     |
+| r-sig-mediawiki         | 26       | 10      | Aug 2006      | Feb 2015     |
 | hyperspec-help          | 21       | 8       | Dec 2009      | Jul 2017     |
+| r-sig-qa                | 20       | 12      | Oct 2001      | Oct 2012     |
 | gsoc-dowd               | 19       | 3       | Jun 2015      | Sep 2015     |
 | genabel-announce        | 16       | 2       | Aug 2013      | Dec 2018     |
 | batman-users            | 15       | 7       | Mar 2013      | Jun 2015     |
@@ -199,6 +203,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | riskassessment-news     | 6        | 4       | Nov 2011      | Apr 2021     |
 | catlearn-package        | 5        | 2       | Feb 2018      | Oct 2019     |
 | r-forge-testing-testing | 5        | 1       | Aug 2019      | Aug 2019     |
+| r-sig-rugs              | 5        | 2       | Jul 2010      | Feb 2013     |
 | sciviews-help           | 5        | 3       | Jun 2009      | Aug 2010     |
 | sprint-developer        | 5        | 1       | May 2013      | Aug 2013     |
 | travelr-announce        | 5        | 1       | May 2010      | Aug 2010     |
