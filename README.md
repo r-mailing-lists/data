@@ -114,14 +114,16 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**654,058** messages across **118** mailing lists
+**709,908** messages across **123** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
 | r-help                  | 398,802  | 37,119  | Apr 1997      | Oct 2026     |
 | r-devel                 | 63,734   | 5,864   | Apr 1997      | Oct 2026     |
 | r-sig-geo               | 29,588   | 3,501   | Jul 2003      | Oct 2026     |
+| shiny-discuss           | 23,336   | 3,840   | Nov 2012      | Jan 2024     |
 | bioc-devel              | 21,552   | 1,709   | Mar 2004      | Oct 2026     |
+| ggplot2                 | 21,320   | 3,103   | Nov 2008      | Jan 2025     |
 | r-sig-mixed-models      | 20,670   | 3,114   | Jan 2007      | Oct 2026     |
 | r-help-es               | 15,408   | 899     | Mar 2009      | Sep 2026     |
 | r-sig-finance           | 15,315   | 2,164   | Jun 2004      | Sep 2026     |
@@ -130,11 +132,14 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | rcpp-devel              | 11,011   | 801     | Nov 2009      | May 2026     |
 | r-sig-ecology           | 7,601    | 1,329   | Apr 2008      | Oct 2026     |
 | r-sig-phylo             | 6,509    | 1,035   | Feb 2008      | Oct 2026     |
+| shinyapps-users         | 6,426    | 1,551   | Nov 2013      | Sep 2018     |
 | r-sig-meta-analysis     | 5,647    | 551     | Jun 2017      | Sep 2026     |
 | r-sig-debian            | 3,678    | 504     | Feb 2005      | Sep 2026     |
 | datatable-help          | 3,415    | 441     | Mar 2010      | Apr 2018     |
+| manipulatr              | 2,804    | 538     | Mar 2009      | Dec 2023     |
 | r-sig-hpc               | 2,152    | 383     | Oct 2008      | Dec 2024     |
 | adegenet-forum          | 1,994    | 454     | Feb 2008      | Feb 2025     |
+| knitr                   | 1,964    | 344     | Jan 2012      | Oct 2023     |
 | r-sig-db                | 1,559    | 391     | Apr 2001      | Nov 2020     |
 | genabel-devel           | 1,350    | 65      | Nov 2010      | Dec 2018     |
 | r-packages              | 1,347    | 570     | Sep 2003      | Oct 2026     |
