@@ -37,12 +37,13 @@ msgs <- rbind(
   row(8, "hash-five", "A lottery question", thread = "thread-008"),
   row(9, "hash-six", "Answer", thread = "thread-008"),
   row(10, "hash-seven", "Ordinary", body = paste0(strrep("x ", 2000), "lottery")),
-  row(11, "hash-eight", "Bioinformatics lotteryish")
+  row(11, "hash-eight", "Bioinformatics lotteryish"),
+  row(12, "hash-nine", "Write to Jane.Doe AT uni.example.org about the casino")
 )
 # The first half of the fixture is one file and the rest another: a list may be
 # split, and the sender count spans the files.
 write_parquet(msgs[1:5, ], file.path(dir, "test-list.parquet"))
-write_parquet(msgs[6:11, ], file.path(dir, "test-list-2020.parquet"))
+write_parquet(msgs[6:12, ], file.path(dir, "test-list-2020.parquet"))
 
 script <- "scripts/spam-candidates.R"
 run <- function(...) {
@@ -59,10 +60,13 @@ rows <- strsplit(out[-1], "\t")
 ids <- vapply(rows, `[`, "", 3)
 strength <- vapply(rows, `[`, "", 1)
 
-if (!identical(ids, c(msg_id(1), msg_id(7), msg_id(2)))) fail("candidates were", ids)
-if (!identical(strength, c("strong", "strong", "weaker"))) fail("strengths were", strength)
+if (!identical(ids, c(msg_id(1), msg_id(7), msg_id(12), msg_id(2)))) fail("candidates were", ids)
+if (!identical(strength, c("strong", "strong", "strong", "weaker"))) fail("strengths were", strength)
 if (any(grepl("someone@example.org", out, fixed = TRUE))) fail("an address was printed")
-if (!any(grepl("<address>", out, fixed = TRUE))) fail("the address was not masked")
+if (!identical(rows[[2]][6], "Mail <address> about a casino")) fail("the address was not masked:", rows[[2]][6])
+# An address written with "at", as archives that hid addresses wrote them.
+if (any(grepl("uni.example.org", out, fixed = TRUE))) fail("an address written with 'at' was printed")
+if (!identical(rows[[3]][6], "Write to <address> about the casino")) fail("the 'at' address was not masked:", rows[[3]][6])
 if (!identical(rows[[1]][5], "lottery")) fail("word was", rows[[1]][5])
 if (!identical(rows[[1]][4], "2020-01-01")) fail("date was", rows[[1]][4])
 

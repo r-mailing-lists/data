@@ -16,7 +16,10 @@
 #   spam.tsv:     the messages already confirmed (default: scripts/spam.tsv)
 #
 # Output is tab-separated: strength, list, id, date, word, subject. An address
-# in a subject is printed as <address>.
+# in a subject is printed as <address>, whether it is written with "@" or, as
+# archives that hid addresses wrote it, with "at" (jane.doe at uni.example.org).
+# The second form also takes in a phrase such as "look at data.frame": the
+# subject is only for a person to read, and hiding too much is the safe side.
 
 library(nanoparquet)
 
@@ -65,6 +68,8 @@ first_word <- function(text) {
 show_subject <- function(subject) {
   subject[is.na(subject)] <- ""
   subject <- gsub("[[:alnum:]._%+-]+@[[:alnum:].-]+", "<address>", subject)
+  subject <- gsub("\\S+\\s+at\\s+\\S+\\.[A-Za-z]{2,}", "<address>", subject,
+                  ignore.case = TRUE, perl = TRUE)
   subject <- gsub("[[:space:]]+", " ", subject)
   too_long <- nchar(subject) > SUBJECT_CHARS
   subject[too_long] <- paste0(substr(subject[too_long], 1, SUBJECT_CHARS - 3), "...")
