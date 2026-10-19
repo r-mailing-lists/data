@@ -1,0 +1,2 @@
+# Messages a person confirmed as spam. See scripts/spam-candidates.R.
+list	id	reason	flagged

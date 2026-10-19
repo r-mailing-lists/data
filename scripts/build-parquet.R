@@ -2,9 +2,11 @@
 
 # Convert processed JSON mailing list archives to Parquet format
 #
-# Usage: Rscript scripts/build-parquet.R <processed_data_dir> <output_dir>
+# Usage: Rscript scripts/build-parquet.R <processed_data_dir> <output_dir> <aliases> <spam>
 #   processed_data_dir: path to directory containing per-list folders of monthly JSON
 #   output_dir:         path to write parquet files (default: data/)
+#   aliases:            the alias file (default: aliases.json)
+#   spam:               the messages a person confirmed as spam (default: scripts/spam.tsv)
 #
 # BUILD_PARQUET_MAX_TEXT_MB, when set, replaces MAX_TEXT_MB below: the text
 # above which a list is written in five-year chunks. The tests lower it.
@@ -16,6 +18,54 @@ args <- commandArgs(trailingOnly = TRUE)
 input_dir <- if (length(args) >= 1) args[1] else "data/processed"
 output_dir <- if (length(args) >= 2) args[2] else "data"
 aliases_file <- if (length(args) >= 3) args[3] else "aliases.json"
+spam_file <- if (length(args) >= 4) args[4] else "scripts/spam.tsv"
+
+# ---------------------------------------------------------------------------
+# Load the spam file
+# ---------------------------------------------------------------------------
+
+# scripts/spam.tsv is tab-separated with the header list, id, reason, flagged.
+# Lines starting with # are comments. Only messages a person confirmed are in
+# it. A file that is malformed stops the build, before anything is written: a
+# half-read list of flags would publish messages as clean. A missing file is
+# an empty list.
+SPAM_COLUMNS <- c("list", "id", "reason", "flagged")
+
+read_spam <- function(path) {
+  empty <- data.frame(list = character(), id = character(), reason = character(),
+                      flagged = character(), stringsAsFactors = FALSE)
+  if (!file.exists(path)) return(empty)
+
+  lines <- sub("\r$", "", readLines(path, warn = FALSE, encoding = "UTF-8"))
+  lines <- lines[nzchar(trimws(lines)) & !startsWith(lines, "#")]
+  fail <- function(...) stop(path, ": ", ..., call. = FALSE)
+  if (length(lines) == 0 || !identical(lines[1], paste(SPAM_COLUMNS, collapse = "\t"))) {
+    fail("the header line must be ", paste(SPAM_COLUMNS, collapse = " <tab> "))
+  }
+  if (length(lines) == 1) return(empty)
+
+  # The sentinel keeps strsplit() from dropping a field left empty at the end.
+  fields <- strsplit(paste0(lines[-1], "\t."), "\t", fixed = TRUE)
+  for (i in seq_along(fields)) {
+    f <- fields[[i]][-length(fields[[i]])]
+    if (length(f) != length(SPAM_COLUMNS) || any(!nzchar(trimws(f)))) {
+      fail("line \"", lines[i + 1], "\" must have the four fields ", paste(SPAM_COLUMNS, collapse = ", "))
+    }
+    fields[[i]] <- f
+  }
+  spam <- as.data.frame(do.call(rbind, fields), stringsAsFactors = FALSE)
+  names(spam) <- SPAM_COLUMNS
+
+  bad_id <- !grepl("^msg-[0-9a-f]{12}$", spam$id)
+  if (any(bad_id)) fail("not a message id (msg- and 12 hex digits): ", spam$id[bad_id][1])
+  valid_date <- grepl("^\\d{4}-\\d{2}-\\d{2}$", spam$flagged) &
+    !is.na(as.Date(spam$flagged, format = "%Y-%m-%d", optional = TRUE))
+  if (!all(valid_date)) fail("not a date (YYYY-MM-DD): ", spam$flagged[!valid_date][1])
+  spam
+}
+
+spam <- read_spam(spam_file)
+message("Read ", nrow(spam), " flagged messages from ", spam_file)
 
 messages_dir <- file.path(output_dir, "messages")
 dir.create(messages_dir, recursive = TRUE, showWarnings = FALSE)
@@ -87,6 +137,14 @@ read_month_json <- function(path, list_name) {
     # when it has none, and always does for lists hosted on R-Forge. Kept as
     # the last column, and written for every list, so all files share a schema.
     source_url      = vapply(msgs, \(m) m$source_url %||% NA_character_, ""),
+    # The pages the message's text was restored from, joined by one space. The
+    # archive leaves the key out when nothing was restored.
+    restored_from   = vapply(msgs, \(m) {
+      urls <- unlist(m$restored_from)
+      if (length(urls) == 0) NA_character_ else paste(urls, collapse = " ")
+    }, ""),
+    # Set once the rows of the list are read, from the spam file.
+    spam            = FALSE,
     stringsAsFactors = FALSE
   )
 }
@@ -206,6 +264,7 @@ list_dirs <- list.dirs(input_dir, full.names = TRUE, recursive = FALSE)
 list_dirs <- list_dirs[!grepl("^_", basename(list_dirs))]
 
 all_threads <- list()
+flagged_seen <- character()
 summary_rows <- list()
 
 for (list_path in list_dirs) {
@@ -238,6 +297,12 @@ for (list_path in list_dirs) {
 
   # Resolve from_name via aliases (canonical names)
   msgs <- resolve_aliases(msgs)
+
+  # Flag the messages the spam file names. Threads and contributors keep
+  # counting them.
+  list_spam <- spam$id[spam$list == list_name]
+  msgs$spam <- msgs$id %in% list_spam
+  flagged_seen <- c(flagged_seen, paste(list_name, msgs$id[msgs$spam]))
 
   # Fix the row order, with id breaking ties between messages sent in the same
   # second. These files are committed: an order that depends on how the input
@@ -279,6 +344,13 @@ for (list_path in list_dirs) {
     last_date = max(msgs$date, na.rm = TRUE),
     stringsAsFactors = FALSE
   )))
+}
+
+# A flag for a message that is not in the data is reported, not an error: the
+# list may have been renamed, or the message not archived yet.
+unknown <- spam[!paste(spam$list, spam$id) %in% flagged_seen, ]
+for (i in seq_len(nrow(unknown))) {
+  message("Spam file names no message: list ", unknown$list[i], ", id ", unknown$id[i])
 }
 
 # ---------------------------------------------------------------------------
