@@ -21,7 +21,7 @@ jobs:
     steps:
       # Only the scripts and their tests: the Parquet files are not needed here.
       # The workflows come along because the archive pull test reads one.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: |
             scripts
