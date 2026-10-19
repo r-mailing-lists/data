@@ -43,6 +43,9 @@ jobs:
       - name: Test the Parquet build
         run: Rscript tests/test-build-parquet.R
 
+      - name: Test the spam candidate helper
+        run: Rscript tests/test-spam-candidates.R
+
       - name: Test the Parquet publisher
         run: bash scripts/publish-parquet.test.sh
 
