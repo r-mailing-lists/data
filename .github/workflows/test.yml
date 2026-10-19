@@ -21,7 +21,7 @@ jobs:
     steps:
       # Only the scripts and their tests: the Parquet files are not needed here.
       # The workflows come along because the archive pull test reads one.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: |
             scripts
@@ -42,6 +42,9 @@ jobs:
 
       - name: Test the Parquet build
         run: Rscript tests/test-build-parquet.R
+
+      - name: Test the spam candidate helper
+        run: Rscript tests/test-spam-candidates.R
 
       - name: Test the Parquet publisher
         run: bash scripts/publish-parquet.test.sh

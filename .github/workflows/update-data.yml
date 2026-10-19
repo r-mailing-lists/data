@@ -27,7 +27,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # The loop over the lists is a script so that it can be tested; see
       # scripts/pull-archives.test.sh. One archive repository is private and
@@ -43,10 +43,12 @@ jobs:
         env:
           ARCHIVE_DEPLOY_KEY: ${{ secrets.ARCHIVE_DEPLOY_KEY }}
 
+      # The spam file is an input of the build as the archives are: a night
+      # on which only it changed must rebuild too.
       - name: Compute data hash
         id: data-hash
         run: |
-          HASH=$(find data/processed -name '*.json' -type f | sort | xargs sha256sum | sha256sum | cut -d' ' -f1)
+          HASH=$({ find data/processed -name '*.json' -type f; echo scripts/spam.tsv; } | sort | xargs sha256sum | sha256sum | cut -d' ' -f1)
           echo "hash=$HASH" >> "$GITHUB_OUTPUT"
           echo "Data hash: $HASH"
 

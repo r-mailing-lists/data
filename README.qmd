@@ -265,6 +265,8 @@ One Parquet file per mailing list. All files share the same schema.
 | `thread_depth` | integer | Depth in thread tree (0 = root message) |
 | `month` | string | `YYYY-MM` for temporal bucketing |
 | `source_url` | string | Address of the message's own page in the source archive (null when none is known, and for every list hosted on R-Forge) |
+| `restored_from` | string | Addresses of the pages the message's text was restored from, separated by one space (null when nothing was restored) |
+| `spam` | boolean | True for a message a person confirmed as spam (see `scripts/spam.tsv`); the message stays in the file |
 
 One list, `r-sig-phylo`, has an archive that is members-only at the source. In its data every address the parser can read is hidden, except the R lists' own posting addresses, and `message_id` and `in_reply_to` are opaque codes that still tie a reply to its parent; `from_email_hash`, though, is still the unsalted SHA-256 of the real address, so an address someone already has can be checked against it.
 

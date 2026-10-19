@@ -20,11 +20,18 @@ library(nanoparquet)
 # Here, as there, every third message goes without one.
 source_page <- function(i) sprintf("https://stat.ethz.ch/pipermail/test-list/2020-January/%06d.html", i)
 
+# A message's id, as the archive writes it: msg- and twelve hex digits.
+msg_id <- function(i) sprintf("msg-%012x", i)
+
+# Messages 2 and 5 were restored from the web, from two pages and from one.
+restored_urls <- list(`2` = c("https://example.org/restored/a", "https://example.org/restored/b"),
+                      `5` = "https://example.org/restored/c")
+
 # A list whose archive is members-only is written with addresses hidden, and
 # then its identifiers are opaque codes. A message that had none has none.
 message_entry <- function(i, date, hash, linked, written = "raw") {
   entry <- list(
-    id = sprintf("msg-%03d", i),
+    id = msg_id(i),
     message_id = switch(written, raw = sprintf("<m%03d@example.com>", i),
                         hidden = sprintf("<%032x@hidden>", i), none = ""),
     from_name = paste("Sender", hash), from_email_hash = hash, date = date,
@@ -32,6 +39,7 @@ message_entry <- function(i, date, hash, linked, written = "raw") {
     body_plain = paste("body", i), body_snippet = paste("body", i),
     thread_id = sprintf("thread-%03d", i), thread_depth = 0L, month = substr(date, 1, 7)
   )
+  if (!is.null(restored_urls[[as.character(i)]]) && linked) entry$restored_from <- as.list(restored_urls[[as.character(i)]])
   if (linked && i %% 3 != 0) entry$source_url <- source_page(i)
   # Replies name the message before them; the first of a month has none.
   if (linked && i %% 2 == 0) entry$in_reply_to <- sprintf("<m%03d@example.com>", i - 1)
@@ -41,7 +49,7 @@ message_entry <- function(i, date, hash, linked, written = "raw") {
 thread_entry <- function(i, date) {
   list(
     id = sprintf("thread-%03d", i), subject = paste("topic", i), message_count = 1L,
-    started = date, last_reply = date, root_message_id = sprintf("msg-%03d", i)
+    started = date, last_reply = date, root_message_id = msg_id(i)
   )
 }
 
@@ -130,11 +138,17 @@ write_fixture <- function(dir, reversed) {
   write_json(people, file.path(dir, "_contributors.json"), auto_unbox = TRUE)
 }
 
-# run(reversed, env, stale) -> one run of build-parquet.R on the fixture, as
+# The spam file a run gets unless told otherwise: one confirmed message of
+# test-list (its second).
+spam_header <- "list\tid\treason\tflagged"
+default_spam <- c("# Messages a person confirmed as spam.", spam_header,
+                  paste("test-list", msg_id(2), "advertising", "2026-10-19", sep = "\t"))
+
+# run(reversed, env, stale, spam) -> one run of build-parquet.R on the fixture, as
 # list(status, output, log). env holds NAME=value settings for that run alone.
 # stale names files to put in the output directory first, as an earlier run
 # would have left them. log is what the script wrote to stderr.
-run <- function(reversed = FALSE, env = character(), stale = character()) {
+run <- function(reversed = FALSE, env = character(), stale = character(), spam = default_spam) {
   root <- tempfile("build-parquet-test-")
   input <- file.path(root, "processed")
   output <- file.path(root, "out")
@@ -147,9 +161,11 @@ run <- function(reversed = FALSE, env = character(), stale = character()) {
     dir.create(file.path(output, "messages"), recursive = TRUE)
     file.create(file.path(output, stale))
   }
+  spam_file <- file.path(root, "spam.tsv")
+  writeLines(spam, spam_file)
   log <- file.path(root, "build.log")
   status <- system2(file.path(R.home("bin"), "Rscript"),
-                    c("scripts/build-parquet.R", input, output, aliases),
+                    c("scripts/build-parquet.R", input, output, aliases, spam_file),
                     stdout = FALSE, stderr = log, env = env)
   list(status = status, output = output, log = readLines(log))
 }
@@ -171,6 +187,22 @@ chunked_backward <- build(reversed = TRUE, env = limit)$output
 chunked_stale <- build(reversed = FALSE, env = limit,
                        stale = c("messages/long-list.parquet", "messages/long-list-1990-1994.parquet"))$output
 bad_limit <- run(env = "BUILD_PARQUET_MAX_TEXT_MB=lots")
+unknown_spam <- run(spam = c(default_spam, paste("test-list", msg_id(4095), "advertising", "2026-10-19", sep = "\t"),
+                             paste("gone-list", msg_id(2), "advertising", "2026-10-19", sep = "\t")))
+bad_spam <- lapply(list(
+  missing_field = c(spam_header, paste("test-list", msg_id(2), "advertising", sep = "\t")),
+  empty_field = c(spam_header, paste("test-list", msg_id(2), "", "2026-10-19", sep = "\t")),
+  bad_id = c(spam_header, paste("test-list", "msg-002", "advertising", "2026-10-19", sep = "\t")),
+  bad_date = c(spam_header, paste("test-list", msg_id(2), "advertising", "19/10/2026", sep = "\t")),
+  impossible_date = c(spam_header, paste("test-list", msg_id(2), "advertising", "2026-02-30", sep = "\t")),
+  bad_header = c("list\tid\treason", paste("test-list", msg_id(2), "advertising", "2026-10-19", sep = "\t"))
+), \(lines) run(spam = lines))
+
+# Whether the build named a spam row, by its list and id on one line.
+names_row <- function(list_name, id) {
+  any(grepl(list_name, unknown_spam$log, fixed = TRUE) & grepl(id, unknown_spam$log, fixed = TRUE) &
+        grepl("names no message", unknown_spam$log, fixed = TRUE))
+}
 
 check <- function(description, ok) {
   ok <- isTRUE(ok)
@@ -188,6 +220,8 @@ open <- as.data.frame(read_parquet(file.path(forward, "messages", "open-list.par
 hidden <- as.data.frame(read_parquet(file.path(forward, "messages", "hidden-list.parquet")))
 script <- readLines("scripts/build-parquet.R")
 built <- list.files(forward, pattern = "\\.parquet$", recursive = TRUE, full.names = TRUE)
+list_files <- c(built[basename(dirname(built)) == "messages"],
+                list.files(file.path(chunked, "messages"), pattern = "-\\d{4}-\\d{4}\\.parquet$", full.names = TRUE))
 chunks <- paste0("messages/long-list-", c("1995-1999", "2000-2004", "2010-2014"), ".parquet")
 long_whole <- file.path(forward, "messages", "long-list.parquet")
 have_chunks <- all(file.exists(file.path(chunked, chunks)))
@@ -217,13 +251,33 @@ results <- c(
           unname(tools::md5sum(file.path(forward, file)) == tools::md5sum(file.path(backward, file))))
   }, logical(1)),
   check("messages are ordered by date, then id",
-        identical(msgs$id, sprintf("msg-%03d", 1:12))),
+        identical(msgs$id, msg_id(1:12))),
   check("message columns are in the documented order",
         identical(names(msgs), c("list", "id", "message_id", "from_name", "from_email_hash", "date",
                                  "subject", "in_reply_to", "body", "body_snippet", "thread_id",
-                                 "thread_depth", "month", "source_url"))),
+                                 "thread_depth", "month", "source_url", "restored_from", "spam"))),
   check("source_url is carried for the messages that have one and is NA for the rest",
         identical(msgs$source_url, ifelse(1:12 %% 3 != 0, source_page(1:12), NA_character_))),
+  check("restored_from joins a message's URLs with one space, in order, and is NA elsewhere",
+        identical(msgs$restored_from,
+                  ifelse(1:12 == 2, "https://example.org/restored/a https://example.org/restored/b",
+                         ifelse(1:12 == 5, "https://example.org/restored/c", NA_character_))) &&
+          is.character(forge$restored_from) && all(is.na(forge$restored_from))),
+  check("spam is TRUE for the message the spam file lists and FALSE for every other, in every list",
+        is.logical(msgs$spam) && identical(msgs$spam, 1:12 == 2) &&
+          !any(forge$spam) && !any(open$spam) && !any(hidden$spam) && !anyNA(forge$spam)),
+  check("every list's file, whole or in chunks, has a schema that ends source_url, restored_from, spam",
+        length(list_files) > 0 &&
+          all(vapply(list_files, \(f) identical(tail(schema_of(f)$name, 3), c("source_url", "restored_from", "spam")),
+                     logical(1)))),
+  check("a spam row naming no message is reported with its list and id, and the build succeeds",
+        unknown_spam$status == 0 &&
+          names_row("test-list", msg_id(4095)) && names_row("gone-list", msg_id(2)) &&
+          !names_row("test-list", msg_id(2))),
+  check("a malformed spam file (field missing or empty, bad id, bad date, bad header) stops the build with no parquet file",
+        all(vapply(bad_spam, \(r) r$status != 0 && length(parquet_files(r$output)) == 0, logical(1)))),
+  check("threads.parquet and contributors.parquet still count the flagged message",
+        sum(read_parquet(file.path(forward, "threads.parquet"))$list == "test-list") == 12),
   check("a list with no source pages has the same columns as one with them",
         identical(names(forge), names(msgs))),
   check("and its source_url column is text, every value NA",
