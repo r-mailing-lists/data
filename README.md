@@ -114,12 +114,13 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**709,908** messages across **123** mailing lists
+**774,268** messages across **128** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
 | r-help                  | 398,802  | 37,119  | Apr 1997      | Oct 2026     |
 | r-devel                 | 63,734   | 5,864   | Apr 1997      | Oct 2026     |
+| bioconductor            | 61,316   | 7,388   | Nov 2001      | Sep 2014     |
 | r-sig-geo               | 29,588   | 3,501   | Jul 2003      | Oct 2026     |
 | shiny-discuss           | 23,336   | 3,840   | Nov 2012      | Jan 2024     |
 | bioc-devel              | 21,552   | 1,709   | Mar 2004      | Oct 2026     |
@@ -137,6 +138,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-debian            | 3,678    | 504     | Feb 2005      | Sep 2026     |
 | datatable-help          | 3,415    | 441     | Mar 2010      | Apr 2018     |
 | manipulatr              | 2,804    | 538     | Mar 2009      | Dec 2023     |
+| bioc-sig-sequencing     | 2,295    | 227     | Feb 2008      | Sep 2011     |
 | r-sig-hpc               | 2,152    | 383     | Oct 2008      | Dec 2024     |
 | adegenet-forum          | 1,994    | 454     | Feb 2008      | Feb 2025     |
 | knitr                   | 1,964    | 344     | Jan 2012      | Oct 2023     |
@@ -147,6 +149,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | gsoc-r                  | 1,181    | 264     | Mar 2010      | Jul 2026     |
 | r-sig-fedora            | 931      | 129     | May 2008      | Apr 2026     |
 | r-sig-teaching          | 886      | 224     | Oct 2006      | Sep 2026     |
+| rmetrics-core           | 741      | 222     | Sep 2007      | Nov 2017     |
 | phylobase-devl          | 724      | 28      | Feb 2008      | Apr 2014     |
 | r-announce              | 714      | 112     | Apr 1997      | Sep 2026     |
 | r-sig-dynamic-models    | 697      | 160     | Oct 2009      | Mar 2026     |
@@ -206,6 +209,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | uhcluster-members       | 8        | 1       | Mar 2009      | Jul 2009     |
 | cipsr-users             | 6        | 1       | Oct 2014      | Mar 2015     |
 | riskassessment-news     | 6        | 4       | Nov 2011      | Apr 2021     |
+| biocbug                 | 5        | 1       | Nov 2003      | Mar 2004     |
 | catlearn-package        | 5        | 2       | Feb 2018      | Oct 2019     |
 | r-forge-testing-testing | 5        | 1       | Aug 2019      | Aug 2019     |
 | r-sig-rugs              | 5        | 2       | Jul 2010      | Feb 2013     |
@@ -218,6 +222,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | simsalabim-communicate  | 4        | 3       | Oct 2008      | Nov 2008     |
 | spdep-devel             | 4        | 3       | May 2010      | Mar 2017     |
 | synbreed-news           | 4        | 3       | Jul 2010      | Jan 2012     |
+| bioc-sig-proteomics     | 3        | 2       | May 2011      | Sep 2011     |
 | metrology-devel         | 3        | 1       | Apr 2011      | Apr 2011     |
 | rgeos-devel             | 3        | 2       | May 2010      | Feb 2020     |
 | rphree-general          | 3        | 2       | Jun 2014      | Jun 2014     |
