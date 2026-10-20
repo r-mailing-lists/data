@@ -168,7 +168,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63734 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63736 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -287,15 +287,15 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
                        Martin Maechler                        Ivan Krylov 
-                                    39                                 37 
+                                    39                                 38 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
-                                    30                                 23 
+                                    31                                 23 
                         Duncan Murdoch                        Kurt Hornik 
                                     22                                 22 
                         Peter Dalgaard                      Simon Urbanek 
                                     21                                 20 
        Suharto Anggono Suharto Anggono                         Ben Bolker 
-                                    18                                 16 
+                                    17                                 16 
 
 ## Reply network on r-devel
 
@@ -386,7 +386,7 @@ contribs |>
 | Bob Carpenter      |         10378 |          2 |
 | Gabor Grothendieck |         10081 |         19 |
 | Uwe Ligges         |          8576 |         19 |
-| Dirk Eddelbuettel  |          7983 |         23 |
+| Dirk Eddelbuettel  |          7984 |         23 |
 | Ben Bolker         |          6270 |         11 |
 | Bert Gunter        |          6050 |         10 |
 | Martin Maechler    |          5901 |         26 |
