@@ -114,7 +114,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**940,353** messages across **198** mailing lists
+**940,356** messages across **198** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
@@ -136,12 +136,12 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-package-devel         | 12,402   | 1,130   | May 2015      | Oct 2026     |
 | rcpp-devel              | 11,011   | 801     | Nov 2009      | May 2026     |
 | unmarked                | 7,728    | 1,096   | Feb 2010      | Sep 2026     |
-| r-sig-ecology           | 7,604    | 1,329   | Apr 2008      | Oct 2026     |
+| r-sig-ecology           | 7,605    | 1,329   | Apr 2008      | Oct 2026     |
 | distance-sampling       | 6,855    | 1,316   | Sep 1998      | Oct 2026     |
 | r-sig-phylo             | 6,509    | 1,035   | Feb 2008      | Oct 2026     |
 | shinyapps-users         | 6,426    | 1,551   | Nov 2013      | Sep 2018     |
 | nimble-users            | 5,843    | 630     | Jul 2014      | Oct 2026     |
-| r-sig-meta-analysis     | 5,647    | 551     | Jun 2017      | Sep 2026     |
+| r-sig-meta-analysis     | 5,648    | 551     | Jun 2017      | Oct 2026     |
 | mirt-package            | 5,602    | 716     | Apr 2013      | Apr 2026     |
 | rqtl-disc               | 4,744    | 654     | Sep 2004      | Oct 2026     |
 | r-sig-debian            | 3,678    | 504     | Feb 2005      | Sep 2026     |
@@ -189,7 +189,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-dynamic-models    | 697      | 160     | Oct 2009      | Mar 2026     |
 | ggvis                   | 693      | 182     | Aug 2013      | Jun 2024     |
 | sequenza-user-group     | 691      | 159     | Aug 2014      | Oct 2026     |
-| r-sig-epi               | 672      | 166     | Nov 2005      | Oct 2026     |
+| r-sig-epi               | 673      | 166     | Nov 2005      | Oct 2026     |
 | nat-user                | 639      | 108     | Apr 2015      | Jan 2026     |
 | tsdyn                   | 634      | 90      | Dec 2006      | Feb 2024     |
 | irace-package           | 594      | 114     | Jul 2016      | Sep 2025     |
