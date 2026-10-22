@@ -114,7 +114,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**940,356** messages across **198** mailing lists
+**960,995** messages across **199** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
@@ -123,11 +123,12 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | bioconductor            | 61,316   | 7,388   | Nov 2001      | Sep 2014     |
 | r-sig-geo               | 29,588   | 3,501   | Jul 2003      | Oct 2026     |
 | stan-users              | 26,736   | 1,452   | Aug 2012      | Jun 2017     |
-| lavaan                  | 23,444   | 3,308   | Sep 2012      | Oct 2026     |
+| lavaan                  | 23,445   | 3,308   | Sep 2012      | Oct 2026     |
 | shiny-discuss           | 23,336   | 3,840   | Nov 2012      | Jan 2024     |
 | bioc-devel              | 21,553   | 1,709   | Mar 2004      | Oct 2026     |
 | ggplot2                 | 21,320   | 3,103   | Nov 2008      | Jan 2025     |
 | r-sig-mixed-models      | 20,670   | 3,114   | Jan 2007      | Oct 2026     |
+| r-br                    | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
 | r-inla-discussion-group | 16,090   | 1,765   | Feb 2011      | Oct 2026     |
 | r-help-es               | 15,408   | 899     | Mar 2009      | Sep 2026     |
 | r-sig-finance           | 15,315   | 2,164   | Jun 2004      | Sep 2026     |
@@ -136,7 +137,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-package-devel         | 12,402   | 1,130   | May 2015      | Oct 2026     |
 | rcpp-devel              | 11,011   | 801     | Nov 2009      | May 2026     |
 | unmarked                | 7,728    | 1,096   | Feb 2010      | Sep 2026     |
-| r-sig-ecology           | 7,605    | 1,329   | Apr 2008      | Oct 2026     |
+| r-sig-ecology           | 7,607    | 1,329   | Apr 2008      | Oct 2026     |
 | distance-sampling       | 6,855    | 1,316   | Sep 1998      | Oct 2026     |
 | r-sig-phylo             | 6,509    | 1,035   | Feb 2008      | Oct 2026     |
 | shinyapps-users         | 6,426    | 1,551   | Nov 2013      | Sep 2018     |
@@ -189,11 +190,11 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-dynamic-models    | 697      | 160     | Oct 2009      | Mar 2026     |
 | ggvis                   | 693      | 182     | Aug 2013      | Jun 2024     |
 | sequenza-user-group     | 691      | 159     | Aug 2014      | Oct 2026     |
-| r-sig-epi               | 673      | 166     | Nov 2005      | Oct 2026     |
+| r-sig-epi               | 674      | 166     | Nov 2005      | Oct 2026     |
 | nat-user                | 639      | 108     | Apr 2015      | Jan 2026     |
 | tsdyn                   | 634      | 90      | Dec 2006      | Feb 2024     |
 | irace-package           | 594      | 114     | Jul 2016      | Sep 2025     |
-| r-sig-genetics          | 588      | 61      | May 2008      | Oct 2026     |
+| r-sig-genetics          | 589      | 61      | May 2008      | Oct 2026     |
 | rdevtools               | 561      | 130     | Mar 2012      | Jan 2023     |
 | oscr-package            | 551      | 86      | Feb 2016      | Oct 2026     |
 | flr-list                | 539      | 49      | Oct 2011      | Apr 2019     |
@@ -204,7 +205,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | qcawithr                | 449      | 69      | Mar 2020      | Aug 2026     |
 | r-sig-jobs              | 442      | 267     | Feb 2007      | Mar 2026     |
 | r-sig-wiki              | 398      | 32      | Jan 2006      | Aug 2010     |
-| spocc-spabund-users     | 386      | 74      | Jul 2024      | Oct 2026     |
+| spocc-spabund-users     | 387      | 74      | Jul 2024      | Oct 2026     |
 | traminer-users          | 383      | 96      | May 2010      | Jul 2023     |
 | rsiena-help             | 354      | 67      | Feb 2010      | May 2019     |
 | qtinterfaces-devel      | 349      | 22      | Sep 2009      | May 2014     |
