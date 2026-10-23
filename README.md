@@ -114,18 +114,18 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**960,995** messages across **199** mailing lists
+**960,999** messages across **199** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
-| r-help                  | 398,802  | 37,119  | Apr 1997      | Oct 2026     |
+| r-help                  | 398,802  | 37,124  | Apr 1997      | Oct 2026     |
 | r-devel                 | 63,736   | 5,864   | Apr 1997      | Oct 2026     |
 | bioconductor            | 61,316   | 7,388   | Nov 2001      | Sep 2014     |
 | r-sig-geo               | 29,588   | 3,501   | Jul 2003      | Oct 2026     |
 | stan-users              | 26,736   | 1,452   | Aug 2012      | Jun 2017     |
 | lavaan                  | 23,445   | 3,308   | Sep 2012      | Oct 2026     |
 | shiny-discuss           | 23,336   | 3,840   | Nov 2012      | Jan 2024     |
-| bioc-devel              | 21,553   | 1,709   | Mar 2004      | Oct 2026     |
+| bioc-devel              | 21,554   | 1,709   | Mar 2004      | Oct 2026     |
 | ggplot2                 | 21,320   | 3,103   | Nov 2008      | Jan 2025     |
 | r-sig-mixed-models      | 20,670   | 3,114   | Jan 2007      | Oct 2026     |
 | r-br                    | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
@@ -137,7 +137,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-package-devel         | 12,402   | 1,130   | May 2015      | Oct 2026     |
 | rcpp-devel              | 11,011   | 801     | Nov 2009      | May 2026     |
 | unmarked                | 7,728    | 1,096   | Feb 2010      | Sep 2026     |
-| r-sig-ecology           | 7,607    | 1,329   | Apr 2008      | Oct 2026     |
+| r-sig-ecology           | 7,610    | 1,329   | Apr 2008      | Oct 2026     |
 | distance-sampling       | 6,855    | 1,316   | Sep 1998      | Oct 2026     |
 | r-sig-phylo             | 6,509    | 1,035   | Feb 2008      | Oct 2026     |
 | shinyapps-users         | 6,426    | 1,551   | Nov 2013      | Sep 2018     |

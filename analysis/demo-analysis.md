@@ -287,16 +287,16 @@ recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
-                       Martin Maechler                        Ivan Krylov 
-                                    39                                 38 
+                           Ivan Krylov                    Martin Maechler 
+                                    38                                 38 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
                                     31                                 23 
                         Duncan Murdoch                        Kurt Hornik 
                                     22                                 22 
                         Peter Dalgaard                      Simon Urbanek 
                                     20                                 20 
-       Suharto Anggono Suharto Anggono                         Ben Bolker 
-                                    17                                 16 
+                            Ben Bolker    Suharto Anggono Suharto Anggono 
+                                    16                                 16 
 
 ## Reply network on r-devel
 
@@ -390,11 +390,11 @@ contribs |>
 | Dirk Eddelbuettel  |          7984 |         23 |
 | Ben Bolker         |          6270 |         11 |
 | Bert Gunter        |          6050 |         10 |
-| Martin Maechler    |          5901 |         26 |
+| Martin Maechler    |          5900 |         26 |
 | jim holtman        |          4445 |          6 |
 | Ben Goodrich       |          4432 |          2 |
 | Jeff Newmiller     |          4378 |          7 |
-| Martin Morgan      |          4347 |          8 |
+| Martin Morgan      |          4345 |          8 |
 | Simon Urbanek      |          4332 |         14 |
 | Roger Bivand       |          4314 |         16 |
 | Jim Lemon          |          3886 |          6 |
