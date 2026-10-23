@@ -390,11 +390,11 @@ contribs |>
 | Dirk Eddelbuettel  |          7984 |         23 |
 | Ben Bolker         |          6270 |         11 |
 | Bert Gunter        |          6050 |         10 |
-| Martin Maechler    |          5900 |         26 |
+| Martin Maechler    |          5901 |         26 |
 | jim holtman        |          4445 |          6 |
 | Ben Goodrich       |          4432 |          2 |
 | Jeff Newmiller     |          4378 |          7 |
-| Martin Morgan      |          4345 |          8 |
+| Martin Morgan      |          4347 |          8 |
 | Simon Urbanek      |          4332 |         14 |
 | Roger Bivand       |          4314 |         16 |
 | Jim Lemon          |          3886 |          6 |

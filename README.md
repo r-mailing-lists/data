@@ -118,7 +118,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
-| r-help                  | 398,802  | 37,124  | Apr 1997      | Oct 2026     |
+| r-help                  | 398,802  | 37,119  | Apr 1997      | Oct 2026     |
 | r-devel                 | 63,736   | 5,864   | Apr 1997      | Oct 2026     |
 | bioconductor            | 61,316   | 7,388   | Nov 2001      | Sep 2014     |
 | r-sig-geo               | 29,588   | 3,501   | Jul 2003      | Oct 2026     |
