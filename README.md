@@ -114,7 +114,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**960,999** messages across **199** mailing lists
+**961,003** messages across **199** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
@@ -137,7 +137,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-package-devel         | 12,402   | 1,130   | May 2015      | Oct 2026     |
 | rcpp-devel              | 11,011   | 801     | Nov 2009      | May 2026     |
 | unmarked                | 7,728    | 1,096   | Feb 2010      | Sep 2026     |
-| r-sig-ecology           | 7,610    | 1,329   | Apr 2008      | Oct 2026     |
+| r-sig-ecology           | 7,611    | 1,329   | Apr 2008      | Oct 2026     |
 | distance-sampling       | 6,855    | 1,316   | Sep 1998      | Oct 2026     |
 | r-sig-phylo             | 6,509    | 1,035   | Feb 2008      | Oct 2026     |
 | shinyapps-users         | 6,426    | 1,551   | Nov 2013      | Sep 2018     |
@@ -159,8 +159,8 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | rhadoop                 | 2,167    | 385     | Feb 2012      | May 2016     |
 | r-sig-hpc               | 2,152    | 383     | Oct 2008      | Dec 2024     |
 | adegenet-forum          | 1,994    | 454     | Feb 2008      | Feb 2025     |
+| hmecology               | 1,964    | 366     | Dec 2012      | Oct 2026     |
 | knitr                   | 1,964    | 344     | Jan 2012      | Oct 2023     |
-| hmecology               | 1,963    | 366     | Dec 2012      | Oct 2026     |
 | biogeobears             | 1,636    | 273     | Oct 2013      | Oct 2026     |
 | camtrapr                | 1,626    | 315     | Dec 2016      | Oct 2026     |
 | bioc-ggtree             | 1,586    | 405     | Mar 2016      | Nov 2025     |
@@ -190,11 +190,11 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-dynamic-models    | 697      | 160     | Oct 2009      | Mar 2026     |
 | ggvis                   | 693      | 182     | Aug 2013      | Jun 2024     |
 | sequenza-user-group     | 691      | 159     | Aug 2014      | Oct 2026     |
-| r-sig-epi               | 674      | 166     | Nov 2005      | Oct 2026     |
+| r-sig-epi               | 675      | 166     | Nov 2005      | Oct 2026     |
 | nat-user                | 639      | 108     | Apr 2015      | Jan 2026     |
 | tsdyn                   | 634      | 90      | Dec 2006      | Feb 2024     |
 | irace-package           | 594      | 114     | Jul 2016      | Sep 2025     |
-| r-sig-genetics          | 589      | 61      | May 2008      | Oct 2026     |
+| r-sig-genetics          | 590      | 61      | May 2008      | Oct 2026     |
 | rdevtools               | 561      | 130     | Mar 2012      | Jan 2023     |
 | oscr-package            | 551      | 86      | Feb 2016      | Oct 2026     |
 | flr-list                | 539      | 49      | Oct 2011      | Apr 2019     |
