@@ -114,7 +114,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**961,003** messages across **199** mailing lists
+**961,006** messages across **199** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
@@ -127,7 +127,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | shiny-discuss           | 23,336   | 3,840   | Nov 2012      | Jan 2024     |
 | bioc-devel              | 21,554   | 1,709   | Mar 2004      | Oct 2026     |
 | ggplot2                 | 21,320   | 3,103   | Nov 2008      | Jan 2025     |
-| r-sig-mixed-models      | 20,670   | 3,114   | Jan 2007      | Oct 2026     |
+| r-sig-mixed-models      | 20,673   | 3,114   | Jan 2007      | Oct 2026     |
 | r-br                    | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
 | r-inla-discussion-group | 16,090   | 1,765   | Feb 2011      | Oct 2026     |
 | r-help-es               | 15,408   | 899     | Mar 2009      | Sep 2026     |

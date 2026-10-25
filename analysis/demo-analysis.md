@@ -293,8 +293,8 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                                     31                                 23 
                         Duncan Murdoch                        Kurt Hornik 
                                     22                                 22 
-                        Peter Dalgaard                      Simon Urbanek 
-                                    20                                 20 
+                         Simon Urbanek                     Peter Dalgaard 
+                                    20                                 19 
                             Ben Bolker    Suharto Anggono Suharto Anggono 
                                     16                                 16 
 
