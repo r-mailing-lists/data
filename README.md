@@ -114,7 +114,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**961,006** messages across **199** mailing lists
+**961,010** messages across **199** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
@@ -151,7 +151,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | rpackageggir            | 3,417    | 545     | Nov 2014      | Jul 2025     |
 | datatable-help          | 3,415    | 441     | Mar 2010      | Apr 2018     |
 | israel-r-user-group     | 3,141    | 209     | Aug 2009      | Mar 2021     |
-| ctmm-user               | 2,995    | 441     | Feb 2017      | Oct 2026     |
+| ctmm-user               | 2,997    | 441     | Feb 2017      | Oct 2026     |
 | manipulatr              | 2,804    | 538     | Mar 2009      | Dec 2023     |
 | secrgroup               | 2,548    | 356     | Nov 2013      | Aug 2026     |
 | dartr                   | 2,425    | 289     | Nov 2018      | Sep 2026     |
@@ -205,7 +205,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | qcawithr                | 449      | 69      | Mar 2020      | Aug 2026     |
 | r-sig-jobs              | 442      | 267     | Feb 2007      | Mar 2026     |
 | r-sig-wiki              | 398      | 32      | Jan 2006      | Aug 2010     |
-| spocc-spabund-users     | 387      | 74      | Jul 2024      | Oct 2026     |
+| spocc-spabund-users     | 389      | 74      | Jul 2024      | Oct 2026     |
 | traminer-users          | 383      | 96      | May 2010      | Jul 2023     |
 | rsiena-help             | 354      | 67      | Feb 2010      | May 2019     |
 | qtinterfaces-devel      | 349      | 22      | Sep 2009      | May 2014     |
