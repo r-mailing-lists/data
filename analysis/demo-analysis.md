@@ -169,7 +169,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63736 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63737 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -202,7 +202,7 @@ head(contribs)
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17995         15 r-he… r-help:117… 1998-06-04T1… 2026-09-07T…
-    2 Duncan …         12600         14 r-he… r-help:733… 2000-02-16T2… 2026-10-06T…
+    2 Duncan …         12601         14 r-he… r-help:733… 2000-02-16T2… 2026-10-26T…
     3 David W…         11694         16 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
     4 Peter D…         10834         12 r-he… r-help:707… 1997-04-01T0… 2026-10-11T…
     5 Bob Car…         10378          2 stan… stan-users… 2011-11-07T1… 2017-06-06T…
@@ -288,7 +288,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
                            Ivan Krylov                    Martin Maechler 
-                                    38                                 37 
+                                    37                                 37 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
                                     31                                 23 
                         Duncan Murdoch                        Kurt Hornik 
@@ -381,7 +381,7 @@ contribs |>
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
 | Brian Ripley       |         17995 |         15 |
-| Duncan Murdoch     |         12600 |         14 |
+| Duncan Murdoch     |         12601 |         14 |
 | David Winsemius    |         11694 |         16 |
 | Peter Dalgaard     |         10834 |         12 |
 | Bob Carpenter      |         10378 |          2 |

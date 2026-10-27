@@ -114,40 +114,40 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**961,010** messages across **199** mailing lists
+**961,030** messages across **199** mailing lists
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
-| r-help                  | 398,802  | 37,119  | Apr 1997      | Oct 2026     |
-| r-devel                 | 63,736   | 5,864   | Apr 1997      | Oct 2026     |
+| r-help                  | 398,803  | 37,119  | Apr 1997      | Oct 2026     |
+| r-devel                 | 63,737   | 5,864   | Apr 1997      | Oct 2026     |
 | bioconductor            | 61,316   | 7,388   | Nov 2001      | Sep 2014     |
 | r-sig-geo               | 29,588   | 3,501   | Jul 2003      | Oct 2026     |
 | stan-users              | 26,736   | 1,452   | Aug 2012      | Jun 2017     |
 | lavaan                  | 23,445   | 3,308   | Sep 2012      | Oct 2026     |
 | shiny-discuss           | 23,336   | 3,840   | Nov 2012      | Jan 2024     |
-| bioc-devel              | 21,554   | 1,709   | Mar 2004      | Oct 2026     |
+| bioc-devel              | 21,557   | 1,710   | Mar 2004      | Oct 2026     |
 | ggplot2                 | 21,320   | 3,103   | Nov 2008      | Jan 2025     |
-| r-sig-mixed-models      | 20,673   | 3,114   | Jan 2007      | Oct 2026     |
+| r-sig-mixed-models      | 20,674   | 3,114   | Jan 2007      | Oct 2026     |
 | r-br                    | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
 | r-inla-discussion-group | 16,090   | 1,765   | Feb 2011      | Oct 2026     |
 | r-help-es               | 15,408   | 899     | Mar 2009      | Sep 2026     |
 | r-sig-finance           | 15,315   | 2,164   | Jun 2004      | Sep 2026     |
-| r-sig-mac               | 15,117   | 1,726   | Jan 1970      | Oct 2026     |
+| r-sig-mac               | 15,118   | 1,727   | Jan 1970      | Oct 2026     |
 | stan-dev                | 14,007   | 75      | Nov 2011      | Dec 2016     |
-| r-package-devel         | 12,402   | 1,130   | May 2015      | Oct 2026     |
+| r-package-devel         | 12,405   | 1,130   | May 2015      | Oct 2026     |
 | rcpp-devel              | 11,011   | 801     | Nov 2009      | May 2026     |
-| unmarked                | 7,728    | 1,096   | Feb 2010      | Sep 2026     |
-| r-sig-ecology           | 7,611    | 1,329   | Apr 2008      | Oct 2026     |
+| unmarked                | 7,729    | 1,096   | Feb 2010      | Oct 2026     |
+| r-sig-ecology           | 7,613    | 1,329   | Apr 2008      | Oct 2026     |
 | distance-sampling       | 6,855    | 1,316   | Sep 1998      | Oct 2026     |
 | r-sig-phylo             | 6,509    | 1,035   | Feb 2008      | Oct 2026     |
 | shinyapps-users         | 6,426    | 1,551   | Nov 2013      | Sep 2018     |
 | nimble-users            | 5,843    | 630     | Jul 2014      | Oct 2026     |
-| r-sig-meta-analysis     | 5,648    | 551     | Jun 2017      | Oct 2026     |
+| r-sig-meta-analysis     | 5,649    | 551     | Jun 2017      | Oct 2026     |
 | mirt-package            | 5,602    | 716     | Apr 2013      | Apr 2026     |
 | rqtl-disc               | 4,744    | 654     | Sep 2004      | Oct 2026     |
 | r-sig-debian            | 3,678    | 504     | Feb 2005      | Sep 2026     |
 | davis-rug               | 3,651    | 379     | Sep 2012      | May 2026     |
-| geomorph-r-package      | 3,634    | 427     | Jul 2016      | Sep 2026     |
+| geomorph-r-package      | 3,636    | 428     | Jul 2016      | Oct 2026     |
 | rpackageggir            | 3,417    | 545     | Nov 2014      | Jul 2025     |
 | datatable-help          | 3,415    | 441     | Mar 2010      | Apr 2018     |
 | israel-r-user-group     | 3,141    | 209     | Aug 2009      | Mar 2021     |
@@ -172,7 +172,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | genabel-devel           | 1,350    | 65      | Nov 2010      | Dec 2018     |
 | r-packages              | 1,347    | 570     | Sep 2003      | Oct 2026     |
 | rattle-users            | 1,339    | 311     | Aug 2006      | Aug 2024     |
-| tmb-users               | 1,319    | 194     | Jun 2016      | Sep 2026     |
+| tmb-users               | 1,321    | 195     | Jun 2016      | Oct 2026     |
 | r-sig-gui               | 1,236    | 264     | Oct 2002      | Feb 2018     |
 | gsoc-r                  | 1,181    | 264     | Mar 2010      | Jul 2026     |
 | rqtl2-disc              | 1,180    | 159     | Sep 2017      | Sep 2026     |
@@ -190,11 +190,11 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-dynamic-models    | 697      | 160     | Oct 2009      | Mar 2026     |
 | ggvis                   | 693      | 182     | Aug 2013      | Jun 2024     |
 | sequenza-user-group     | 691      | 159     | Aug 2014      | Oct 2026     |
-| r-sig-epi               | 675      | 166     | Nov 2005      | Oct 2026     |
+| r-sig-epi               | 676      | 166     | Nov 2005      | Oct 2026     |
 | nat-user                | 639      | 108     | Apr 2015      | Jan 2026     |
 | tsdyn                   | 634      | 90      | Dec 2006      | Feb 2024     |
 | irace-package           | 594      | 114     | Jul 2016      | Sep 2025     |
-| r-sig-genetics          | 590      | 61      | May 2008      | Oct 2026     |
+| r-sig-genetics          | 591      | 61      | May 2008      | Oct 2026     |
 | rdevtools               | 561      | 130     | Mar 2012      | Jan 2023     |
 | oscr-package            | 551      | 86      | Feb 2016      | Oct 2026     |
 | flr-list                | 539      | 49      | Oct 2011      | Apr 2019     |
