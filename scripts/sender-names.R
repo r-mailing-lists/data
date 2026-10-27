@@ -52,7 +52,11 @@ best_sender_names <- function(counts) {
   counts <- counts[nzchar(counts$hash) & nzchar(counts$name) & !is_address_name(counts$name) &
                      !is_masked_name(counts$name), , drop = FALSE]
   if (nrow(counts) == 0) return(character())
-  totals <- aggregate(n ~ hash + name, data = counts, FUN = sum)
+  pair <- paste(counts$hash, counts$name, sep = "\r")
+  first <- !duplicated(pair)
+  totals <- data.frame(hash = counts$hash[first], name = counts$name[first],
+                       n = as.vector(tapply(counts$n, factor(pair, levels = pair[first]), sum)),
+                       stringsAsFactors = FALSE)
   totals <- totals[order(totals$hash, -totals$n, totals$name), ]
   best <- totals[!duplicated(totals$hash), ]
   setNames(best$name, best$hash)
