@@ -285,9 +285,12 @@ read_sender_counts <- function(list_path) {
   })
   rows <- do.call(rbind, rows)
   if (is.null(rows) || any(rows$hidden)) return(NULL)
-  counts <- as.data.frame(table(hash = rows$hash, name = rows$name), stringsAsFactors = FALSE)
-  names(counts)[3] <- "n"
-  counts[counts$n > 0, ]
+  # The pairs that occur, counted: a table of every hash against every name
+  # would be r-help's 30,000 senders by its 30,000 names, gigabytes of zeros.
+  pair <- paste(rows$hash, rows$name, sep = "\r")
+  first <- !duplicated(pair)
+  data.frame(hash = rows$hash[first], name = rows$name[first],
+             n = as.vector(table(factor(pair, levels = pair[first]))), stringsAsFactors = FALSE)
 }
 
 best_names <- best_sender_names(do.call(rbind, c(
