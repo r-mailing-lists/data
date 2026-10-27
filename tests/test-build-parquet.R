@@ -29,12 +29,12 @@ restored_urls <- list(`2` = c("https://example.org/restored/a", "https://example
 
 # A list whose archive is members-only is written with addresses hidden, and
 # then its identifiers are opaque codes. A message that had none has none.
-message_entry <- function(i, date, hash, linked, written = "raw") {
+message_entry <- function(i, date, hash, linked, written = "raw", name = paste("Sender", hash)) {
   entry <- list(
     id = msg_id(i),
     message_id = switch(written, raw = sprintf("<m%03d@example.com>", i),
                         hidden = sprintf("<%032x@hidden>", i), none = ""),
-    from_name = paste("Sender", hash), from_email_hash = hash, date = date,
+    from_name = name, from_email_hash = hash, date = date,
     subject = paste("topic", i), subject_clean = paste("topic", i),
     body_plain = paste("body", i), body_snippet = paste("body", i),
     thread_id = sprintf("thread-%03d", i), thread_depth = 0L, month = substr(date, 1, 7)
@@ -55,13 +55,16 @@ thread_entry <- function(i, date) {
 
 # One month of one list. Within a month every message is sent in the same
 # second, alternating between two senders unless told who sent what, so both
-# the date and the sender tie. `written` says how each identifier is written.
+# the date and the sender tie. `written` says how each identifier is written,
+# and `names` the name each message came with ("Sender <hash>" by default).
 month_archive <- function(list_name, month, ids, linked,
-                          senders = ifelse(ids %% 2 == 0, "hash-a", "hash-b"), written = "raw") {
+                          senders = ifelse(ids %% 2 == 0, "hash-a", "hash-b"), written = "raw",
+                          names = paste("Sender", senders)) {
   date <- paste0(month, "-15T12:00:00Z")
   list(
     list = list_name, month = month,
-    messages = unname(Map(\(i, hash, how) message_entry(i, date, hash, linked, how), ids, senders, written)),
+    messages = unname(Map(\(i, hash, how, name) message_entry(i, date, hash, linked, how, name),
+                          ids, senders, written, names)),
     threads = lapply(ids, \(i) thread_entry(i, date))
   )
 }
@@ -95,8 +98,28 @@ contributors <- list(
        lists = list(list(slug = "test-list", count = 3L), list(slug = "other-list", count = 3L))),
   list(name = "Sender hash-b", messageCount = 6L, firstDate = "2020-01-15T12:00:00Z",
        lastDate = "2020-02-15T12:00:00Z",
-       lists = list(list(slug = "other-list", count = 3L), list(slug = "test-list", count = 3L)))
+       lists = list(list(slug = "other-list", count = 3L), list(slug = "test-list", count = 3L))),
+  # The senders of address-list, as the archive counts them under the names
+  # their messages came with, and the one message of named-list.
+  list(name = "frank at example.org", messageCount = 1L, firstDate = "2020-03-15T12:00:00Z",
+       lastDate = "2020-03-15T12:00:00Z", lists = list(list(slug = "address-list", count = 1L))),
+  list(name = "Gina Roe <gina@example.org>", messageCount = 1L, firstDate = "2020-03-15T12:00:00Z",
+       lastDate = "2020-03-15T12:00:00Z", lists = list(list(slug = "address-list", count = 1L))),
+  list(name = "Gina Roe", messageCount = 2L, firstDate = "2019-05-15T12:00:00Z",
+       lastDate = "2019-06-15T12:00:00Z", lists = list(list(slug = "named-list", count = 2L))),
+  list(name = "ha...@gmail.com", messageCount = 1L, firstDate = "2020-03-15T12:00:00Z",
+       lastDate = "2020-03-15T12:00:00Z", lists = list(list(slug = "address-list", count = 1L))),
+  list(name = "iv...@gmail.com", messageCount = 1L, firstDate = "2020-03-15T12:00:00Z",
+       lastDate = "2020-03-15T12:00:00Z", lists = list(list(slug = "address-list", count = 1L))),
+  list(name = "Ivy Lu", messageCount = 1L, firstDate = "2019-05-15T12:00:00Z",
+       lastDate = "2019-05-15T12:00:00Z", lists = list(list(slug = "named-list", count = 1L)))
 )
+
+# address-list's five senders came with an address for a name, whole, in a
+# longer name, masked by Google (twice), and as an alias's canonical name
+# would be. named-list holds the name the fourth gave there.
+address_names <- c("frank at example.org", "Gina Roe <gina@example.org>", "ha...@gmail.com",
+                   "iv...@gmail.com", "carol@example.org")
 
 # Write the fixture, optionally with every list of entries reversed. test-list
 # has source pages for most of its messages; forge-list, like every list hosted
@@ -118,6 +141,11 @@ write_fixture <- function(dir, reversed) {
     "hidden-list" = list("2020-01" = month_archive("hidden-list", "2020-01", 21:26, linked = FALSE,
                                                    senders = c(alias_senders, "hash-c"),
                                                    written = c(rep("hidden", 5), "none"))),
+    "address-list" = list("2020-03" = month_archive("address-list", "2020-03", 37:41, linked = FALSE,
+                                                    senders = c("hash-f", "hash-g", "hash-h", "hash-i", "hash-c"),
+                                                    names = address_names)),
+    "named-list" = list("2019-05" = month_archive("named-list", "2019-05", 42, linked = FALSE,
+                                                  senders = "hash-i", names = "Ivy Lu")),
     "long-list" = list("1999-06" = long_month("1999-06", 27:28),
                        "2003-01" = long_month("2003-01", 29:30),
                        "2004-11" = long_month("2004-11", 31:32),
@@ -218,6 +246,8 @@ forge <- as.data.frame(read_parquet(forge_path))
 forge_schema <- read_parquet_schema(forge_path)
 open <- as.data.frame(read_parquet(file.path(forward, "messages", "open-list.parquet")))
 hidden <- as.data.frame(read_parquet(file.path(forward, "messages", "hidden-list.parquet")))
+addressed <- as.data.frame(read_parquet(file.path(forward, "messages", "address-list.parquet")))
+people <- as.data.frame(read_parquet(file.path(forward, "contributors.parquet")))
 script <- readLines("scripts/build-parquet.R")
 built <- list.files(forward, pattern = "\\.parquet$", recursive = TRUE, full.names = TRUE)
 list_files <- c(built[basename(dirname(built)) == "messages"],
@@ -292,10 +322,22 @@ results <- c(
   check("aliases still resolve to the canonical name",
         all(msgs$from_name[msgs$from_email_hash == "hash-a"] == "Canonical A") &&
           all(msgs$from_name[msgs$from_email_hash == "hash-b"] == "Sender hash-b")),
-  check("also to a canonical name that holds an address, where identifiers are raw",
+  check("a canonical name that holds an address gives way to the name the sender's messages came with",
         identical(open$from_name,
-                  c("Canonical A", "Sender hash-b", "carol@example.org", "dave at example.org",
-                    "erin\tAT\texample.org"))),
+                  c("Canonical A", "Sender hash-b", "Sender hash-c", "Sender hash-d", "Sender hash-e"))),
+  check("a sender named by an address takes their own name from any list, else loses the address; a masked one stays",
+        identical(addressed$from_name, c("frank", "Gina Roe", "ha...@gmail.com", "Ivy Lu", "Sender hash-c"))),
+  check("no message name in any file holds an address",
+        !any(vapply(list_files, \(f) any(grepl("@[[:alnum:]-]+\\.|[[:space:]]at[[:space:]]", read_parquet(f)$from_name)
+                                         & !grepl("\\.\\.\\.@", read_parquet(f)$from_name)), logical(1)))),
+  check("contributors are named as their messages were, and those who now share a name are one",
+        identical(people$name[order(people$name)],
+                  sort(c("Sender hash-a", "Sender hash-b", "frank", "Gina Roe", "ha...@gmail.com", "Ivy Lu"))) &&
+          identical(unlist(people[people$name == "Gina Roe", c("message_count", "list_count", "lists", "list_counts",
+                                                              "first_message", "last_message")], use.names = FALSE),
+                    c("3", "2", "named-list,address-list", "named-list:2,address-list:1",
+                      "2019-05-15T12:00:00Z", "2020-03-15T12:00:00Z")) &&
+          people$message_count[people$name == "Ivy Lu"] == 2L),
   check("but in a list with hidden identifiers every message keeps its own name instead of such a one",
         identical(hidden$from_name,
                   c("Canonical A", "Sender hash-b", "Sender hash-c", "Sender hash-d", "Sender hash-e",

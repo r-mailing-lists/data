@@ -254,7 +254,7 @@ One Parquet file per mailing list. All files share the same schema.
 | `list` | string | Mailing list name (e.g., `r-devel`) |
 | `id` | string | Unique message ID (`msg-<hash>`) |
 | `message_id` | string | Original RFC 2822 Message-ID header |
-| `from_name` | string | Author display name (alias-resolved to canonical form) |
+| `from_name` | string | Author display name (alias-resolved to canonical form). A sender the archive shows under an email address gets the name they gave on other messages, or else the address without its domain |
 | `from_email_hash` | string | SHA-256 hash of author email (privacy-preserving) |
 | `date` | timestamp | Message date (UTC) |
 | `subject` | string | Subject line with `Re:`/`Fwd:` prefixes stripped |
@@ -300,7 +300,7 @@ Aggregated contributor statistics across all lists.
 
 ## Privacy
 
-Email addresses are not included in this dataset. Author identity is represented by display name and a SHA-256 hash of the email address, which allows grouping messages by author without exposing contact information. The original emails are publicly archived on the source mailing list servers, except those of `r-sig-phylo`, whose archive there is open to list members only.
+Sender email addresses are not included in this dataset. Author identity is represented by display name and a SHA-256 hash of the email address, which allows grouping messages by author without exposing contact information. Message text is kept as the source archive shows it, so an address written in a message, or quoted from another, can still appear there. The original emails are publicly archived on the source mailing list servers, except those of `r-sig-phylo`, whose archive there is open to list members only.
 
 ## License
 
