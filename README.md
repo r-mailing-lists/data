@@ -118,131 +118,131 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 | List                    | Messages | Authors | First Message | Last Message |
 |:------------------------|:---------|:--------|:--------------|:-------------|
-| r-help                  | 398,803  | 37,119  | Apr 1997      | Oct 2026     |
-| r-devel                 | 63,737   | 5,864   | Apr 1997      | Oct 2026     |
-| bioconductor            | 61,316   | 7,388   | Nov 2001      | Sep 2014     |
-| r-sig-geo               | 29,588   | 3,501   | Jul 2003      | Oct 2026     |
-| stan-users              | 26,736   | 1,452   | Aug 2012      | Jun 2017     |
-| lavaan                  | 23,445   | 3,308   | Sep 2012      | Oct 2026     |
-| shiny-discuss           | 23,336   | 3,840   | Nov 2012      | Jan 2024     |
-| bioc-devel              | 21,557   | 1,710   | Mar 2004      | Oct 2026     |
-| ggplot2                 | 21,320   | 3,103   | Nov 2008      | Jan 2025     |
-| r-sig-mixed-models      | 20,674   | 3,114   | Jan 2007      | Oct 2026     |
+| r-help                  | 398,803  | 36,566  | Apr 1997      | Oct 2026     |
+| r-devel                 | 63,737   | 5,577   | Apr 1997      | Oct 2026     |
+| bioconductor            | 61,316   | 7,259   | Nov 2001      | Sep 2014     |
+| r-sig-geo               | 29,588   | 3,456   | Jul 2003      | Oct 2026     |
+| stan-users              | 26,736   | 1,416   | Aug 2012      | Jun 2017     |
+| lavaan                  | 23,445   | 3,177   | Sep 2012      | Oct 2026     |
+| shiny-discuss           | 23,336   | 3,762   | Nov 2012      | Jan 2024     |
+| bioc-devel              | 21,557   | 1,700   | Mar 2004      | Oct 2026     |
+| ggplot2                 | 21,320   | 3,063   | Nov 2008      | Jan 2025     |
+| r-sig-mixed-models      | 20,674   | 3,092   | Jan 2007      | Oct 2026     |
 | r-br                    | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
-| r-inla-discussion-group | 16,090   | 1,765   | Feb 2011      | Oct 2026     |
+| r-inla-discussion-group | 16,090   | 1,682   | Feb 2011      | Oct 2026     |
 | r-help-es               | 15,408   | 899     | Mar 2009      | Sep 2026     |
-| r-sig-finance           | 15,315   | 2,164   | Jun 2004      | Sep 2026     |
-| r-sig-mac               | 15,118   | 1,727   | Jan 1970      | Oct 2026     |
-| stan-dev                | 14,007   | 75      | Nov 2011      | Dec 2016     |
-| r-package-devel         | 12,405   | 1,130   | May 2015      | Oct 2026     |
-| rcpp-devel              | 11,011   | 801     | Nov 2009      | May 2026     |
-| unmarked                | 7,729    | 1,096   | Feb 2010      | Oct 2026     |
-| r-sig-ecology           | 7,613    | 1,329   | Apr 2008      | Oct 2026     |
-| distance-sampling       | 6,855    | 1,316   | Sep 1998      | Oct 2026     |
+| r-sig-finance           | 15,315   | 2,132   | Jun 2004      | Sep 2026     |
+| r-sig-mac               | 15,118   | 1,721   | Jan 1970      | Oct 2026     |
+| stan-dev                | 14,007   | 73      | Nov 2011      | Dec 2016     |
+| r-package-devel         | 12,405   | 1,129   | May 2015      | Oct 2026     |
+| rcpp-devel              | 11,011   | 794     | Nov 2009      | May 2026     |
+| unmarked                | 7,729    | 1,059   | Feb 2010      | Oct 2026     |
+| r-sig-ecology           | 7,613    | 1,318   | Apr 2008      | Oct 2026     |
+| distance-sampling       | 6,855    | 1,278   | Sep 1998      | Oct 2026     |
 | r-sig-phylo             | 6,509    | 1,035   | Feb 2008      | Oct 2026     |
-| shinyapps-users         | 6,426    | 1,551   | Nov 2013      | Sep 2018     |
-| nimble-users            | 5,843    | 630     | Jul 2014      | Oct 2026     |
+| shinyapps-users         | 6,426    | 1,537   | Nov 2013      | Sep 2018     |
+| nimble-users            | 5,843    | 590     | Jul 2014      | Oct 2026     |
 | r-sig-meta-analysis     | 5,649    | 551     | Jun 2017      | Oct 2026     |
-| mirt-package            | 5,602    | 716     | Apr 2013      | Apr 2026     |
-| rqtl-disc               | 4,744    | 654     | Sep 2004      | Oct 2026     |
-| r-sig-debian            | 3,678    | 504     | Feb 2005      | Sep 2026     |
-| davis-rug               | 3,651    | 379     | Sep 2012      | May 2026     |
-| geomorph-r-package      | 3,636    | 428     | Jul 2016      | Oct 2026     |
-| rpackageggir            | 3,417    | 545     | Nov 2014      | Jul 2025     |
-| datatable-help          | 3,415    | 441     | Mar 2010      | Apr 2018     |
-| israel-r-user-group     | 3,141    | 209     | Aug 2009      | Mar 2021     |
-| ctmm-user               | 2,997    | 441     | Feb 2017      | Oct 2026     |
-| manipulatr              | 2,804    | 538     | Mar 2009      | Dec 2023     |
-| secrgroup               | 2,548    | 356     | Nov 2013      | Aug 2026     |
-| dartr                   | 2,425    | 289     | Nov 2018      | Sep 2026     |
+| mirt-package            | 5,602    | 667     | Apr 2013      | Apr 2026     |
+| rqtl-disc               | 4,744    | 626     | Sep 2004      | Oct 2026     |
+| r-sig-debian            | 3,678    | 501     | Feb 2005      | Sep 2026     |
+| davis-rug               | 3,651    | 365     | Sep 2012      | May 2026     |
+| geomorph-r-package      | 3,636    | 394     | Jul 2016      | Oct 2026     |
+| rpackageggir            | 3,417    | 525     | Nov 2014      | Jul 2025     |
+| datatable-help          | 3,415    | 439     | Mar 2010      | Apr 2018     |
+| israel-r-user-group     | 3,141    | 204     | Aug 2009      | Mar 2021     |
+| ctmm-user               | 2,997    | 418     | Feb 2017      | Oct 2026     |
+| manipulatr              | 2,804    | 528     | Mar 2009      | Dec 2023     |
+| secrgroup               | 2,548    | 335     | Nov 2013      | Aug 2026     |
+| dartr                   | 2,425    | 272     | Nov 2018      | Sep 2026     |
 | bioc-sig-sequencing     | 2,295    | 227     | Feb 2008      | Sep 2011     |
 | rhadoop                 | 2,167    | 385     | Feb 2012      | May 2016     |
-| r-sig-hpc               | 2,152    | 383     | Oct 2008      | Dec 2024     |
-| adegenet-forum          | 1,994    | 454     | Feb 2008      | Feb 2025     |
-| hmecology               | 1,964    | 366     | Dec 2012      | Oct 2026     |
-| knitr                   | 1,964    | 344     | Jan 2012      | Oct 2023     |
-| biogeobears             | 1,636    | 273     | Oct 2013      | Oct 2026     |
-| camtrapr                | 1,626    | 315     | Dec 2016      | Oct 2026     |
-| bioc-ggtree             | 1,586    | 405     | Mar 2016      | Nov 2025     |
+| r-sig-hpc               | 2,152    | 382     | Oct 2008      | Dec 2024     |
+| adegenet-forum          | 1,994    | 453     | Feb 2008      | Feb 2025     |
+| hmecology               | 1,964    | 342     | Dec 2012      | Oct 2026     |
+| knitr                   | 1,964    | 339     | Jan 2012      | Oct 2023     |
+| biogeobears             | 1,636    | 256     | Oct 2013      | Oct 2026     |
+| camtrapr                | 1,626    | 304     | Dec 2016      | Oct 2026     |
+| bioc-ggtree             | 1,586    | 392     | Mar 2016      | Nov 2025     |
 | r-sig-db                | 1,559    | 391     | Apr 2001      | Nov 2020     |
-| deducer                 | 1,538    | 319     | Aug 2009      | May 2022     |
-| blavaan                 | 1,472    | 175     | Feb 2016      | Apr 2026     |
-| rhipe                   | 1,461    | 177     | Nov 2009      | May 2016     |
-| simmer-devel            | 1,399    | 129     | Apr 2016      | Sep 2024     |
-| genabel-devel           | 1,350    | 65      | Nov 2010      | Dec 2018     |
+| deducer                 | 1,538    | 295     | Aug 2009      | May 2022     |
+| blavaan                 | 1,472    | 165     | Feb 2016      | Apr 2026     |
+| rhipe                   | 1,461    | 176     | Nov 2009      | May 2016     |
+| simmer-devel            | 1,399    | 123     | Apr 2016      | Sep 2024     |
+| genabel-devel           | 1,350    | 64      | Nov 2010      | Dec 2018     |
 | r-packages              | 1,347    | 570     | Sep 2003      | Oct 2026     |
-| rattle-users            | 1,339    | 311     | Aug 2006      | Aug 2024     |
-| tmb-users               | 1,321    | 195     | Jun 2016      | Oct 2026     |
-| r-sig-gui               | 1,236    | 264     | Oct 2002      | Feb 2018     |
-| gsoc-r                  | 1,181    | 264     | Mar 2010      | Jul 2026     |
-| rqtl2-disc              | 1,180    | 159     | Sep 2017      | Sep 2026     |
-| corpling-with-r         | 1,170    | 160     | Nov 2006      | Jul 2024     |
-| seewave                 | 1,081    | 271     | Apr 2010      | Aug 2025     |
-| brms-users              | 1,042    | 144     | Jan 2017      | Jun 2018     |
-| poppr                   | 1,018    | 220     | Mar 2014      | Apr 2025     |
+| rattle-users            | 1,339    | 306     | Aug 2006      | Aug 2024     |
+| tmb-users               | 1,321    | 178     | Jun 2016      | Oct 2026     |
+| r-sig-gui               | 1,236    | 262     | Oct 2002      | Feb 2018     |
+| gsoc-r                  | 1,181    | 261     | Mar 2010      | Jul 2026     |
+| rqtl2-disc              | 1,180    | 149     | Sep 2017      | Sep 2026     |
+| corpling-with-r         | 1,170    | 156     | Nov 2006      | Jul 2024     |
+| seewave                 | 1,081    | 261     | Apr 2010      | Aug 2025     |
+| brms-users              | 1,042    | 143     | Jan 2017      | Jun 2018     |
+| poppr                   | 1,018    | 214     | Mar 2014      | Apr 2025     |
 | r-sig-fedora            | 931      | 129     | May 2008      | Apr 2026     |
-| braingraph-help         | 892      | 91      | Dec 2015      | May 2025     |
-| r-sig-teaching          | 886      | 224     | Oct 2006      | Sep 2026     |
-| wallaceecomod           | 839      | 188     | Jan 2017      | Sep 2026     |
-| rmetrics-core           | 741      | 222     | Sep 2007      | Nov 2017     |
+| braingraph-help         | 892      | 88      | Dec 2015      | May 2025     |
+| r-sig-teaching          | 886      | 222     | Oct 2006      | Sep 2026     |
+| wallaceecomod           | 839      | 179     | Jan 2017      | Sep 2026     |
+| rmetrics-core           | 741      | 220     | Sep 2007      | Nov 2017     |
 | phylobase-devl          | 724      | 28      | Feb 2008      | Apr 2014     |
-| r-announce              | 714      | 112     | Apr 1997      | Sep 2026     |
-| r-sig-dynamic-models    | 697      | 160     | Oct 2009      | Mar 2026     |
+| r-announce              | 714      | 111     | Apr 1997      | Sep 2026     |
+| r-sig-dynamic-models    | 697      | 159     | Oct 2009      | Mar 2026     |
 | ggvis                   | 693      | 182     | Aug 2013      | Jun 2024     |
-| sequenza-user-group     | 691      | 159     | Aug 2014      | Oct 2026     |
+| sequenza-user-group     | 691      | 156     | Aug 2014      | Oct 2026     |
 | r-sig-epi               | 676      | 166     | Nov 2005      | Oct 2026     |
-| nat-user                | 639      | 108     | Apr 2015      | Jan 2026     |
-| tsdyn                   | 634      | 90      | Dec 2006      | Feb 2024     |
-| irace-package           | 594      | 114     | Jul 2016      | Sep 2025     |
+| nat-user                | 639      | 103     | Apr 2015      | Jan 2026     |
+| tsdyn                   | 634      | 83      | Dec 2006      | Feb 2024     |
+| irace-package           | 594      | 102     | Jul 2016      | Sep 2025     |
 | r-sig-genetics          | 591      | 61      | May 2008      | Oct 2026     |
-| rdevtools               | 561      | 130     | Mar 2012      | Jan 2023     |
-| oscr-package            | 551      | 86      | Feb 2016      | Oct 2026     |
-| flr-list                | 539      | 49      | Oct 2011      | Apr 2019     |
-| ez4r                    | 533      | 125     | Feb 2011      | Feb 2023     |
+| rdevtools               | 561      | 127     | Mar 2012      | Jan 2023     |
+| oscr-package            | 551      | 78      | Feb 2016      | Oct 2026     |
+| flr-list                | 539      | 47      | Oct 2011      | Apr 2019     |
+| ez4r                    | 533      | 124     | Feb 2011      | Feb 2023     |
 | r-sig-robust            | 525      | 152     | Nov 2005      | Jul 2026     |
-| mplusautomation         | 514      | 172     | Dec 2012      | Aug 2026     |
-| roxygen-devel           | 469      | 59      | May 2008      | Aug 2015     |
-| qcawithr                | 449      | 69      | Mar 2020      | Aug 2026     |
+| mplusautomation         | 514      | 165     | Dec 2012      | Aug 2026     |
+| roxygen-devel           | 469      | 58      | May 2008      | Aug 2015     |
+| qcawithr                | 449      | 67      | Mar 2020      | Aug 2026     |
 | r-sig-jobs              | 442      | 267     | Feb 2007      | Mar 2026     |
 | r-sig-wiki              | 398      | 32      | Jan 2006      | Aug 2010     |
 | spocc-spabund-users     | 389      | 74      | Jul 2024      | Oct 2026     |
-| traminer-users          | 383      | 96      | May 2010      | Jul 2023     |
+| traminer-users          | 383      | 94      | May 2010      | Jul 2023     |
 | rsiena-help             | 354      | 67      | Feb 2010      | May 2019     |
 | qtinterfaces-devel      | 349      | 22      | Sep 2009      | May 2014     |
-| vim-r-plugin            | 318      | 62      | Dec 2013      | Mar 2024     |
-| sorvi-admin             | 300      | 28      | Nov 2011      | Nov 2021     |
-| tidylpa                 | 299      | 124     | Apr 2018      | Aug 2025     |
+| vim-r-plugin            | 318      | 57      | Dec 2013      | Mar 2024     |
+| sorvi-admin             | 300      | 27      | Nov 2011      | Nov 2021     |
+| tidylpa                 | 299      | 116     | Apr 2018      | Aug 2025     |
 | seqinr-forum            | 296      | 58      | Jul 2008      | Mar 2023     |
 | gsoc-porta              | 273      | 8       | Jun 2013      | Aug 2014     |
-| tikzdevice-bugs         | 268      | 48      | Jul 2009      | Nov 2013     |
+| tikzdevice-bugs         | 268      | 47      | Jul 2009      | Nov 2013     |
 | rprotobuf-yada          | 237      | 13      | Oct 2009      | Oct 2016     |
-| spades-users            | 237      | 25      | Mar 2016      | Nov 2020     |
-| basta-users             | 199      | 49      | Nov 2011      | Nov 2025     |
+| spades-users            | 237      | 21      | Mar 2016      | Nov 2020     |
+| basta-users             | 199      | 48      | Nov 2011      | Nov 2025     |
 | rnomads-user            | 198      | 40      | Sep 2014      | Apr 2023     |
 | r-ug-ottawa             | 197      | 66      | Jan 2009      | Dec 2022     |
-| sqldf                   | 193      | 70      | Feb 2013      | Feb 2021     |
+| sqldf                   | 193      | 66      | Feb 2013      | Feb 2021     |
 | r-sig-gr                | 177      | 79      | Sep 2002      | Sep 2026     |
 | canopy-phylogeny        | 164      | 43      | Sep 2016      | Sep 2023     |
-| isorix                  | 163      | 31      | Apr 2021      | Apr 2026     |
+| isorix                  | 163      | 30      | Apr 2021      | Apr 2026     |
 | mediation-information   | 158      | 31      | May 2011      | Jan 2021     |
-| metacoder-discussions   | 154      | 44      | Feb 2017      | Apr 2026     |
-| rworldmap               | 149      | 57      | Jul 2013      | Dec 2023     |
+| metacoder-discussions   | 154      | 41      | Feb 2017      | Apr 2026     |
+| rworldmap               | 149      | 56      | Jul 2013      | Dec 2023     |
 | r-sig-windows           | 146      | 21      | Aug 2015      | Sep 2026     |
-| inlinedocs-support      | 137      | 60      | Nov 2009      | Jun 2014     |
+| inlinedocs-support      | 137      | 59      | Nov 2009      | Jun 2014     |
 | rcppoctave-user         | 133      | 8       | Oct 2013      | Nov 2016     |
 | r-sig-insurance         | 117      | 39      | Apr 2009      | Dec 2022     |
 | nmof-news               | 115      | 1       | Jun 2011      | Oct 2025     |
-| r-package-xlsx          | 107      | 49      | Jan 2012      | Nov 2021     |
+| r-package-xlsx          | 107      | 47      | Jan 2012      | Nov 2021     |
 | rspatial-devel          | 107      | 10      | Apr 2011      | Dec 2015     |
 | tlocoh-info             | 105      | 34      | Sep 2013      | May 2021     |
-| trophicposition-support | 104      | 54      | May 2017      | Aug 2026     |
+| trophicposition-support | 104      | 52      | May 2017      | Aug 2026     |
 | rqtl-announce           | 96       | 2       | Sep 2004      | Jul 2026     |
 | rquantlib-devel         | 75       | 15      | Feb 2010      | Feb 2017     |
 | ipmpack-users           | 69       | 35      | Aug 2012      | May 2019     |
 | genoplotr-help          | 67       | 12      | Jun 2010      | Nov 2020     |
 | r-sig-dcm               | 67       | 17      | Jul 2010      | Sep 2024     |
-| r-and-cpp               | 65       | 16      | Apr 2014      | May 2024     |
-| nmf-user                | 61       | 17      | Nov 2011      | Jul 2020     |
+| r-and-cpp               | 65       | 15      | Apr 2014      | May 2024     |
+| nmf-user                | 61       | 16      | Nov 2011      | Jul 2020     |
 | reddyproc-users         | 51       | 14      | Jul 2013      | Nov 2019     |
 | rcicr-users             | 48       | 12      | Oct 2014      | Mar 2019     |
 | ropengov-forum          | 47       | 10      | Dec 2013      | Mar 2019     |
@@ -287,7 +287,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | nlsy-links              | 4        | 3       | Jun 2019      | Mar 2022     |
 | pez-users               | 4        | 2       | Jan 2018      | Jan 2018     |
 | phylogram               | 4        | 3       | Mar 2018      | Sep 2022     |
-| simsalabim-communicate  | 4        | 3       | Oct 2008      | Nov 2008     |
+| simsalabim-communicate  | 4        | 2       | Oct 2008      | Nov 2008     |
 | spdep-devel             | 4        | 3       | May 2010      | Mar 2017     |
 | synbreed-news           | 4        | 3       | Jul 2010      | Jan 2012     |
 | bioc-sig-proteomics     | 3        | 2       | May 2011      | Sep 2011     |
@@ -345,7 +345,7 @@ One Parquet file per mailing list. All files share the same schema.
 | `list` | string | Mailing list name (e.g., `r-devel`) |
 | `id` | string | Unique message ID (`msg-<hash>`) |
 | `message_id` | string | Original RFC 2822 Message-ID header |
-| `from_name` | string | Author display name (alias-resolved to canonical form) |
+| `from_name` | string | Author display name (alias-resolved to canonical form). A sender the archive shows under an email address gets the name they gave on other messages, or else the address without its domain |
 | `from_email_hash` | string | SHA-256 hash of author email (privacy-preserving) |
 | `date` | timestamp | Message date (UTC) |
 | `subject` | string | Subject line with `Re:`/`Fwd:` prefixes stripped |
@@ -396,12 +396,14 @@ Aggregated contributor statistics across all lists.
 
 ## Privacy
 
-Email addresses are not included in this dataset. Author identity is
-represented by display name and a SHA-256 hash of the email address,
+Sender email addresses are not included in this dataset. Author identity
+is represented by display name and a SHA-256 hash of the email address,
 which allows grouping messages by author without exposing contact
-information. The original emails are publicly archived on the source
-mailing list servers, except those of `r-sig-phylo`, whose archive there
-is open to list members only.
+information. Message text is kept as the source archive shows it, so an
+address written in a message, or quoted from another, can still appear
+there. The original emails are publicly archived on the source mailing
+list servers, except those of `r-sig-phylo`, whose archive there is open
+to list members only.
 
 ## License
 

@@ -202,11 +202,11 @@ head(contribs)
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
     1 Brian R…         17995         15 r-he… r-help:117… 1998-06-04T1… 2026-09-07T…
-    2 Duncan …         12601         14 r-he… r-help:733… 2000-02-16T2… 2026-10-26T…
-    3 David W…         11694         16 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
+    2 Duncan …         12607         16 r-he… r-help:733… 2000-02-16T2… 2026-10-26T…
+    3 David W…         11781         19 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
     4 Peter D…         10834         12 r-he… r-help:707… 1997-04-01T0… 2026-10-11T…
-    5 Bob Car…         10378          2 stan… stan-users… 2011-11-07T1… 2017-06-06T…
-    6 Gabor G…         10081         19 r-he… r-help:804… 2002-01-12T1… 2026-10-03T…
+    5 Bob Car…         10387          3 stan… stan-users… 2011-11-07T1… 2017-06-06T…
+    6 Gabor G…         10210         25 r-he… r-help:804… 2002-01-12T1… 2026-10-03T…
 
 ### Working directly with Parquet files
 
@@ -381,22 +381,22 @@ contribs |>
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
 | Brian Ripley       |         17995 |         15 |
-| Duncan Murdoch     |         12601 |         14 |
-| David Winsemius    |         11694 |         16 |
+| Duncan Murdoch     |         12607 |         16 |
+| David Winsemius    |         11781 |         19 |
 | Peter Dalgaard     |         10834 |         12 |
-| Bob Carpenter      |         10378 |          2 |
-| Gabor Grothendieck |         10081 |         19 |
-| Uwe Ligges         |          8576 |         19 |
-| Dirk Eddelbuettel  |          7984 |         23 |
-| Ben Bolker         |          6270 |         11 |
+| Bob Carpenter      |         10387 |          3 |
+| Gabor Grothendieck |         10210 |         25 |
+| Uwe Ligges         |          8677 |         22 |
+| Dirk Eddelbuettel  |          8024 |         24 |
+| Ben Bolker         |          6552 |         18 |
 | Bert Gunter        |          6050 |         10 |
 | Martin Maechler    |          5901 |         26 |
-| jim holtman        |          4445 |          6 |
-| Ben Goodrich       |          4432 |          2 |
-| Jeff Newmiller     |          4378 |          7 |
+| jim holtman        |          4469 |          8 |
+| Ben Goodrich       |          4455 |          5 |
+| Hadley Wickham     |          4439 |         22 |
+| Jeff Newmiller     |          4427 |         10 |
 | Martin Morgan      |          4347 |          8 |
-| Simon Urbanek      |          4332 |         14 |
-| Roger Bivand       |          4314 |         16 |
+| Simon Urbanek      |          4333 |         15 |
+| Roger Bivand       |          4326 |         17 |
 | Jim Lemon          |          3886 |          6 |
 | Thomas Lumley      |          3794 |          9 |
-| Marc Schwartz      |          3770 |         10 |
