@@ -14,6 +14,13 @@
 library(jsonlite)
 library(nanoparquet)
 
+# The functions that keep addresses out of sender names, from beside this script.
+local({
+  file_arg <- grep("^--file=", commandArgs(trailingOnly = FALSE), value = TRUE)
+  here <- if (length(file_arg) == 1) dirname(sub("^--file=", "", file_arg)) else "scripts"
+  source(file.path(here, "sender-names.R"))
+})
+
 args <- commandArgs(trailingOnly = TRUE)
 input_dir <- if (length(args) >= 1) args[1] else "data/processed"
 output_dir <- if (length(args) >= 2) args[2] else "data"
@@ -257,11 +264,41 @@ read_threads_json <- function(path, list_name) {
 }
 
 # ---------------------------------------------------------------------------
-# Process each list
+# The names senders gave
 # ---------------------------------------------------------------------------
 
 list_dirs <- list.dirs(input_dir, full.names = TRUE, recursive = FALSE)
 list_dirs <- list_dirs[!grepl("^_", basename(list_dirs))]
+
+# How often each sender (email hash) used each name, over every list but one
+# written with addresses hidden: a data frame of hash, name and n. A sender
+# shown under an address in one list takes the name they gave in any list
+# (scripts/sender-names.R), so every list is read for its names before any
+# is written. A members-only list gives no names to the others.
+read_sender_counts <- function(list_path) {
+  json_files <- list.files(list_path, pattern = "^\\d{4}-\\d{2}\\.json$", full.names = TRUE)
+  rows <- lapply(json_files, \(jf) {
+    msgs <- fromJSON(jf, simplifyDataFrame = FALSE)$messages
+    data.frame(hash = vapply(msgs, `[[`, "", "from_email_hash"), name = vapply(msgs, `[[`, "", "from_name"),
+               hidden = vapply(msgs, \(m) endsWith(m$message_id %||% "", "@hidden>"), logical(1)),
+               stringsAsFactors = FALSE)
+  })
+  rows <- do.call(rbind, rows)
+  if (is.null(rows) || any(rows$hidden)) return(NULL)
+  counts <- as.data.frame(table(hash = rows$hash, name = rows$name), stringsAsFactors = FALSE)
+  names(counts)[3] <- "n"
+  counts[counts$n > 0, ]
+}
+
+best_names <- best_sender_names(do.call(rbind, c(
+  list(data.frame(hash = character(), name = character(), n = integer())),
+  lapply(list_dirs, read_sender_counts))))
+message("Read the names of ", length(best_names), " senders")
+renames <- list()
+
+# ---------------------------------------------------------------------------
+# Process each list
+# ---------------------------------------------------------------------------
 
 all_threads <- list()
 flagged_seen <- character()
@@ -297,6 +334,16 @@ for (list_path in list_dirs) {
 
   # Resolve from_name via aliases (canonical names)
   msgs <- resolve_aliases(msgs)
+
+  # A sender shown under an address takes the name they gave elsewhere, or
+  # the address without its domain (scripts/sender-names.R).
+  renamed <- is_address_name(msgs$from_name) | is_masked_name(msgs$from_name)
+  if (any(renamed)) {
+    new_names <- sender_names(msgs$from_name, msgs$from_email_hash, best_names)
+    renames <- c(renames, list(data.frame(from = msgs$from_name[renamed], to = new_names[renamed],
+                                          stringsAsFactors = FALSE)))
+    msgs$from_name <- new_names
+  }
 
   # Flag the messages the spam file names. Threads and contributors keep
   # counting them.
@@ -394,6 +441,9 @@ if (file.exists(contrib_path)) {
     last_message  = vapply(contrib, \(x) x$lastDate %||% NA_character_, ""),
     stringsAsFactors = FALSE
   )
+  # Named as the messages were, so that a contributor's page finds them.
+  contrib_df <- rename_contributors(contrib_df, do.call(rbind, c(
+    list(data.frame(from = character(), to = character())), renames)))
   contrib_df <- contrib_df[order(-contrib_df$message_count, contrib_df$name,
                                  contrib_df$lists, contrib_df$first_message), ]
   rownames(contrib_df) <- NULL
