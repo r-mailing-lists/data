@@ -114,13 +114,14 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,008,645** messages across **275** mailing lists
+**1,071,423** messages across **277** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
 | r-help                     | 398,803  | 36,566  | Apr 1997      | Oct 2026     |
 | r-devel                    | 63,737   | 5,576   | Apr 1997      | Oct 2026     |
 | bioconductor               | 61,316   | 7,259   | Nov 2001      | Sep 2014     |
+| r-pkg-team                 | 60,304   | 630     | May 2018      | Oct 2026     |
 | r-sig-geo                  | 29,588   | 3,456   | Jul 2003      | Oct 2026     |
 | stan-users                 | 26,736   | 1,416   | Aug 2012      | Jun 2017     |
 | lavaan                     | 23,445   | 3,177   | Sep 2012      | Oct 2026     |
@@ -159,6 +160,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | manipulatr                 | 2,804    | 528     | Mar 2009      | Dec 2023     |
 | msstats                    | 2,636    | 391     | Jan 2014      | Oct 2026     |
 | secrgroup                  | 2,548    | 335     | Nov 2013      | Aug 2026     |
+| debian-r                   | 2,474    | 129     | Feb 2018      | Oct 2026     |
 | dartr                      | 2,425    | 272     | Nov 2018      | Sep 2026     |
 | bioc-sig-sequencing        | 2,295    | 227     | Feb 2008      | Sep 2011     |
 | rhadoop                    | 2,167    | 385     | Feb 2012      | May 2016     |
