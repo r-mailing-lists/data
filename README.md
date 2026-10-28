@@ -114,7 +114,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,008,637** messages across **275** mailing lists
+**1,008,645** messages across **275** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
@@ -134,7 +134,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-finance              | 15,315   | 2,132   | Jun 2004      | Sep 2026     |
 | r-sig-mac                  | 15,122   | 1,721   | Jan 1970      | Oct 2026     |
 | stan-dev                   | 14,007   | 73      | Nov 2011      | Dec 2016     |
-| r-package-devel            | 12,405   | 1,129   | May 2015      | Oct 2026     |
+| r-package-devel            | 12,406   | 1,129   | May 2015      | Oct 2026     |
 | rcpp-devel                 | 11,011   | 794     | Nov 2009      | May 2026     |
 | unmarked                   | 7,729    | 1,059   | Feb 2010      | Oct 2026     |
 | r-sig-ecology              | 7,613    | 1,318   | Apr 2008      | Oct 2026     |
@@ -150,12 +150,12 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | rpy-list                   | 3,768    | 499     | Jan 2004      | Jun 2021     |
 | r-sig-debian               | 3,678    | 501     | Feb 2005      | Sep 2026     |
 | davis-rug                  | 3,651    | 365     | Sep 2012      | May 2026     |
-| geomorph-r-package         | 3,636    | 394     | Jul 2016      | Oct 2026     |
+| geomorph-r-package         | 3,641    | 394     | Jul 2016      | Oct 2026     |
 | rpackageggir               | 3,417    | 525     | Nov 2014      | Jul 2025     |
 | datatable-help             | 3,415    | 439     | Mar 2010      | Apr 2018     |
 | israel-r-user-group        | 3,141    | 204     | Aug 2009      | Mar 2021     |
 | methylkit-discussion       | 3,131    | 532     | May 2013      | Jul 2026     |
-| ctmm-user                  | 2,997    | 418     | Feb 2017      | Oct 2026     |
+| ctmm-user                  | 2,998    | 418     | Feb 2017      | Oct 2026     |
 | manipulatr                 | 2,804    | 528     | Mar 2009      | Dec 2023     |
 | msstats                    | 2,636    | 391     | Jan 2014      | Oct 2026     |
 | secrgroup                  | 2,548    | 335     | Nov 2013      | Aug 2026     |
@@ -210,7 +210,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-announce                 | 714      | 111     | Apr 1997      | Sep 2026     |
 | r-sig-dynamic-models       | 697      | 159     | Oct 2009      | Mar 2026     |
 | ggvis                      | 693      | 182     | Aug 2013      | Jun 2024     |
-| sequenza-user-group        | 691      | 156     | Aug 2014      | Oct 2026     |
+| sequenza-user-group        | 692      | 156     | Aug 2014      | Oct 2026     |
 | r-sig-epi                  | 676      | 166     | Nov 2005      | Oct 2026     |
 | nat-user                   | 639      | 103     | Apr 2015      | Jan 2026     |
 | tsdyn                      | 634      | 83      | Dec 2006      | Feb 2024     |
