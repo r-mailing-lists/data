@@ -1,6 +1,11 @@
 # R Mailing List Data
 
 
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="images/r-mailing-lists-logo-dark-animated.svg">
+<img align="right" width="150" alt="The R Mailing Lists hex logo: blue envelopes filed in a drawer marked since 1997, the front one sealed with an R" src="images/r-mailing-lists-logo-light-animated.svg">
+</picture>
+
 A collection of [R mailing list](https://www.r-project.org/mail.html)
 archives in [Parquet](https://parquet.apache.org/) format, ready for
 analysis in R, Python, or any language with Parquet support.
