@@ -114,7 +114,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,078,718** messages across **284** mailing lists
+**1,079,782** messages across **286** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
@@ -199,6 +199,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | seewave                    | 1,081    | 261     | Apr 2010      | Aug 2025     |
 | brms-users                 | 1,042    | 143     | Jan 2017      | Jun 2018     |
 | poppr                      | 1,018    | 214     | Mar 2014      | Apr 2025     |
+| amelia                     | 983      | 301     | Apr 2002      | Apr 2013     |
 | cardinalmsi                | 950      | 134     | Feb 2015      | Mar 2025     |
 | r-sig-fedora               | 931      | 129     | May 2008      | Apr 2026     |
 | braingraph-help            | 892      | 88      | Dec 2015      | May 2025     |
@@ -303,6 +304,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | epls-r-users               | 88       | 7       | Mar 2019      | Apr 2026     |
 | mxmaps                     | 88       | 26      | Mar 2019      | Jan 2025     |
 | houston-r                  | 83       | 20      | Mar 2009      | Feb 2012     |
+| relogit                    | 81       | 46      | May 2002      | Feb 2013     |
 | rquantlib-devel            | 75       | 15      | Feb 2010      | Feb 2017     |
 | konfound-it                | 70       | 11      | Jun 2018      | Jul 2026     |
 | ipmpack-users              | 69       | 35      | Aug 2012      | May 2019     |
