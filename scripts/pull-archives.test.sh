@@ -22,8 +22,8 @@ unset XDG_CONFIG_HOME GIT_TERMINAL_PROMPT
 mkdir -p "$HOME" "$TMP/bin"
 
 # A stand-in git: logs every clone and whether it may prompt for a password,
-# refuses a web address, and fails as many checkouts as a scenario asks for.
-# For everything else it is the real git.
+# refuses a web address, and fails as many clones and as many checkouts as a
+# scenario asks for. For everything else it is the real git.
 REAL_GIT="$(command -v git)"; export REAL_GIT
 cat > "$TMP/bin/git" <<'GIT'
 #!/usr/bin/env bash
@@ -35,6 +35,8 @@ if [ "$1" = clone ]; then
       *.git)              echo "clone $arg" >> "$FAKE/log" ;;
     esac
   done
+  failures="$(cat "$FAKE/clone-failures" 2>/dev/null || echo 0)"
+  if [ "$failures" -gt 0 ]; then echo $((failures - 1)) > "$FAKE/clone-failures"; exit 128; fi
 fi
 if [ "$1" = checkout ]; then
   failures="$(cat "$FAKE/checkout-failures" 2>/dev/null || echo 0)"
@@ -219,8 +221,9 @@ base=""
 conf r-help "$PUBLIC/r-help/"
 conf alpha-list "$FORGE/alpha-list/" rforge-archive
 run
+web="clone https://github.com/r-mailing-lists"
 expect "without ARCHIVE_BASE the repositories are cloned from GitHub" \
-  "clone https://github.com/r-mailing-lists/r-help.git;clone https://github.com/r-mailing-lists/rforge-archive.git;" "$(tries)"
+  "$web/r-help.git;pause 0;$web/r-help.git;pause 0;$web/r-help.git;$web/rforge-archive.git;" "$(tries)"
 
 # errors -> the error annotations the script printed
 errors() { grep '^::error::' "$FAKE/out"; }
@@ -305,7 +308,7 @@ conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
 conf ghost "$PUBLIC/ghost/"
 run; status=$?
 expect "with a deploy key, a clone that fails anonymously is tried once more over SSH, and no other is" \
-  "clone r-help.git;clone r-sig-phylo.git;clone git@github.com:r-mailing-lists/r-sig-phylo.git;clone ghost.git;clone git@github.com:r-mailing-lists/ghost.git;" "$(tries)"
+  "clone r-help.git;clone r-sig-phylo.git;clone git@github.com:r-mailing-lists/r-sig-phylo.git;clone ghost.git;pause 0;clone ghost.git;pause 0;clone ghost.git;clone git@github.com:r-mailing-lists/ghost.git;" "$(tries)"
 expect "the private list is taken, the missing one passed over, and the run succeeds" \
   "$FILES|r-help r-sig-phylo |0" "$(landed r-sig-phylo)|$(holds "$WORK/data/processed")|$status"
 called="the deploy key, -rw-------, IdentitiesOnly=yes BatchMode=yes ConnectTimeout=20 StrictHostKeyChecking=yes GlobalKnownHostsFile=/dev/null UserKnownHostsFile"
@@ -328,7 +331,8 @@ conf r-sig-phylo "$PRIVATE/r-sig-phylo/"
 conf ghost "$PUBLIC/ghost/"
 conf r-help "$PUBLIC/r-help/"
 run; status=$?
-expect "without a deploy key SSH is never tried" "clone r-sig-phylo.git;clone ghost.git;clone r-help.git;|" "$(tries)|$(cat "$FAKE/ssh")"
+expect "without a deploy key SSH is never tried" \
+  "clone r-sig-phylo.git;clone ghost.git;pause 0;clone ghost.git;pause 0;clone ghost.git;clone r-help.git;|" "$(tries)|$(cat "$FAKE/ssh")"
 expect "and the private list is passed over, as before" "r-help |0" "$(holds "$WORK/data/processed")|$status"
 expect "with one plain line that says a members-only list was skipped for want of a key" \
   "Skipping r-sig-phylo: a members-only list, and no deploy key is configured" "$(grep -e 'Skipping' -e '^::' "$FAKE/out")"
@@ -393,15 +397,51 @@ case "$(errors)" in
 esac
 gone "$FAKE/key-path" && gone "$FAKE/hosts-path" && pass "and the key file is gone" || bad "and the key file is gone"
 
-scenario public-checkout-fails
+scenario public-blip
+remote r-help "$RAW"
+conf r-help "$PUBLIC/r-help/"
+pause=""
+echo 2 > "$FAKE/clone-failures"
+run; status=$?
+expect "a public list that cannot be cloned is tried again 30 seconds later, and a third time 60 after that" \
+  "clone r-help.git;pause 30;clone r-help.git;pause 60;clone r-help.git;" "$(tries)"
+expect "and a third try that works is as good as a first" "$FILES|0|processed " "$(landed r-help)|$status|$(holds "$WORK/data")"
+
+scenario public-down
+remote r-help "$RAW"
+remote r-devel "$RAW"
+remote r-sig-geo "$RAW"
+conf r-help "$PUBLIC/r-help/"
+conf r-devel "$PUBLIC/r-devel/"
+conf r-sig-geo "$PUBLIC/r-sig-geo/"
+echo 4 > "$FAKE/clone-failures"
+run; status=$?
+expect "once a public list has failed three tries, the lists after it are tried once each" \
+  "clone r-help.git;pause 0;clone r-help.git;pause 0;clone r-help.git;clone r-devel.git;clone r-sig-geo.git;" "$(tries)"
+expect "the lists that could not be cloned are passed over, and the run succeeds" \
+  "r-sig-geo |0|processed " "$(holds "$WORK/data/processed")|$status|$(holds "$WORK/data")"
+
+scenario public-checkout-fails-once
 remote r-help "$RAW"
 remote r-devel "$RAW"
 conf r-help "$PUBLIC/r-help/"
 conf r-devel "$PUBLIC/r-devel/"
 echo 1 > "$FAKE/checkout-failures"
 run; status=$?
-expect "a public list that is cloned and cannot be checked out fails the run at once, as it always did" \
-  "1|clone r-help.git;|" "$status|$(tries)|$(errors)"
+expect "a try of a public list is its clone and its checkout: a checkout that fails is tried again with a fresh clone" \
+  "clone r-help.git;pause 0;clone r-help.git;clone r-devel.git;" "$(tries)"
+expect "and both lists land" "$FILES|$FILES|0" "$(landed r-help)|$(landed r-devel)|$status"
+
+scenario public-checkout-fails
+remote r-help "$RAW"
+remote r-devel "$RAW"
+conf r-help "$PUBLIC/r-help/"
+conf r-devel "$PUBLIC/r-devel/"
+echo 3 > "$FAKE/checkout-failures"
+run; status=$?
+expect "a public list that is cloned and cannot be checked out in three tries fails the run, as it always did" \
+  "1|clone r-help.git;pause 0;clone r-help.git;pause 0;clone r-help.git;|" "$status|$(tries)|$(errors)"
+expect "with nothing of it left" "" "$(holds "$WORK/data/processed")"
 
 scenario no-months
 deploy_key="$KEY"
