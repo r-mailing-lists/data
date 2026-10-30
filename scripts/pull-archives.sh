@@ -4,8 +4,13 @@
 # data/processed/<list>/.
 #
 # This was a step of update-data.yml. It is a script so that it can be tested
-# (scripts/pull-archives.test.sh). A public repository that cannot be cloned
-# is passed over, and its list is missing from that day's build.
+# (scripts/pull-archives.test.sh). A public repository is tried three times,
+# a clone and its checkout together, as a moment's trouble on the network
+# would otherwise cost its list a day: one that still cannot be cloned is
+# passed over, and its list is missing from that day's build. Once one has
+# failed all three tries the host is taken to be out of reach, and every
+# repository after it is tried once, so that an outage does not hold the run
+# up at each list.
 #
 # A list whose archive at the source is members-only (its base URL in
 # lists.conf holds /mailman/private/) may be published only from files the
@@ -34,7 +39,7 @@
 #                        (default: https://github.com/r-mailing-lists)
 #   ARCHIVE_DEPLOY_KEY   the private half of a deploy key of a private
 #                        archive repository (default: none)
-#   ARCHIVE_RETRY_PAUSE  seconds before the second try over SSH, twice as
+#   ARCHIVE_RETRY_PAUSE  seconds before the second try of a clone, twice as
 #                        many before the third (default: 30)
 
 set -euo pipefail
@@ -104,25 +109,31 @@ sparse() {
   (cd "$dir" && git sparse-checkout init --no-cone && git sparse-checkout set "$@" && git checkout)
 }
 
-# fetch REPO DIR TRIES PATTERN... -> the sparse clone of an archive repository
-# in DIR, with the files of PATTERN checked out. Every repository but one is
-# public. The private one fails the anonymous clone, and when there is a
-# deploy key it is tried over SSH, up to TRIES times, PAUSE seconds before
-# the second try and twice that before the third. A try is the clone and the
-# checkout together, as either can fail when the host is out of reach. What
-# git and ssh say about a failed try goes to the log. Returns 1 when the
-# repository cannot be cloned and 2 when it was cloned and its files cannot
-# be checked out.
+# fetch REPO DIR TRIES SSH_TRIES PATTERN... -> the sparse clone of an archive
+# repository in DIR, with the files of PATTERN checked out. It is cloned
+# anonymously up to TRIES times. Every repository but one is public. The
+# private one fails the anonymous clone, and when there is a deploy key it is
+# tried over SSH, up to SSH_TRIES times. The second try of either kind comes
+# PAUSE seconds after the first and the third twice that after the second. A
+# try is the clone and the checkout together, as either can fail when the
+# host is out of reach. What ssh and git say about a failed SSH try goes to
+# the log. Returns 1 when the repository cannot be cloned and 2 when it was
+# cloned and its files cannot be checked out.
 fetch() {
-  local repo="$1" dir="$2" tries="$3" try status=1; shift 3
-  if git clone --depth 1 --filter=blob:none --sparse \
-    "$BASE/$repo.git" \
-    "$dir" 2>/dev/null; then
-    sparse "$dir" "$@" || return 2
-    return 0
-  fi
-  [ -n "$key_file" ] || return 1
+  local repo="$1" dir="$2" tries="$3" ssh_tries="$4" try status=1; shift 4
   for ((try = 1; try <= tries; try++)); do
+    [ "$try" -gt 1 ] && sleep $((PAUSE * (try - 1)))
+    if git clone --depth 1 --filter=blob:none --sparse \
+      "$BASE/$repo.git" \
+      "$dir" 2>/dev/null; then
+      sparse "$dir" "$@" && return 0
+      status=2
+    fi
+    rm -rf "$dir"
+  done
+  [ "$status" = 1 ] || return "$status"
+  [ -n "$key_file" ] || return 1
+  for ((try = 1; try <= ssh_tries; try++)); do
     [ "$try" -gt 1 ] && sleep $((PAUSE * (try - 1)))
     if git clone --depth 1 --filter=blob:none --sparse \
       "git@github.com:r-mailing-lists/$repo.git" \
@@ -146,12 +157,14 @@ stop() {
 
 # not_fetched STATUS -> what follows when fetch fails for the list being
 # pulled. A public list that cannot be cloned is passed over, as it always
-# was, and one that cannot be checked out fails the run, as it always did. A
-# members-only list is passed over only while there is no deploy key, which
-# is the state before the list is switched on.
+# was, and the lists after it are tried once each; one that cannot be checked
+# out fails the run, as it always did. A members-only list is passed over
+# only while there is no deploy key, which is the state before the list is
+# switched on.
 not_fetched() {
   if [ "$members_only" != true ]; then
     [ "$1" = 1 ] || exit 1
+    public_tries=1
     return 0
   fi
   [ "$1" = 1 ] || stop "its files could not be checked out of its repository"
@@ -163,27 +176,30 @@ not_fetched() {
 }
 
 mkdir -p data/processed
+public_tries=3
 
 while IFS=$'\t' read -r name url type desc repo; do
   [[ "$name" =~ ^#.*$ ]] && continue
   [ -z "$name" ] && continue
   echo "Pulling data for $name..."
+  # The private repository fails every anonymous clone, so it gets one, and
+  # its tries are over SSH.
   if [[ "$url" == */mailman/private/* ]]; then
-    members_only=true; tries=3
+    members_only=true; tries=1; ssh_tries=3
   else
-    members_only=false; tries=1
+    members_only=false; tries=$public_tries; ssh_tries=1
   fi
   if [ -n "$repo" ]; then
     # Pooled archive repo: one <list>/ directory per list, cloned once and reused
     pool="data/tmp-pool-$repo"
     if [ ! -d "$pool" ]; then
-      fetch "$repo" "$pool" "$tries" '/*/processed' '/*/meta.json' '/*/index.json' '/*/message-order.json' '/*/contributors.json' \
+      fetch "$repo" "$pool" "$tries" "$ssh_tries" '/*/processed' '/*/meta.json' '/*/index.json' '/*/message-order.json' '/*/contributors.json' \
         || { not_fetched $?; continue; }
     fi
     src="$pool/$name"
   else
     src="data/tmp-$name"
-    fetch "$name" "$src" "$tries" /processed /meta.json /index.json /message-order.json /contributors.json \
+    fetch "$name" "$src" "$tries" "$ssh_tries" /processed /meta.json /index.json /message-order.json /contributors.json \
       || { not_fetched $?; continue; }
   fi
   if [ -d "$src/processed" ]; then
