@@ -119,7 +119,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,079,782** messages across **286** mailing lists
+**1,079,770** messages across **287** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
@@ -148,7 +148,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-phylo                | 6,509    | 1,035   | Feb 2008      | Oct 2026     |
 | shinyapps-users            | 6,426    | 1,537   | Nov 2013      | Sep 2018     |
 | rkward-devel               | 6,143    | 418     | Nov 2002      | Sep 2025     |
-| nimble-users               | 5,843    | 590     | Jul 2014      | Oct 2026     |
+| nimble-users               | 5,839    | 588     | Jul 2014      | Oct 2026     |
 | r-sig-meta-analysis        | 5,655    | 551     | Jun 2017      | Oct 2026     |
 | mirt-package               | 5,602    | 667     | Apr 2013      | Apr 2026     |
 | aroma-affymetrix           | 4,763    | 548     | Feb 2007      | Feb 2021     |
@@ -185,11 +185,11 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | blavaan                    | 1,472    | 165     | Feb 2016      | Apr 2026     |
 | rhipe                      | 1,461    | 176     | Nov 2009      | May 2016     |
 | rkward-users               | 1,446    | 158     | Apr 2007      | Oct 2025     |
-| renjin-dev                 | 1,402    | 227     | Aug 2011      | Dec 2023     |
 | simmer-devel               | 1,399    | 123     | Apr 2016      | Sep 2024     |
 | genabel-devel              | 1,350    | 64      | Nov 2010      | Dec 2018     |
 | r-packages                 | 1,347    | 570     | Sep 2003      | Oct 2026     |
 | rattle-users               | 1,339    | 306     | Aug 2006      | Aug 2024     |
+| renjin-dev                 | 1,327    | 222     | Aug 2011      | Mar 2023     |
 | tmb-users                  | 1,321    | 178     | Jun 2016      | Oct 2026     |
 | genomic-sem-users          | 1,282    | 206     | Sep 2018      | Sep 2026     |
 | r-sig-gui                  | 1,236    | 262     | Oct 2002      | Feb 2018     |
@@ -201,7 +201,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-lang                     | 1,161    | 201     | Mar 2007      | Nov 2019     |
 | nichemapr                  | 1,160    | 134     | Feb 2016      | Oct 2026     |
 | zelig                      | 1,085    | 259     | Feb 2007      | Apr 2015     |
-| seewave                    | 1,081    | 261     | Apr 2010      | Aug 2025     |
+| seewave                    | 1,071    | 258     | Apr 2010      | Aug 2025     |
 | brms-users                 | 1,042    | 143     | Jan 2017      | Jun 2018     |
 | poppr                      | 1,018    | 214     | Mar 2014      | Apr 2025     |
 | amelia                     | 983      | 301     | Apr 2002      | Apr 2013     |
@@ -220,9 +220,9 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | phylobase-devl             | 724      | 28      | Feb 2008      | Apr 2014     |
 | r-announce                 | 714      | 111     | Apr 1997      | Sep 2026     |
 | r-sig-dynamic-models       | 697      | 159     | Oct 2009      | Mar 2026     |
-| ggvis                      | 693      | 182     | Aug 2013      | Jun 2024     |
 | sequenza-user-group        | 692      | 156     | Aug 2014      | Oct 2026     |
 | r-sig-epi                  | 676      | 166     | Nov 2005      | Oct 2026     |
+| ggvis                      | 667      | 179     | Aug 2013      | Jun 2024     |
 | nat-user                   | 639      | 103     | Apr 2015      | Jan 2026     |
 | tsdyn                      | 634      | 83      | Dec 2006      | Feb 2024     |
 | matchit                    | 614      | 158     | Feb 2007      | Jan 2020     |
@@ -280,13 +280,13 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | mediation-information      | 158      | 31      | May 2011      | Jan 2021     |
 | metacoder-discussions      | 154      | 41      | Feb 2017      | Apr 2026     |
 | cranvas                    | 153      | 25      | Jun 2011      | Dec 2015     |
-| rworldmap                  | 149      | 56      | Jul 2013      | Dec 2023     |
 | tinn-r                     | 147      | 28      | Feb 2014      | Oct 2021     |
 | r-sig-windows              | 146      | 21      | Aug 2015      | Sep 2026     |
 | stitch-imputation          | 145      | 35      | Mar 2017      | Apr 2026     |
 | tessera-users              | 142      | 28      | Jun 2014      | Jun 2016     |
 | mosaics-user-group         | 141      | 38      | Jun 2011      | Jan 2024     |
 | segoptim-user-group        | 141      | 29      | Jan 2019      | Jan 2025     |
+| rworldmap                  | 140      | 55      | Jul 2013      | Oct 2021     |
 | garnett-users              | 138      | 38      | Feb 2019      | Aug 2026     |
 | inlinedocs-support         | 137      | 59      | Nov 2009      | Jun 2014     |
 | maduser                    | 136      | 57      | Sep 2009      | Apr 2014     |
@@ -297,6 +297,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | brumail                    | 119      | 34      | Feb 2011      | Sep 2025     |
 | r-sig-insurance            | 117      | 39      | Apr 2009      | Dec 2022     |
 | nmof-news                  | 115      | 1       | Jun 2011      | Oct 2025     |
+| r-pt                       | 112      | 54      | Jun 2014      | Nov 2021     |
 | ib-usp-r-users             | 109      | 40      | Feb 2016      | Jun 2020     |
 | gur-ugr                    | 108      | 28      | Oct 2008      | Apr 2020     |
 | r-package-xlsx             | 107      | 47      | Jan 2012      | Nov 2021     |
