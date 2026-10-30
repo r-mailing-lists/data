@@ -213,7 +213,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63737 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63740 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -250,7 +250,7 @@ head(contribs)
     3 Brian R…         17998         16 r-he… r-help:117… 1998-06-04T1… 2026-10-27T…
     4 Duncan …         12607         16 r-he… r-help:733… 2000-02-16T2… 2026-10-26T…
     5 David W…         11781         19 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
-    6 Peter D…         10835         12 r-he… r-help:707… 1997-04-01T0… 2026-10-27T…
+    6 Peter D…         10837         12 r-he… r-help:707… 1997-04-01T0… 2026-10-29T…
 
 ### Working directly with Parquet files
 
@@ -334,11 +334,11 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                            Ivan Krylov                    Martin Maechler 
                                     37                                 37 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
-                                    31                                 23 
+                                    32                                 23 
                         Duncan Murdoch                        Kurt Hornik 
                                     22                                 22 
                          Simon Urbanek                     Peter Dalgaard 
-                                    20                                 18 
+                                    20                                 19 
                             Ben Bolker    Suharto Anggono Suharto Anggono 
                                     16                                 16 
 
@@ -429,11 +429,11 @@ contribs |>
 | Brian Ripley         |         17998 |         16 |
 | Duncan Murdoch       |         12607 |         16 |
 | David Winsemius      |         11781 |         19 |
-| Peter Dalgaard       |         10835 |         12 |
+| Peter Dalgaard       |         10837 |         12 |
 | Bob Carpenter        |         10399 |          4 |
 | Gabor Grothendieck   |         10252 |         28 |
 | Uwe Ligges           |          8677 |         22 |
-| Dirk Eddelbuettel    |          8530 |         28 |
+| Dirk Eddelbuettel    |          8531 |         28 |
 | Ben Bolker           |          6552 |         18 |
 | Bert Gunter          |          6050 |         10 |
 | Martin Maechler      |          5910 |         29 |
