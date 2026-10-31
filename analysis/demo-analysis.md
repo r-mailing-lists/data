@@ -213,7 +213,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63740 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63743 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -245,8 +245,8 @@ head(contribs)
     # A data frame: 6 × 7
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
-    1 Debian …         30665          1 r-pk… r-pkg-team… 2018-05-04T0… 2026-10-28T…
-    2 Debian …         23214          1 r-pk… r-pkg-team… 2018-05-06T0… 2026-10-28T…
+    1 Debian …         30667          1 r-pk… r-pkg-team… 2018-05-04T0… 2026-10-30T…
+    2 Debian …         23220          1 r-pk… r-pkg-team… 2018-05-06T0… 2026-10-31T…
     3 Brian R…         17998         16 r-he… r-help:117… 1998-06-04T1… 2026-10-27T…
     4 Duncan …         12607         16 r-he… r-help:733… 2000-02-16T2… 2026-10-26T…
     5 David W…         11781         19 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
@@ -331,8 +331,8 @@ recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
-                           Ivan Krylov                    Martin Maechler 
-                                    37                                 37 
+                       Martin Maechler                        Ivan Krylov 
+                                    38                                 37 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
                                     32                                 23 
                         Duncan Murdoch                        Kurt Hornik 
@@ -424,8 +424,8 @@ contribs |>
 
 | name                 | message_count | list_count |
 |:---------------------|--------------:|-----------:|
-| Debian FTP Masters   |         30665 |          1 |
-| Debian testing watch |         23214 |          1 |
+| Debian FTP Masters   |         30667 |          1 |
+| Debian testing watch |         23220 |          1 |
 | Brian Ripley         |         17998 |         16 |
 | Duncan Murdoch       |         12607 |         16 |
 | David Winsemius      |         11781 |         19 |
@@ -436,7 +436,7 @@ contribs |>
 | Dirk Eddelbuettel    |          8531 |         28 |
 | Ben Bolker           |          6552 |         18 |
 | Bert Gunter          |          6050 |         10 |
-| Martin Maechler      |          5910 |         29 |
+| Martin Maechler      |          5911 |         29 |
 | Simon Urbanek        |          4955 |         18 |
 | Roger Bivand         |          4792 |         20 |
 | Hadley Wickham       |          4635 |         27 |
