@@ -1,4 +1,5 @@
 # Messages a person confirmed as spam. See scripts/spam-candidates.R.
+# The reason is advertising, adult content, harassment, phishing or scam: the site shows it.
 list	id	reason	flagged
 bioconductor	msg-ceddd516e6ac	scam	2026-10-19
 bioconductor	msg-9580af86639d	scam	2026-10-19
