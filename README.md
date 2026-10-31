@@ -451,6 +451,7 @@ One Parquet file per mailing list. All files share the same schema.
 | `source_url` | string | Address of the message’s own page in the source archive (null when none is known, and for every list hosted on R-Forge) |
 | `restored_from` | string | Addresses of the pages the message’s text was restored from, separated by one space (null when nothing was restored) |
 | `spam` | boolean | True for a message a person confirmed as spam (see `scripts/spam.tsv`); the message stays in the file |
+| `spam_reason` | string | Why a person flagged the message: `advertising`, `adult content`, `harassment`, `phishing` or `scam` (null when `spam` is false) |
 
 One list, `r-sig-phylo`, has an archive that is members-only at the
 source. In its data every address the parser can read is hidden, except

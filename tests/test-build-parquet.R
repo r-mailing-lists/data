@@ -223,6 +223,7 @@ bad_spam <- lapply(list(
   bad_id = c(spam_header, paste("test-list", "msg-002", "advertising", "2026-10-19", sep = "\t")),
   bad_date = c(spam_header, paste("test-list", msg_id(2), "advertising", "19/10/2026", sep = "\t")),
   impossible_date = c(spam_header, paste("test-list", msg_id(2), "advertising", "2026-02-30", sep = "\t")),
+  unknown_reason = c(spam_header, paste("test-list", msg_id(2), "cheap watches", "2026-10-19", sep = "\t")),
   bad_header = c("list\tid\treason", paste("test-list", msg_id(2), "advertising", "2026-10-19", sep = "\t"))
 ), \(lines) run(spam = lines))
 
@@ -285,7 +286,8 @@ results <- c(
   check("message columns are in the documented order",
         identical(names(msgs), c("list", "id", "message_id", "from_name", "from_email_hash", "date",
                                  "subject", "in_reply_to", "body", "body_snippet", "thread_id",
-                                 "thread_depth", "month", "source_url", "restored_from", "spam"))),
+                                 "thread_depth", "month", "source_url", "restored_from", "spam",
+                                 "spam_reason"))),
   check("source_url is carried for the messages that have one and is NA for the rest",
         identical(msgs$source_url, ifelse(1:12 %% 3 != 0, source_page(1:12), NA_character_))),
   check("restored_from joins a message's URLs with one space, in order, and is NA elsewhere",
@@ -296,15 +298,19 @@ results <- c(
   check("spam is TRUE for the message the spam file lists and FALSE for every other, in every list",
         is.logical(msgs$spam) && identical(msgs$spam, 1:12 == 2) &&
           !any(forge$spam) && !any(open$spam) && !any(hidden$spam) && !anyNA(forge$spam)),
-  check("every list's file, whole or in chunks, has a schema that ends source_url, restored_from, spam",
+  check("spam_reason is the spam file's reason for the flagged message and NA for every other, in every list",
+        identical(msgs$spam_reason, ifelse(1:12 == 2, "advertising", NA_character_)) &&
+          is.character(forge$spam_reason) && all(is.na(c(forge$spam_reason, open$spam_reason, hidden$spam_reason)))),
+  check("every list's file, whole or in chunks, has a schema that ends source_url, restored_from, spam, spam_reason",
         length(list_files) > 0 &&
-          all(vapply(list_files, \(f) identical(tail(schema_of(f)$name, 3), c("source_url", "restored_from", "spam")),
+          all(vapply(list_files, \(f) identical(tail(schema_of(f)$name, 4),
+                                                c("source_url", "restored_from", "spam", "spam_reason")),
                      logical(1)))),
   check("a spam row naming no message is reported with its list and id, and the build succeeds",
         unknown_spam$status == 0 &&
           names_row("test-list", msg_id(4095)) && names_row("gone-list", msg_id(2)) &&
           !names_row("test-list", msg_id(2))),
-  check("a malformed spam file (field missing or empty, bad id, bad date, bad header) stops the build with no parquet file",
+  check("a malformed spam file (field missing or empty, bad id, bad date, unknown reason, bad header) stops the build with no parquet file",
         all(vapply(bad_spam, \(r) r$status != 0 && length(parquet_files(r$output)) == 0, logical(1)))),
   check("threads.parquet and contributors.parquet still count the flagged message",
         sum(read_parquet(file.path(forward, "threads.parquet"))$list == "test-list") == 12),

@@ -37,6 +37,9 @@ spam_file <- if (length(args) >= 4) args[4] else "scripts/spam.tsv"
 # half-read list of flags would publish messages as clean. A missing file is
 # an empty list.
 SPAM_COLUMNS <- c("list", "id", "reason", "flagged")
+# The site shows the reason beside each hidden message, so it is one of these
+# and never free text.
+SPAM_REASONS <- c("advertising", "adult content", "harassment", "phishing", "scam")
 
 read_spam <- function(path) {
   empty <- data.frame(list = character(), id = character(), reason = character(),
@@ -68,6 +71,10 @@ read_spam <- function(path) {
   valid_date <- grepl("^\\d{4}-\\d{2}-\\d{2}$", spam$flagged) &
     !is.na(as.Date(spam$flagged, format = "%Y-%m-%d", optional = TRUE))
   if (!all(valid_date)) fail("not a date (YYYY-MM-DD): ", spam$flagged[!valid_date][1])
+  bad_reason <- !spam$reason %in% SPAM_REASONS
+  if (any(bad_reason)) {
+    fail("not a reason (", paste(SPAM_REASONS, collapse = ", "), "): ", spam$reason[bad_reason][1])
+  }
   spam
 }
 
@@ -152,6 +159,7 @@ read_month_json <- function(path, list_name) {
     }, ""),
     # Set once the rows of the list are read, from the spam file.
     spam            = FALSE,
+    spam_reason     = NA_character_,
     stringsAsFactors = FALSE
   )
 }
@@ -352,6 +360,7 @@ for (list_path in list_dirs) {
   # counting them.
   list_spam <- spam$id[spam$list == list_name]
   msgs$spam <- msgs$id %in% list_spam
+  msgs$spam_reason <- spam$reason[spam$list == list_name][match(msgs$id, list_spam)]
   flagged_seen <- c(flagged_seen, paste(list_name, msgs$id[msgs$spam]))
 
   # Fix the row order, with id breaking ties between messages sent in the same
