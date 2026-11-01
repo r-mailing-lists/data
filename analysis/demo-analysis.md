@@ -175,35 +175,35 @@ rml_available()
     [225] "rserlang-develop"           "rsiena-help"               
     [227] "rsnns"                      "rspatial-devel"            
     [229] "rugbcn"                     "rworldmap"                 
-    [231] "sciviews-help"              "sciviews-news"             
-    [233] "secrgroup"                  "seewave"                   
-    [235] "segoptim-user-group"        "seqinr-forum"              
-    [237] "sequenza-user-group"        "sevillarusers"             
-    [239] "shiny-discuss"              "shinyapps-users"           
-    [241] "siamcat-users"              "simmer-devel"              
-    [243] "simplephenotypes"           "simsalabim-communicate"    
-    [245] "sorvi-admin"                "spades-users"              
-    [247] "sparkr-dev"                 "spdep-devel"               
-    [249] "spocc-spabund-users"        "sprint-developer"          
-    [251] "sprint-user"                "sqldf"                     
-    [253] "stan-announce"              "stan-dev"                  
-    [255] "stan-users"                 "statet"                    
-    [257] "statforling-with-r"         "statistics-and-r-community"
-    [259] "statnet-help"               "stats-rosuda-devel"        
-    [261] "stitch-imputation"          "subread"                   
-    [263] "synbreed-news"              "taiwanruser"               
-    [265] "tessera-users"              "tidylpa"                   
-    [267] "tikzdevice-bugs"            "tinn-r"                    
-    [269] "titancna"                   "tlocoh-info"               
-    [271] "tmb-users"                  "traminer-users"            
-    [273] "travelr-announce"           "travelr-discussion"        
-    [275] "trophicposition-support"    "tropical-r"                
-    [277] "tsdyn"                      "uhcluster-members"         
-    [279] "unmarked"                   "viennar-meetup"            
-    [281] "vim-r-plugin"               "wallaceecomod"             
-    [283] "whatif"                     "workflowr-announce"        
-    [285] "yuima-wishlist"             "zelig"                     
-    [287] "zipfr-users"               
+    [231] "s-news"                     "sciviews-help"             
+    [233] "sciviews-news"              "secrgroup"                 
+    [235] "seewave"                    "segoptim-user-group"       
+    [237] "seqinr-forum"               "sequenza-user-group"       
+    [239] "sevillarusers"              "shiny-discuss"             
+    [241] "shinyapps-users"            "siamcat-users"             
+    [243] "simmer-devel"               "simplephenotypes"          
+    [245] "simsalabim-communicate"     "sorvi-admin"               
+    [247] "spades-users"               "sparkr-dev"                
+    [249] "spdep-devel"                "spocc-spabund-users"       
+    [251] "sprint-developer"           "sprint-user"               
+    [253] "sqldf"                      "stan-announce"             
+    [255] "stan-dev"                   "stan-users"                
+    [257] "statet"                     "statforling-with-r"        
+    [259] "statistics-and-r-community" "statnet-help"              
+    [261] "stats-rosuda-devel"         "stitch-imputation"         
+    [263] "subread"                    "synbreed-news"             
+    [265] "taiwanruser"                "tessera-users"             
+    [267] "tidylpa"                    "tikzdevice-bugs"           
+    [269] "tinn-r"                     "titancna"                  
+    [271] "tlocoh-info"                "tmb-users"                 
+    [273] "traminer-users"             "travelr-announce"          
+    [275] "travelr-discussion"         "trophicposition-support"   
+    [277] "tropical-r"                 "tsdyn"                     
+    [279] "uhcluster-members"          "unmarked"                  
+    [281] "viennar-meetup"             "vim-r-plugin"              
+    [283] "wallaceecomod"              "whatif"                    
+    [285] "workflowr-announce"         "yuima-wishlist"            
+    [287] "zelig"                      "zipfr-users"               
 
 ``` r
 # Read a single list (use col_select to skip the body — much faster)
@@ -213,7 +213,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63743 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63744 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -245,12 +245,12 @@ head(contribs)
     # A data frame: 6 × 7
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
-    1 Debian …         30667          1 r-pk… r-pkg-team… 2018-05-04T0… 2026-10-30T…
-    2 Debian …         23220          1 r-pk… r-pkg-team… 2018-05-06T0… 2026-10-31T…
-    3 Brian R…         17998         16 r-he… r-help:117… 1998-06-04T1… 2026-10-27T…
-    4 Duncan …         12607         16 r-he… r-help:733… 2000-02-16T2… 2026-10-26T…
+    1 Debian …         30669          1 r-pk… r-pkg-team… 2018-05-04T0… 2026-11-01T…
+    2 Debian …         23230          1 r-pk… r-pkg-team… 2018-05-06T0… 2026-11-01T…
+    3 Brian R…         19224         17 r-he… r-help:117… 1998-02-09T2… 2026-10-27T…
+    4 Duncan …         12622         17 r-he… r-help:733… 1998-02-19T1… 2026-10-26T…
     5 David W…         11781         19 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
-    6 Peter D…         10837         12 r-he… r-help:707… 1997-04-01T0… 2026-10-29T…
+    6 Peter D…         10838         13 r-he… r-help:707… 1997-04-01T0… 2026-10-29T…
 
 ### Working directly with Parquet files
 
@@ -331,14 +331,14 @@ recent <- r_devel[r_devel$date >= as.POSIXct(Sys.Date() - 365), ]
 head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
-                       Martin Maechler                        Ivan Krylov 
-                                    38                                 37 
+                           Ivan Krylov                    Martin Maechler 
+                                    37                                 37 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
-                                    32                                 23 
+                                    29                                 24 
                         Duncan Murdoch                        Kurt Hornik 
                                     22                                 22 
                          Simon Urbanek                     Peter Dalgaard 
-                                    20                                 19 
+                                    20                                 17 
                             Ben Bolker    Suharto Anggono Suharto Anggono 
                                     16                                 16 
 
@@ -424,22 +424,22 @@ contribs |>
 
 | name                 | message_count | list_count |
 |:---------------------|--------------:|-----------:|
-| Debian FTP Masters   |         30667 |          1 |
-| Debian testing watch |         23220 |          1 |
-| Brian Ripley         |         17998 |         16 |
-| Duncan Murdoch       |         12607 |         16 |
+| Debian FTP Masters   |         30669 |          1 |
+| Debian testing watch |         23230 |          1 |
+| Brian Ripley         |         19224 |         17 |
+| Duncan Murdoch       |         12622 |         17 |
 | David Winsemius      |         11781 |         19 |
-| Peter Dalgaard       |         10837 |         12 |
+| Peter Dalgaard       |         10838 |         13 |
 | Bob Carpenter        |         10399 |          4 |
 | Gabor Grothendieck   |         10252 |         28 |
 | Uwe Ligges           |          8677 |         22 |
 | Dirk Eddelbuettel    |          8531 |         28 |
 | Ben Bolker           |          6552 |         18 |
-| Bert Gunter          |          6050 |         10 |
-| Martin Maechler      |          5911 |         29 |
+| Bert Gunter          |          6051 |         11 |
+| Martin Maechler      |          5944 |         30 |
 | Simon Urbanek        |          4955 |         18 |
 | Roger Bivand         |          4792 |         20 |
-| Hadley Wickham       |          4635 |         27 |
+| Hadley Wickham       |          4636 |         28 |
 | Ben Goodrich         |          4474 |          7 |
 | jim holtman          |          4469 |          8 |
 | Jeff Newmiller       |          4427 |         10 |
