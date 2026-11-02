@@ -13,7 +13,7 @@ analysis in R, Python, or any language with Parquet support.
 Data is sourced from the [R Mailing Lists archive
 project](https://github.com/r-mailing-lists) and updated automatically.
 You can also browse the archives at
-[r-mailing-lists.thecoatlessprofessor.com](https://r-mailing-lists.thecoatlessprofessor.com).
+[archives.rstats.dev](https://archives.rstats.dev).
 
 ## Quick start
 
