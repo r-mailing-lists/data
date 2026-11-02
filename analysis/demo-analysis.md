@@ -135,75 +135,75 @@ rml_available()
     [145] "r-inla-discussion-group"    "r-lang"                    
     [147] "r-marketing-bugs"           "r-package-devel"           
     [149] "r-package-xlsx"             "r-packages"                
-    [151] "r-pkg-team"                 "r-pt"                      
-    [153] "r-sig-db"                   "r-sig-dcm"                 
-    [155] "r-sig-debian"               "r-sig-dynamic-models"      
-    [157] "r-sig-ecology"              "r-sig-epi"                 
-    [159] "r-sig-fedora"               "r-sig-finance"             
-    [161] "r-sig-genetics"             "r-sig-geo"                 
-    [163] "r-sig-gr"                   "r-sig-gui"                 
-    [165] "r-sig-hpc"                  "r-sig-insurance"           
-    [167] "r-sig-jobs"                 "r-sig-mac"                 
-    [169] "r-sig-mediawiki"            "r-sig-meta-analysis"       
-    [171] "r-sig-mixed-models"         "r-sig-networks"            
-    [173] "r-sig-phylo"                "r-sig-qa"                  
-    [175] "r-sig-robust"               "r-sig-rugs"                
-    [177] "r-sig-teaching"             "r-sig-wiki"                
-    [179] "r-sig-windows"              "r-soc"                     
-    [181] "r-study-tokyo"              "r-swat"                    
-    [183] "r-ug-ottawa"                "rangemapper-news"          
-    [185] "rapache"                    "rattle-users"              
-    [187] "rbigdataprogramming"        "rcicr-users"               
-    [189] "rcpp-devel"                 "rcppoctave-user"           
-    [191] "rcytoscape"                 "rdevtools"                 
-    [193] "red-r"                      "reddyproc-users"           
-    [195] "relogit"                    "remoterengine-devel"       
-    [197] "renjin-dev"                 "repitools-help"            
-    [199] "rgeos-devel"                "rhadoop"                   
-    [201] "rhipe"                      "rho-devel"                 
-    [203] "right-user"                 "riskassessment-news"       
-    [205] "rkoholiki"                  "rkward"                    
-    [207] "rkward-devel"               "rkward-users"              
-    [209] "rmetrics-core"              "rnomads-user"              
-    [211] "robustbase-authors"         "ropengov-forum"            
-    [213] "roxygen-devel"              "rpackageggir"              
-    [215] "rphree-general"             "rpostgresql-dev"           
-    [217] "rprotobuf-yada"             "rpy-list"                  
-    [219] "rqtl-announce"              "rqtl-disc"                 
-    [221] "rqtl2-disc"                 "rquantlib-devel"           
-    [223] "rrook"                      "rropen"                    
-    [225] "rserlang-develop"           "rsiena-help"               
-    [227] "rsnns"                      "rspatial-devel"            
-    [229] "rugbcn"                     "rworldmap"                 
-    [231] "s-news"                     "sciviews-help"             
-    [233] "sciviews-news"              "secrgroup"                 
-    [235] "seewave"                    "segoptim-user-group"       
-    [237] "seqinr-forum"               "sequenza-user-group"       
-    [239] "sevillarusers"              "shiny-discuss"             
-    [241] "shinyapps-users"            "siamcat-users"             
-    [243] "simmer-devel"               "simplephenotypes"          
-    [245] "simsalabim-communicate"     "sorvi-admin"               
-    [247] "spades-users"               "sparkr-dev"                
-    [249] "spdep-devel"                "spocc-spabund-users"       
-    [251] "sprint-developer"           "sprint-user"               
-    [253] "sqldf"                      "stan-announce"             
-    [255] "stan-dev"                   "stan-users"                
-    [257] "statet"                     "statforling-with-r"        
-    [259] "statistics-and-r-community" "statnet-help"              
-    [261] "stats-rosuda-devel"         "stitch-imputation"         
-    [263] "subread"                    "synbreed-news"             
-    [265] "taiwanruser"                "tessera-users"             
-    [267] "tidylpa"                    "tikzdevice-bugs"           
-    [269] "tinn-r"                     "titancna"                  
-    [271] "tlocoh-info"                "tmb-users"                 
-    [273] "traminer-users"             "travelr-announce"          
-    [275] "travelr-discussion"         "trophicposition-support"   
-    [277] "tropical-r"                 "tsdyn"                     
-    [279] "uhcluster-members"          "unmarked"                  
-    [281] "viennar-meetup"             "vim-r-plugin"              
-    [283] "wallaceecomod"              "whatif"                    
-    [285] "workflowr-announce"         "yuima-wishlist"            
-    [287] "zelig"                      "zipfr-users"               
+    [151] "r-pt"                       "r-sig-db"                  
+    [153] "r-sig-dcm"                  "r-sig-debian"              
+    [155] "r-sig-dynamic-models"       "r-sig-ecology"             
+    [157] "r-sig-epi"                  "r-sig-fedora"              
+    [159] "r-sig-finance"              "r-sig-genetics"            
+    [161] "r-sig-geo"                  "r-sig-gr"                  
+    [163] "r-sig-gui"                  "r-sig-hpc"                 
+    [165] "r-sig-insurance"            "r-sig-jobs"                
+    [167] "r-sig-mac"                  "r-sig-mediawiki"           
+    [169] "r-sig-meta-analysis"        "r-sig-mixed-models"        
+    [171] "r-sig-networks"             "r-sig-phylo"               
+    [173] "r-sig-qa"                   "r-sig-robust"              
+    [175] "r-sig-rugs"                 "r-sig-teaching"            
+    [177] "r-sig-wiki"                 "r-sig-windows"             
+    [179] "r-soc"                      "r-study-tokyo"             
+    [181] "r-swat"                     "r-ug-ottawa"               
+    [183] "rangemapper-news"           "rapache"                   
+    [185] "rattle-users"               "rbigdataprogramming"       
+    [187] "rcicr-users"                "rcpp-devel"                
+    [189] "rcppoctave-user"            "rcytoscape"                
+    [191] "rdevtools"                  "red-r"                     
+    [193] "reddyproc-users"            "relogit"                   
+    [195] "remoterengine-devel"        "renjin-dev"                
+    [197] "repitools-help"             "rgeos-devel"               
+    [199] "rhadoop"                    "rhipe"                     
+    [201] "rho-devel"                  "right-user"                
+    [203] "riskassessment-news"        "rkoholiki"                 
+    [205] "rkward"                     "rkward-devel"              
+    [207] "rkward-users"               "rmetrics-core"             
+    [209] "rnomads-user"               "robustbase-authors"        
+    [211] "ropengov-forum"             "roxygen-devel"             
+    [213] "rpackageggir"               "rphree-general"            
+    [215] "rpostgresql-dev"            "rprotobuf-yada"            
+    [217] "rpy-list"                   "rqtl-announce"             
+    [219] "rqtl-disc"                  "rqtl2-disc"                
+    [221] "rquantlib-devel"            "rrook"                     
+    [223] "rropen"                     "rserlang-develop"          
+    [225] "rsiena-help"                "rsnns"                     
+    [227] "rspatial-devel"             "rugbcn"                    
+    [229] "rworldmap"                  "s-news"                    
+    [231] "sciviews-help"              "sciviews-news"             
+    [233] "secrgroup"                  "seewave"                   
+    [235] "segoptim-user-group"        "seqinr-forum"              
+    [237] "sequenza-user-group"        "sevillarusers"             
+    [239] "shiny-discuss"              "shinyapps-users"           
+    [241] "siamcat-users"              "simmer-devel"              
+    [243] "simplephenotypes"           "simsalabim-communicate"    
+    [245] "sorvi-admin"                "spades-users"              
+    [247] "sparkr-dev"                 "spdep-devel"               
+    [249] "spocc-spabund-users"        "sprint-developer"          
+    [251] "sprint-user"                "sqldf"                     
+    [253] "stan-announce"              "stan-dev"                  
+    [255] "stan-users"                 "statet"                    
+    [257] "statforling-with-r"         "statistics-and-r-community"
+    [259] "statnet-help"               "stats-rosuda-devel"        
+    [261] "stitch-imputation"          "subread"                   
+    [263] "synbreed-news"              "taiwanruser"               
+    [265] "tessera-users"              "tidylpa"                   
+    [267] "tikzdevice-bugs"            "tinn-r"                    
+    [269] "titancna"                   "tlocoh-info"               
+    [271] "tmb-users"                  "traminer-users"            
+    [273] "travelr-announce"           "travelr-discussion"        
+    [275] "trophicposition-support"    "tropical-r"                
+    [277] "tsdyn"                      "uhcluster-members"         
+    [279] "unmarked"                   "viennar-meetup"            
+    [281] "vim-r-plugin"               "wallaceecomod"             
+    [283] "whatif"                     "workflowr-announce"        
+    [285] "yuima-wishlist"             "zelig"                     
+    [287] "zipfr-users"               
 
 ``` r
 # Read a single list (use col_select to skip the body — much faster)
@@ -245,12 +245,12 @@ head(contribs)
     # A data frame: 6 × 7
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
-    1 Debian …         30669          1 r-pk… r-pkg-team… 2018-05-04T0… 2026-11-01T…
-    2 Debian …         23230          1 r-pk… r-pkg-team… 2018-05-06T0… 2026-11-01T…
-    3 Brian R…         19224         17 r-he… r-help:117… 1998-02-09T2… 2026-10-27T…
-    4 Duncan …         12622         17 r-he… r-help:733… 1998-02-19T1… 2026-10-26T…
-    5 David W…         11781         19 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
-    6 Peter D…         10838         13 r-he… r-help:707… 1997-04-01T0… 2026-10-29T…
+    1 Brian R…         19224         17 r-he… r-help:117… 1998-02-09T2… 2026-10-27T…
+    2 Duncan …         12622         17 r-he… r-help:733… 1998-02-19T1… 2026-10-26T…
+    3 David W…         11781         19 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
+    4 Peter D…         10838         13 r-he… r-help:707… 1997-04-01T0… 2026-10-29T…
+    5 Bob Car…         10399          4 stan… stan-users… 2011-11-07T1… 2017-06-06T…
+    6 Gabor G…         10252         28 r-he… r-help:804… 2002-01-12T1… 2026-10-03T…
 
 ### Working directly with Parquet files
 
@@ -422,25 +422,25 @@ contribs |>
   knitr::kable()
 ```
 
-| name                 | message_count | list_count |
-|:---------------------|--------------:|-----------:|
-| Debian FTP Masters   |         30669 |          1 |
-| Debian testing watch |         23230 |          1 |
-| Brian Ripley         |         19224 |         17 |
-| Duncan Murdoch       |         12622 |         17 |
-| David Winsemius      |         11781 |         19 |
-| Peter Dalgaard       |         10838 |         13 |
-| Bob Carpenter        |         10399 |          4 |
-| Gabor Grothendieck   |         10252 |         28 |
-| Uwe Ligges           |          8677 |         22 |
-| Dirk Eddelbuettel    |          8531 |         28 |
-| Ben Bolker           |          6552 |         18 |
-| Bert Gunter          |          6051 |         11 |
-| Martin Maechler      |          5944 |         30 |
-| Simon Urbanek        |          4955 |         18 |
-| Roger Bivand         |          4792 |         20 |
-| Hadley Wickham       |          4636 |         28 |
-| Ben Goodrich         |          4474 |          7 |
-| jim holtman          |          4469 |          8 |
-| Jeff Newmiller       |          4427 |         10 |
-| Martin Morgan        |          4349 |          9 |
+| name               | message_count | list_count |
+|:-------------------|--------------:|-----------:|
+| Brian Ripley       |         19224 |         17 |
+| Duncan Murdoch     |         12622 |         17 |
+| David Winsemius    |         11781 |         19 |
+| Peter Dalgaard     |         10838 |         13 |
+| Bob Carpenter      |         10399 |          4 |
+| Gabor Grothendieck |         10252 |         28 |
+| Uwe Ligges         |          8677 |         22 |
+| Dirk Eddelbuettel  |          8429 |         27 |
+| Ben Bolker         |          6552 |         18 |
+| Bert Gunter        |          6051 |         11 |
+| Martin Maechler    |          5943 |         29 |
+| Simon Urbanek      |          4955 |         18 |
+| Roger Bivand       |          4790 |         19 |
+| Hadley Wickham     |          4635 |         27 |
+| Ben Goodrich       |          4474 |          7 |
+| jim holtman        |          4469 |          8 |
+| Jeff Newmiller     |          4427 |         10 |
+| Martin Morgan      |          4349 |          9 |
+| Henrik Bengtsson   |          4221 |         17 |
+| Jim Lemon          |          3886 |          6 |

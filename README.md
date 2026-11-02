@@ -119,14 +119,13 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,103,649** messages across **288** mailing lists
+**1,043,315** messages across **287** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
 | r-help                     | 398,804  | 36,565  | Apr 1997      | Oct 2026     |
 | r-devel                    | 63,744   | 5,577   | Apr 1997      | Oct 2026     |
 | bioconductor               | 61,316   | 7,259   | Nov 2001      | Sep 2014     |
-| r-pkg-team                 | 60,334   | 631     | May 2018      | Nov 2026     |
 | r-sig-geo                  | 29,588   | 3,456   | Jul 2003      | Oct 2026     |
 | stan-users                 | 26,736   | 1,416   | Aug 2012      | Jun 2017     |
 | s-news                     | 23,817   | 4,035   | Feb 1998      | Dec 2010     |
