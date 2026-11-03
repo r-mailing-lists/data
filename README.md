@@ -119,11 +119,11 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,043,317** messages across **287** mailing lists
+**1,043,335** messages across **287** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
-| r-help                     | 398,806  | 36,565  | Apr 1997      | Nov 2026     |
+| r-help                     | 398,809  | 36,565  | Apr 1997      | Nov 2026     |
 | r-devel                    | 63,744   | 5,577   | Apr 1997      | Oct 2026     |
 | bioconductor               | 61,316   | 7,259   | Nov 2001      | Sep 2014     |
 | r-sig-geo                  | 29,588   | 3,456   | Jul 2003      | Oct 2026     |
@@ -142,8 +142,8 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | stan-dev                   | 14,007   | 73      | Nov 2011      | Dec 2016     |
 | r-package-devel            | 12,406   | 1,129   | May 2015      | Oct 2026     |
 | rcpp-devel                 | 11,011   | 794     | Nov 2009      | May 2026     |
-| unmarked                   | 7,731    | 1,059   | Feb 2010      | Oct 2026     |
-| r-sig-ecology              | 7,619    | 1,318   | Apr 2008      | Oct 2026     |
+| unmarked                   | 7,733    | 1,059   | Feb 2010      | Nov 2026     |
+| r-sig-ecology              | 7,620    | 1,318   | Apr 2008      | Nov 2026     |
 | distance-sampling          | 6,855    | 1,278   | Sep 1998      | Oct 2026     |
 | r-sig-phylo                | 6,510    | 1,035   | Feb 2008      | Oct 2026     |
 | shinyapps-users            | 6,426    | 1,537   | Nov 2013      | Sep 2018     |
@@ -162,7 +162,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | israel-r-user-group        | 3,141    | 204     | Aug 2009      | Mar 2021     |
 | methylkit-discussion       | 3,131    | 532     | May 2013      | Jul 2026     |
 | statnet-help               | 3,102    | 592     | Apr 2006      | Jun 2026     |
-| ctmm-user                  | 3,007    | 418     | Feb 2017      | Oct 2026     |
+| ctmm-user                  | 3,008    | 419     | Feb 2017      | Nov 2026     |
 | manipulatr                 | 2,804    | 528     | Mar 2009      | Dec 2023     |
 | msstats                    | 2,636    | 391     | Jan 2014      | Oct 2026     |
 | secrgroup                  | 2,549    | 335     | Nov 2013      | Oct 2026     |
@@ -176,9 +176,9 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | knitr                      | 1,964    | 339     | Jan 2012      | Oct 2023     |
 | stats-rosuda-devel         | 1,938    | 358     | Sep 2006      | Jul 2017     |
 | grass-stats                | 1,892    | 189     | May 2001      | Nov 2024     |
-| taiwanruser                | 1,774    | 417     | Feb 2012      | Sep 2026     |
+| taiwanruser                | 1,775    | 417     | Feb 2012      | Nov 2026     |
 | biogeobears                | 1,636    | 256     | Oct 2013      | Oct 2026     |
-| camtrapr                   | 1,626    | 304     | Dec 2016      | Oct 2026     |
+| camtrapr                   | 1,627    | 304     | Dec 2016      | Nov 2026     |
 | bioc-ggtree                | 1,586    | 392     | Mar 2016      | Nov 2025     |
 | r-sig-db                   | 1,559    | 391     | Apr 2001      | Nov 2020     |
 | deducer                    | 1,538    | 295     | Aug 2009      | May 2022     |
@@ -213,7 +213,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | subread                    | 839      | 136     | Jul 2013      | Apr 2021     |
 | wallaceecomod              | 839      | 179     | Jan 2017      | Sep 2026     |
 | ggplot2-dev                | 832      | 56      | Dec 2011      | Mar 2017     |
-| r-swat                     | 786      | 154     | Aug 2021      | Oct 2026     |
+| r-swat                     | 789      | 155     | Aug 2021      | Nov 2026     |
 | rropen                     | 775      | 217     | Oct 2014      | May 2016     |
 | rmetrics-core              | 741      | 220     | Sep 2007      | Nov 2017     |
 | fieldimager                | 725      | 102     | Mar 2020      | Mar 2026     |
@@ -221,13 +221,13 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-announce                 | 715      | 111     | Apr 1997      | Oct 2026     |
 | r-sig-dynamic-models       | 697      | 159     | Oct 2009      | Mar 2026     |
 | sequenza-user-group        | 694      | 156     | Aug 2014      | Oct 2026     |
-| r-sig-epi                  | 677      | 166     | Nov 2005      | Oct 2026     |
+| r-sig-epi                  | 678      | 166     | Nov 2005      | Nov 2026     |
 | ggvis                      | 667      | 179     | Aug 2013      | Jun 2024     |
 | nat-user                   | 639      | 103     | Apr 2015      | Jan 2026     |
 | tsdyn                      | 634      | 83      | Dec 2006      | Feb 2024     |
 | matchit                    | 614      | 158     | Feb 2007      | Jan 2020     |
 | irace-package              | 594      | 102     | Jul 2016      | Sep 2025     |
-| r-sig-genetics             | 592      | 61      | May 2008      | Oct 2026     |
+| r-sig-genetics             | 593      | 61      | May 2008      | Nov 2026     |
 | hbayesdm-users             | 562      | 120     | Dec 2016      | Apr 2026     |
 | rdevtools                  | 561      | 127     | Mar 2012      | Jan 2023     |
 | oscr-package               | 551      | 78      | Feb 2016      | Oct 2026     |
@@ -273,9 +273,9 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-gr                   | 177      | 79      | Sep 2002      | Sep 2026     |
 | breedr                     | 175      | 41      | Jul 2015      | Nov 2024     |
 | titancna                   | 167      | 31      | Aug 2014      | Nov 2023     |
+| isorix                     | 166      | 30      | Apr 2021      | Nov 2026     |
 | rrook                      | 166      | 43      | Apr 2011      | Aug 2015     |
 | canopy-phylogeny           | 164      | 43      | Sep 2016      | Sep 2023     |
-| isorix                     | 163      | 30      | Apr 2021      | Apr 2026     |
 | rcytoscape                 | 163      | 11      | May 2011      | Mar 2019     |
 | mediation-information      | 158      | 31      | May 2011      | Jan 2021     |
 | metacoder-discussions      | 154      | 41      | Feb 2017      | Apr 2026     |
@@ -328,8 +328,8 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | ropengov-forum             | 47       | 10      | Dec 2013      | Mar 2019     |
 | rho-devel                  | 46       | 15      | Oct 2013      | May 2016     |
 | rsnns                      | 44       | 23      | Dec 2016      | Jun 2025     |
+| dynr                       | 38       | 15      | Feb 2019      | Nov 2026     |
 | boostheaders-devel         | 37       | 7       | Feb 2013      | Jan 2015     |
-| dynr                       | 37       | 14      | Feb 2019      | Nov 2025     |
 | r-forum                    | 35       | 18      | Dec 2008      | Sep 2013     |
 | remoterengine-devel        | 35       | 2       | Aug 2009      | Oct 2009     |
 | monetr-users               | 34       | 6       | Jul 2013      | Nov 2015     |
