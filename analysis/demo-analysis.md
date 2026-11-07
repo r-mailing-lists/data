@@ -213,7 +213,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63750 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63757 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -332,7 +332,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
 ```
 
                            Ivan Krylov                    Martin Maechler 
-                                    37                                 36 
+                                    37                                 37 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
                                     29                                 24 
                         Duncan Murdoch                        Kurt Hornik 
@@ -432,9 +432,9 @@ contribs |>
 | Gabor Grothendieck |         10252 |         28 |
 | Uwe Ligges         |          8677 |         22 |
 | Dirk Eddelbuettel  |          8429 |         27 |
-| Ben Bolker         |          6552 |         18 |
+| Ben Bolker         |          6553 |         18 |
 | Bert Gunter        |          6051 |         11 |
-| Martin Maechler    |          5943 |         29 |
+| Martin Maechler    |          5944 |         29 |
 | Simon Urbanek      |          4955 |         18 |
 | Roger Bivand       |          4790 |         19 |
 | Hadley Wickham     |          4635 |         27 |

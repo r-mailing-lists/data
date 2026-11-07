@@ -119,21 +119,21 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,043,381** messages across **287** mailing lists
+**1,043,401** messages across **287** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
 | r-help                     | 398,809  | 36,565  | Apr 1997      | Nov 2026     |
-| r-devel                    | 63,750   | 5,579   | Apr 1997      | Nov 2026     |
+| r-devel                    | 63,757   | 5,580   | Apr 1997      | Nov 2026     |
 | bioconductor               | 61,316   | 7,259   | Nov 2001      | Sep 2014     |
 | r-sig-geo                  | 29,588   | 3,456   | Jul 2003      | Oct 2026     |
 | stan-users                 | 26,736   | 1,416   | Aug 2012      | Jun 2017     |
 | s-news                     | 23,817   | 4,035   | Feb 1998      | Dec 2010     |
 | lavaan                     | 23,447   | 3,177   | Sep 2012      | Nov 2026     |
 | shiny-discuss              | 23,336   | 3,762   | Nov 2012      | Jan 2024     |
-| bioc-devel                 | 21,564   | 1,701   | Mar 2004      | Nov 2026     |
+| bioc-devel                 | 21,565   | 1,701   | Mar 2004      | Nov 2026     |
 | ggplot2                    | 21,320   | 3,063   | Nov 2008      | Jan 2025     |
-| r-sig-mixed-models         | 20,675   | 3,092   | Jan 2007      | Oct 2026     |
+| r-sig-mixed-models         | 20,679   | 3,093   | Jan 2007      | Nov 2026     |
 | r-br                       | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
 | r-inla-discussion-group    | 16,090   | 1,682   | Feb 2011      | Oct 2026     |
 | r-help-es                  | 15,408   | 899     | Mar 2009      | Sep 2026     |
@@ -142,8 +142,8 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | stan-dev                   | 14,007   | 73      | Nov 2011      | Dec 2016     |
 | r-package-devel            | 12,406   | 1,129   | May 2015      | Oct 2026     |
 | rcpp-devel                 | 11,011   | 794     | Nov 2009      | May 2026     |
-| unmarked                   | 7,734    | 1,059   | Feb 2010      | Nov 2026     |
-| r-sig-ecology              | 7,631    | 1,318   | Apr 2008      | Nov 2026     |
+| unmarked                   | 7,735    | 1,059   | Feb 2010      | Nov 2026     |
+| r-sig-ecology              | 7,633    | 1,318   | Apr 2008      | Nov 2026     |
 | distance-sampling          | 6,855    | 1,278   | Sep 1998      | Oct 2026     |
 | r-sig-phylo                | 6,511    | 1,035   | Feb 2008      | Nov 2026     |
 | shinyapps-users            | 6,426    | 1,537   | Nov 2013      | Sep 2018     |
@@ -156,7 +156,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | rpy-list                   | 3,768    | 499     | Jan 2004      | Jun 2021     |
 | r-sig-debian               | 3,678    | 501     | Feb 2005      | Sep 2026     |
 | davis-rug                  | 3,651    | 365     | Sep 2012      | May 2026     |
-| geomorph-r-package         | 3,647    | 394     | Jul 2016      | Nov 2026     |
+| geomorph-r-package         | 3,649    | 394     | Jul 2016      | Nov 2026     |
 | rpackageggir               | 3,417    | 525     | Nov 2014      | Jul 2025     |
 | datatable-help             | 3,415    | 439     | Mar 2010      | Apr 2018     |
 | israel-r-user-group        | 3,141    | 204     | Aug 2009      | Mar 2021     |
@@ -164,7 +164,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | statnet-help               | 3,102    | 592     | Apr 2006      | Jun 2026     |
 | ctmm-user                  | 3,009    | 419     | Feb 2017      | Nov 2026     |
 | manipulatr                 | 2,804    | 528     | Mar 2009      | Dec 2023     |
-| msstats                    | 2,637    | 392     | Jan 2014      | Nov 2026     |
+| msstats                    | 2,638    | 392     | Jan 2014      | Nov 2026     |
 | secrgroup                  | 2,549    | 335     | Nov 2013      | Oct 2026     |
 | debian-r                   | 2,474    | 129     | Feb 2018      | Oct 2026     |
 | dartr                      | 2,425    | 272     | Nov 2018      | Sep 2026     |
@@ -172,7 +172,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | rhadoop                    | 2,167    | 385     | Feb 2012      | May 2016     |
 | r-sig-hpc                  | 2,152    | 382     | Oct 2008      | Dec 2024     |
 | adegenet-forum             | 1,994    | 453     | Feb 2008      | Feb 2025     |
-| hmecology                  | 1,966    | 342     | Dec 2012      | Nov 2026     |
+| hmecology                  | 1,967    | 342     | Dec 2012      | Nov 2026     |
 | knitr                      | 1,964    | 339     | Jan 2012      | Oct 2023     |
 | stats-rosuda-devel         | 1,938    | 358     | Sep 2006      | Jul 2017     |
 | grass-stats                | 1,892    | 189     | May 2001      | Nov 2024     |
@@ -244,7 +244,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-jobs                 | 442      | 267     | Feb 2007      | Mar 2026     |
 | statet                     | 399      | 87      | Apr 2013      | May 2019     |
 | r-sig-wiki                 | 398      | 32      | Jan 2006      | Aug 2010     |
-| spocc-spabund-users        | 389      | 74      | Jul 2024      | Oct 2026     |
+| spocc-spabund-users        | 390      | 75      | Jul 2024      | Nov 2026     |
 | r-ecologia                 | 385      | 71      | Oct 2012      | Jun 2017     |
 | traminer-users             | 383      | 94      | May 2010      | Jul 2023     |
 | fedora-r-devel             | 378      | 20      | Apr 2006      | Mar 2020     |
