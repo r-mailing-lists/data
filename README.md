@@ -119,11 +119,11 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,043,406** messages across **287** mailing lists
+**1,043,415** messages across **287** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
-| r-help                     | 398,810  | 36,565  | Apr 1997      | Nov 2026     |
+| r-help                     | 398,814  | 36,565  | Apr 1997      | Nov 2026     |
 | r-devel                    | 63,758   | 5,580   | Apr 1997      | Nov 2026     |
 | bioconductor               | 61,316   | 7,259   | Nov 2001      | Sep 2014     |
 | r-sig-geo                  | 29,588   | 3,456   | Jul 2003      | Oct 2026     |
@@ -133,11 +133,11 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | shiny-discuss              | 23,336   | 3,762   | Nov 2012      | Jan 2024     |
 | bioc-devel                 | 21,565   | 1,701   | Mar 2004      | Nov 2026     |
 | ggplot2                    | 21,320   | 3,063   | Nov 2008      | Jan 2025     |
-| r-sig-mixed-models         | 20,679   | 3,093   | Jan 2007      | Nov 2026     |
+| r-sig-mixed-models         | 20,680   | 3,093   | Jan 2007      | Nov 2026     |
 | r-br                       | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
 | r-inla-discussion-group    | 16,090   | 1,682   | Feb 2011      | Oct 2026     |
 | r-help-es                  | 15,408   | 899     | Mar 2009      | Sep 2026     |
-| r-sig-finance              | 15,317   | 2,132   | Jun 2004      | Oct 2026     |
+| r-sig-finance              | 15,319   | 2,133   | Jun 2004      | Nov 2026     |
 | r-sig-mac                  | 15,124   | 1,721   | Jan 1970      | Nov 2026     |
 | stan-dev                   | 14,007   | 73      | Nov 2011      | Dec 2016     |
 | r-package-devel            | 12,406   | 1,129   | May 2015      | Oct 2026     |
@@ -272,7 +272,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | bioconductor-teaching      | 189      | 23      | Jul 2020      | Oct 2026     |
 | r-sig-gr                   | 177      | 79      | Sep 2002      | Sep 2026     |
 | breedr                     | 175      | 41      | Jul 2015      | Nov 2024     |
-| isorix                     | 170      | 30      | Apr 2021      | Nov 2026     |
+| isorix                     | 172      | 30      | Apr 2021      | Nov 2026     |
 | titancna                   | 167      | 31      | Aug 2014      | Nov 2023     |
 | rrook                      | 166      | 43      | Apr 2011      | Aug 2015     |
 | canopy-phylogeny           | 164      | 43      | Sep 2016      | Sep 2023     |
