@@ -213,7 +213,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63760 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63763 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -245,7 +245,7 @@ head(contribs)
     # A data frame: 6 × 7
       name     message_count list_count lists list_counts first_message last_message
     * <chr>            <int>      <int> <chr> <chr>       <chr>         <chr>       
-    1 Brian R…         19225         17 r-he… r-help:117… 1998-02-09T2… 2026-11-07T…
+    1 Brian R…         19226         17 r-he… r-help:117… 1998-02-09T2… 2026-11-11T…
     2 Duncan …         12622         17 r-he… r-help:733… 1998-02-19T1… 2026-10-26T…
     3 David W…         11781         19 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
     4 Peter D…         10838         13 r-he… r-help:707… 1997-04-01T0… 2026-10-29T…
@@ -424,7 +424,7 @@ contribs |>
 
 | name               | message_count | list_count |
 |:-------------------|--------------:|-----------:|
-| Brian Ripley       |         19225 |         17 |
+| Brian Ripley       |         19226 |         17 |
 | Duncan Murdoch     |         12622 |         17 |
 | David Winsemius    |         11781 |         19 |
 | Peter Dalgaard     |         10838 |         13 |
