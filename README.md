@@ -119,12 +119,12 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,043,453** messages across **287** mailing lists
+**1,043,463** messages across **287** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
 | r-help                     | 398,814  | 36,565  | Apr 1997      | Nov 2026     |
-| r-devel                    | 63,763   | 5,580   | Apr 1997      | Nov 2026     |
+| r-devel                    | 63,764   | 5,580   | Apr 1997      | Nov 2026     |
 | bioconductor               | 61,316   | 7,259   | Nov 2001      | Sep 2014     |
 | r-sig-geo                  | 29,588   | 3,456   | Jul 2003      | Oct 2026     |
 | stan-users                 | 26,736   | 1,416   | Aug 2012      | Jun 2017     |
@@ -133,7 +133,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | shiny-discuss              | 23,336   | 3,762   | Nov 2012      | Jan 2024     |
 | bioc-devel                 | 21,571   | 1,702   | Mar 2004      | Nov 2026     |
 | ggplot2                    | 21,320   | 3,063   | Nov 2008      | Jan 2025     |
-| r-sig-mixed-models         | 20,684   | 3,093   | Jan 2007      | Nov 2026     |
+| r-sig-mixed-models         | 20,685   | 3,093   | Jan 2007      | Nov 2026     |
 | r-br                       | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
 | r-inla-discussion-group    | 16,090   | 1,682   | Feb 2011      | Oct 2026     |
 | r-help-es                  | 15,408   | 899     | Mar 2009      | Sep 2026     |
@@ -143,13 +143,13 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-package-devel            | 12,410   | 1,130   | May 2015      | Nov 2026     |
 | rcpp-devel                 | 11,011   | 794     | Nov 2009      | May 2026     |
 | unmarked                   | 7,735    | 1,059   | Feb 2010      | Nov 2026     |
-| r-sig-ecology              | 7,634    | 1,318   | Apr 2008      | Nov 2026     |
+| r-sig-ecology              | 7,636    | 1,318   | Apr 2008      | Nov 2026     |
 | distance-sampling          | 6,855    | 1,278   | Sep 1998      | Oct 2026     |
 | r-sig-phylo                | 6,511    | 1,035   | Feb 2008      | Nov 2026     |
 | shinyapps-users            | 6,426    | 1,537   | Nov 2013      | Sep 2018     |
 | rkward-devel               | 6,143    | 418     | Nov 2002      | Sep 2025     |
 | nimble-users               | 5,839    | 588     | Jul 2014      | Oct 2026     |
-| r-sig-meta-analysis        | 5,657    | 551     | Jun 2017      | Nov 2026     |
+| r-sig-meta-analysis        | 5,661    | 551     | Jun 2017      | Nov 2026     |
 | mirt-package               | 5,602    | 667     | Apr 2013      | Apr 2026     |
 | aroma-affymetrix           | 4,763    | 548     | Feb 2007      | Feb 2021     |
 | rqtl-disc                  | 4,744    | 626     | Sep 2004      | Oct 2026     |
@@ -221,12 +221,12 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-announce                 | 715      | 111     | Apr 1997      | Oct 2026     |
 | r-sig-dynamic-models       | 697      | 159     | Oct 2009      | Mar 2026     |
 | sequenza-user-group        | 694      | 156     | Aug 2014      | Oct 2026     |
-| r-sig-epi                  | 683      | 166     | Nov 2005      | Nov 2026     |
+| r-sig-epi                  | 684      | 166     | Nov 2005      | Nov 2026     |
 | ggvis                      | 667      | 179     | Aug 2013      | Jun 2024     |
 | nat-user                   | 639      | 103     | Apr 2015      | Jan 2026     |
 | tsdyn                      | 634      | 83      | Dec 2006      | Feb 2024     |
 | matchit                    | 614      | 158     | Feb 2007      | Jan 2020     |
-| r-sig-genetics             | 597      | 61      | May 2008      | Nov 2026     |
+| r-sig-genetics             | 598      | 61      | May 2008      | Nov 2026     |
 | irace-package              | 594      | 102     | Jul 2016      | Sep 2025     |
 | hbayesdm-users             | 562      | 120     | Dec 2016      | Apr 2026     |
 | rdevtools                  | 561      | 127     | Mar 2012      | Jan 2023     |
