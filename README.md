@@ -119,11 +119,11 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,043,510** messages across **287** mailing lists
+**1,043,516** messages across **287** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
-| r-help                     | 398,814  | 36,565  | Apr 1997      | Nov 2026     |
+| r-help                     | 398,817  | 36,566  | Apr 1997      | Nov 2026     |
 | r-devel                    | 63,765   | 5,580   | Apr 1997      | Nov 2026     |
 | bioconductor               | 61,316   | 7,259   | Nov 2001      | Sep 2014     |
 | r-sig-geo                  | 29,588   | 3,456   | Jul 2003      | Oct 2026     |
@@ -131,7 +131,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | s-news                     | 23,817   | 4,035   | Feb 1998      | Dec 2010     |
 | lavaan                     | 23,455   | 3,177   | Sep 2012      | Nov 2026     |
 | shiny-discuss              | 23,336   | 3,762   | Nov 2012      | Jan 2024     |
-| bioc-devel                 | 21,581   | 1,703   | Mar 2004      | Nov 2026     |
+| bioc-devel                 | 21,582   | 1,703   | Mar 2004      | Nov 2026     |
 | ggplot2                    | 21,320   | 3,063   | Nov 2008      | Jan 2025     |
 | r-sig-mixed-models         | 20,687   | 3,093   | Jan 2007      | Nov 2026     |
 | r-br                       | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
@@ -140,7 +140,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-finance              | 15,319   | 2,133   | Jun 2004      | Nov 2026     |
 | r-sig-mac                  | 15,131   | 1,721   | Jan 1970      | Nov 2026     |
 | stan-dev                   | 14,007   | 73      | Nov 2011      | Dec 2016     |
-| r-package-devel            | 12,410   | 1,130   | May 2015      | Nov 2026     |
+| r-package-devel            | 12,411   | 1,130   | May 2015      | Nov 2026     |
 | rcpp-devel                 | 11,011   | 794     | Nov 2009      | May 2026     |
 | unmarked                   | 7,735    | 1,059   | Feb 2010      | Nov 2026     |
 | r-sig-ecology              | 7,637    | 1,318   | Apr 2008      | Nov 2026     |
@@ -288,8 +288,8 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | segoptim-user-group        | 141      | 29      | Jan 2019      | Jan 2025     |
 | rworldmap                  | 140      | 55      | Jul 2013      | Oct 2021     |
 | garnett-users              | 138      | 38      | Feb 2019      | Aug 2026     |
+| rkward                     | 138      | 18      | Oct 2025      | Nov 2026     |
 | inlinedocs-support         | 137      | 59      | Nov 2009      | Jun 2014     |
-| rkward                     | 137      | 17      | Oct 2025      | Nov 2026     |
 | maduser                    | 136      | 57      | Sep 2009      | Apr 2014     |
 | rcppoctave-user            | 133      | 8       | Oct 2013      | Nov 2016     |
 | jiebar                     | 126      | 68      | Feb 2015      | Aug 2026     |

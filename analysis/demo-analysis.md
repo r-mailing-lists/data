@@ -440,7 +440,7 @@ contribs |>
 | Hadley Wickham     |          4636 |         27 |
 | Ben Goodrich       |          4474 |          7 |
 | jim holtman        |          4469 |          8 |
-| Jeff Newmiller     |          4428 |         10 |
+| Jeff Newmiller     |          4429 |         10 |
 | Martin Morgan      |          4349 |          9 |
 | Henrik Bengtsson   |          4221 |         17 |
 | Jim Lemon          |          3886 |          6 |
