@@ -119,11 +119,11 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,043,516** messages across **287** mailing lists
+**1,043,521** messages across **287** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
-| r-help                     | 398,817  | 36,566  | Apr 1997      | Nov 2026     |
+| r-help                     | 398,819  | 36,566  | Apr 1997      | Nov 2026     |
 | r-devel                    | 63,765   | 5,580   | Apr 1997      | Nov 2026     |
 | bioconductor               | 61,316   | 7,259   | Nov 2001      | Sep 2014     |
 | r-sig-geo                  | 29,588   | 3,456   | Jul 2003      | Oct 2026     |
@@ -131,7 +131,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | s-news                     | 23,817   | 4,035   | Feb 1998      | Dec 2010     |
 | lavaan                     | 23,455   | 3,177   | Sep 2012      | Nov 2026     |
 | shiny-discuss              | 23,336   | 3,762   | Nov 2012      | Jan 2024     |
-| bioc-devel                 | 21,582   | 1,703   | Mar 2004      | Nov 2026     |
+| bioc-devel                 | 21,583   | 1,704   | Mar 2004      | Nov 2026     |
 | ggplot2                    | 21,320   | 3,063   | Nov 2008      | Jan 2025     |
 | r-sig-mixed-models         | 20,687   | 3,093   | Jan 2007      | Nov 2026     |
 | r-br                       | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
@@ -143,9 +143,9 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-package-devel            | 12,411   | 1,130   | May 2015      | Nov 2026     |
 | rcpp-devel                 | 11,011   | 794     | Nov 2009      | May 2026     |
 | unmarked                   | 7,735    | 1,059   | Feb 2010      | Nov 2026     |
-| r-sig-ecology              | 7,637    | 1,318   | Apr 2008      | Nov 2026     |
+| r-sig-ecology              | 7,638    | 1,318   | Apr 2008      | Nov 2026     |
 | distance-sampling          | 6,855    | 1,278   | Sep 1998      | Oct 2026     |
-| r-sig-phylo                | 6,511    | 1,035   | Feb 2008      | Nov 2026     |
+| r-sig-phylo                | 6,512    | 1,035   | Feb 2008      | Nov 2026     |
 | shinyapps-users            | 6,426    | 1,537   | Nov 2013      | Sep 2018     |
 | rkward-devel               | 6,143    | 418     | Nov 2002      | Sep 2025     |
 | nimble-users               | 5,839    | 588     | Jul 2014      | Oct 2026     |
