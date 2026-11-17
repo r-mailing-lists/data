@@ -213,7 +213,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63765 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63767 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -433,7 +433,7 @@ contribs |>
 | Uwe Ligges         |          8677 |         22 |
 | Dirk Eddelbuettel  |          8430 |         27 |
 | Ben Bolker         |          6556 |         18 |
-| Bert Gunter        |          6051 |         11 |
+| Bert Gunter        |          6052 |         11 |
 | Martin Maechler    |          5946 |         29 |
 | Simon Urbanek      |          4955 |         18 |
 | Roger Bivand       |          4790 |         19 |
