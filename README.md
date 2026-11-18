@@ -119,7 +119,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,043,536** messages across **287** mailing lists
+**1,043,560** messages across **287** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
@@ -129,9 +129,9 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-geo                  | 29,588   | 3,456   | Jul 2003      | Oct 2026     |
 | stan-users                 | 26,736   | 1,416   | Aug 2012      | Jun 2017     |
 | s-news                     | 23,817   | 4,035   | Feb 1998      | Dec 2010     |
-| lavaan                     | 23,455   | 3,177   | Sep 2012      | Nov 2026     |
+| lavaan                     | 23,457   | 3,177   | Sep 2012      | Nov 2026     |
 | shiny-discuss              | 23,336   | 3,762   | Nov 2012      | Jan 2024     |
-| bioc-devel                 | 21,589   | 1,705   | Mar 2004      | Nov 2026     |
+| bioc-devel                 | 21,593   | 1,705   | Mar 2004      | Nov 2026     |
 | ggplot2                    | 21,320   | 3,063   | Nov 2008      | Jan 2025     |
 | r-sig-mixed-models         | 20,687   | 3,093   | Jan 2007      | Nov 2026     |
 | r-br                       | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
@@ -154,15 +154,15 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | aroma-affymetrix           | 4,763    | 548     | Feb 2007      | Feb 2021     |
 | rqtl-disc                  | 4,744    | 626     | Sep 2004      | Oct 2026     |
 | rpy-list                   | 3,768    | 499     | Jan 2004      | Jun 2021     |
-| r-sig-debian               | 3,678    | 501     | Feb 2005      | Sep 2026     |
+| r-sig-debian               | 3,679    | 501     | Feb 2005      | Nov 2026     |
+| geomorph-r-package         | 3,652    | 394     | Jul 2016      | Nov 2026     |
 | davis-rug                  | 3,651    | 365     | Sep 2012      | May 2026     |
-| geomorph-r-package         | 3,651    | 394     | Jul 2016      | Nov 2026     |
 | rpackageggir               | 3,417    | 525     | Nov 2014      | Jul 2025     |
 | datatable-help             | 3,415    | 439     | Mar 2010      | Apr 2018     |
 | israel-r-user-group        | 3,141    | 204     | Aug 2009      | Mar 2021     |
 | methylkit-discussion       | 3,131    | 532     | May 2013      | Jul 2026     |
 | statnet-help               | 3,105    | 592     | Apr 2006      | Nov 2026     |
-| ctmm-user                  | 3,015    | 419     | Feb 2017      | Nov 2026     |
+| ctmm-user                  | 3,025    | 419     | Feb 2017      | Nov 2026     |
 | manipulatr                 | 2,804    | 528     | Mar 2009      | Dec 2023     |
 | msstats                    | 2,640    | 392     | Jan 2014      | Nov 2026     |
 | secrgroup                  | 2,549    | 335     | Nov 2013      | Oct 2026     |
@@ -172,7 +172,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | rhadoop                    | 2,167    | 385     | Feb 2012      | May 2016     |
 | r-sig-hpc                  | 2,152    | 382     | Oct 2008      | Dec 2024     |
 | adegenet-forum             | 1,994    | 453     | Feb 2008      | Feb 2025     |
-| hmecology                  | 1,967    | 342     | Dec 2012      | Nov 2026     |
+| hmecology                  | 1,968    | 342     | Dec 2012      | Nov 2026     |
 | knitr                      | 1,964    | 339     | Jan 2012      | Oct 2023     |
 | stats-rosuda-devel         | 1,938    | 358     | Sep 2006      | Jul 2017     |
 | grass-stats                | 1,892    | 189     | May 2001      | Nov 2024     |
@@ -226,7 +226,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | nat-user                   | 639      | 103     | Apr 2015      | Jan 2026     |
 | tsdyn                      | 634      | 83      | Dec 2006      | Feb 2024     |
 | matchit                    | 614      | 158     | Feb 2007      | Jan 2020     |
-| r-sig-genetics             | 599      | 61      | May 2008      | Nov 2026     |
+| r-sig-genetics             | 600      | 61      | May 2008      | Nov 2026     |
 | irace-package              | 594      | 102     | Jul 2016      | Sep 2025     |
 | hbayesdm-users             | 562      | 120     | Dec 2016      | Apr 2026     |
 | rdevtools                  | 561      | 127     | Mar 2012      | Jan 2023     |
@@ -244,7 +244,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-sig-jobs                 | 442      | 267     | Feb 2007      | Mar 2026     |
 | statet                     | 399      | 87      | Apr 2013      | May 2019     |
 | r-sig-wiki                 | 398      | 32      | Jan 2006      | Aug 2010     |
-| spocc-spabund-users        | 395      | 76      | Jul 2024      | Nov 2026     |
+| spocc-spabund-users        | 398      | 76      | Jul 2024      | Nov 2026     |
 | r-ecologia                 | 385      | 71      | Oct 2012      | Jun 2017     |
 | traminer-users             | 383      | 94      | May 2010      | Jul 2023     |
 | fedora-r-devel             | 378      | 20      | Apr 2006      | Mar 2020     |
@@ -287,8 +287,8 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | mosaics-user-group         | 141      | 38      | Jun 2011      | Jan 2024     |
 | segoptim-user-group        | 141      | 29      | Jan 2019      | Jan 2025     |
 | rworldmap                  | 140      | 55      | Jul 2013      | Oct 2021     |
+| rkward                     | 139      | 18      | Oct 2025      | Nov 2026     |
 | garnett-users              | 138      | 38      | Feb 2019      | Aug 2026     |
-| rkward                     | 138      | 18      | Oct 2025      | Nov 2026     |
 | inlinedocs-support         | 137      | 59      | Nov 2009      | Jun 2014     |
 | maduser                    | 136      | 57      | Sep 2009      | Apr 2014     |
 | rcppoctave-user            | 133      | 8       | Oct 2013      | Nov 2016     |
