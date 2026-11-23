@@ -119,12 +119,12 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,043,622** messages across **287** mailing lists
+**1,043,636** messages across **287** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
 | r-help                     | 398,823  | 36,567  | Apr 1997      | Nov 2026     |
-| r-devel                    | 63,770   | 5,581   | Apr 1997      | Nov 2026     |
+| r-devel                    | 63,776   | 5,583   | Apr 1997      | Nov 2026     |
 | bioconductor               | 61,316   | 7,259   | Nov 2001      | Sep 2014     |
 | r-sig-geo                  | 29,591   | 3,457   | Jul 2003      | Nov 2026     |
 | stan-users                 | 26,736   | 1,416   | Aug 2012      | Jun 2017     |
@@ -154,7 +154,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | aroma-affymetrix           | 4,763    | 548     | Feb 2007      | Feb 2021     |
 | rqtl-disc                  | 4,744    | 626     | Sep 2004      | Oct 2026     |
 | rpy-list                   | 3,768    | 499     | Jan 2004      | Jun 2021     |
-| r-sig-debian               | 3,683    | 503     | Feb 2005      | Nov 2026     |
+| r-sig-debian               | 3,691    | 503     | Feb 2005      | Nov 2026     |
 | geomorph-r-package         | 3,652    | 394     | Jul 2016      | Nov 2026     |
 | davis-rug                  | 3,651    | 365     | Sep 2012      | May 2026     |
 | rpackageggir               | 3,417    | 525     | Nov 2014      | Jul 2025     |
