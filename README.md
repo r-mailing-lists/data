@@ -119,7 +119,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 
 ## Data overview
 
-**1,043,636** messages across **287** mailing lists
+**1,043,644** messages across **287** mailing lists
 
 | List                       | Messages | Authors | First Message | Last Message |
 |:---------------------------|:---------|:--------|:--------------|:-------------|
@@ -131,7 +131,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | s-news                     | 23,817   | 4,035   | Feb 1998      | Dec 2010     |
 | lavaan                     | 23,460   | 3,177   | Sep 2012      | Nov 2026     |
 | shiny-discuss              | 23,336   | 3,762   | Nov 2012      | Jan 2024     |
-| bioc-devel                 | 21,606   | 1,705   | Mar 2004      | Nov 2026     |
+| bioc-devel                 | 21,612   | 1,706   | Mar 2004      | Nov 2026     |
 | ggplot2                    | 21,320   | 3,063   | Nov 2008      | Jan 2025     |
 | r-sig-mixed-models         | 20,687   | 3,093   | Jan 2007      | Nov 2026     |
 | r-br                       | 20,633   | 1,057   | Mar 2011      | Oct 2025     |
@@ -145,7 +145,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | unmarked                   | 7,735    | 1,059   | Feb 2010      | Nov 2026     |
 | r-sig-ecology              | 7,643    | 1,318   | Apr 2008      | Nov 2026     |
 | distance-sampling          | 6,855    | 1,278   | Sep 1998      | Oct 2026     |
-| r-sig-phylo                | 6,512    | 1,035   | Feb 2008      | Nov 2026     |
+| r-sig-phylo                | 6,513    | 1,035   | Feb 2008      | Nov 2026     |
 | shinyapps-users            | 6,426    | 1,537   | Nov 2013      | Sep 2018     |
 | rkward-devel               | 6,143    | 418     | Nov 2002      | Sep 2025     |
 | nimble-users               | 5,840    | 588     | Jul 2014      | Nov 2026     |
@@ -221,7 +221,7 @@ contributors), see the [demo analysis](analysis/demo-analysis.md).
 | r-announce                 | 715      | 111     | Apr 1997      | Oct 2026     |
 | r-sig-dynamic-models       | 697      | 159     | Oct 2009      | Mar 2026     |
 | sequenza-user-group        | 694      | 156     | Aug 2014      | Oct 2026     |
-| r-sig-epi                  | 689      | 166     | Nov 2005      | Nov 2026     |
+| r-sig-epi                  | 690      | 166     | Nov 2005      | Nov 2026     |
 | ggvis                      | 667      | 179     | Aug 2013      | Jun 2024     |
 | nat-user                   | 639      | 103     | Apr 2015      | Jan 2026     |
 | tsdyn                      | 634      | 83      | Dec 2006      | Feb 2024     |
