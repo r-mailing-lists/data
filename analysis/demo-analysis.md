@@ -334,9 +334,9 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                        Martin Maechler                        Ivan Krylov 
                                     39                                 37 
                      Dirk Eddelbuettel iuke-tier@ey m@iii@g oii uiow@@edu 
-                                    30                                 23 
-                        Duncan Murdoch                        Kurt Hornik 
-                                    22                                 22 
+                                    30                                 22 
+                           Kurt Hornik                     Duncan Murdoch 
+                                    22                                 21 
                          Simon Urbanek                     Peter Dalgaard 
                                     20                                 17 
                             Ben Bolker    Suharto Anggono Suharto Anggono 
@@ -435,12 +435,12 @@ contribs |>
 | Ben Bolker         |          6556 |         18 |
 | Bert Gunter        |          6052 |         11 |
 | Martin Maechler    |          5946 |         29 |
-| Simon Urbanek      |          4955 |         18 |
+| Simon Urbanek      |          4956 |         18 |
 | Roger Bivand       |          4790 |         19 |
 | Hadley Wickham     |          4636 |         27 |
 | Ben Goodrich       |          4474 |          7 |
 | jim holtman        |          4469 |          8 |
-| Jeff Newmiller     |          4429 |         10 |
+| Jeff Newmiller     |          4430 |         10 |
 | Martin Morgan      |          4349 |          9 |
 | Henrik Bengtsson   |          4221 |         17 |
 | Jim Lemon          |          3886 |          6 |
