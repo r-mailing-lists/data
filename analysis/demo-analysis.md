@@ -213,7 +213,7 @@ r_devel <- rml_read("r-devel",
 str(r_devel)
 ```
 
-    Classes 'tbl' and 'data.frame': 63776 obs. of  5 variables:
+    Classes 'tbl' and 'data.frame': 63777 obs. of  5 variables:
      $ from_name: chr  "Martin Maechler" "Kurt Hornik" "Martin Maechler" "Martin Maechler" ...
      $ date     : POSIXct, format: "1997-04-01 08:28:56" "1997-04-01 08:35:43" ...
      $ subject  : chr  "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: R-Prerelease  ---- Mailing list  \"R-devel\"" "R-alpha: Re: Pretest Version + Notes --- write.table" "R-alpha: R0.50-pre6:  \"stack imbalance in ...\" //  is.vector(matrix...)" ...
@@ -250,7 +250,7 @@ head(contribs)
     3 David W…         11781         19 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
     4 Peter D…         10838         13 r-he… r-help:707… 1997-04-01T0… 2026-10-29T…
     5 Bob Car…         10399          4 stan… stan-users… 2011-11-07T1… 2017-06-06T…
-    6 Gabor G…         10252         28 r-he… r-help:804… 2002-01-12T1… 2026-10-03T…
+    6 Gabor G…         10255         28 r-he… r-help:805… 2002-01-12T1… 2026-11-26T…
 
 ### Working directly with Parquet files
 
@@ -338,7 +338,7 @@ head(sort(table(recent$from_name), decreasing = TRUE), 10)
                            Kurt Hornik                     Duncan Murdoch 
                                     22                                 21 
                          Simon Urbanek                     Peter Dalgaard 
-                                    20                                 17 
+                                    19                                 17 
                             Ben Bolker    Suharto Anggono Suharto Anggono 
                                     16                                 16 
 
@@ -429,18 +429,18 @@ contribs |>
 | David Winsemius    |         11781 |         19 |
 | Peter Dalgaard     |         10838 |         13 |
 | Bob Carpenter      |         10399 |          4 |
-| Gabor Grothendieck |         10252 |         28 |
+| Gabor Grothendieck |         10255 |         28 |
 | Uwe Ligges         |          8677 |         22 |
-| Dirk Eddelbuettel  |          8436 |         27 |
+| Dirk Eddelbuettel  |          8437 |         27 |
 | Ben Bolker         |          6556 |         18 |
-| Bert Gunter        |          6052 |         11 |
+| Bert Gunter        |          6053 |         11 |
 | Martin Maechler    |          5946 |         29 |
 | Simon Urbanek      |          4956 |         18 |
 | Roger Bivand       |          4790 |         19 |
 | Hadley Wickham     |          4636 |         27 |
 | Ben Goodrich       |          4474 |          7 |
 | jim holtman        |          4469 |          8 |
-| Jeff Newmiller     |          4430 |         10 |
+| Jeff Newmiller     |          4431 |         10 |
 | Martin Morgan      |          4349 |          9 |
 | Henrik Bengtsson   |          4221 |         17 |
 | Jim Lemon          |          3886 |          6 |
