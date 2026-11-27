@@ -250,7 +250,7 @@ head(contribs)
     3 David W…         11781         19 r-he… r-help:110… 2003-03-07T1… 2026-08-23T…
     4 Peter D…         10838         13 r-he… r-help:707… 1997-04-01T0… 2026-10-29T…
     5 Bob Car…         10399          4 stan… stan-users… 2011-11-07T1… 2017-06-06T…
-    6 Gabor G…         10255         28 r-he… r-help:805… 2002-01-12T1… 2026-11-26T…
+    6 Gabor G…         10257         28 r-he… r-help:805… 2002-01-12T1… 2026-11-26T…
 
 ### Working directly with Parquet files
 
@@ -429,7 +429,7 @@ contribs |>
 | David Winsemius    |         11781 |         19 |
 | Peter Dalgaard     |         10838 |         13 |
 | Bob Carpenter      |         10399 |          4 |
-| Gabor Grothendieck |         10255 |         28 |
+| Gabor Grothendieck |         10257 |         28 |
 | Uwe Ligges         |          8677 |         22 |
 | Dirk Eddelbuettel  |          8437 |         27 |
 | Ben Bolker         |          6556 |         18 |
